@@ -1,0 +1,10 @@
+﻿global using Microsoft.EntityFrameworkCore;
+global using Microsoft.EntityFrameworkCore.Metadata.Builders;
+global using Xy.Project.Core;
+global using Xy.Project.Core.Base;
+global using Xy.Project.Core.Entity;
+global using Xy.Project.Core.Enums;
+global using Xy.Project.Identity.Entities;
+global using Xy.Project.Identity.Identity.Stores;
+global using Xy.Project.Platform.Model.Entities.Identity;
+global using Yitter.IdGenerator;
