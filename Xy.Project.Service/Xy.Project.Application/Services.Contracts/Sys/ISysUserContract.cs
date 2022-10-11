@@ -1,16 +1,11 @@
-﻿using Xy.Project.Application.Dtos.Roles;
-using Xy.Project.Core.Dependency;
+﻿using Xy.Project.Core.Dependency;
 
-namespace Xy.Project.Application.Services.Contracts
+namespace Xy.Project.Application.Services.Contracts.Sys
 {
-
-    /// <summary>
-    /// 角色
-    /// </summary>
-    public interface IRoleContract : IScopedDependency
+    public interface ISysUserContract : IScopedDependency
     {
         /// <summary>
-        ///
+        /// 分页用户
         /// </summary>
         /// <param name="page"></param>
         /// <returns></returns>
@@ -21,23 +16,27 @@ namespace Xy.Project.Application.Services.Contracts
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        Task<AppResult> AddAsync(AddRoleInputDto dto);
+        Task<AppResult> AddAsync(AddUserInputDto dto);
 
         /// <summary>
-        /// 更新角色
+        /// 更新用户
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        Task<AppResult> UpdateAsync(UpdateRoleInputDto dto);
+        Task<AppResult> UpdateAsync(UpdateUserInputDto dto);
 
         /// <summary>
-        /// 删除角色
+        /// 删除用户
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         Task<AppResult> DeleteAsync(long id);
 
-
-
+        /// <summary>
+        /// 用户登录
+        /// </summary>
+        /// <param name="param"></param>
+        /// <returns></returns>
+        Task<AppResult> Login(LoginDto param);
     }
 }

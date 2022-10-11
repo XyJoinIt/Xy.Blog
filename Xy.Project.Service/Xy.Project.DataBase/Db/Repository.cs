@@ -35,6 +35,7 @@ namespace Xy.Project.DataBase.Db
             Context = unitOfWork.GetContext();
             DbSet = Context.Set<TEntity>();
         }
+
         #region 查询
 
         /// <summary>
@@ -44,7 +45,6 @@ namespace Xy.Project.DataBase.Db
         /// <returns></returns>
         public virtual IQueryable<TEntity> QueryAsNoTracking(Expression<Func<TEntity, bool>> predicate = null!)
         {
-
             return Query(predicate).AsNoTracking();
         }
 
@@ -160,7 +160,6 @@ namespace Xy.Project.DataBase.Db
         {
             entity.NotNull(nameof(entity));
             Context.Update(entity);
-
             return Context.SaveChangesAsync(cancellationToken);
         }
 
@@ -174,7 +173,6 @@ namespace Xy.Project.DataBase.Db
         {
             entities.NotNull(nameof(entities));
             Context.UpdateRange(entities);
-
             return Context.SaveChangesAsync(cancellationToken);
         }
 

@@ -1,9 +1,4 @@
-﻿
-
-
-
-
-namespace Xy.Project.Platform.Model.Entities.Configurations
+﻿namespace Xy.Project.Platform.Model.Entities.Configurations
 {
     internal class UserConfiguration : IEntityTypeConfiguration<User>
     {

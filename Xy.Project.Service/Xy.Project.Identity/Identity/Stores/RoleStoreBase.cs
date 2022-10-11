@@ -89,7 +89,6 @@
             cancellationToken.ThrowIfCancellationRequested();
             ThrowIfDisposed();
             Check.NotNull(role, nameof(role));
-
             await _roleRepository.InsertAsync(role);
             return IdentityResult.Success;
         }
@@ -105,8 +104,6 @@
             cancellationToken.ThrowIfCancellationRequested();
             ThrowIfDisposed();
             Check.NotNull(role, nameof(role));
-
-
             await _roleRepository.UpdateAsync(role);
             return IdentityResult.Success;
         }

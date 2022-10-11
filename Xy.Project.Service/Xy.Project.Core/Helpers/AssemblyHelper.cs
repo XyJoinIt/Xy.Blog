@@ -37,7 +37,7 @@ public static class AssemblyHelper
     }
 
     /// <summary>
-    /// 获取 所有类型
+    /// 获取所有类型
     /// </summary>
     public static Type[] AllTypes
     {
@@ -50,6 +50,10 @@ public static class AssemblyHelper
             return _allTypes!;
         }
     }
+
+    /// <summary>
+    /// 
+    /// </summary>
     public static void Init()
     {
         _allAssemblies = DependencyContext.Default?.GetDefaultAssemblyNames().Where(o => o.Name != null && !Filters.Any(o.Name.StartsWith)).Select(Assembly.Load).ToArray();
@@ -61,9 +65,20 @@ public static class AssemblyHelper
     /// </summary>
     public static Type[] FindTypes(Func<Type, bool> predicate) => AllTypes.Where(predicate).ToArray();
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="TAttribute"></typeparam>
+    /// <returns></returns>
     public static Type[] FindTypesByAttribute<TAttribute>() => FindTypesByAttribute(typeof(TAttribute));
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="type"></param>
+    /// <returns></returns>
     public static Type[] FindTypesByAttribute(Type type) => AllTypes.Where(a => a.IsDefined(type, true)).Distinct().ToArray();
+    
     /// <summary>
     /// 查找指定条件的类型
     /// </summary>
