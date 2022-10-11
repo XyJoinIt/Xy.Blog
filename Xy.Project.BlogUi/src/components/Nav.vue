@@ -25,9 +25,9 @@
                 <li class="nav-item flot_left">
                   <router-link to="/blog">留言板</router-link>
                 </li>
-                <li class="nav-item flot_left">
+                <!-- <li class="nav-item flot_left">
                   <router-link to="/blog">生活小调料</router-link>
-                </li>
+                </li> -->
                 <li class="nav-item flot_left">
                   <router-link to="/placefile">归档</router-link>
                 </li>

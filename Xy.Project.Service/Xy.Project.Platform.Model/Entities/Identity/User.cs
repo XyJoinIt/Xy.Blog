@@ -26,10 +26,24 @@
         /// </summary>
         public CommonStatus Status { get; set; } = CommonStatus.正常;
 
+        /// <summary>
+        /// 备注
+        /// </summary>
         public string? Remarks { get; set; }
 
+        /// <summary>
+        /// 创建时间
+        /// </summary>
         public DateTime? CreateTime { get; set; }
+
+        /// <summary>
+        /// 最后修改时间
+        /// </summary>
         public DateTime? LastModified { get; set; }
+
+        /// <summary>
+        /// 是否删除
+        /// </summary>
         public bool IsDeleted { get; set; }
     }
 }

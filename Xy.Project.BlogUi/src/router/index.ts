@@ -14,7 +14,7 @@ const routes: Array<RouteRecordRaw> = [
     name: "mine",
     component: () => import("../views/mine/index.vue"),
     meta: {
-      ShowNavMenu: true, //是否显示导航栏
+      ShowNavMenu: false, //是否显示导航栏
     },
   },
   {
