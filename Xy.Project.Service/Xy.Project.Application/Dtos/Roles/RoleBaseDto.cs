@@ -2,9 +2,6 @@
 {
     public class RoleBaseDto
     {
-
-
-
         /// <summary>
         /// 角色名称
         /// </summary>

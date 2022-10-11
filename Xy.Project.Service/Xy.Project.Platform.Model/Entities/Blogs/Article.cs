@@ -38,7 +38,6 @@
         /// </summary>
         public string Label { get; set; } = default!;
 
-
     }
 
     /// <summary>
@@ -53,6 +52,5 @@
         /// 通过
         /// </summary>
         Pass = 10
-
     }
 }
