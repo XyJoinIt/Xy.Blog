@@ -62,5 +62,16 @@ namespace Xy.Project.Platform.Modular.Sys.Controllers
         {
             return await _sysUserService.DeleteAsync(id);
         }
+        [HttpPost]
+        /// <summary>
+        /// 登录测试
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
+        public async Task<ActionResult<AppResult>> Login([FromBody] LoginDto dto)
+        {
+
+            return await _sysUserService.Login(dto);
+        }
     }
 }

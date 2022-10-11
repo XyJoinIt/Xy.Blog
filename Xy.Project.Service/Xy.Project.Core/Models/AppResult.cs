@@ -47,10 +47,11 @@
         /// 失败
         /// </summary>
         /// <returns></returns>
-        public static async Task<AppResult> Error(string msg = "操作失败")
+        public static AppResult Error(string msg = "操作失败")
         {
-            return await Task.FromResult(Problem(HttpCode.失败, msg));
+            return Problem(HttpCode.失败, msg);
         }
+
 
         /// <summary>
         /// 成功
