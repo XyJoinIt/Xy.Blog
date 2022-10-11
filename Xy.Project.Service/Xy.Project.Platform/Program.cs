@@ -1,9 +1,11 @@
 using AutoMapper;
-using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Converters;
 using Serilog;
 using Serilog.Events;
+using System.Text;
 using Xy.Project.Core.AutoMapper;
 using Xy.Project.Platform.Model;
 using Xy.Project.Platform.Model.Entities.Identity;
@@ -59,13 +61,33 @@ builder.Services.AddScoped(typeof(IRepository<,>), typeof(Repository<,>));
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork<XyPlatformContext>>();
 //服务注入
 builder.Services.AddPlatformServices();
+builder.Services.Configure<JwtOption>(builder.Configuration.GetSection("Jwt"));
 //builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 #region Identity 待封装 （活着比什么都重要）
 
+var keyByteArray = Encoding.UTF8.GetBytes(XyGlobalConfig.JwtOption!.SecretKey);
+var signingKey = new SymmetricSecurityKey(keyByteArray);
 //验证待扩展
 builder.Services.AddAuthentication(o =>
 {
-    o.DefaultScheme = IdentityConstants.ApplicationScheme;
+    o.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    o.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    o.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(options =>
+{
+    options.SaveToken = true;
+    options.RequireHttpsMetadata = false;
+    options.TokenValidationParameters = new()
+    {
+        //ValidateIssuer = true, //是否验证Issuer
+        //ValidateAudience = true, //是否验证Audience
+        //ValidateIssuerSigningKey = true, //是否验证SecurityKey
+        //ValidateLifetime = true, //是否验证失效时间
+        ValidIssuer = XyGlobalConfig.JwtOption!.Issuer, //发行人Issuer
+        ValidAudience = XyGlobalConfig.JwtOption!.Audience, //订阅人Audience
+        IssuerSigningKey = signingKey, //SecurityKey
+
+    };
 });
 
 builder.Services.AddDefaultIdentityServices<UserStore, RoleStore, User, long, UserClaim, long, Role, long>(options =>
@@ -118,4 +140,6 @@ app.Run();
 void InitConfiguration(IConfiguration configuration)
 {
     XyGlobalConfig.DbOption = configuration.GetSection("ConnectionStrings").Get<DbOption>();
+
+    XyGlobalConfig.JwtOption = configuration.GetSection("Jwt").Get<JwtOption>();
 }
