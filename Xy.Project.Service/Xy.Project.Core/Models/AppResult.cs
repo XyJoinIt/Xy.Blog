@@ -31,21 +31,43 @@
         }
 
 
+        public static Task<AppResult> ErrorAsync(string msg = "操作失败")
+        {
+            return ProblemAsync(HttpCode.失败, msg);
+        }
+
         /// <summary>
         /// 成功
         /// </summary>
         /// <returns></returns>
-        public static async Task<AppResult> Success()
+        public static Task<AppResult> SuccessAsync()
         {
-            return await Task.FromResult(Problem(HttpCode.成功, "操作成功"));
+            return ProblemAsync(HttpCode.成功, "操作成功");
         }
-        public static async Task<AppResult> Success(object? data = default)
+        public static Task<AppResult> SuccessAsync(object? data = default)
         {
-            return await Task.FromResult(Problem(HttpCode.成功, "操作成功", data));
+            return ProblemAsync(HttpCode.成功, "操作成功", data);
         }
-        public static async Task<AppResult> Success(string msg = "操作成功", object? data = default)
+        public static Task<AppResult> SuccessAsync(string msg = "操作成功", object? data = default)
         {
-            return await Task.FromResult(Problem(HttpCode.成功, msg, data));
+            return ProblemAsync(HttpCode.成功, msg, data);
+        }
+
+        /// <summary>
+        /// 成功
+        /// </summary>
+        /// <returns></returns>
+        public static AppResult Success()
+        {
+            return Problem(HttpCode.成功, "操作成功");
+        }
+        public static AppResult Success(object? data = default)
+        {
+            return Problem(HttpCode.成功, "操作成功", data);
+        }
+        public static AppResult Success(string msg = "操作成功", object? data = default)
+        {
+            return Problem(HttpCode.成功, msg, data);
         }
     }
 
