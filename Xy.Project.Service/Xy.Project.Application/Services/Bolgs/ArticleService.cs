@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +14,7 @@ namespace Xy.Project.Application.Services.Bolgs
     /// <summary>
     /// 文章
     /// </summary>
-    public class ArticleService: IArticleService
+    public class ArticleService : IArticleService
     {
         private readonly Repository<Article, long> _repository;
         public ArticleService(Repository<Article, long> repository)
@@ -26,9 +27,14 @@ namespace Xy.Project.Application.Services.Bolgs
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        public Task<AppResult> AddAsync(AddArticleDto dto)
+        public async Task<AppResult> AddAsync(AddArticleDto dto)
         {
-            throw new NotImplementedException();
+            dto.NotNull(nameof(dto));
+            var entity = ObjectMap.MapTo<Article>(dto);
+            var result =await _repository.InsertAsync(entity);
+            return result > 0 ?
+                await AppResult.Success() :
+                await AppResult.Error();
         }
 
         /// <summary>
@@ -36,9 +42,11 @@ namespace Xy.Project.Application.Services.Bolgs
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        public Task<AppResult> DeleteAsync(long id)
+        public async Task<AppResult> DeleteAsync(long id)
         {
-            throw new NotImplementedException();
+            return await _repository.DeleteAsync(id) > 0 ?
+                   await AppResult.Success() :
+                   await AppResult.Error();
         }
 
         /// <summary>
@@ -46,9 +54,16 @@ namespace Xy.Project.Application.Services.Bolgs
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        public Task<AppResult> PageAsync(PageParam page)
+        public async Task<AppResult> PageAsync(PageParam page)
         {
-            throw new NotImplementedException();
+            page.NotNull(nameof(page));
+            //排序
+            page.AddOrderCondition(new OrderCondition<Article>(o => o.Id, OrderDirection.Ascending));
+            //条件过滤
+            var exp = FilterBuilder.GetExpression<Article>(page.FilterGroup);
+            var list = _repository.QueryAsNoTracking(exp)
+                .ToPageAsync<Article, ArticleOutPutPageListDto>(page.PageCondition);
+            return await AppResult.Success("得到分页数据", list);
         }
 
         /// <summary>
@@ -56,9 +71,15 @@ namespace Xy.Project.Application.Services.Bolgs
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        public Task<AppResult> UpdateAsync(EditArticleDto dto)
+        public async Task<AppResult> UpdateAsync(EditArticleDto dto)
         {
-            throw new NotImplementedException();
+            dto.NotNull(nameof(dto));
+            var user = await _repository.FindAsync(dto.Id);
+            user = ObjectMap.MapTo(dto, user);
+            var result = await _repository.UpdateAsync(user);
+            return result > 0 ? 
+                await AppResult.Success() : 
+                await AppResult.Error();
         }
     }
 }

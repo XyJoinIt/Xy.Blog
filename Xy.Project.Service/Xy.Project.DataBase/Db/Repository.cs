@@ -1,4 +1,7 @@
-﻿using Xy.Project.Core.Extensions;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.Threading;
+using Xy.Project.Core.Base;
+using Xy.Project.Core.Extensions;
 
 namespace Xy.Project.DataBase.Db
 {
@@ -6,7 +9,7 @@ namespace Xy.Project.DataBase.Db
     /// EF的东西不应该放在这里
     /// </summary>
     public class Repository<TEntity, TPrimaryKey> : IRepository<TEntity, TPrimaryKey>
-       where TEntity : class, IEntity<TPrimaryKey>, new()
+       where TEntity : FullEntityBase, IEntity<TPrimaryKey>, new()
        where TPrimaryKey : IEquatable<TPrimaryKey>
     {
 
@@ -174,6 +177,18 @@ namespace Xy.Project.DataBase.Db
             entities.NotNull(nameof(entities));
             Context.UpdateRange(entities);
             return Context.SaveChangesAsync(cancellationToken);
+        }
+
+        /// <summary>
+        /// 异步软删除
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
+        public async Task<int> DeleteAsync(TPrimaryKey key, CancellationToken cancellationToken = default)
+        {
+            var entity =await FindAsync(key,cancellationToken);
+            entity.IsDeleted = true;
+            return await Context.SaveChangesAsync(cancellationToken);
         }
 
         /// <summary>
