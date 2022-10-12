@@ -1,7 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using System.Threading;
-using Xy.Project.Core.Base;
-using Xy.Project.Core.Extensions;
+﻿using Xy.Project.Core.Extensions;
 
 namespace Xy.Project.DataBase.Db
 {
@@ -9,7 +6,7 @@ namespace Xy.Project.DataBase.Db
     /// EF的东西不应该放在这里
     /// </summary>
     public class Repository<TEntity, TPrimaryKey> : IRepository<TEntity, TPrimaryKey>
-       where TEntity : FullEntityBase, IEntity<TPrimaryKey>, new()
+    where TEntity : class, IEntity<TPrimaryKey>, new()
        where TPrimaryKey : IEquatable<TPrimaryKey>
     {
 
@@ -82,6 +79,7 @@ namespace Xy.Project.DataBase.Db
             foreach (Expression<Func<TEntity, object>> selector in includePropertySelectors)
             {
                 query = query.Include(selector);
+
             }
             return query;
         }
@@ -180,14 +178,16 @@ namespace Xy.Project.DataBase.Db
         }
 
         /// <summary>
-        /// 异步软删除
+        /// 异步软删除 (更新与删除可以做到不用查询，后面扩展。)
         /// </summary>
         /// <param name="Id"></param>
         /// <returns></returns>
         public async Task<int> DeleteAsync(TPrimaryKey key, CancellationToken cancellationToken = default)
         {
-            var entity =await FindAsync(key,cancellationToken);
-            entity.IsDeleted = true;
+            var entity = await FindAsync(key, cancellationToken);
+            //要约束ISoftDelete 这个接口
+            //entity.IsDeleted = true;  //SaveChangesAsync做了 
+            Context.Remove(entity);
             return await Context.SaveChangesAsync(cancellationToken);
         }
 
