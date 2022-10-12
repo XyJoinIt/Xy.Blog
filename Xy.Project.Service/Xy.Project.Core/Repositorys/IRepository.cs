@@ -79,6 +79,13 @@
         Task<int> UpdateBatchAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken = default);
 
         /// <summary>
+        /// 异步软删除
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
+        Task<int> DeleteAsync(TPrimaryKey key, CancellationToken cancellationToken = default);
+       
+        /// <summary>
         /// 异步删除
         /// </summary>
         /// <param name="entity"></param>
