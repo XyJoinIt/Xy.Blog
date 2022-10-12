@@ -57,9 +57,6 @@ namespace Xy.Project.Core.Filter
             }
         }
 
-
-
-
         private static Expression GetExpressionBody(ParameterExpression parameter, FilterCondition filterCondition)
         {
             var operate = filterCondition.Operator;
