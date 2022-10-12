@@ -1,0 +1,12 @@
+{
+    "configurations": [
+        {
+            "type": "dotnet",
+            "name": "Xy.Project.Platform",
+            "projectPath": "D:/Project/Blog/Xy.Project.Service/Xy.Project.Platform",
+            "exePath": "D:/Project/Blog/Xy.Project.Service/Xy.Project.Platform/bin/Debug/net6.0/Xy.Project.Platform.dll",
+            "args": [],
+        }
+
+    ]
+}

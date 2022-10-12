@@ -37,7 +37,7 @@ public class ErrorDto
     public ErrorDto(string message, HttpCode code)
     {
         Code = code;
-        msg = message;
+        Msg = message;
     }
     /// <summary>
     /// 错误代码
@@ -48,5 +48,5 @@ public class ErrorDto
     /// 错误信息
     /// </summary>
     [JsonProperty(PropertyName = "msg")]
-    public string msg { get; set; }
+    public string Msg { get; set; }
 }

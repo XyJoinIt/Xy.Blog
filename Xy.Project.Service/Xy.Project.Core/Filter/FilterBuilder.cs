@@ -327,7 +327,9 @@ namespace Xy.Project.Core.Filter
             this.from = from;
             this.to = to;
         }
-        public override Expression Visit(Expression node) => node == from ? to : base.Visit(node);
+        public override Expression? Visit(Expression? node) => node == from ? to : base.Visit(node);
+
+
     }
 
 

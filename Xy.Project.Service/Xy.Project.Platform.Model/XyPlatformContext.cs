@@ -73,7 +73,7 @@ public class XyPlatformContext : DbContext
         }
         catch (Exception ex)
         {
-            throw;
+            throw ex;
         }
 
     }

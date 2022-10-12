@@ -5,7 +5,7 @@
 /// </summary>
 public abstract class EntityBase<TKey> : IEntity<TKey> where TKey : IEquatable<TKey>
 {
-    public TKey Id { get; set; }
+    public TKey Id { get; set; } = default!;
 }
 
 public abstract class EntityBase : EntityBase<long>

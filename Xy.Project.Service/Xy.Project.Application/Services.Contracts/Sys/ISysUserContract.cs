@@ -32,11 +32,5 @@ namespace Xy.Project.Application.Services.Contracts.Sys
         /// <returns></returns>
         Task<AppResult> DeleteAsync(long id);
 
-        /// <summary>
-        /// 用户登录
-        /// </summary>
-        /// <param name="param"></param>
-        /// <returns></returns>
-        Task<AppResult> Login(LoginDto param);
     }
 }

@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Xy.Project.Core.Helpers
 {
@@ -97,7 +93,7 @@ namespace Xy.Project.Core.Helpers
             {
                 aes.IV = !string.IsNullOrEmpty(iv) ?
                     Encoding.UTF8.GetBytes(iv) :
-                    Encoding.UTF8.GetBytes(key.Reverse().ToString().ToUpper().Substring(0, 16));
+                    Encoding.UTF8.GetBytes(key.Reverse().ToString()!.ToUpper().Substring(0, 16));
                 aes.Key = _keyByte;
                 aes.Mode = CipherMode.CBC;
                 aes.Padding = PaddingMode.PKCS7;
