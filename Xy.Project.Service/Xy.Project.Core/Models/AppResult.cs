@@ -7,32 +7,10 @@
         {
 
         }
-
-        //public AppResult(HttpCode status) : this(default, status, default)
-        //{
-
-        //}
-
-        //public AppResult(object? data, HttpCode status) : this(data, status, default)
-        //{
-
-        //}
-
-        //public AppResult(HttpCode status, string? message) : this(default, status, message)
-        //{
-
-        //}
-        //public AppResult(object? data, HttpCode status, string? message)
-        //{
-        //    Data = data;
-        //    Status = status;
-        //    Message = message;
-        //}
         public string? Msg { get; set; }
         public bool Succeeded => Code == (int)HttpCode.成功;
         public int Code { get; set; }
         public object? Data { get; set; }
-
         public static AppResult Problem(HttpCode status, string? message = default, object? data = default)
         {
             return new AppResult() { Code = (int)status, Msg = message, Data = data };
@@ -58,7 +36,15 @@
         /// <returns></returns>
         public static async Task<AppResult> Success()
         {
-            return await Task.FromResult(Problem(HttpCode.成功, "操作失败"));
+            return await Task.FromResult(Problem(HttpCode.成功, "操作成功"));
+        }
+        public static async Task<AppResult> Success(object? data = default)
+        {
+            return await Task.FromResult(Problem(HttpCode.成功, "操作成功", data));
+        }
+        public static async Task<AppResult> Success(string msg = "操作成功", object? data = default)
+        {
+            return await Task.FromResult(Problem(HttpCode.成功, msg, data));
         }
     }
 
@@ -67,20 +53,14 @@
     {
         public AppResult()
         {
-
         }
         public string? Msg { get; set; }
         public bool Succeeded => Code == (int)HttpCode.成功;
         public int Code { get; set; }
-
         public T? Data { get; set; }
-
-
         public static AppResult<T> Problem(HttpCode status, string? message = default, T? data = default)
         {
             return new AppResult<T>() { Code = (int)status, Msg = message, Data = data };
         }
-
-
     }
 }
