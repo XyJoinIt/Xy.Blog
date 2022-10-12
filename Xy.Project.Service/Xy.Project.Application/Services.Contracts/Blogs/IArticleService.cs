@@ -1,8 +1,9 @@
 ﻿using Xy.Project.Application.Dtos.Blogs.Article;
+using Xy.Project.Core.Dependency;
 
 namespace Xy.Project.Application.Services.Contracts.Blogs
 {
-    public interface IArticleService
+    public interface IArticleService : IScopedDependency  //自动注入
     {
         /// <summary>
         ///分页

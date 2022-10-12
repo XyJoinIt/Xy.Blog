@@ -187,6 +187,7 @@ namespace Xy.Project.DataBase.Db
             var entity = await FindAsync(key, cancellationToken);
             //要约束ISoftDelete 这个接口
             //entity.IsDeleted = true;  //SaveChangesAsync做了 
+            //Context.Entry(entity).State = EntityState.Modified;
             Context.Remove(entity);
             return await Context.SaveChangesAsync(cancellationToken);
         }
