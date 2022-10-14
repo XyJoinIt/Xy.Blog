@@ -1,5 +1,9 @@
 ﻿namespace Xy.Project.Platform.Model
 {
+
+    /// <summary>
+    /// 
+    /// </summary>
     //internal class XyPlatformDbContextFactory : IDesignTimeDbContextFactory<XyPlatformContext>
     //{
     //    public XyPlatformContext CreateDbContext(string[] args)
