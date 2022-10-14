@@ -1,9 +1,4 @@
-﻿using Xy.Project.Application.Dtos.Blogs.Article;
-using Xy.Project.Application.Services.Contracts.Blogs;
-using Xy.Project.Core;
-using Xy.Project.Platform.Model.Entities.Blogs;
-
-namespace Xy.Project.Application.Services.Bolgs
+﻿namespace Xy.Project.Application.Services.Bolgs
 {
     /// <summary>
     /// 文章
@@ -27,8 +22,8 @@ namespace Xy.Project.Application.Services.Bolgs
             var entity = ObjectMap.MapTo<Article>(dto);
             var result = await _repository.InsertAsync(entity);
             return result > 0 ?
-                await AppResult.SuccessAsync() :  //返回没有必要用异步吧
-                await AppResult.ErrorAsync();
+                await AppResult.Success() :
+                await AppResult.Error();
         }
 
         /// <summary>
@@ -39,8 +34,8 @@ namespace Xy.Project.Application.Services.Bolgs
         public async Task<AppResult> DeleteAsync(long id)
         {
             return await _repository.DeleteAsync(id) > 0 ?
-                   await AppResult.SuccessAsync() :
-                   await AppResult.ErrorAsync();
+                   await AppResult.Success() :
+                   await AppResult.Error();
         }
 
         /// <summary>
@@ -57,7 +52,7 @@ namespace Xy.Project.Application.Services.Bolgs
             var exp = FilterBuilder.GetExpression<Article>(page.FilterGroup);
             var list = _repository.QueryAsNoTracking(exp)
                 .ToPageAsync<Article, ArticleOutPutPageListDto>(page.PageCondition);
-            return await AppResult.SuccessAsync("得到分页数据", list);
+            return await AppResult.Success("得到分页数据", list);
         }
 
         /// <summary>
@@ -72,8 +67,8 @@ namespace Xy.Project.Application.Services.Bolgs
             user = ObjectMap.MapTo(dto, user);
             var result = await _repository.UpdateAsync(user);
             return result > 0 ?
-                await AppResult.SuccessAsync() :
-                await AppResult.ErrorAsync();
+                await AppResult.Success() :
+                await AppResult.Error();
         }
     }
 }
