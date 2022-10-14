@@ -31,10 +31,8 @@ namespace Xy.Project.Application.Services.Bolgs
         {
             dto.NotNull(nameof(dto));
             var entity = ObjectMap.MapTo<Article>(dto);
-            var result =await _repository.InsertAsync(entity);
-            return result > 0 ?
-                await AppResult.Success() :
-                await AppResult.Error();
+            var result = await _repository.InsertAsync(entity);
+            return result > 0 ? AppResult.Success() : AppResult.Error();
         }
 
         /// <summary>
@@ -44,9 +42,7 @@ namespace Xy.Project.Application.Services.Bolgs
         /// <returns></returns>
         public async Task<AppResult> DeleteAsync(long id)
         {
-            return await _repository.DeleteAsync(id) > 0 ?
-                   await AppResult.Success() :
-                   await AppResult.Error();
+            return await _repository.DeleteAsync(id) > 0 ? AppResult.Success() : AppResult.Error();
         }
 
         /// <summary>
@@ -63,7 +59,7 @@ namespace Xy.Project.Application.Services.Bolgs
             var exp = FilterBuilder.GetExpression<Article>(page.FilterGroup);
             var list = _repository.QueryAsNoTracking(exp)
                 .ToPageAsync<Article, ArticleOutPutPageListDto>(page.PageCondition);
-            return await AppResult.Success("得到分页数据", list);
+            return AppResult.Success("得到分页数据", list);
         }
 
         /// <summary>
@@ -77,9 +73,7 @@ namespace Xy.Project.Application.Services.Bolgs
             var user = await _repository.FindAsync(dto.Id);
             user = ObjectMap.MapTo(dto, user);
             var result = await _repository.UpdateAsync(user);
-            return result > 0 ? 
-                await AppResult.Success() : 
-                await AppResult.Error();
+            return result > 0 ? AppResult.Success() : AppResult.Error();
         }
     }
 }
