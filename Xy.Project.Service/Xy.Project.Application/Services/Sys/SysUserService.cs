@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.Options;
-using Xy.Project.Application.Services.Contracts.Sys;
-using Xy.Project.DataBase.GlobalConfigEntity;
+﻿using Xy.Project.Application.Services.Contracts.Sys;
 
 namespace Xy.Project.Application.Services.Sys
 {
@@ -10,14 +8,11 @@ namespace Xy.Project.Application.Services.Sys
     public class SysUserService : ISysUserContract
     {
         private readonly UserManager<User> _userManager;
-        private readonly SignInManager<User> _signInManager;
-        private readonly JwtOption _jwtOption;
 
-        public SysUserService(UserManager<User> userManager, SignInManager<User> signInManager, IOptions<JwtOption> jwtOption)
+        public SysUserService(UserManager<User> userManager)
         {
             _userManager = userManager;
-            _signInManager = signInManager;
-            _jwtOption = jwtOption.Value;
+
         }
 
         /// <summary>

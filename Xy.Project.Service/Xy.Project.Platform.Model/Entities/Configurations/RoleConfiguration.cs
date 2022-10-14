@@ -17,6 +17,7 @@ namespace Xy.Project.Platform.Model.Entities.Configurations
             builder.Property(o => o.NormalizedName).HasMaxLength(60);
             builder.Property(o => o.Remarks).HasMaxLength(1000);
 
+            builder.HasIndex(m => m.Name);
             builder.ToTable("Role");
         }
     }

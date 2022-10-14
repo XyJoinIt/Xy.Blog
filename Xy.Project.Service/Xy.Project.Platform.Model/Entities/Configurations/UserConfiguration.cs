@@ -2,6 +2,7 @@
 {
     internal class UserConfiguration : IEntityTypeConfiguration<User>
     {
+
         public void Configure(EntityTypeBuilder<User> builder)
         {
 
@@ -23,7 +24,13 @@
             builder.Property(o => o.SecurityStamp).HasMaxLength(32);
             builder.Property(o => o.CreateTime).IsRequired(false);
             builder.Property(o => o.LastModified).IsRequired(false);
+
+            builder.HasIndex(m => m.UserName);
             builder.ToTable("User");
         }
+
+
+
+
     }
 }

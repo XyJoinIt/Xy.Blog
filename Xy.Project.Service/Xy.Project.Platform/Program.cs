@@ -47,8 +47,9 @@ builder.Services.AddSwaggerGen();
 //注入数据库
 builder.Services.AddDbContext<XyPlatformContext>(x =>
 {
-    x.UseSqlServer(XyGlobalConfig.DbOption?.DbSettings?.PlatformDbConnection!,
-            sqlServerOptionsAction: sqlOptions =>
+    //后面封装可以自动切换数据库
+    x.UseMySql(XyGlobalConfig.DbOption?.DbSettings?.PlatformDbConnection!, new MySqlServerVersion(new Version()),
+             sqlOptions =>
             {
                 sqlOptions.EnableRetryOnFailure(
                     maxRetryCount: 15,
@@ -133,6 +134,26 @@ app.UseAuthorization();
 app.MapControllers();
 
 
+#region
+
+//种子数据添加
+//using (var scope = app.Services.CreateScope())
+//{
+//    var log = scope.ServiceProvider.GetService<ILogger<UserManager<User>>>();
+//    try
+//    {
+//        //var userManager = scope.ServiceProvider.GetService<UserManager<User>>();
+//        await UserDataSeed.SeedDefaultUserAsync(scope);
+//    }
+//    catch (Exception ex)
+//    {
+//        log.LogError(ex.Message);
+//        throw;
+//    }
+//}
+
+
+#endregion
 
 app.Run();
 
