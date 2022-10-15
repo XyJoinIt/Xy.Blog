@@ -21,7 +21,7 @@ namespace Xy.Project.Core.Extensions
             var total = await query.CountAsync();
             //ToOutpust分离出去？方法命名区分开？
             var pageData = await ObjectMap.ToOutput<Dto>(query
-                 .OrderBy(page.OrderConditions)
+                  .OrderBy(page.OrderConditions)
                .Skip(page.PageSize * (page.PageIndex - 1))
                .Take(page.PageSize)
               )

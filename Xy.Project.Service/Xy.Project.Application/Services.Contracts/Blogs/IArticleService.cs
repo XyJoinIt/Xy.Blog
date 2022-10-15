@@ -1,4 +1,5 @@
-﻿using Xy.Project.Application.Dtos.Blogs.Article;
+﻿
+using Xy.Project.Application.Dtos.Blogs.Articles;
 using Xy.Project.Core.Dependency;
 
 namespace Xy.Project.Application.Services.Contracts.Blogs

@@ -16,3 +16,12 @@ public interface IBaseInputId
     /// </summary>
     long Id { get; set; }
 }
+
+public interface IDtoId
+{
+
+    /// <summary>
+    /// 主键
+    /// </summary>
+    long Id { get; set; }
+}

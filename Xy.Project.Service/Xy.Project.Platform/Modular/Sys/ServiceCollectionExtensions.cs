@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Xy.Project.Application.Services.Base;
+using Xy.Project.Application.Services.Contracts.Base;
 using Xy.Project.Core.Dependency;
 using Xy.Project.Identity;
 using Xy.Project.Identity.Entities;
@@ -18,6 +20,7 @@ namespace Xy.Project.Platform.Modular.Sys
             services.AddAutoInjection();
             services.AddHttpContextAccessor();
             services.AddAutoMapper(AssemblyHelper.AllTypes);
+            services.AddScoped(typeof(ICURDContract<,,,>), typeof(CURDService<,,,>));
             return services;
         }
 

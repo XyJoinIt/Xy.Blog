@@ -3,6 +3,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using Xy.Project.Application.Dtos.Identitys;
 using Xy.Project.Application.Services.Contracts.Identity;
 using Xy.Project.DataBase.GlobalConfigEntity;
 
@@ -61,13 +62,13 @@ namespace Xy.Project.Application.Services.Identity
             //return null;
 
             dto.NotNull(nameof(dto));
-            var user = await _userManager.FindByNameAsync(dto.UserName);
+            var user = await _userManager.FindByNameAsync(dto.UserName).ConfigureAwait(false);
             if (user == null)
             {
                 return AppResult.Error("用户不存在");
             }
 
-            var signInResult = await _signInManager.CheckPasswordSignInAsync(user, dto.Password, true);
+            var signInResult = await _signInManager.CheckPasswordSignInAsync(user, dto.Password, true).ConfigureAwait(false);
             if (!signInResult.Succeeded)
             {
                 //锁定
@@ -104,28 +105,28 @@ namespace Xy.Project.Application.Services.Identity
             var now = DateTime.Now;
             var tokenHandler = new JwtSecurityTokenHandler();
             // 5. 根据以上，生成token
-            var token = new JwtSecurityToken(
-                issuer,     //Issuer
-                audience,   //Audience
-                claims,                          //Claims,
-                now,                    //notBefore
-                now.AddDays(365), //expires
-                signingCredentials               //Credentials
-            );
+            //var token = new JwtSecurityToken(
+            //    issuer,     //Issuer
+            //    audience,   //Audience
+            //    claims,                          //Claims,
+            //    now,                    //notBefore
+            //    now.AddDays(365), //expires
+            //    signingCredentials               //Credentials
+            //);
 
 
-            //SecurityTokenDescriptor descriptor = new SecurityTokenDescriptor()
-            //{
-            //    Subject = new ClaimsIdentity(claims),
-            //    Audience = issuer,
-            //    Issuer = audience,
-            //    SigningCredentials = signingCredentials,
-            //    NotBefore = now,
-            //    IssuedAt = now,
-            //    Expires = now.AddDays(365)
-            //};
+            SecurityTokenDescriptor descriptor = new SecurityTokenDescriptor()
+            {
+                Subject = new ClaimsIdentity(claims),
+                Audience = issuer,
+                Issuer = audience,
+                SigningCredentials = signingCredentials,
+                NotBefore = now,
+                IssuedAt = now,
+                Expires = now.AddDays(365)
+            };
 
-            //var token1 = tokenHandler.CreateToken(descriptor);
+            var token = tokenHandler.CreateToken(descriptor);
             string accessToken = tokenHandler.WriteToken(token);
 
             return AppResult.Problem(HttpCode.成功, "登录成功", new
@@ -135,6 +136,7 @@ namespace Xy.Project.Application.Services.Identity
                 user.NickName,
                 user.UserName,
                 UserId = user.Id,
+                Type = "Bearer"
 
             });
         }

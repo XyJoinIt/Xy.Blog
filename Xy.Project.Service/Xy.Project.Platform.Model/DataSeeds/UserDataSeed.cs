@@ -15,8 +15,6 @@ namespace Xy.Project.Platform.Model.DataSeeds
 
                     NickName = "管理员",
                     UserName = "Admin",
-                    PasswordHash="AQAAAAEAACcQAAAAEC/870mXVZTmnPtJyQBHwiqw8eN04B+JE1hpdKKRgTxhZkGpK6TtpShWwf6H1hhyEQ==",
-                    SecurityStamp = "RKB4BBRKME5Q54YW5TNFYTR4I3V7J3HR",
                     CreateTime = DateTime.Now,
                     Sex = Gender.男
                 },
@@ -25,8 +23,6 @@ namespace Xy.Project.Platform.Model.DataSeeds
 
                     NickName = "小云最美",
                     UserName = "XiaoYun",
-                    PasswordHash="AQAAAAEAACcQAAAAEC/870mXVZTmnPtJyQBHwiqw8eN04B+JE1hpdKKRgTxhZkGpK6TtpShWwf6H1hhyEQ==",
-                    SecurityStamp = "RKB4BBRKME5Q54YW5TNFYTR4I3V7J3HR",
                     CreateTime = DateTime.Now,
                     Sex = Gender.女
                 }
@@ -35,8 +31,6 @@ namespace Xy.Project.Platform.Model.DataSeeds
 
                     NickName = "大黄瓜",
                     UserName = "Dhg",
-                    PasswordHash="AQAAAAEAACcQAAAAEC/870mXVZTmnPtJyQBHwiqw8eN04B+JE1hpdKKRgTxhZkGpK6TtpShWwf6H1hhyEQ==",
-                    SecurityStamp = "RKB4BBRKME5Q54YW5TNFYTR4I3V7J3HR",
                     CreateTime = DateTime.Now,
                     Sex = Gender.男
                 }
@@ -121,17 +115,14 @@ namespace Xy.Project.Platform.Model.DataSeeds
             //    users.Add(new User
             //    {
 
-            //        NickName = $"Test{i}",
-            //        UserName = $"Test{i}",
+            //        NickName = $"test{i}",
+            //        UserName = $"test{i}",
             //        CreateTime = DateTime.Now,
-            //        PasswordHash = "AQAAAAEAACcQAAAAEC/870mXVZTmnPtJyQBHwiqw8eN04B+JE1hpdKKRgTxhZkGpK6TtpShWwf6H1hhyEQ==",
-            //        SecurityStamp = "RKB4BBRKME5Q54YW5TNFYTR4I3V7J3HR",
             //        Sex = Gender.女
             //    });
             //}
             var userManager = serviceScope.ServiceProvider.GetService<UserManager<User>>();
-            //var userManager = serviceScope.ServiceProvider.GetService<IRepository<User, long>>();
-            //await userManager!.InsertBatchAsync(users);
+
             foreach (var user in users)
             {
                 if (!await userManager!.Users.Where(ExistingExpression(user)).AnyAsync())

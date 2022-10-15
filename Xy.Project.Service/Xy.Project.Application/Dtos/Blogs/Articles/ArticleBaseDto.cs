@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xy.Project.Platform.Model.Entities.Blogs;
-namespace Xy.Project.Application.Dtos.Blogs.Article
+﻿using Xy.Project.Platform.Model.Entities.Blogs;
+namespace Xy.Project.Application.Dtos.Blogs.Articles
 {
     public class ArticleBaseDto
     {

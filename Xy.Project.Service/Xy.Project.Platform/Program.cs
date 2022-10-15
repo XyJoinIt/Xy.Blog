@@ -7,6 +7,7 @@ using Serilog;
 using Serilog.Events;
 using System.Text;
 using Xy.Project.Core.AutoMapper;
+using Xy.Project.Platform.Extensions;
 using Xy.Project.Platform.Model;
 using Xy.Project.Platform.Model.Entities.Identity;
 using Xy.Project.Platform.Model.Stores;
@@ -29,6 +30,10 @@ builder.Host.UseSerilog((context, configuration) =>
 //注入配置文件
 InitConfiguration(builder.Configuration);
 
+#region Swagger服务
+builder.Services.AddSwagger();
+#endregion
+
 // Add services to the container.
 builder.Services.AddControllers(option =>
 {
@@ -42,7 +47,6 @@ builder.Services.AddControllers(option =>
     option.SerializerSettings.Converters.Add(new StringEnumConverter());
 });
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 
 //注入数据库
 builder.Services.AddDbContext<XyPlatformContext>(x =>
@@ -66,30 +70,8 @@ builder.Services.Configure<JwtOption>(builder.Configuration.GetSection("Jwt"));
 //builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 #region Identity 待封装 （活着比什么都重要）
 
-var keyByteArray = Encoding.UTF8.GetBytes(XyGlobalConfig.JwtOption!.SecretKey);
-var signingKey = new SymmetricSecurityKey(keyByteArray);
-//验证待扩展
-builder.Services.AddAuthentication(o =>
-{
-    o.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    o.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-    o.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-}).AddJwtBearer(options =>
-{
-    options.SaveToken = true;
-    options.RequireHttpsMetadata = false;
-    options.TokenValidationParameters = new()
-    {
-        //ValidateIssuer = true, //是否验证Issuer
-        //ValidateAudience = true, //是否验证Audience
-        //ValidateIssuerSigningKey = true, //是否验证SecurityKey
-        //ValidateLifetime = true, //是否验证失效时间
-        ValidIssuer = XyGlobalConfig.JwtOption!.Issuer, //发行人Issuer
-        ValidAudience = XyGlobalConfig.JwtOption!.Audience, //订阅人Audience
-        IssuerSigningKey = signingKey, //SecurityKey
 
-    };
-});
+
 
 builder.Services.AddDefaultIdentityServices<UserStore, RoleStore, User, long, UserClaim, long, Role, long>(options =>
 {
@@ -109,6 +91,35 @@ builder.Services.AddDefaultIdentityServices<UserStore, RoleStore, User, long, Us
     options.Password.RequireLowercase = false;
 });
 
+var keyByteArray = Encoding.UTF8.GetBytes(XyGlobalConfig.JwtOption!.SecretKey);
+var signingKey = new SymmetricSecurityKey(keyByteArray);
+
+//builder.Services.AddAuthorization();
+//验证待扩展
+builder.Services.AddAuthentication(o =>
+{
+    o.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    o.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    o.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(options =>
+{
+    options.SaveToken = true;
+    options.RequireHttpsMetadata = false;
+    options.TokenValidationParameters = new()
+    {
+        ValidateIssuer = true, //是否验证Issuer
+        ValidateAudience = true, //是否验证Audience
+        ValidateIssuerSigningKey = true, //是否验证SecurityKey
+        ValidateLifetime = false, //是否验证失效时间
+
+        ValidIssuer = XyGlobalConfig.JwtOption!.Issuer, //发行人Issuer
+        ValidAudience = XyGlobalConfig.JwtOption!.Audience, //订阅人Audience
+        IssuerSigningKey = signingKey, //SecurityKey
+
+    };
+});
+
+
 #endregion
 
 //雪花ID
@@ -123,14 +134,19 @@ ObjectMap.SetMapper(app.Services.GetService<IMapper>()!);
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
+
     app.UseSwaggerUI();
 }
 
+app.UseAuthentication();
+app.UseAuthorization();
 app.UseSerilogRequestLogging();
+
+
+
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
 app.MapControllers();
 
 

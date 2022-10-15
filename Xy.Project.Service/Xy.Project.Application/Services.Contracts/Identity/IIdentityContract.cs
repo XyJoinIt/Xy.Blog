@@ -1,4 +1,5 @@
-﻿using Xy.Project.Core.Dependency;
+﻿using Xy.Project.Application.Dtos.Identitys;
+using Xy.Project.Core.Dependency;
 
 namespace Xy.Project.Application.Services.Contracts.Identity
 {

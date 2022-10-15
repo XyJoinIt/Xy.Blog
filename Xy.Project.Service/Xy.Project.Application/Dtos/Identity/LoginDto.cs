@@ -1,4 +1,4 @@
-﻿namespace Xy.Project.Application.Dtos.Users
+﻿namespace Xy.Project.Application.Dtos.Identitys
 {
     public class LoginDto
     {

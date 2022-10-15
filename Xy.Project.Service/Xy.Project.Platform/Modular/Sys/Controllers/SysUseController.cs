@@ -1,12 +1,13 @@
-﻿using Xy.Project.Application.Dtos.Users;
+﻿using Microsoft.AspNetCore.Authorization;
+using Xy.Project.Application.Dtos.Users;
 using Xy.Project.Application.Services.Contracts.Sys;
 using Xy.Project.Core.Filter;
 
 namespace Xy.Project.Platform.Modular.Sys.Controllers
 {
-    [Route("api/[controller]/[Action]")]
-    [ApiController]
-    public class SysUseController : ControllerBase
+
+    [Authorize]
+    public class SysUseController : AdminControllerBase
     {
         private readonly ISysUserContract _sysUserService;
 

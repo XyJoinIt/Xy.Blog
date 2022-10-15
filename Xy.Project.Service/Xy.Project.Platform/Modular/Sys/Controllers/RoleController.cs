@@ -4,16 +4,18 @@ using Xy.Project.Core.Filter;
 
 namespace Xy.Project.Platform.Modular.Sys.Controllers
 {
-    [Route("api/[controller]/[Action]")]
-    [ApiController]
-    public class RoleController : ControllerBase
+
+    public class RoleController : AdminControllerBase
     {
 
         private readonly IRoleContract _roleContract;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public RoleController(IRoleContract roleContract)
+
+        public RoleController(IRoleContract roleContract, IHttpContextAccessor httpContextAccessor)
         {
             _roleContract = roleContract;
+            _httpContextAccessor = httpContextAccessor;
         }
 
 
