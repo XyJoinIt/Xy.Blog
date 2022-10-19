@@ -6,7 +6,7 @@ using Xy.Project.Core.Entity;
 
 namespace Xy.Project.Application.Services.Base
 {
-    public abstract class CURDService<TEntity, IAddInputDto, IUpdateInputDto, OutPageListDto> : ICURDContract<TEntity, IAddInputDto, IUpdateInputDto, OutPageListDto>
+    public class CURDService<TEntity, IAddInputDto, IUpdateInputDto, OutPageListDto> : ICURDContract<TEntity, IAddInputDto, IUpdateInputDto, OutPageListDto>
 
         where TEntity : IEntity<long>
         where IUpdateInputDto : IDtoId

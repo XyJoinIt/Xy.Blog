@@ -1,4 +1,6 @@
 using AutoMapper;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -46,7 +48,20 @@ builder.Services.AddControllers(option =>
     option.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";
     option.SerializerSettings.Converters.Add(new StringEnumConverter());
 });
+builder.Services.AddFluentValidationAutoValidation();
+
+//var assemblies = AssemblyHelper.FindAllItems(o => o.GetType().IsBaseOn(typeof(AbstractValidator<>)) && o.GetType().IsClass == true && !o.GetType().IsAbstract);
+//builder.Services.AddValidatorsFromAssemblies(assemblies);
 builder.Services.AddEndpointsApiExplorer();
+var assemblies = AssemblyHelper.FindTypes(o => o.IsBaseOn(typeof(AbstractValidator<>)) && o.IsClass == true && !o.IsAbstract);
+Array.ForEach(assemblies, a =>
+{
+
+    builder.Services.AddValidatorsFromAssemblyContaining(a);
+
+});
+
+
 
 //×¢ÈëÊý¾Ý¿â
 builder.Services.AddDbContext<XyPlatformContext>(x =>

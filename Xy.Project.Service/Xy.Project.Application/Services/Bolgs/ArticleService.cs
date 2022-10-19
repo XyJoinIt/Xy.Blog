@@ -1,4 +1,6 @@
 ﻿
+using FluentValidation;
+using System.Text;
 using Xy.Project.Application.Dtos.Blogs.Articles;
 using Xy.Project.Application.Services.Contracts.Blogs;
 using Xy.Project.Core;
@@ -12,9 +14,11 @@ namespace Xy.Project.Application.Services.Bolgs
     public class ArticleService : IArticleService
     {
         private readonly IRepository<Article, long> _repository;
-        public ArticleService(IRepository<Article, long> repository)
+        private readonly IValidator<Article> _validator;
+        public ArticleService(IRepository<Article, long> repository, IValidator<Article> validator)
         {
             _repository = repository;
+            _validator = validator;
         }
 
         /// <summary>
@@ -26,6 +30,13 @@ namespace Xy.Project.Application.Services.Bolgs
         {
             dto.NotNull(nameof(dto));
             var entity = ObjectMap.MapTo<Article>(dto);
+            var validationResult = await _validator.ValidateAsync(entity);
+            if (!validationResult.IsValid)
+            {
+                var errorBuilder = new StringBuilder();
+                validationResult.Errors.ForEach(o => errorBuilder.AppendLine(o.ErrorMessage));
+                return AppResult.Error(errorBuilder.ToString());
+            }
             var result = await _repository.InsertAsync(entity);
             return result > 0 ?
                  AppResult.Success() :

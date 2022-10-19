@@ -22,7 +22,7 @@ namespace Xy.Project.Application.Dtos.Blogs.Articles
         /// 类别ID
         /// </summary>
 
-        public long[]? CategoryId { get; set; }
+        public long? CategoryId { get; set; }
 
         /// <summary>
         /// 文章发布人
@@ -32,6 +32,6 @@ namespace Xy.Project.Application.Dtos.Blogs.Articles
         /// <summary>
         /// 标签
         /// </summary>
-        public long[]? Label { get; set; }
+        public string? Label { get; set; }
     }
 }

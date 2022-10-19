@@ -2,7 +2,7 @@
 
 namespace Xy.Project.Application.Dtos.Blogs.Articles
 {
-    [AutoMap(typeof(Article))]
+    [AutoMap(typeof(Article), ReverseMap = true)]
     public class ArticleOutPutPageListDto : ArticleBaseDto
     {
         /// <summary>
