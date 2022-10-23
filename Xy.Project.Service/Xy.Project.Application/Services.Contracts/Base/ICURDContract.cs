@@ -4,8 +4,6 @@ using Xy.Project.Core.Entity;
 namespace Xy.Project.Application.Services.Contracts.Base
 {
     public interface ICURDContract<TEntity, IAddInputDto, IUpdateInputDto, OutPageListDto>
-
-
         where TEntity : IEntity<long>
         where IUpdateInputDto : IDtoId
     {

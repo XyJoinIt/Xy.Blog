@@ -1,4 +1,6 @@
-﻿namespace Xy.Project.Core.Models
+﻿using System.Text;
+
+namespace Xy.Project.Core.Models
 {
     [Serializable]
     public sealed class AppResult : IResult<object>
@@ -30,6 +32,15 @@
             return Problem(HttpCode.失败, msg);
         }
 
+
+        public static AppResult Error(FluentValidation.Results.ValidationResult validationResult)
+        {
+
+            var errorBuilder = new StringBuilder();
+            validationResult.Errors.ForEach(o => errorBuilder.AppendLine(o.ErrorMessage));
+            return AppResult.Error(errorBuilder.ToString());
+
+        }
 
 
 

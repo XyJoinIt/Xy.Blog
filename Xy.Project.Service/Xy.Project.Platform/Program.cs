@@ -1,6 +1,6 @@
 using AutoMapper;
 using FluentValidation;
-using FluentValidation.AspNetCore;
+using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -48,7 +48,9 @@ builder.Services.AddControllers(option =>
     option.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";
     option.SerializerSettings.Converters.Add(new StringEnumConverter());
 });
-builder.Services.AddFluentValidationAutoValidation();
+
+//不要asp.net core 自动验证。(因为asp.net 不能异步验证的)
+//builder.Services.AddFluentValidationAutoValidation();
 
 //var assemblies = AssemblyHelper.FindAllItems(o => o.GetType().IsBaseOn(typeof(AbstractValidator<>)) && o.GetType().IsClass == true && !o.GetType().IsAbstract);
 //builder.Services.AddValidatorsFromAssemblies(assemblies);
@@ -74,7 +76,10 @@ builder.Services.AddDbContext<XyPlatformContext>(x =>
                     maxRetryCount: 15,
                     maxRetryDelay: TimeSpan.FromSeconds(30),
                     errorNumbersToAdd: null);
+
+                sqlOptions.EnableStringComparisonTranslations(); //MySql要开启 OrdinalIgnoreCase 不是该参数无法使用
             }
+
         );
 });
 builder.Services.AddScoped(typeof(IRepository<,>), typeof(Repository<,>));
@@ -82,6 +87,20 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork<XyPlatformContext>>();
 //服务注入
 builder.Services.AddPlatformServices();
 builder.Services.Configure<JwtOption>(builder.Configuration.GetSection("Jwt"));
+
+
+//跨域
+builder.Services.AddCors(options =>
+{
+    var cors = builder.Configuration.GetSection("Cors");
+    var urls = cors.GetSection("Url")?.Value.Split(";");
+    options.AddDefaultPolicy(builder =>
+            builder
+            .WithOrigins(urls)
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            .AllowCredentials());
+});
 //builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 #region Identity 待封装 （活着比什么都重要）
 
@@ -137,6 +156,8 @@ builder.Services.AddAuthentication(o =>
 
 #endregion
 
+builder.Services.AddMediatR(AssemblyHelper.AllAssemblies);
+
 //雪花ID
 var options = new IdGeneratorOptions(1); //构造方法初始化雪花Id
 YitIdHelper.SetIdGenerator(options);
@@ -152,7 +173,7 @@ if (app.Environment.IsDevelopment())
 
     app.UseSwaggerUI();
 }
-
+app.UseCors();
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseSerilogRequestLogging();

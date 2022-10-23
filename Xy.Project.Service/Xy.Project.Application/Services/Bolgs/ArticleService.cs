@@ -1,6 +1,5 @@
 ﻿
 using FluentValidation;
-using System.Text;
 using Xy.Project.Application.Dtos.Blogs.Articles;
 using Xy.Project.Application.Services.Contracts.Blogs;
 using Xy.Project.Core;
@@ -33,9 +32,8 @@ namespace Xy.Project.Application.Services.Bolgs
             var validationResult = await _validator.ValidateAsync(entity);
             if (!validationResult.IsValid)
             {
-                var errorBuilder = new StringBuilder();
-                validationResult.Errors.ForEach(o => errorBuilder.AppendLine(o.ErrorMessage));
-                return AppResult.Error(errorBuilder.ToString());
+
+                return AppResult.Error(validationResult);
             }
             var result = await _repository.InsertAsync(entity);
             return result > 0 ?
@@ -82,6 +80,13 @@ namespace Xy.Project.Application.Services.Bolgs
             dto.NotNull(nameof(dto));
             var user = await _repository.FindAsync(dto.Id);
             user = ObjectMap.MapTo(dto, user);
+
+            var validationResult = await _validator.ValidateAsync(user);
+            if (!validationResult.IsValid)
+            {
+                return AppResult.Error(validationResult);
+            }
+
             var result = await _repository.UpdateAsync(user);
             return result > 0 ?
                  AppResult.Success() :
