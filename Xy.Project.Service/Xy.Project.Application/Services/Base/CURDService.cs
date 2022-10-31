@@ -82,14 +82,15 @@ namespace Xy.Project.Application.Services.Base
         public virtual async Task<AppResult> PageAsync(PageParam page)
         {
             page.NotNull(nameof(page));
+            //条件过滤
+            var exp = CreateFilteredQuery(page.FilterGroup);
             //排序
-            var orderConditions = OrderConditions();
+            var orderConditions = ApplySorting();
             if (orderConditions?.Length > 0)
             {
                 page.AddOrderCondition(orderConditions);
             }
-            //条件过滤
-            var exp = FilterGroup(page.FilterGroup);
+
             var list = await Repository.QueryAsNoTracking()
                 .Where(exp)
                 .ToPageAsync<TEntity, OutPageListDto>(page.PageCondition);
@@ -98,14 +99,13 @@ namespace Xy.Project.Application.Services.Base
 
 
 
-
-        protected virtual Expression<Func<TEntity, bool>> FilterGroup(FilterGroup filterGroup)
+        protected virtual Expression<Func<TEntity, bool>> CreateFilteredQuery(FilterGroup filterGroup)
         {
             var exp = FilterBuilder.GetExpression<TEntity>(filterGroup);
             return exp;
         }
 
-        protected virtual OrderCondition[] OrderConditions()
+        protected virtual OrderCondition[] ApplySorting()
         {
 
             return Array.Empty<OrderCondition>();

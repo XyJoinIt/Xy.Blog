@@ -2,7 +2,6 @@ using AutoMapper;
 using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Converters;
 using Serilog;
@@ -10,7 +9,6 @@ using Serilog.Events;
 using System.Text;
 using Xy.Project.Core.AutoMapper;
 using Xy.Project.Platform.Extensions;
-using Xy.Project.Platform.Model;
 using Xy.Project.Platform.Model.Entities.Identity;
 using Xy.Project.Platform.Model.Stores;
 using Xy.Project.Platform.Modular.Sys;
@@ -65,29 +63,10 @@ Array.ForEach(assemblies, a =>
 
 
 
-//注入数据库
-builder.Services.AddDbContext<XyPlatformContext>(x =>
-{
-    //后面封装可以自动切换数据库
-    x.UseMySql(XyGlobalConfig.DbOption?.DbSettings?.PlatformDbConnection!, new MySqlServerVersion(new Version()),
-             sqlOptions =>
-            {
-                sqlOptions.EnableRetryOnFailure(
-                    maxRetryCount: 15,
-                    maxRetryDelay: TimeSpan.FromSeconds(30),
-                    errorNumbersToAdd: null);
-
-                sqlOptions.EnableStringComparisonTranslations(); //MySql要开启 OrdinalIgnoreCase 不是该参数无法使用
-            }
-
-        );
-});
-builder.Services.AddScoped(typeof(IRepository<,>), typeof(Repository<,>));
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork<XyPlatformContext>>();
 //服务注入
 builder.Services.AddPlatformServices();
 builder.Services.Configure<JwtOption>(builder.Configuration.GetSection("Jwt"));
-
+builder.Services.AddUnitOfWork();
 
 //跨域
 builder.Services.AddCors(options =>
