@@ -36,6 +36,7 @@ namespace Xy.Project.Core.Models
         public static AppResult Error(FluentValidation.Results.ValidationResult validationResult)
         {
 
+
             var errorBuilder = new StringBuilder();
             validationResult.Errors.ForEach(o => errorBuilder.AppendLine(o.ErrorMessage));
             return AppResult.Error(errorBuilder.ToString());
