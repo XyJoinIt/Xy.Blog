@@ -249,6 +249,7 @@
       overflow: hidden;
       background: url('~@/assets/login_images/login_form.png');
       background-size: 100% 100%;
+
       .title {
         font-size: 54px;
         font-weight: 500;

@@ -49,7 +49,7 @@
     "@babel/core": "^7.19.3",
     "@stylelint/postcss-css-in-js": "^0.38.0",
     "@types/js-cookie": "^3.0.2",
-    "@types/node": "^18.8.2",
+    "@types/node": "^18.8.5",
     "@types/nprogress": "^0.2.0",
     "@vue/cli-plugin-babel": "^5.0.8",
     "@vue/cli-plugin-eslint": "^5.0.8",

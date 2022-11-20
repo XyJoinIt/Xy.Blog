@@ -149,12 +149,12 @@
             },
           ],
           /* verificationCode: [
-          {
-            required: true,
-            trigger: 'blur',
-            message: '验证码不能空',
-          },
-        ], */
+      {
+        required: true,
+        trigger: 'blur',
+        message: '验证码不能空',
+      },
+    ], */
         },
         loading: false,
         passwordType: 'password',
