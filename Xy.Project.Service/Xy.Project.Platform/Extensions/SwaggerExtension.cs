@@ -10,7 +10,7 @@ namespace Xy.Project.Platform.Extensions
     public static class SwaggerExtension
     {
         /// <summary>
-        /// 
+        /// swagger注入
         /// </summary>
         /// <param name="services"></param>
         /// <returns></returns>
@@ -18,7 +18,6 @@ namespace Xy.Project.Platform.Extensions
         {
             services.AddSwaggerGen(options =>
             {
-
                 options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme()
                 {
                     Description = "请输入带有Bearer的Token，形如 “Bearer {Token}” ",
@@ -37,12 +36,15 @@ namespace Xy.Project.Platform.Extensions
                     }
                 });
 
+                var file = Path.Combine(AppContext.BaseDirectory, "Xy.Project.Platform.xml");
+                var path = Path.Combine(AppContext.BaseDirectory, file);
+                options.IncludeXmlComments(path,true);
+                options.OrderActionsBy(x=>x.RelativePath);
             });
             return services;
 
         }
     }
-
 
     internal class SwaggerOperationFilter : IOperationFilter
     {

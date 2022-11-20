@@ -6,7 +6,7 @@ using Xy.Project.Core.Filter;
 namespace Xy.Project.Platform.Modular.Sys.Controllers
 {
     /// <summary>
-    /// 
+    /// 用户管理控制器
     /// </summary>
     [Authorize]
     public class SysUseController : AdminControllerBase

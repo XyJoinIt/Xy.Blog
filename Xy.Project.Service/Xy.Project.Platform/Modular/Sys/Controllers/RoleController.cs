@@ -5,7 +5,7 @@ using Xy.Project.Core.Filter;
 namespace Xy.Project.Platform.Modular.Sys.Controllers
 {
     /// <summary>
-    /// 
+    /// 角色管理控制器
     /// </summary>
     public class RoleController : AdminControllerBase
     {

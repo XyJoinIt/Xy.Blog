@@ -5,7 +5,9 @@ using Xy.Project.Core.Filter;
 
 namespace Xy.Project.Platform.Modular.Bolgs
 {
-
+    /// <summary>
+    /// 文章管理控制器
+    /// </summary>
     public class ArticleController : AdminControllerBase
     {
         private readonly IArticleService _articleService;

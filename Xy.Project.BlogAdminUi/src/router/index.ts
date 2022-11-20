@@ -64,9 +64,77 @@ export const asyncRoutes: VabRouteRecord[] = [
         component: () => import('@/views/index/index.vue'),
         meta: {
           title: '首页',
-          icon: 'home-2-line',
+          icon: 'reserved-line',
           noClosable: true,
         },
+      },
+    ],
+  },
+  {
+    path: '/sys',
+    name: 'system',
+    component: Layout,
+    meta: {
+      title: '系统管理',
+      icon: 'settings-3-line',
+      //breadcrumbHidden: true,
+    },
+    children: [
+      {
+        path: 'sysuser',
+        name: 'sysuser',
+        component: () => import('@/views/system/sysuser/index.vue'),
+        meta: {
+          title: '用户管理',
+          icon: 'user-line',
+        },
+      },
+      {
+        path: 'sysmenu',
+        name: 'sysmenu',
+        component: () => import('@/views/system/sysmenu/index.vue'),
+        meta: {
+          title: '菜单管理',
+          icon: 'apps-2-line',
+        },
+      },
+      {
+        path: 'sysrole',
+        name: 'sysrole',
+        component: () => import('@/views/system/sysrole/index.vue'),
+        meta: {
+          title: '角色管理',
+          icon: 'user-smile-line',
+        },
+      },
+      {
+        path: 'syslog',
+        name: 'syslog',
+        //component: () => import('@/views/system/sysrole/index.vue'),
+        meta: {
+          title: '日志管理',
+          icon: 'book-3-line',
+        },
+        children: [
+          {
+            path: 'sysoplog',
+            name: 'sysoplog',
+            component: () => import('@/views/system/syslog/sysoplog/index.vue'),
+            meta: {
+              title: '操作日志',
+              icon: 'user-settings-line',
+            },
+          },
+          {
+            path: 'sysexlog',
+            name: 'sysexlog',
+            component: () => import('@/views/system/syslog/sysexlog/index.vue'),
+            meta: {
+              title: '错误日志',
+              icon: 'signal-wifi-error-line',
+            },
+          },
+        ],
       },
     ],
   },

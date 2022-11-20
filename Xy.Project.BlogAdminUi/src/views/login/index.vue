@@ -74,15 +74,17 @@
             <el-button
               class="login-btn"
               :loading="loading"
+              size="medium"
+              style="width: 100%"
               type="primary"
               @click="handleLogin"
             >
               登录
             </el-button>
           </el-form-item>
-          <el-form-item>
+          <!-- <el-form-item>
             <router-link to="/register">注册</router-link>
-          </el-form-item>
+          </el-form-item> -->
         </el-form>
       </el-col>
       <el-col :lg="1" :md="1" :sm="24" :xl="1" :xs="24">
@@ -148,13 +150,13 @@
               validator: validatePassword,
             },
           ],
-          /* verificationCode: [
-      {
-        required: true,
-        trigger: 'blur',
-        message: '验证码不能空',
-      },
-    ], */
+          // verificationCode: [
+          //   {
+          //     required: true,
+          //     trigger: 'blur',
+          //     message: '验证码不能空',
+          //   },
+          // ],
         },
         loading: false,
         passwordType: 'password',
@@ -194,18 +196,18 @@
       }
 
       onBeforeMount(() => {
-        state.form.username = 'admin'
-        state.form.password = '123456'
+        state.form.username = ''
+        state.form.password = ''
         // 为了演示效果，会在官网演示页自动登录到首页，正式开发可删除
-        if (
-          document.domain === 'vue-admin-beautiful.com' ||
-          document.domain === 'chu1204505056.gitee.io'
-        ) {
-          state.previewText = '（演示地址验证码可不填）'
-          state.timer = setTimeout(() => {
-            handleLogin()
-          }, 5000)
-        }
+        // if (
+        //   document.domain === 'vue-admin-beautiful.com' ||
+        //   document.domain === 'chu1204505056.gitee.io'
+        // ) {
+        //   state.previewText = '（演示地址验证码可不填）'
+        //   state.timer = setTimeout(() => {
+        //     handleLogin()
+        //   }, 5000)
+        // }
       })
 
       watchEffect(() => {

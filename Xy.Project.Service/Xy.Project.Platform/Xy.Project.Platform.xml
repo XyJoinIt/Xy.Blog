@@ -23,10 +23,15 @@
         </member>
         <member name="M:Xy.Project.Platform.Extensions.SwaggerExtension.AddSwagger(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
-            
+            swagger注入
             </summary>
             <param name="services"></param>
             <returns></returns>
+        </member>
+        <member name="T:Xy.Project.Platform.Modular.Bolgs.ArticleController">
+            <summary>
+            文章管理控制器
+            </summary>
         </member>
         <member name="M:Xy.Project.Platform.Modular.Bolgs.ArticleController.PateList(Xy.Project.Core.Filter.PageParam)">
             <summary>
@@ -115,7 +120,7 @@
         </member>
         <member name="T:Xy.Project.Platform.Modular.Sys.Controllers.RoleController">
             <summary>
-            
+            角色管理控制器
             </summary>
         </member>
         <member name="M:Xy.Project.Platform.Modular.Sys.Controllers.RoleController.#ctor(Xy.Project.Application.Services.Contracts.Sys.IRoleContract,Microsoft.AspNetCore.Http.IHttpContextAccessor)">
@@ -155,7 +160,7 @@
         </member>
         <member name="T:Xy.Project.Platform.Modular.Sys.Controllers.SysUseController">
             <summary>
-            
+            用户管理控制器
             </summary>
         </member>
         <member name="M:Xy.Project.Platform.Modular.Sys.Controllers.SysUseController.#ctor(Xy.Project.Application.Services.Contracts.Sys.ISysUserContract)">

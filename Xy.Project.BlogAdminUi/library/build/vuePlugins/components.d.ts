@@ -26,6 +26,7 @@ declare module '@vue/runtime-core' {
     ElInput: typeof import('element-plus/es')['ElInput']
     ElMenu: typeof import('element-plus/es')['ElMenu']
     ElMenuItem: typeof import('element-plus/es')['ElMenuItem']
+    ElPagination: typeof import('element-plus/es')['ElPagination']
     ElPopover: typeof import('element-plus/es')['ElPopover']
     ElRow: typeof import('element-plus/es')['ElRow']
     ElScrollbar: typeof import('element-plus/es')['ElScrollbar']
@@ -65,5 +66,8 @@ declare module '@vue/runtime-core' {
     VabSideBar: typeof import('./../../components/VabSideBar/index.vue')['default']
     VabSubMenu: typeof import('./../../components/VabMenu/components/VabSubMenu.vue')['default']
     VabTabs: typeof import('./../../components/VabTabs/index.vue')['default']
+  }
+  export interface ComponentCustomProperties {
+    vLoading: typeof import('element-plus/es')['ElLoadingDirective']
   }
 }
