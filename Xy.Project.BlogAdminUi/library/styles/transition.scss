@@ -1,0 +1,39 @@
+/**
+ * @description vue过渡动画
+ */
+
+.fade-transform {
+  &-leave-active,
+  &-enter-active {
+    transition: $base-transition;
+  }
+
+  &-enter,
+  &-leave-to {
+    opacity: 0;
+  }
+}
+
+.no-transform {
+  &-leave-active,
+  &-enter-active {
+    transition: none;
+  }
+
+  &-enter,
+  &-leave-to {
+    opacity: 0;
+  }
+}
+
+/**
+ * @description 旋转动画
+ */
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

@@ -4,9 +4,16 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Xy.Project.Platform.Extensions
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class SwaggerExtension
     {
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="services"></param>
+        /// <returns></returns>
         public static IServiceCollection AddSwagger(this IServiceCollection services)
         {
             services.AddSwaggerGen(options =>

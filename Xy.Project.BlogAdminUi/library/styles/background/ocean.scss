@@ -1,0 +1,229 @@
+/**
+ * @description 渐变
+ */
+
+body.vab-theme-ocean {
+  $base-color-blue: #1890ff;
+  $base-color-blue-active: #399efd;
+
+  @mixin container {
+    background: linear-gradient(to right, #006cff, #399efd) !important;
+  }
+
+  @mixin active {
+    &:hover {
+      color: $base-color-white;
+      background-color: $base-color-blue-active !important;
+    }
+
+    &.is-active {
+      color: $base-color-white;
+      background-color: $base-color-blue-active !important;
+    }
+  }
+
+  .logo-container-horizontal {
+    background: var(--el-color-primary) !important;
+  }
+
+  .logo-container-vertical,
+  .logo-container-comprehensive,
+  .logo-container-float {
+    @include container;
+  }
+
+  .logo-container-column {
+    .logo {
+      @include container;
+    }
+  }
+
+  .vab-column-bar-container {
+    .el-tabs {
+      .el-tabs__nav-wrap.is-left {
+        @include container;
+      }
+
+      .el-tabs__nav {
+        @include container;
+      }
+    }
+
+    .el-menu {
+      .el-menu-item.is-active,
+      .el-sub-menu__title.is-active,
+      .el-menu-item:hover,
+      .el-sub-menu__title:hover {
+        i {
+          color: var(--el-color-primary) !important;
+        }
+
+        color: var(--el-color-primary) !important;
+        background-color: var(--el-color-primary-light-9) !important;
+      }
+    }
+
+    &-card {
+      .el-tabs {
+        .el-tabs__item {
+          &.is-active {
+            background: transparent !important;
+          }
+        }
+      }
+    }
+  }
+
+  .vab-layout-horizontal {
+    .vab-header {
+      background: var(--el-color-primary) !important;
+    }
+
+    .el-menu {
+      background: var(--el-color-primary) !important;
+
+      .el-sub-menu__title {
+        background: var(--el-color-primary) !important;
+      }
+
+      .el-menu-item {
+        background: var(--el-color-primary) !important;
+      }
+    }
+
+    .vab-side-bar,
+    .comprehensive-bar-container {
+      background: var(--el-color-primary) !important;
+
+      .el-menu-item {
+        @include active;
+      }
+    }
+  }
+
+  .vab-layout-vertical,
+  .vab-layout-comprehensive,
+  .vab-layout-common,
+  .vab-layout-float {
+    .vab-side-bar,
+    .comprehensive-bar-container {
+      @include container;
+
+      .el-menu {
+        @include container;
+        @include active;
+
+        .el-sub-menu__title,
+        .el-menu-item {
+          background-color: transparent !important;
+          @include active;
+
+          &.is-active {
+            background-color: $base-color-blue-active !important;
+          }
+        }
+      }
+    }
+  }
+
+  .vab-layout-float {
+    .el-scrollbar__view .el-menu--collapse.el-menu li.el-sub-menu.is-active {
+      .el-sub-menu__title {
+        background-color: transparent !important;
+      }
+
+      > .el-sub-menu__title {
+        background-color: var(--el-color-primary) !important;
+      }
+    }
+  }
+
+  .vab-header {
+    background-color: var(--el-color-primary) !important;
+
+    .vab-main {
+      .el-menu.el-menu {
+        background-color: var(--el-color-primary) !important;
+
+        &--horizontal {
+          .el-sub-menu,
+          .el-menu-item {
+            background-color: var(--el-color-primary) !important;
+
+            &.is-active {
+              color: $base-color-white !important;
+              background-color: $base-color-blue-active !important;
+            }
+          }
+
+          > .el-menu-item,
+          .el-sub-menu__title,
+          > .el-menu-item:hover,
+          > .el-sub-menu__title:hover {
+            color: $base-color-white !important;
+            background-color: var(--el-color-primary) !important;
+
+            i {
+              color: $base-color-white !important;
+            }
+
+            &.is-active {
+              color: $base-color-white !important;
+              background-color: $base-color-blue-active !important;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  /*由于element-plus
+bug使用popper-append-to-body=false会导致多级路由无法显示，故所有菜单必须生成至body下，样式必须放到body下*/
+  @mixin menuDefalut {
+    color: $base-color-white !important;
+    background: var(--el-color-primary) !important;
+  }
+
+  @mixin menuActiveHover {
+    &:hover,
+    &.is-active {
+      i {
+        color: $base-color-white !important;
+      }
+
+      color: $base-color-white !important;
+      background: $base-color-blue-active !important;
+
+      .el-sub-menu__title {
+        i {
+          color: $base-color-white !important;
+        }
+
+        color: $base-color-white !important;
+        background: $base-color-blue-active !important;
+      }
+    }
+  }
+
+  .el-popper {
+    .el-menu--horizontal,
+    .el-menu--vertical {
+      @include menuDefalut;
+
+      .el-menu.el-menu--popup {
+        @include menuDefalut;
+      }
+
+      .el-menu-item,
+      .el-sub-menu {
+        @include menuDefalut;
+        @include menuActiveHover;
+
+        .el-sub-menu__title {
+          @include menuDefalut;
+          @include menuActiveHover;
+        }
+      }
+    }
+  }
+}

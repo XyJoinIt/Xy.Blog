@@ -3,10 +3,11 @@ using Xy.Project.Core.Dependency;
 
 namespace Xy.Project.Application.Services.Contracts.Identity
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public interface IdentityContaract : IScopedDependency
     {
-
-
         /// <summary>
         /// 用户登录
         /// </summary>

@@ -4,7 +4,16 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <DocumentationFile>./Xy.Project.Platform.xml</DocumentationFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="DataSeeds\**" />
+    <Content Remove="DataSeeds\**" />
+    <EmbeddedResource Remove="DataSeeds\**" />
+    <None Remove="DataSeeds\**" />
+  </ItemGroup>
 
   <ItemGroup>
     <None Include="..\.editorconfig" Link=".editorconfig" />
@@ -33,10 +42,6 @@
     <ProjectReference Include="..\Xy.Project.Application\Xy.Project.Application.csproj" />
     <ProjectReference Include="..\Xy.Project.Core\Xy.Project.Core.csproj" />
     <ProjectReference Include="..\Xy.Project.DataBase\Xy.Project.DataBase.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="DataSeeds\" />
   </ItemGroup>
 
 </Project>

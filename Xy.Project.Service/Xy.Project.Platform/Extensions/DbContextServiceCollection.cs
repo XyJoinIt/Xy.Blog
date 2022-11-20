@@ -3,9 +3,17 @@ using Xy.Project.Platform.Model;
 
 namespace Xy.Project.Platform.Extensions
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class DbContextServiceCollection
     {
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="services"></param>
+        /// <returns></returns>
         public static IServiceCollection AddUnitOfWork(this IServiceCollection services)
         {
 

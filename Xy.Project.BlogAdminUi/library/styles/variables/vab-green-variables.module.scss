@@ -1,0 +1,43 @@
+$base-color-primary: #41b584;
+$base-color-success: #13ce66;
+$base-color-warning: #ffba00;
+$base-color-danger: #ff4d4f;
+$base-color-error: #ff4d4f;
+$base-color-transition: #1890ff;
+
+:export {
+  vab-color-grey: $base-color-grey;
+  vab-color-black: $base-color-black;
+  vab-color-primary: $base-color-primary;
+  vab-color-primary-light-1: mix($base-color-white, $base-color-primary, 10%);
+  vab-color-primary-light-2: mix($base-color-white, $base-color-primary, 20%);
+  vab-color-primary-light-3: mix($base-color-white, $base-color-primary, 30%);
+  vab-color-primary-light-4: mix($base-color-white, $base-color-primary, 40%);
+  vab-color-primary-light-5: mix($base-color-white, $base-color-primary, 50%);
+  vab-color-primary-light-6: mix($base-color-white, $base-color-primary, 60%);
+  vab-color-primary-light-7: mix($base-color-white, $base-color-primary, 70%);
+  vab-color-primary-light-8: mix($base-color-white, $base-color-primary, 80%);
+  vab-color-primary-light-9: mix($base-color-white, $base-color-primary, 90%);
+  vab-color-success: $base-color-success;
+  vab-color-success-light: mix($base-color-white, $base-color-success, 80%);
+  vab-color-success-lighter: mix($base-color-white, $base-color-success, 90%);
+  vab-color-warning: $base-color-warning;
+  vab-color-warning-light: mix($base-color-white, $base-color-warning, 80%);
+  vab-color-warning-lighter: mix($base-color-white, $base-color-warning, 90%);
+  vab-color-danger: $base-color-danger;
+  vab-color-danger-light: mix($base-color-white, $base-color-danger, 80%);
+  vab-color-danger-lighter: mix($base-color-white, $base-color-danger, 90%);
+  vab-color-error: $base-color-error;
+  vab-color-error-light: mix($base-color-white, $base-color-error, 80%);
+  vab-color-error-lighter: mix($base-color-white, $base-color-error, 90%);
+  vab-color-info: $base-color-text-secondary;
+  vab-color-info-light: mix($base-color-white, $base-color-text-secondary, 80%);
+  vab-color-info-lighter: mix(
+    $base-color-white,
+    $base-color-text-secondary,
+    90%
+  );
+  vab-border-radius-base: 2.5px;
+  vab-color-transition: $base-color-transition;
+  vab-left-menu-width: $base-left-menu-width;
+}

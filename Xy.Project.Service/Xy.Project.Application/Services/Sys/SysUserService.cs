@@ -72,7 +72,5 @@ namespace Xy.Project.Application.Services.Sys
             var result = await _userManager.UpdateAsync(user);
             return result.ToResultData("保存成功");
         }
-
-
     }
 }

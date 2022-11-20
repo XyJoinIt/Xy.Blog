@@ -13,6 +13,10 @@ namespace Xy.Project.Platform.Modular.Bolgs
     {
         private readonly ICategoryContract _categoryContract;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="categoryContract"></param>
         public CategoryController(ICategoryContract categoryContract)
         {
             _categoryContract = categoryContract;

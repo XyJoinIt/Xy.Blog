@@ -4,14 +4,20 @@ using Xy.Project.Core.Filter;
 
 namespace Xy.Project.Platform.Modular.Sys.Controllers
 {
-
+    /// <summary>
+    /// 
+    /// </summary>
     public class RoleController : AdminControllerBase
     {
 
         private readonly IRoleContract _roleContract;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="roleContract"></param>
+        /// <param name="httpContextAccessor"></param>
         public RoleController(IRoleContract roleContract, IHttpContextAccessor httpContextAccessor)
         {
             _roleContract = roleContract;

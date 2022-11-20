@@ -1,80 +1,128 @@
-// @ts-check
-const { defineConfig } = require('eslint-define-config');
-module.exports = defineConfig({
+module.exports = {
   root: true,
   env: {
-    browser: true,
     node: true,
-    es6: true,
-  },
-  parser: 'vue-eslint-parser',
-  parserOptions: {
-    parser: '@typescript-eslint/parser',
-    ecmaVersion: 2020,
-    sourceType: 'module',
-    jsxPragma: 'React',
-    ecmaFeatures: {
-      jsx: true,
-    },
   },
   extends: [
+    'vue-global-api',
     'plugin:vue/vue3-recommended',
+    'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
-    'prettier',
+    '@vue/typescript/recommended',
     'plugin:prettier/recommended',
-    'plugin:jest/recommended',
   ],
+  parser: 'vue-eslint-parser',
+  parserOptions: {
+    parser: {
+      js: 'espree',
+      ts: '@typescript-eslint/parser',
+      '<template>': 'espree',
+    },
+    sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true,
+      tsx: true,
+    },
+    warnOnUnsupportedTypeScriptVersion: false,
+  },
   rules: {
-    'vue/script-setup-uses-vars': 'error',
-    '@typescript-eslint/ban-ts-ignore': 'off',
-    '@typescript-eslint/explicit-function-return-type': 'off',
+    'no-undef': 'off',
+    'no-console': 'off',
+    'no-debugger': 'off',
+    'prettier/prettier': 'warn',
+    'vue/no-reserved-component-names': 'off',
+    '@typescript-eslint/no-this-alias': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-var-requires': 'off',
     '@typescript-eslint/no-empty-function': 'off',
-    'vue/custom-event-name-casing': 'off',
-    'no-use-before-define': 'off',
-    '@typescript-eslint/no-use-before-define': 'off',
     '@typescript-eslint/ban-ts-comment': 'off',
-    '@typescript-eslint/ban-types': 'off',
-    '@typescript-eslint/no-non-null-assertion': 'off',
-    '@typescript-eslint/explicit-module-boundary-types': 'off',
-    '@typescript-eslint/no-unused-vars': [
-      'error',
-      {
-        argsIgnorePattern: '^_',
-        varsIgnorePattern: '^_',
-      },
-    ],
-    'no-unused-vars': [
-      'error',
-      {
-        argsIgnorePattern: '^_',
-        varsIgnorePattern: '^_',
-      },
-    ],
-    'space-before-function-paren': 'off',
-
-    'vue/attributes-order': 'off',
-    'vue/v-on-event-hyphenation': 'off',
-    'vue/multi-word-component-names': 'off',
-    'vue/one-component-per-file': 'off',
-    'vue/html-closing-bracket-newline': 'off',
-    'vue/max-attributes-per-line': 'off',
-    'vue/multiline-html-element-content-newline': 'off',
-    'vue/singleline-html-element-content-newline': 'off',
-    'vue/attribute-hyphenation': 'off',
-    'vue/require-default-prop': 'off',
+    'vue/no-v-html': 'off',
     'vue/html-self-closing': [
       'error',
       {
         html: {
-          void: 'always',
-          normal: 'never',
+          void: 'any',
+          normal: 'any',
           component: 'always',
         },
         svg: 'always',
         math: 'always',
       },
     ],
+    // 多字组件名称
+    'vue/multi-word-component-names': 'off',
+    // Vue.js风格指南(https://cn.vuejs.org/v2/style-guide/)
+    // Vue组件排序
+    'vue/order-in-components': [
+      'warn',
+      {
+        order: [
+          'el',
+          'name',
+          'key',
+          'parent',
+          'functional',
+          ['delimiters', 'comments'],
+          ['components', 'directives', 'filters'],
+          'extends',
+          'mixins',
+          ['provide', 'inject'],
+          'ROUTER_GUARDS',
+          'layout',
+          'middleware',
+          'validate',
+          'scrollToTop',
+          'transition',
+          'loading',
+          'inheritAttrs',
+          'model',
+          ['props', 'propsData'],
+          'emits',
+          'setup',
+          'fetch',
+          'asyncData',
+          'data',
+          'head',
+          'computed',
+          'watch',
+          'watchQuery',
+          'LIFECYCLE_HOOKS',
+          'methods',
+          ['template', 'render'],
+          'renderError',
+        ],
+      },
+    ],
+    // Vue属性排序
+    'vue/attributes-order': [
+      'warn',
+      {
+        order: [
+          'DEFINITION',
+          'LIST_RENDERING',
+          'CONDITIONALS',
+          'RENDER_MODIFIERS',
+          'GLOBAL',
+          'UNIQUE',
+          'TWO_WAY_BINDING',
+          'OTHER_DIRECTIVES',
+          'OTHER_ATTR',
+          'EVENTS',
+          'CONTENT',
+        ],
+        alphabetical: true, //字母顺序
+      },
+    ],
   },
-});
+  overrides: [
+    {
+      files: [
+        '**/__tests__/*.{j,t}s?(x)',
+        '**/tests/unit/**/*.spec.{j,t}s?(x)',
+      ],
+      env: {
+        jest: true,
+      },
+    },
+  ],
+}

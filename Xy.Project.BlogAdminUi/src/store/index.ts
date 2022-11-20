@@ -1,10 +1,11 @@
-import type { App } from 'vue';
-import { createPinia } from 'pinia';
+/**
+ * @description 导入所有 pinia 模块，请勿修改。
+ */
 
-const store = createPinia();
+const pinia = createPinia()
 
-export function setupStore(app: App<Element>) {
-  app.use(store);
+export function setupStore(app: any) {
+  app.use(pinia)
 }
 
-export { store };
+export default pinia

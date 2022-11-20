@@ -1,0 +1,210 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Xy.Project.Platform</name>
+    </assembly>
+    <members>
+        <member name="T:Xy.Project.Platform.Extensions.DbContextServiceCollection">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Xy.Project.Platform.Extensions.DbContextServiceCollection.AddUnitOfWork(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            
+            </summary>
+            <param name="services"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Xy.Project.Platform.Extensions.SwaggerExtension">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Xy.Project.Platform.Extensions.SwaggerExtension.AddSwagger(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            
+            </summary>
+            <param name="services"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Platform.Modular.Bolgs.ArticleController.PateList(Xy.Project.Core.Filter.PageParam)">
+            <summary>
+            得到分页数据
+            </summary>
+            <param name="page"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Platform.Modular.Bolgs.ArticleController.Add(Xy.Project.Application.Dtos.Blogs.Articles.AddArticleDto)">
+            <summary>
+            新增文章
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Platform.Modular.Bolgs.ArticleController.Update(Xy.Project.Application.Dtos.Blogs.Articles.EditArticleDto)">
+            <summary>
+            更新文章
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Platform.Modular.Bolgs.ArticleController.Delete(System.Int64)">
+            <summary>
+            删除角色
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Xy.Project.Platform.Modular.Bolgs.CategoryController">
+            <summary>
+            分类管理
+            </summary>
+        </member>
+        <member name="M:Xy.Project.Platform.Modular.Bolgs.CategoryController.#ctor(Xy.Project.Application.Services.Contracts.Blogs.ICategoryContract)">
+            <summary>
+            
+            </summary>
+            <param name="categoryContract"></param>
+        </member>
+        <member name="M:Xy.Project.Platform.Modular.Bolgs.CategoryController.PateList(Xy.Project.Core.Filter.PageParam)">
+            <summary>
+            得到分页数据
+            </summary>
+            <param name="page"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Platform.Modular.Bolgs.CategoryController.Add(Xy.Project.Application.Dtos.Blogs.Categorys.AddCategoryInputDto)">
+            <summary>
+            新增分类
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Platform.Modular.Bolgs.CategoryController.Update(Xy.Project.Application.Dtos.Blogs.Categorys.UpdateCategoryInputDto)">
+            <summary>
+            更新分类
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Platform.Modular.Bolgs.CategoryController.Delete(System.Int64)">
+            <summary>
+            删除分类
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Xy.Project.Platform.Modular.Identitys.IdentityController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Xy.Project.Platform.Modular.Identitys.IdentityController.#ctor(Xy.Project.Application.Services.Contracts.Identity.IdentityContaract)">
+            <summary>
+            
+            </summary>
+            <param name="identityContaract"></param>
+        </member>
+        <member name="M:Xy.Project.Platform.Modular.Identitys.IdentityController.Login(Xy.Project.Application.Dtos.Identitys.LoginDto)">
+            <summary>
+            登录
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Xy.Project.Platform.Modular.Sys.Controllers.RoleController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Xy.Project.Platform.Modular.Sys.Controllers.RoleController.#ctor(Xy.Project.Application.Services.Contracts.Sys.IRoleContract,Microsoft.AspNetCore.Http.IHttpContextAccessor)">
+            <summary>
+            
+            </summary>
+            <param name="roleContract"></param>
+            <param name="httpContextAccessor"></param>
+        </member>
+        <member name="M:Xy.Project.Platform.Modular.Sys.Controllers.RoleController.PateList(Xy.Project.Core.Filter.PageParam)">
+            <summary>
+            得到分页数据
+            </summary>
+            <param name="page"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Platform.Modular.Sys.Controllers.RoleController.Add(Xy.Project.Application.Dtos.Roles.AddRoleInputDto)">
+            <summary>
+            新增角色
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Platform.Modular.Sys.Controllers.RoleController.Update(Xy.Project.Application.Dtos.Roles.UpdateRoleInputDto)">
+            <summary>
+            更新角色
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Platform.Modular.Sys.Controllers.RoleController.Delete(System.Int64)">
+            <summary>
+            删除角色
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Xy.Project.Platform.Modular.Sys.Controllers.SysUseController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Xy.Project.Platform.Modular.Sys.Controllers.SysUseController.#ctor(Xy.Project.Application.Services.Contracts.Sys.ISysUserContract)">
+            <summary>
+            
+            </summary>
+            <param name="sysUserService"></param>
+        </member>
+        <member name="M:Xy.Project.Platform.Modular.Sys.Controllers.SysUseController.PateList(Xy.Project.Core.Filter.PageParam)">
+            <summary>
+            得到分页数据
+            </summary>
+            <param name="page"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Platform.Modular.Sys.Controllers.SysUseController.Add(Xy.Project.Application.Dtos.Users.AddUserInputDto)">
+            <summary>
+            新增
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Platform.Modular.Sys.Controllers.SysUseController.Update(Xy.Project.Application.Dtos.Users.UpdateUserInputDto)">
+            <summary>
+            更新用户
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Platform.Modular.Sys.Controllers.SysUseController.Delete(System.Int64)">
+            <summary>
+            删除用户
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Platform.Modular.Sys.ServiceCollectionExtensions.AddPlatformServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            注入
+            </summary>
+            <param name="services"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Platform.Modular.Sys.ServiceCollectionExtensions.AddDefaultIdentityServices``8(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Microsoft.AspNetCore.Identity.IdentityOptions})">
+            <summary>
+            添加默认Identity服务
+            </summary>
+            <param name="services"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,300 @@
+/**
+ * @description 黑
+ */
+
+body.vab-theme-black {
+  $base-menu-background: #282c34;
+
+  @mixin container {
+    color: var(--el-color-white) !important;
+    background: $base-menu-background !important;
+  }
+
+  @mixin active {
+    &:hover {
+      color: var(--el-color-white) !important;
+      background-color: var(--el-color-primary) !important;
+    }
+
+    &.is-active {
+      color: var(--el-color-white) !important;
+      background-color: var(--el-color-primary) !important;
+    }
+  }
+
+  .logo-container-vertical,
+  .logo-container-horizontal,
+  .logo-container-comprehensive,
+  .logo-container-float {
+    @include container;
+  }
+
+  .logo-container-column {
+    .logo {
+      @include container;
+    }
+  }
+
+  .vab-column-bar-container.el-scrollbar {
+    .el-tabs {
+      .el-tabs__nav-wrap.is-left {
+        @include container;
+      }
+
+      .el-tabs__nav {
+        @include container;
+      }
+
+      .el-tabs__item.is-active {
+        background: var(--el-color-primary) !important;
+      }
+    }
+
+    .el-menu {
+      .el-menu-item.is-active,
+      .el-sub-menu__title.is-active,
+      .el-menu-item:hover,
+      .el-sub-menu__title:hover {
+        i {
+          color: var(--el-color-primary) !important;
+        }
+
+        color: var(--el-color-primary) !important;
+        background-color: var(--el-color-primary-light-9) !important;
+      }
+    }
+  }
+
+  .vab-column-bar-container-card.el-scrollbar {
+    .el-tabs {
+      .el-tabs__item.is-active {
+        background: transparent !important;
+
+        .vab-column-grid {
+          background: var(--el-color-primary) !important;
+        }
+      }
+    }
+  }
+
+  .vab-column-bar-container-arrow.el-scrollbar {
+    .el-tabs {
+      .el-tabs__item.is-active {
+        background: transparent !important;
+
+        .vab-column-grid {
+          background: transparent !important;
+        }
+      }
+    }
+  }
+
+  .vab-layout-float,
+  .vab-layout-common,
+  .vab-layout-vertical,
+  .vab-layout-horizontal,
+  .vab-layout-comprehensive {
+    .el-menu {
+      @include container;
+
+      .el-sub-menu .el-sub-menu__title,
+      .el-menu-item {
+        @include container;
+      }
+    }
+
+    .vab-side-bar,
+    .comprehensive-bar-container {
+      @include container;
+
+      .el-menu-item {
+        @include active;
+      }
+    }
+  }
+
+  .vab-layout-float {
+    .el-scrollbar__view .el-menu--collapse.el-menu li.el-sub-menu.is-active {
+      .el-sub-menu__title {
+        background-color: transparent !important;
+      }
+
+      > .el-sub-menu__title {
+        background-color: var(--el-color-primary) !important;
+      }
+    }
+  }
+
+  .vab-header {
+    @include container;
+
+    .vab-main {
+      @include container;
+
+      .right-panel {
+        .el-menu {
+          &--horizontal {
+            .el-sub-menu .el-sub-menu__title,
+            .el-menu-item {
+              @include active;
+            }
+
+            .el-sub-menu.is-active {
+              .el-sub-menu__title {
+                color: var(--el-color-white) !important;
+                background-color: var(--el-color-primary) !important;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .vab-tabs {
+    &-more {
+      &-active,
+      &:hover {
+        .vab-tabs-more-icon {
+          .box:before,
+          .box:after {
+            background: var(--el-color-primary) !important;
+          }
+        }
+      }
+    }
+
+    .vab-tabs-content-card {
+      .el-tabs__header {
+        .el-tabs__item {
+          &.is-active {
+            color: var(--el-color-primary) !important;
+            background: var(--el-color-primary-light-9) !important;
+            border: 1px solid var(--el-color-primary) !important;
+          }
+
+          &:hover {
+            border: 1px solid var(--el-color-primary) !important;
+          }
+        }
+      }
+    }
+
+    .vab-tabs-content-smart {
+      .el-tabs__header {
+        .el-tabs__item {
+          &.is-active {
+            background: var(--el-color-primary-light-9) !important;
+          }
+
+          &:after {
+            background-color: var(--el-color-primary) !important;
+          }
+
+          &:hover {
+            background: var(--el-color-primary-light-9) !important;
+          }
+        }
+      }
+    }
+
+    .vab-tabs-content-smooth {
+      .el-tabs__header {
+        .el-tabs__item {
+          &.is-active {
+            color: var(--el-color-primary) !important;
+            background: var(--el-color-primary-light-9) !important;
+
+            &:hover {
+              color: var(--el-color-primary) !important;
+              background: var(--el-color-primary-light-9) !important;
+            }
+          }
+
+          &:hover {
+            color: var(--el-color-black) !important;
+          }
+        }
+      }
+    }
+  }
+
+  .vab-nav {
+    .el-tabs__item.is-active,
+    .el-tabs__item:hover {
+      color: var(--el-color-primary) !important;
+    }
+
+    .el-tabs__active-bar {
+      background-color: var(--el-color-primary) !important;
+    }
+  }
+
+  #nprogress {
+    .bar {
+      background: var(--el-color-primary) !important;
+    }
+
+    .peg {
+      box-shadow: 0 0 10px var(--el-color-primary),
+        0 0 5px var(--el-color-primary) !important;
+    }
+  }
+
+  /*由于element-plus
+bug使用popper-append-to-body=false会导致多级路由无法显示，故所有菜单必须生成至body下，样式必须放到body下*/
+  @mixin menuDefalut {
+    color: var(--el-color-white) !important;
+  }
+
+  @mixin menuActiveHover {
+    &:hover,
+    &.is-active {
+      i {
+        color: var(--el-color-white) !important;
+      }
+
+      color: var(--el-color-white) !important;
+      background: var(--el-color-primary) !important;
+
+      .el-sub-menu__title {
+        i {
+          color: var(--el-color-white) !important;
+        }
+
+        color: var(--el-color-white) !important;
+        background: var(--el-color-primary) !important;
+      }
+    }
+  }
+
+  .el-menu {
+    border-right: 0 !important;
+  }
+
+  .el-menu--collapse.el-menu li.el-sub-menu.is-active > .el-sub-menu__title {
+    background-color: var(--el-color-primary) !important;
+  }
+
+  .el-popper {
+    .el-menu--horizontal,
+    .el-menu--vertical {
+      @include menuDefalut;
+
+      .el-menu.el-menu--popup {
+        @include menuDefalut;
+      }
+
+      .el-menu-item,
+      .el-sub-menu {
+        @include menuDefalut;
+        @include menuActiveHover;
+
+        .el-sub-menu__title {
+          @include menuDefalut;
+          @include menuActiveHover;
+        }
+      }
+    }
+  }
+}

@@ -11,11 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xy.Project.Core", "Xy.Proje
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xy.Project.Platform.Model", "Xy.Project.Platform.Model\Xy.Project.Platform.Model.csproj", "{48FC83BF-A5A7-4398-A9D3-4C8CEF2427EC}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{4E903970-F062-4549-A2DA-FB46E52DBE45}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xy.Project.Application", "Xy.Project.Application\Xy.Project.Application.csproj", "{B7FA64AE-A65C-4CC6-88D7-DCA2F7E4DDB1}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{193FADB5-0E47-45A4-92FB-7D2DB97613C2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xy.Project.Identity", "Xy.Project.Identity\Xy.Project.Identity.csproj", "{DE5D503C-3290-4B84-B358-64E1E42297C4}"
 EndProject

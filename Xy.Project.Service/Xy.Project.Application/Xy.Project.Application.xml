@@ -1,0 +1,370 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Xy.Project.Application</name>
+    </assembly>
+    <members>
+        <member name="P:Xy.Project.Application.Dtos.Blogs.Articles.ArticleBaseDto.Title">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Blogs.Articles.ArticleBaseDto.Content">
+            <summary>
+            内容
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Blogs.Articles.ArticleBaseDto.Status">
+            <summary>
+            状态
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Blogs.Articles.ArticleBaseDto.CategoryId">
+            <summary>
+            类别ID
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Blogs.Articles.ArticleBaseDto.IssuerId">
+            <summary>
+            文章发布人
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Blogs.Articles.ArticleBaseDto.Label">
+            <summary>
+            标签
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Blogs.Articles.ArticleOutPutPageListDto.Id">
+            <summary>
+            主键
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Blogs.Articles.EditArticleDto.Id">
+            <summary>
+            主键
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Blogs.Categorys.CategoryBaseDto.Name">
+            <summary>
+            名字 例如 .NET/JAVA/JS
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Blogs.Categorys.CategoryBaseDto.Code">
+            <summary>
+            编码
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Blogs.Categorys.CategoryBaseDto.Remarks">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Identitys.LoginDto.UserName">
+            <summary>
+            登录账号
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Identitys.LoginDto.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Identitys.LoginDto.CaptchaId">
+            <summary>
+            验证码编号
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Identitys.LoginDto.Captcha">
+            <summary>
+            验证码
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Roles.RoleBaseDto.Name">
+            <summary>
+            角色名称
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Roles.RoleBaseDto.Remarks">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Roles.RoleBaseDto.Status">
+            <summary>
+            状态
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Roles.UpdateRoleInputDto.Id">
+            <summary>
+            主键
+            </summary>
+        </member>
+        <member name="T:Xy.Project.Application.Dtos.Users.UserBaseDto">
+            <summary>
+            用户基类DTO
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Users.UserBaseDto.Avatar">
+            <summary>
+            头像
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Users.UserBaseDto.Birthday">
+            <summary>
+            生日
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Users.UserBaseDto.Sex">
+            <summary>
+            性别-男_1、女_2
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Users.UserPageInputDto.UserName">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Users.UserPageInputDto.NickName">
+            <summary>
+            昵称
+            </summary>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Contracts.Base.ICURDContract`4.DeleteAsync(System.Int64)">
+            <summary>
+            删除
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Contracts.Base.ICURDContract`4.PageAsync(Xy.Project.Core.Filter.PageParam)">
+            <summary>
+            分页
+            </summary>
+            <param name="page"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Contracts.Blogs.IArticleService.PageAsync(Xy.Project.Core.Filter.PageParam)">
+             <summary>
+            分页
+             </summary>
+             <param name="page"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Contracts.Blogs.IArticleService.AddAsync(Xy.Project.Application.Dtos.Blogs.Articles.AddArticleDto)">
+            <summary>
+            新增
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Contracts.Blogs.IArticleService.UpdateAsync(Xy.Project.Application.Dtos.Blogs.Articles.EditArticleDto)">
+            <summary>
+            修改
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Contracts.Blogs.IArticleService.DeleteAsync(System.Int64)">
+            <summary>
+            删除
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Xy.Project.Application.Services.Contracts.Identity.IdentityContaract">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Contracts.Identity.IdentityContaract.LoginAsync(Xy.Project.Application.Dtos.Identitys.LoginDto)">
+            <summary>
+            用户登录
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Xy.Project.Application.Services.Contracts.Sys.IRoleContract">
+            <summary>
+            角色
+            </summary>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Contracts.Sys.IRoleContract.PageAsync(Xy.Project.Core.Filter.PageParam)">
+             <summary>
+            
+             </summary>
+             <param name="page"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Contracts.Sys.IRoleContract.AddAsync(Xy.Project.Application.Dtos.Roles.AddRoleInputDto)">
+            <summary>
+            命名异步后面加Async
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Contracts.Sys.IRoleContract.UpdateAsync(Xy.Project.Application.Dtos.Roles.UpdateRoleInputDto)">
+            <summary>
+            更新角色
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Contracts.Sys.IRoleContract.DeleteAsync(System.Int64)">
+            <summary>
+            删除角色
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Contracts.Sys.ISysUserContract.PageAsync(Xy.Project.Core.Filter.PageParam)">
+            <summary>
+            分页用户
+            </summary>
+            <param name="page"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Contracts.Sys.ISysUserContract.AddAsync(Xy.Project.Application.Dtos.Users.AddUserInputDto)">
+            <summary>
+            命名异步后面加Async
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Contracts.Sys.ISysUserContract.UpdateAsync(Xy.Project.Application.Dtos.Users.UpdateUserInputDto)">
+            <summary>
+            更新用户
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Contracts.Sys.ISysUserContract.DeleteAsync(System.Int64)">
+            <summary>
+            删除用户
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Base.CURDService`4.DeleteAsync(System.Int64)">
+            <summary>
+            删除
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Base.CURDService`4.PageAsync(Xy.Project.Core.Filter.PageParam)">
+            <summary>
+            分页
+            </summary>
+            <param name="page"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Xy.Project.Application.Services.Bolgs.ArticleService">
+            <summary>
+            文章
+            </summary>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Bolgs.ArticleService.AddAsync(Xy.Project.Application.Dtos.Blogs.Articles.AddArticleDto)">
+            <summary>
+            新增
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Bolgs.ArticleService.DeleteAsync(System.Int64)">
+            <summary>
+            删除
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Bolgs.ArticleService.PageAsync(Xy.Project.Core.Filter.PageParam)">
+            <summary>
+            分页
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Bolgs.ArticleService.UpdateAsync(Xy.Project.Application.Dtos.Blogs.Articles.EditArticleDto)">
+            <summary>
+            修改
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Identity.IdentityService.LoginAsync(Xy.Project.Application.Dtos.Identitys.LoginDto)">
+            <summary>
+            用户登录
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Sys.RoleService.AddAsync(Xy.Project.Application.Dtos.Roles.AddRoleInputDto)">
+            <summary>
+            添加
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Sys.RoleService.DeleteAsync(System.Int64)">
+            <summary>
+            删除
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Sys.RoleService.PageAsync(Xy.Project.Core.Filter.PageParam)">
+            <summary>
+            分页
+            </summary>
+            <param name="page"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Sys.RoleService.FindByIdAsync(System.Int64)">
+            <summary>
+            根据Id得到角色
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Sys.RoleService.UpdateAsync(Xy.Project.Application.Dtos.Roles.UpdateRoleInputDto)">
+            <summary>
+            更新
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Xy.Project.Application.Services.Sys.SysUserService">
+            <summary>
+            用户服务
+            </summary>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Sys.SysUserService.AddAsync(Xy.Project.Application.Dtos.Users.AddUserInputDto)">
+            <summary>
+            新增
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Sys.SysUserService.DeleteAsync(System.Int64)">
+            <summary>
+            删除
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Sys.SysUserService.PageAsync(Xy.Project.Core.Filter.PageParam)">
+            <summary>
+            分页
+            </summary>
+            <param name="page"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Sys.SysUserService.UpdateAsync(Xy.Project.Application.Dtos.Users.UpdateUserInputDto)">
+            <summary>
+            修改
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

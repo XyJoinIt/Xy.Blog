@@ -30,37 +30,6 @@ namespace Xy.Project.Application.Services.Identity
         /// <returns></returns>
         public async Task<AppResult> LoginAsync(LoginDto dto)
         {
-            ////Sm2私钥
-            //string _privateKey = "";
-            //string _publicKey = "";
-            //#region 解密
-            //Sm2CryptoHelper sm2 = new Sm2CryptoHelper(_publicKey, _privateKey);
-            //param.UserName = sm2.Decrypt(param.UserName);
-            //param.Password = sm2.Decrypt(param.Password);
-            //param.Captcha = sm2.Decrypt(param.Captcha);
-            //param.CaptchaId = sm2.Decrypt(param.CaptchaId);
-            //#endregion
-
-            ////验证码是否正确...
-
-            ////删除验证码
-
-            ////AES加密
-            //string _AesKey = "";
-            //param.Password = AesCryptoHelper.Encrypt(param.Password, _AesKey);
-            ////验证用户信息
-            //var user = await _userManager.FindByNameAsync(param.UserName);
-            //if (user == null)
-            //    return await AppResult.Error("用户不存在");
-            //if (user.PasswordHash != param.Password)
-            //    return await AppResult.Error("密码错误");
-
-            ////生成token
-
-            ////记录登录日志
-
-            //return null;
-
             dto.NotNull(nameof(dto));
             var user = await _userManager.FindByNameAsync(dto.UserName).ConfigureAwait(false);
             if (user == null)
@@ -93,13 +62,10 @@ namespace Xy.Project.Application.Services.Identity
              new Claim(ClaimTypes.Name,user.UserName),
              new Claim(ClaimTypes.GivenName,user.NickName)
             };
-
             // 2. 从 appsettings.json 中读取SecretKey
             var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtOption.SecretKey));
-
             // 3. 选择加密算法
             var algorithm = SecurityAlgorithms.HmacSha256;
-
             // 4. 生成Credentials
             var signingCredentials = new SigningCredentials(secretKey, algorithm);
             var now = DateTime.Now;
@@ -113,8 +79,6 @@ namespace Xy.Project.Application.Services.Identity
             //    now.AddDays(365), //expires
             //    signingCredentials               //Credentials
             //);
-
-
             SecurityTokenDescriptor descriptor = new SecurityTokenDescriptor()
             {
                 Subject = new ClaimsIdentity(claims),
@@ -125,19 +89,15 @@ namespace Xy.Project.Application.Services.Identity
                 IssuedAt = now,
                 Expires = now.AddDays(365)
             };
-
             var token = tokenHandler.CreateToken(descriptor);
             string accessToken = tokenHandler.WriteToken(token);
-
             return AppResult.Problem(HttpCode.成功, "登录成功", new
             {
-
                 AccessToken = accessToken,
                 user.NickName,
                 user.UserName,
                 UserId = user.Id,
                 Type = "Bearer"
-
             });
         }
     }

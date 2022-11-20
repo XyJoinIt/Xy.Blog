@@ -56,12 +56,8 @@ builder.Services.AddEndpointsApiExplorer();
 var assemblies = AssemblyHelper.FindTypes(o => o.IsBaseOn(typeof(AbstractValidator<>)) && o.IsClass == true && !o.IsAbstract);
 Array.ForEach(assemblies, a =>
 {
-
     builder.Services.AddValidatorsFromAssemblyContaining(a);
-
 });
-
-
 
 //服务注入
 builder.Services.AddPlatformServices();
@@ -81,11 +77,8 @@ builder.Services.AddCors(options =>
             .AllowCredentials());
 });
 //builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
 #region Identity 待封装 （活着比什么都重要）
-
-
-
-
 builder.Services.AddDefaultIdentityServices<UserStore, RoleStore, User, long, UserClaim, long, Role, long>(options =>
 {
     //登录
@@ -131,8 +124,6 @@ builder.Services.AddAuthentication(o =>
 
     };
 });
-
-
 #endregion
 
 builder.Services.AddMediatR(AssemblyHelper.AllAssemblies);
@@ -149,22 +140,14 @@ ObjectMap.SetMapper(app.Services.GetService<IMapper>()!);
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-
     app.UseSwaggerUI();
 }
 app.UseCors();
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseSerilogRequestLogging();
-
-
-
-
 app.UseHttpsRedirection();
-
 app.MapControllers();
-
-
 #region
 
 //种子数据添加
@@ -192,6 +175,5 @@ app.Run();
 void InitConfiguration(IConfiguration configuration)
 {
     XyGlobalConfig.DbOption = configuration.GetSection("ConnectionStrings").Get<DbOption>();
-
     XyGlobalConfig.JwtOption = configuration.GetSection("Jwt").Get<JwtOption>();
 }

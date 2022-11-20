@@ -5,12 +5,18 @@ using Xy.Project.Core.Filter;
 
 namespace Xy.Project.Platform.Modular.Sys.Controllers
 {
-
+    /// <summary>
+    /// 
+    /// </summary>
     [Authorize]
     public class SysUseController : AdminControllerBase
     {
         private readonly ISysUserContract _sysUserService;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sysUserService"></param>
         public SysUseController(ISysUserContract sysUserService)
         {
             _sysUserService = sysUserService;
@@ -31,7 +37,7 @@ namespace Xy.Project.Platform.Modular.Sys.Controllers
         /// <summary>
         /// 新增
         /// </summary>
-        /// <param name="param"></param>
+        /// <param name="dto"></param>
         /// <returns></returns>
         [HttpPost]
         [Description("新增用户")]
@@ -43,7 +49,7 @@ namespace Xy.Project.Platform.Modular.Sys.Controllers
         /// <summary>
         /// 更新用户
         /// </summary>
-        /// <param name="param"></param>
+        /// <param name="dto"></param>
         /// <returns></returns>
         [HttpPut]
         [Description("更新用户")]

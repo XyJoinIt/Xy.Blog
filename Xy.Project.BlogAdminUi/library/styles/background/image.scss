@@ -1,0 +1,108 @@
+/**
+ * @description 菜单背景
+ */
+
+body.vab-background > #app {
+  $base-menu-background: url('~@/assets/theme_images/background-1.png')
+    no-repeat;
+
+  @mixin container {
+    color: $base-color-white !important;
+    background: $base-menu-background !important;
+    background-size: auto 100% !important;
+  }
+  @mixin transparent {
+    color: $base-color-white !important;
+    background: transparent !important;
+  }
+  @mixin active {
+    span {
+      color: $base-color-white !important;
+    }
+
+    &:hover {
+      color: $base-color-white !important;
+      background-color: rgba(0, 0, 0, 0.3) !important;
+    }
+
+    &.is-active {
+      color: $base-color-white !important;
+      background-color: rgba(0, 0, 0, 0.3) !important;
+    }
+  }
+
+  .vab-side-bar:not(.is-collapse),
+  .comprehensive-bar-container {
+    @include container;
+
+    .el-menu {
+      @include transparent;
+
+      .el-menu-item,
+      .el-sub-menu__title {
+        @include transparent;
+        @include active;
+
+        i,
+        svg {
+          @include transparent;
+        }
+      }
+    }
+
+    .logo-container-vertical,
+    .logo-container-comprehensive,
+    .logo-container-float {
+      @include transparent;
+
+      .logo .vab-icon,
+      .title {
+        @include transparent;
+      }
+    }
+  }
+
+  .vab-column-bar-container {
+    &.el-scrollbar {
+      .logo-container-column {
+        .logo {
+          @include container;
+          background: #034291 !important;
+
+          .vab-icon {
+            @include transparent;
+          }
+        }
+      }
+
+      .el-tabs {
+        .el-tabs__nav-wrap.is-left {
+          @include container;
+        }
+
+        .el-tabs__nav,
+        .el-tabs__item {
+          @include transparent;
+
+          &.is-active {
+            color: $base-color-white !important;
+            background-color: rgba(0, 0, 0, 0.3) !important;
+          }
+        }
+      }
+
+      &.vab-column-bar-container-card {
+        .el-tabs {
+          .el-tabs__item {
+            &.is-active {
+              background: transparent !important;
+              .vab-column-grid {
+                background-color: rgba(0, 0, 0, 0.3) !important;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

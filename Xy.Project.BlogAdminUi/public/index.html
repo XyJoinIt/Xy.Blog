@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+    <meta content="webkit" name="renderer" />
+    <meta
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+      name="viewport"
+    />
+    <link href="<%= BASE_URL %>favicon.ico" rel="icon" />
+    <title><%= VUE_APP_TITLE %></title>
+    <meta
+      content="Vue Admin Plus,Vue Admin Pro,Vab Admin Plus,Vab Admin Pro,vab官网,后台管理框架,vue后台管理框架,vue-admin-beautiful,admin-pro,vue-admin-beautiful官网,vue-admin-beautiful文档,vue-element-admin,vue-element-admin官网,vue-element-admin文档,vue-admin,vue-admin官网,vue-admin文档"
+      name="keywords"
+    />
+    <meta content="<%= VUE_APP_AUTHOR %>" name="author" />
+    <link
+      href="<%= BASE_URL %>static/css/loading.css?random=<%= VUE_APP_RANDOM %>"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <noscript></noscript>
+    <div id="app">
+      <div class="first-loading-wrp">
+        <div class="loading-wrp">
+          <span class="dot dot-spin">
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+          </span>
+        </div>
+        <h1><%= VUE_APP_TITLE %></h1>
+      </div>
+    </div>
+
+    <script>
+      if (window.location.hostname !== 'localhost') {
+        var _hmt = _hmt || []
+        ;(function () {
+          var hm = document.createElement('script')
+          hm.src = 'https://hm.baidu.com/hm.js?085e0fa100dbc0e0e42931c16bf3e9e6'
+          var s = document.getElementsByTagName('script')[0]
+          s.parentNode.insertBefore(hm, s)
+        })()
+      }
+    </script>
+  </body>
+</html>

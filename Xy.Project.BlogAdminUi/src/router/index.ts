@@ -1,37 +1,121 @@
-import type { RouteRecordRaw } from 'vue-router';
-import type { App } from 'vue';
+/**
+ * @description router全局配置，如有必要可分文件抽离，其中asyncRoutes只有在intelligence模式下才会用到，pro版只支持remixIcon图标，具体配置请查看vip群文档
+ */
+import type { RouteRecordName, RouteRecordRaw } from 'vue-router'
+import type { VabRouteRecord } from '/#/router'
+import {
+  createRouter,
+  createWebHashHistory,
+  createWebHistory,
+} from 'vue-router'
+import Layout from '@vab/layouts/index.vue'
+import { setupPermissions } from './permissions'
+import { authentication, isHashRouterMode, publicPath } from '@/config'
 
-import { createRouter, createWebHashHistory } from 'vue-router';
-import { basicRoutes } from './routes';
+export const constantRoutes: VabRouteRecord[] = [
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import('@/views/login/index.vue'),
+    meta: {
+      hidden: true,
+    },
+  },
+  {
+    path: '/register',
+    name: 'Register',
+    component: () => import('@/views/register/index.vue'),
+    meta: {
+      hidden: true,
+    },
+  },
+  {
+    path: '/403',
+    name: '403',
+    component: () => import('@/views/403.vue'),
+    meta: {
+      hidden: true,
+    },
+  },
+  {
+    path: '/404',
+    name: '404',
+    component: () => import('@/views/404.vue'),
+    meta: {
+      hidden: true,
+    },
+  },
+]
 
-// 白名单应该包含基本静态路由
-const WHITE_NAME_LIST: string[] = [];
-const getRouteNames = (array: any[]) =>
-  array.forEach((item) => {
-    WHITE_NAME_LIST.push(item.name);
-    getRouteNames(item.children || []);
-  });
-getRouteNames(basicRoutes);
+export const asyncRoutes: VabRouteRecord[] = [
+  {
+    path: '/',
+    name: 'Root',
+    component: Layout,
+    meta: {
+      title: '首页',
+      icon: 'home-2-line',
+      breadcrumbHidden: true,
+    },
+    children: [
+      {
+        path: 'index',
+        name: 'Index',
+        component: () => import('@/views/index/index.vue'),
+        meta: {
+          title: '首页',
+          icon: 'home-2-line',
+          noClosable: true,
+        },
+      },
+    ],
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    redirect: '/404',
+    name: 'NotFound',
+    meta: {
+      hidden: true,
+    },
+  },
+]
 
-// app router
-export const router = createRouter({
-  history: createWebHashHistory(import.meta.env.VITE_PUBLIC_PATH),
-  routes: basicRoutes as unknown as RouteRecordRaw[],
-  strict: true,
-  scrollBehavior: () => ({ left: 0, top: 0 }),
-});
+const router = createRouter({
+  history: isHashRouterMode
+    ? createWebHashHistory(publicPath)
+    : createWebHistory(publicPath),
+  routes: constantRoutes as RouteRecordRaw[],
+})
 
-// reset router
-export function resetRouter() {
-  router.getRoutes().forEach((route) => {
-    const { name } = route;
-    if (name && !WHITE_NAME_LIST.includes(name as string)) {
-      router.hasRoute(name) && router.removeRoute(name);
-    }
-  });
+function fatteningRoutes(routes: VabRouteRecord[]): VabRouteRecord[] {
+  return routes.flatMap((route: VabRouteRecord) => {
+    return route.children ? fatteningRoutes(route.children) : route
+  })
 }
 
-// config router
-export function setupRouter(app: App<Element>) {
-  app.use(router);
+function addRouter(routes: VabRouteRecord[]) {
+  routes.forEach((route: VabRouteRecord) => {
+    if (!router.hasRoute(route.name)) router.addRoute(route as RouteRecordRaw)
+    if (route.children) addRouter(route.children)
+  })
 }
+
+export function resetRouter(routes: VabRouteRecord[] = constantRoutes) {
+  routes.map((route: VabRouteRecord) => {
+    if (route.children) route.children = fatteningRoutes(route.children)
+  })
+  router.getRoutes().forEach(({ name }) => {
+    router.hasRoute(<RouteRecordName>name) &&
+      router.removeRoute(<RouteRecordName>name)
+  })
+  addRouter(routes)
+}
+
+export function setupRouter(app: any) {
+  if (authentication === 'intelligence') addRouter(asyncRoutes)
+  setupPermissions(router)
+  app.use(router)
+  return router
+}
+
+export default router
