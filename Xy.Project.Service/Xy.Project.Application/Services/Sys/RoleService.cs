@@ -57,17 +57,6 @@ namespace Xy.Project.Application.Services.Sys
         }
 
         /// <summary>
-        /// 根据Id得到角色
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-
-        private async Task<Role> FindByIdAsync(long id)
-        {
-            return await _roleManager.FindByIdAsync(id.ToString());
-        }
-
-        /// <summary>
         /// 更新
         /// </summary>
         /// <param name="dto"></param>
@@ -80,5 +69,12 @@ namespace Xy.Project.Application.Services.Sys
             var result = await _roleManager.UpdateAsync(role);
             return result.ToResultData("保存成功");
         }
+
+        /// <summary>
+        /// 根据Id得到角色
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        private async Task<Role> FindByIdAsync(long id) => await _roleManager.FindByIdAsync(id.ToString());
     }
 }

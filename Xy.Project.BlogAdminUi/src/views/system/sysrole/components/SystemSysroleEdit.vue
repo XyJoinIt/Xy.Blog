@@ -18,7 +18,7 @@
 </template>
 
 <script>
-  import { doEdit } from '@/api/systemSysrole'
+  import { doUpdate } from '~/src/api/sysrole'
 
   export default defineComponent({
     name: 'SystemSysroleEdit',
@@ -57,7 +57,7 @@
       const save = () => {
         state['formRef'].validate(async (valid) => {
           if (valid) {
-            const { msg } = await doEdit(state.form)
+            const { msg } = await doUpdate(state.form)
             $baseMessage(msg, 'success', 'vab-hey-message-success')
             emit('fetch-data')
             close()

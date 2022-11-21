@@ -32,5 +32,11 @@ namespace Xy.Project.Application.Services.Contracts.Sys
         /// <returns></returns>
         Task<AppResult> DeleteAsync(long id);
 
+
+        /// <summary>
+        /// 获取用户信息
+        /// </summary>
+        /// <returns></returns>
+        Task<AppResult> GetUserInfoAsync();
     }
 }

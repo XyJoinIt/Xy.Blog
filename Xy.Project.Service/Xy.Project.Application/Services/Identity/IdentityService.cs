@@ -1,32 +1,47 @@
-﻿using Microsoft.Extensions.Options;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
+using System.Net.Http;
 using System.Security.Claims;
 using System.Text;
 using Xy.Project.Application.Dtos.Identitys;
 using Xy.Project.Application.Services.Contracts.Identity;
+using Xy.Project.Application.Services.Contracts.Sys;
 using Xy.Project.DataBase.GlobalConfigEntity;
 
 namespace Xy.Project.Application.Services.Identity
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class IdentityService : IdentityContaract
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
         private readonly JwtOption _jwtOption;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public IdentityService(UserManager<User> userManager, IOptions<JwtOption> jwtOption, SignInManager<User> signInManager)
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        /// <param name="userManager"></param>
+        /// <param name="jwtOption"></param>
+        /// <param name="signInManager"></param>
+        /// <param name="httpContextAccessor"></param>
+        public IdentityService(UserManager<User> userManager, IOptions<JwtOption> jwtOption, SignInManager<User> signInManager, IHttpContextAccessor httpContextAccessor)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _signInManager = signInManager;
             _jwtOption = jwtOption.Value;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         /// <summary>
         /// 用户登录
         /// </summary>
-        /// <param name="param"></param>
+        /// <param name="dto"></param>
         /// <returns></returns>
         public async Task<AppResult> LoginAsync(LoginDto dto)
         {
@@ -57,7 +72,6 @@ namespace Xy.Project.Application.Services.Identity
             var audience = _jwtOption.Audience;
             // 1. 定义需要使用到的Claims
             var claims = new List<Claim>() {
-
              new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
              new Claim(ClaimTypes.Name,user.UserName),
              new Claim(ClaimTypes.GivenName,user.NickName)
@@ -71,14 +85,6 @@ namespace Xy.Project.Application.Services.Identity
             var now = DateTime.Now;
             var tokenHandler = new JwtSecurityTokenHandler();
             // 5. 根据以上，生成token
-            //var token = new JwtSecurityToken(
-            //    issuer,     //Issuer
-            //    audience,   //Audience
-            //    claims,                          //Claims,
-            //    now,                    //notBefore
-            //    now.AddDays(365), //expires
-            //    signingCredentials               //Credentials
-            //);
             SecurityTokenDescriptor descriptor = new SecurityTokenDescriptor()
             {
                 Subject = new ClaimsIdentity(claims),
@@ -91,14 +97,30 @@ namespace Xy.Project.Application.Services.Identity
             };
             var token = tokenHandler.CreateToken(descriptor);
             string accessToken = tokenHandler.WriteToken(token);
+
+            // 设置响应报文头
+            _httpContextAccessor.HttpContext.Response.Headers["access-token"] = accessToken;
+            //if (!string.IsNullOrWhiteSpace(refreshToken))
+            //{
+            //    httpContext.Response.Headers["x-access-token"] = refreshToken;
+            //}
             return AppResult.Problem(HttpCode.成功, "登录成功", new
             {
-                AccessToken = accessToken,
+                token = accessToken,
                 user.NickName,
                 user.UserName,
                 UserId = user.Id,
                 Type = "Bearer"
             });
+        }
+
+        /// <summary>
+        /// 退出登录
+        /// </summary>
+        /// <returns></returns>
+        public async Task<AppResult> LoginOut()
+        {
+            return await Task.FromResult(AppResult.Success());
         }
     }
 }

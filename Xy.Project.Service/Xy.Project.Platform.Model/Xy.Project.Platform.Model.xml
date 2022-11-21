@@ -131,6 +131,41 @@
             文章Id
             </summary>
         </member>
+        <member name="T:Xy.Project.Platform.Model.Entities.Identity.Role">
+            <summary>
+            角色
+            </summary>
+        </member>
+        <member name="M:Xy.Project.Platform.Model.Entities.Identity.Role.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Platform.Model.Entities.Identity.Role.Remarks">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Platform.Model.Entities.Identity.Role.Status">
+            <summary>
+            状态
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Platform.Model.Entities.Identity.Role.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Platform.Model.Entities.Identity.Role.LastModified">
+            <summary>
+            最后修改时间
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Platform.Model.Entities.Identity.Role.IsDeleted">
+            <summary>
+            软删除
+            </summary>
+        </member>
         <member name="P:Xy.Project.Platform.Model.Entities.Identity.User.Avatar">
             <summary>
             头像

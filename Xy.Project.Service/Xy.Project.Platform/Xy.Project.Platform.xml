@@ -197,6 +197,12 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="M:Xy.Project.Platform.Modular.Sys.Controllers.SysUseController.GetUserInfo">
+            <summary>
+            获取用户信息
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Xy.Project.Platform.Modular.Sys.ServiceCollectionExtensions.AddPlatformServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
             注入

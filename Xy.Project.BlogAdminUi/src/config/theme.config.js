@@ -5,7 +5,7 @@ module.exports = {
   // 布局种类：横向布局horizontal、纵向布局vertical、分栏布局column、综合布局comprehensive、常规布局common、浮动布局float
   layout: 'column',
   // 主题名称：默认blue-black、blue-white、green-black、green-white、渐变ocean、red-white、red-black
-  themeName: 'green-black',
+  themeName: 'blue-white',
   // 菜单背景 none、vab-background
   background: 'none',
   // 菜单宽度，仅支持px，建议大小：266px、277px、288px，其余尺寸会影响美观

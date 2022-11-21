@@ -29,7 +29,6 @@ namespace Xy.Project.Platform.Modular.Identitys
         [Description("登录")]
         public async ValueTask<ActionResult<AppResult>> Login(LoginDto dto)
         {
-
             return await _identityContaract.LoginAsync(dto).ConfigureAwait(false);
         }
     }

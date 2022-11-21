@@ -1,4 +1,5 @@
 ﻿using Xy.Project.Application.Services.Contracts.Sys;
+using Xy.Project.Identity.Entities;
 
 namespace Xy.Project.Application.Services.Sys
 {
@@ -8,11 +9,11 @@ namespace Xy.Project.Application.Services.Sys
     public class SysUserService : ISysUserContract
     {
         private readonly UserManager<User> _userManager;
-
-        public SysUserService(UserManager<User> userManager)
+        private readonly IUserLogin _userLogin;
+        public SysUserService(UserManager<User> userManager, IUserLogin userLogin)
         {
             _userManager = userManager;
-
+            _userLogin = userLogin;
         }
 
         /// <summary>
@@ -71,6 +72,23 @@ namespace Xy.Project.Application.Services.Sys
             user = ObjectMap.MapTo(dto, user);
             var result = await _userManager.UpdateAsync(user);
             return result.ToResultData("保存成功");
+        }
+
+        /// <summary>
+        /// 获取用户信息
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public async Task<AppResult> GetUserInfoAsync()
+        {
+            return await Task.FromResult(AppResult.Success(new
+            {
+                UserName = _userLogin.UserName,
+                NickName = _userLogin.NickName,
+                Roles = new[] { "Admin" },
+                Permissions = new[] { "read:system", "write:system", "delete:system" },
+                Avatar = "https://i.gtimg.cn/club/item/face/img/2/16022_100.gif"
+            }));
         }
     }
 }

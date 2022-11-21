@@ -1,60 +1,96 @@
 <template>
   <div class="system-sysrole-container">
-    <vab-query-form>
-      <vab-query-form-left-panel :span="12">
-        <el-button :icon="Plus" type="primary" @click="handleEdit">
-          添加
-        </el-button>
-        <el-button :icon="Delete" type="danger" @click="handleDelete">
-          批量删除
-        </el-button>
-      </vab-query-form-left-panel>
-      <vab-query-form-right-panel :span="12">
-        <el-form :inline="true" :model="queryForm" @submit.prevent>
-          <el-form-item>
+    <vab-query-form class="page-header">
+      <vab-query-form-top-panel>
+        <el-form inline label-width="60px" :model="queryForm" @submit.prevent>
+          <el-form-item label="角色名">
             <el-input
               v-model.trim="queryForm.title"
               clearable
-              placeholder="请输入标题"
+              placeholder="请输入角色名"
             />
           </el-form-item>
+          <!-- <el-form-item label="周期">
+            <el-date-picker
+              v-model="queryForm.date"
+              end-placeholder="结束日期"
+              start-placeholder="开始日期"
+              type="daterange"
+            />
+          </el-form-item> -->
           <el-form-item>
             <el-button :icon="Search" type="primary" @click="queryData">
               查询
             </el-button>
           </el-form-item>
+          <el-form-item>
+            <el-button :icon="Plus" type="primary" @click="handleEdit">
+              添加
+            </el-button>
+          </el-form-item>
+          <el-form-item>
+            <el-button :icon="Delete" type="danger" @click="handleDelete">
+              批量删除
+            </el-button>
+          </el-form-item>
         </el-form>
-      </vab-query-form-right-panel>
+      </vab-query-form-top-panel>
     </vab-query-form>
 
     <el-table
       v-loading="listLoading"
+      border="true"
       :data="list"
       @selection-change="setSelectRows"
     >
       <el-table-column align="center" show-overflow-tooltip type="selection" />
       <el-table-column
         align="center"
-        label="id"
-        prop="id"
+        label="角色名称"
+        prop="name"
         show-overflow-tooltip
       />
       <el-table-column
         align="center"
-        label="标题"
-        prop="title"
+        label="状态"
+        prop="status"
+        show-overflow-tooltip
+      >
+        <template #default="scope">
+          <el-tag :type="scope.row.status == '正常' ? 'success' : 'danger'">
+            {{ scope.row.status }}
+          </el-tag>
+        </template>
+      </el-table-column>
+
+      <el-table-column
+        align="center"
+        label="备注"
+        prop="remarks"
         show-overflow-tooltip
       />
-      <el-table-column align="center" label="操作" width="200">
+      <el-table-column align="center" label="操作" width="300">
         <template #default="{ row }">
-          <el-button text @click="handleEdit(row)">编辑</el-button>
-          <el-button text @click="handleDelete(row)">删除</el-button>
+          <el-link type="primary" :underline="false" @click="handleEdit(row)">
+            编辑
+            <vab-icon icon="edit-2-line" />
+          </el-link>
+          <el-divider direction="vertical" />
+          <el-link type="primary" :underline="false" @click="handleDelete(row)">
+            删除
+            <vab-icon icon="delete-bin-4-line" />
+          </el-link>
+          <el-divider direction="vertical" />
+          <el-link type="primary" :underline="false" @click="handleEdit(row)">
+            授权
+            <vab-icon icon="add-line" />
+          </el-link>
         </template>
       </el-table-column>
     </el-table>
     <el-pagination
       background
-      :current-page="queryForm.pageNo"
+      :current-page="queryForm.PageIndex"
       :layout="layout"
       :page-size="queryForm.pageSize"
       :total="total"
@@ -66,7 +102,7 @@
 </template>
 
 <script>
-  import { getList, doDelete } from '@/api/systemSysrole'
+  import { PateList, doDelete } from '@/api/sysrole'
   import Edit from './components/SystemSysroleEdit'
   import { Delete, Plus, Search } from '@element-plus/icons-vue'
 
@@ -85,9 +121,8 @@
         total: 0,
         selectRows: '',
         queryForm: {
-          pageNo: 1,
+          PageIndex: 1,
           pageSize: 10,
-          title: '',
         },
       })
 
@@ -126,18 +161,18 @@
         fetchData()
       }
       const handleCurrentChange = (val) => {
-        state.queryForm.pageNo = val
+        state.queryForm.PageIndex = val
         fetchData()
       }
       const queryData = () => {
-        state.queryForm.pageNo = 1
+        state.queryForm.PageIndex = 1
         fetchData()
       }
       const fetchData = async () => {
         state.listLoading = true
         const {
           data: { list, total },
-        } = await getList(state.queryForm)
+        } = await PateList(state.queryForm)
         state.list = list
         state.total = total
         state.listLoading = false
@@ -145,7 +180,6 @@
       onMounted(() => {
         fetchData()
       })
-
       return {
         ...toRefs(state),
         setSelectRows,
@@ -162,3 +196,12 @@
     },
   })
 </script>
+
+<style scoped>
+  .example-showcase .el-dropdown-link {
+    cursor: pointer;
+    color: var(--el-color-primary);
+    display: flex;
+    align-items: center;
+  }
+</style>

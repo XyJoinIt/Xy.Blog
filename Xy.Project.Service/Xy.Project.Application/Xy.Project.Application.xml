@@ -244,6 +244,32 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="M:Xy.Project.Application.Services.Contracts.Sys.ISysUserContract.GetUserInfoAsync">
+            <summary>
+            获取用户信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Xy.Project.Application.Services.Contracts.Sys.IUserLogin">
+            <summary>
+            用户上下文
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Services.Contracts.Sys.IUserLogin.Id">
+            <summary>
+            用户Id
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Services.Contracts.Sys.IUserLogin.UserName">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Services.Contracts.Sys.IUserLogin.NickName">
+            <summary>
+            昵称
+            </summary>
+        </member>
         <member name="M:Xy.Project.Application.Services.Base.CURDService`4.DeleteAsync(System.Int64)">
             <summary>
             删除
@@ -291,11 +317,31 @@
             <param name="dto"></param>
             <returns></returns>
         </member>
+        <member name="T:Xy.Project.Application.Services.Identity.IdentityService">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Identity.IdentityService.#ctor(Microsoft.AspNetCore.Identity.UserManager{Xy.Project.Platform.Model.Entities.Identity.User},Microsoft.Extensions.Options.IOptions{Xy.Project.DataBase.GlobalConfigEntity.JwtOption},Microsoft.AspNetCore.Identity.SignInManager{Xy.Project.Platform.Model.Entities.Identity.User},Microsoft.AspNetCore.Http.IHttpContextAccessor)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="userManager"></param>
+            <param name="jwtOption"></param>
+            <param name="signInManager"></param>
+            <param name="httpContextAccessor"></param>
+        </member>
         <member name="M:Xy.Project.Application.Services.Identity.IdentityService.LoginAsync(Xy.Project.Application.Dtos.Identitys.LoginDto)">
             <summary>
             用户登录
             </summary>
-            <param name="param"></param>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Identity.IdentityService.LoginOut">
+            <summary>
+            退出登录
+            </summary>
             <returns></returns>
         </member>
         <member name="M:Xy.Project.Application.Services.Sys.RoleService.AddAsync(Xy.Project.Application.Dtos.Roles.AddRoleInputDto)">
@@ -319,18 +365,18 @@
             <param name="page"></param>
             <returns></returns>
         </member>
-        <member name="M:Xy.Project.Application.Services.Sys.RoleService.FindByIdAsync(System.Int64)">
-            <summary>
-            根据Id得到角色
-            </summary>
-            <param name="id"></param>
-            <returns></returns>
-        </member>
         <member name="M:Xy.Project.Application.Services.Sys.RoleService.UpdateAsync(Xy.Project.Application.Dtos.Roles.UpdateRoleInputDto)">
             <summary>
             更新
             </summary>
             <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Sys.RoleService.FindByIdAsync(System.Int64)">
+            <summary>
+            根据Id得到角色
+            </summary>
+            <param name="id"></param>
             <returns></returns>
         </member>
         <member name="T:Xy.Project.Application.Services.Sys.SysUserService">
@@ -365,6 +411,39 @@
             </summary>
             <param name="dto"></param>
             <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Sys.SysUserService.GetUserInfoAsync">
+            <summary>
+            获取用户信息
+            </summary>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="T:Xy.Project.Application.Services.Sys.UserLogin">
+            <summary>
+            用户上下文
+            </summary>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Sys.UserLogin.#ctor(Microsoft.AspNetCore.Http.IHttpContextAccessor)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="httpContextAccessor"></param>
+        </member>
+        <member name="P:Xy.Project.Application.Services.Sys.UserLogin.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Services.Sys.UserLogin.UserName">
+            <summary>
+            账户
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Services.Sys.UserLogin.NickName">
+            <summary>
+            昵称
+            </summary>
         </member>
     </members>
 </doc>

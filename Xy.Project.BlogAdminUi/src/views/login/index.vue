@@ -131,7 +131,7 @@
         formRef: null,
         passwordRef: null,
         form: {
-          username: 'admin',
+          username: 'xiaoyun',
           password: '123456',
           verificationCode: '',
         },

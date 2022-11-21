@@ -1,6 +1,5 @@
 ﻿namespace Xy.Project.Core.Filter
 {
-
     /// <summary>
     /// 连接条件
     /// </summary>
