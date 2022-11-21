@@ -131,8 +131,8 @@
         formRef: null,
         passwordRef: null,
         form: {
-          username: '',
-          password: '',
+          username: 'admin',
+          password: '123456',
           verificationCode: '',
         },
         rules: {
