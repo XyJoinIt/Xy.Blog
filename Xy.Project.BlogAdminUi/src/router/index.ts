@@ -75,20 +75,11 @@ export const asyncRoutes: VabRouteRecord[] = [
     name: 'system',
     component: Layout,
     meta: {
-      title: '配置',
+      title: '系统管理',
       icon: 'settings-3-line',
       //breadcrumbHidden: true,
     },
     children: [
-      {
-        path: 'sysmine',
-        name: 'sysmine',
-        component: () => import('@/views/system/sysmine/index.vue'),
-        meta: {
-          title: '个人信息',
-          icon: 'user-settings-line',
-        },
-      },
       {
         path: 'sysuser',
         name: 'sysuser',
@@ -114,15 +105,6 @@ export const asyncRoutes: VabRouteRecord[] = [
         meta: {
           title: '角色管理',
           icon: 'user-smile-line',
-        },
-      },
-      {
-        path: 'sysdictionary',
-        name: 'sysdictionary',
-        component: () => import('@/views/system/sysdictionary/index.vue'),
-        meta: {
-          title: '字典管理',
-          icon: 'book-read-line',
         },
       },
       {
