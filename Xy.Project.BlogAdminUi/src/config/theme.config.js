@@ -11,7 +11,7 @@ module.exports = {
   // 菜单宽度，仅支持px，建议大小：266px、277px、288px，其余尺寸会影响美观
   menuWidth: '288px',
   // 分栏风格(仅针对分栏布局column时生效)：横向风格horizontal、纵向风格vertical、卡片风格card、箭头风格arrow
-  columnStyle: 'arrow',
+  columnStyle: 'vertical',
   // 是否固定头部固定
   fixedHeader: true,
   // 是否开启顶部进度条

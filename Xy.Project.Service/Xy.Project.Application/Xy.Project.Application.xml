@@ -183,6 +183,12 @@
             <param name="param"></param>
             <returns></returns>
         </member>
+        <member name="M:Xy.Project.Application.Services.Contracts.Identity.IdentityContaract.LoginOut">
+            <summary>
+            退出登录
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Xy.Project.Application.Services.Contracts.Sys.IRoleContract">
             <summary>
             角色

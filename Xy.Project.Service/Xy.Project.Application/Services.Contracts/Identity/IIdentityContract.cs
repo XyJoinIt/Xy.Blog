@@ -14,5 +14,11 @@ namespace Xy.Project.Application.Services.Contracts.Identity
         /// <param name="param"></param>
         /// <returns></returns>
         Task<AppResult> LoginAsync(LoginDto param);
+
+        /// <summary>
+        /// 退出登录
+        /// </summary>
+        /// <returns></returns>
+        Task<AppResult> LoginOut();
     }
 }

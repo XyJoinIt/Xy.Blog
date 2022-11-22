@@ -51,8 +51,8 @@ export function getUserInfo() {
  */
 export function logout() {
   return request({
-    url: '/api/SysUse/LoginOut',
-    method: 'get',
+    url: '/api/Identity/LoginOut',
+    method: 'Post',
   })
 }
 

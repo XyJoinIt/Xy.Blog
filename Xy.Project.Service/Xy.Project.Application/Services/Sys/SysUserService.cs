@@ -87,7 +87,7 @@ namespace Xy.Project.Application.Services.Sys
                 NickName = _userLogin.NickName,
                 Roles = new[] { "Admin" },
                 Permissions = new[] { "read:system", "write:system", "delete:system" },
-                Avatar = "https://i.gtimg.cn/club/item/face/img/2/16022_100.gif"
+                Avatar = "https://s1.ax1x.com/2022/11/22/z1dgwF.jpg"
             }));
         }
     }

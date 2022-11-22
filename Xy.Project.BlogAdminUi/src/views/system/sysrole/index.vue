@@ -39,7 +39,7 @@
 
     <el-table
       v-loading="listLoading"
-      border="true"
+      :border="true"
       :data="list"
       @selection-change="setSelectRows"
     >

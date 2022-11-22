@@ -99,7 +99,7 @@ export const useUserStore = defineStore('user', {
      */
     async getUserInfo() {
       const {
-        data: { username, avatar, roles, permissions },
+        data: { userName, avatar, roles, permissions },
       } = await getUserInfo()
       /**
        * 检验返回数据是否正常，无对应参数，将使用默认用户名,头像,Roles和Permissions
@@ -109,7 +109,7 @@ export const useUserStore = defineStore('user', {
        * ability {List}
        */
       if (
-        (username && !isString(username)) ||
+        (userName && !isString(userName)) ||
         (avatar && !isString(avatar)) ||
         (roles && !isArray(roles)) ||
         (permissions && !isArray(permissions))
@@ -120,7 +120,7 @@ export const useUserStore = defineStore('user', {
       } else {
         const aclStore = useAclStore()
         // 如不使用username用户名,可删除以下代码
-        if (username) this.setUsername(username)
+        if (userName) this.setUsername(userName)
         // 如不使用avatar头像,可删除以下代码
         if (avatar) this.setAvatar(avatar)
         // 如不使用roles权限控制,可删除以下代码

@@ -31,5 +31,16 @@ namespace Xy.Project.Platform.Modular.Identitys
         {
             return await _identityContaract.LoginAsync(dto).ConfigureAwait(false);
         }
+
+        /// <summary>
+        /// 退出登录
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        [Description("退出登录")]
+        public async Task<AppResult> LoginOut()
+        {
+            return await _identityContaract.LoginOut();
+        }
     }
 }

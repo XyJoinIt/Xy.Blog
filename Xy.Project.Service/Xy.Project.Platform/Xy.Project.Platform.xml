@@ -118,6 +118,12 @@
             <param name="dto"></param>
             <returns></returns>
         </member>
+        <member name="M:Xy.Project.Platform.Modular.Identitys.IdentityController.LoginOut">
+            <summary>
+            退出登录
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Xy.Project.Platform.Modular.Sys.Controllers.RoleController">
             <summary>
             角色管理控制器

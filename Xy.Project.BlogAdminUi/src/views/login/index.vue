@@ -1,96 +1,101 @@
 <template>
-  <div class="login-container">
-    <el-row>
-      <el-col :lg="14" :md="11" :sm="24" :xl="14" :xs="24">
-        <div style="color: transparent">占位符</div>
-      </el-col>
-      <el-col :lg="9" :md="12" :sm="24" :xl="9" :xs="24">
-        <el-form
-          ref="formRef"
-          class="login-form"
-          label-position="left"
-          :model="form"
-          :rules="rules"
-        >
-          <div class="title">hello !</div>
-          <div class="title-tips">欢迎来到{{ title }}！</div>
-          <el-form-item prop="username">
-            <el-input
-              v-model.trim="form.username"
-              v-focus
-              placeholder="请输入用户名"
-              tabindex="1"
-              type="text"
-            >
-              <template #prefix>
-                <vab-icon icon="user-line" />
-              </template>
-            </el-input>
-          </el-form-item>
-          <el-form-item prop="password">
-            <el-input
-              :key="passwordType"
-              ref="passwordRef"
-              v-model.trim="form.password"
-              placeholder="请输入密码"
-              tabindex="2"
-              :type="passwordType"
-              @keyup.enter="handleLogin"
-            >
-              <template #prefix>
-                <vab-icon icon="lock-line" />
-              </template>
-              <template v-if="passwordType === 'password'" #suffix>
-                <vab-icon
-                  class="show-password"
-                  icon="eye-off-line"
-                  @click="handlePassword"
-                />
-              </template>
-              <template v-else #suffix>
-                <vab-icon
-                  class="show-password"
-                  icon="eye-line"
-                  @click="handlePassword"
-                />
-              </template>
-            </el-input>
-          </el-form-item>
-          <!-- 验证码验证逻辑需自行开发，如不需要验证码功能建议注释 -->
-          <el-form-item prop="verificationCode">
-            <el-input
-              v-model.trim="form.verificationCode"
-              :placeholder="'验证码' + previewText"
-              tabindex="3"
-              type="text"
-            >
-              <template #prefix>
-                <vab-icon icon="barcode-box-line" />
-              </template>
-            </el-input>
-            <el-image class="code" :src="codeUrl" @click="changeCode" />
-          </el-form-item>
-          <el-form-item>
-            <el-button
-              class="login-btn"
-              :loading="loading"
-              size="medium"
-              style="width: 100%"
-              type="primary"
-              @click="handleLogin"
-            >
-              登录
-            </el-button>
-          </el-form-item>
-          <!-- <el-form-item>
-            <router-link to="/register">注册</router-link>
-          </el-form-item> -->
-        </el-form>
-      </el-col>
-      <el-col :lg="1" :md="1" :sm="24" :xl="1" :xs="24">
-        <div style="color: transparent">占位符</div>
-      </el-col>
-    </el-row>
+  <div class="login_background">
+    <div class="login_background_front"></div>
+    <div class="login_main">
+      <div class="login-form">
+        <el-card>
+          <el-tabs v-model="activeKey">
+            <el-tab-pane label="账户密码" name="userAccount">
+              <el-form
+                ref="formRef"
+                label-position="left"
+                :model="form"
+                :rules="rules"
+              >
+                <el-form-item prop="username">
+                  <el-input
+                    v-model.trim="form.username"
+                    v-focus
+                    placeholder="请输入用户名"
+                    tabindex="1"
+                    type="text"
+                  >
+                    <template #prefix>
+                      <vab-icon icon="user-line" />
+                    </template>
+                  </el-input>
+                </el-form-item>
+                <el-form-item prop="password">
+                  <el-input
+                    :key="passwordType"
+                    ref="passwordRef"
+                    v-model.trim="form.password"
+                    placeholder="请输入密码"
+                    tabindex="2"
+                    :type="passwordType"
+                    @keyup.enter="handleLogin"
+                  >
+                    <template #prefix>
+                      <vab-icon icon="lock-line" />
+                    </template>
+                    <template v-if="passwordType === 'password'" #suffix>
+                      <vab-icon
+                        class="show-password"
+                        icon="eye-off-line"
+                        @click="handlePassword"
+                      />
+                    </template>
+                    <template v-else #suffix>
+                      <vab-icon
+                        class="show-password"
+                        icon="eye-line"
+                        @click="handlePassword"
+                      />
+                    </template>
+                  </el-input>
+                </el-form-item>
+
+                <el-form-item prop="verificationCode">
+                  <el-row :gutter="20">
+                    <el-col :span="16">
+                      <el-input
+                        v-model.trim="form.verificationCode"
+                        class="w-50 m-2"
+                        :placeholder="'验证码' + previewText"
+                        type="text"
+                      >
+                        <template #prefix>
+                          <vab-icon icon="barcode-box-line" />
+                        </template>
+                      </el-input>
+                    </el-col>
+                    <el-col :span="8">
+                      <el-image
+                        class="code"
+                        :src="codeUrl"
+                        @click="changeCode"
+                      />
+                    </el-col>
+                  </el-row>
+                </el-form-item>
+
+                <el-form-item>
+                  <el-button
+                    class="login-btn"
+                    :loading="loading"
+                    style="width: 100%"
+                    type="primary"
+                    @click="handleLogin"
+                  >
+                    登录
+                  </el-button>
+                </el-form-item>
+              </el-form>
+            </el-tab-pane>
+          </el-tabs>
+        </el-card>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -130,6 +135,7 @@
       const state = reactive({
         formRef: null,
         passwordRef: null,
+        activeKey: 'userAccount',
         form: {
           username: 'xiaoyun',
           password: '123456',
@@ -196,8 +202,8 @@
       }
 
       onBeforeMount(() => {
-        state.form.username = ''
-        state.form.password = ''
+        //state.form.username = ''
+        //state.form.password = ''
         // 为了演示效果，会在官网演示页自动登录到首页，正式开发可删除
         // if (
         //   document.domain === 'vue-admin-beautiful.com' ||
@@ -231,134 +237,167 @@
 </script>
 
 <style lang="scss" scoped>
-  .login-container {
-    height: 100vh;
-    background: url('~@/assets/login_images/background.jpg') center center fixed
-      no-repeat;
-    background-size: cover;
-  }
-
-  .login-form {
-    position: relative;
-    max-width: 100%;
-    padding: 4.5vh;
-    margin: calc((100vh - 555px) / 2) 5vw 5vw;
+  .login_background {
+    width: 100%;
+    height: 100%;
     overflow: hidden;
-    background: url('~@/assets/login_images/login_form.png');
-    background-size: 100% 100%;
+    background-size: cover;
+    background-position: center;
+    background-image: url('~@/assets/login_images/login_background.png');
+  }
+  .login-btn {
+    display: inherit;
+    // width: 220px;
+    //height: 50px;
+    margin-top: 5px;
+    background: var(--el-color-primary);
+    border: 0;
 
-    .title {
-      font-size: 54px;
-      font-weight: 500;
-      color: var(--el-color-white);
+    &:hover {
+      opacity: 0.9;
     }
-
-    .title-tips {
-      margin-top: 29px;
-      font-size: 26px;
-      font-weight: 400;
-      color: var(--el-color-white);
+  }
+  .login_background_front {
+    width: 450px;
+    height: 450px;
+    margin-left: 100px;
+    margin-top: 15%;
+    overflow: hidden;
+    /*position: relative;*/
+    background-size: cover;
+    background-position: center;
+    background-image: url('~@/assets/login_images/login_background_front.png');
+    animation-name: myfirst;
+    animation-duration: 5s;
+    animation-timing-function: linear;
+    animation-delay: 1s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-play-state: running;
+    /* Safari and Chrome: */
+    -webkit-animation-name: myfirst;
+    -webkit-animation-duration: 5s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-delay: 1s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-direction: alternate;
+    -webkit-animation-play-state: running;
+  }
+  @keyframes myfirst {
+    0% {
+      left: 0px;
+      top: 0px;
     }
-
-    .login-btn {
-      display: inherit;
-      width: 220px;
-      height: 50px;
-      margin-top: 5px;
-      background: var(--el-color-primary);
-      border: 0;
-
-      &:hover {
-        opacity: 0.9;
-      }
+    50% {
+      left: 50px;
+      top: 0px;
     }
-
-    .tips {
-      margin-bottom: 10px;
-      font-size: $base-font-size-default;
-      color: var(--el-color-white);
-
-      span {
-        &:first-of-type {
-          margin-right: 16px;
-        }
-      }
+    100% {
+      left: 0px;
+      top: 0px;
     }
-
-    .title-container {
-      position: relative;
-
-      .title {
-        margin: 0 auto 40px auto;
-        font-size: 34px;
-        font-weight: bold;
-        color: var(--el-color-primary);
-        text-align: center;
-      }
+  }
+  @-webkit-keyframes myfirst /* Safari and Chrome */ {
+    0% {
+      left: 0px;
+      top: 0px;
     }
-
-    i {
-      position: absolute;
-      top: 8px;
-      left: 15px;
-      font-size: 16px;
+    50% {
+      left: 50px;
+      top: 0px;
     }
-
-    .show-password {
-      float: right;
-      width: 32px;
-      height: 32px;
-      font-size: 16px;
+    100% {
+      left: 0px;
+      top: 0px;
     }
-
-    :deep() {
-      .el-form-item {
-        padding-right: 0;
-        margin: 20px 0;
-        color: #454545;
-        background: transparent;
-        border: 1px solid transparent;
-        border-radius: 2px;
-
-        &__content {
-          min-height: $base-input-height;
-          line-height: $base-input-height;
-        }
-
-        &__error {
-          position: absolute;
-          top: 100%;
-          left: 18px;
-          font-size: $base-font-size-small;
-          line-height: 18px;
-          color: var(--el-color-error);
-        }
-      }
-
-      .el-input {
-        box-sizing: border-box;
-
-        input {
-          height: 48px;
-          padding-left: 30px;
-          line-height: 48px;
-          border: 0;
-        }
-
-        &__suffix-inner {
-          position: absolute;
-          right: 65px;
-          cursor: pointer;
-        }
-      }
-
-      .code {
-        position: absolute;
-        top: 4px;
-        right: 4px;
-        cursor: pointer;
-        border-radius: $base-border-radius;
-      }
+  }
+  .login_adv__title h2 {
+    font-size: 40px;
+  }
+  .login_adv__title h4 {
+    font-size: 18px;
+    margin-top: 10px;
+    font-weight: normal;
+  }
+  .login_adv__title p {
+    font-size: 14px;
+    margin-top: 10px;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.6);
+  }
+  .login_adv__title div {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+  }
+  .login_adv__title div span {
+    margin-right: 15px;
+  }
+  .login_adv__title div i {
+    font-size: 40px;
+  }
+  .login_adv__title div i.add {
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.6);
+  }
+  /*background-image:linear-gradient(transparent, #000);*/
+  .login_main {
+    flex: 1;
+    overflow: auto;
+    display: flex;
+  }
+  .login-form {
+    top: 20%;
+    right: 15%;
+    position: absolute;
+    width: 450px;
+    margin-left: 10%;
+    margin-top: 20px;
+    padding: 10px 0;
+  }
+  .login-header {
+    margin-bottom: 20px;
+  }
+  .login-header .logo {
+    display: flex;
+    align-items: center;
+  }
+  .login-header .logo img {
+    width: 35px;
+    height: 35px;
+    vertical-align: bottom;
+    margin-right: 10px;
+  }
+  .login-header .logo label {
+    font-size: 24px;
+  }
+  .login-header h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 40px;
+  }
+  .login_config {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+  @media (max-width: 1200px) {
+    .login-form {
+      width: 340px;
+    }
+  }
+  @media (max-width: 1000px) {
+    .login_main {
+      display: block;
+    }
+    .login_background_front {
+      display: none;
+    }
+    .login-form {
+      width: 100%;
+      padding: 20px 40px;
+      right: 0 !important;
+      top: 0 !important;
     }
   }
 </style>
