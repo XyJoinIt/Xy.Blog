@@ -1,8 +1,14 @@
-﻿namespace Xy.Project.Platform.Model.Entities.Identity
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Xy.Project.Platform.Model.Entities.Identity
 {
-    public class User : UserBase<long>, IFullAuditedEntity
+    /// <summary>
+    /// 用户表
+    /// </summary>
+    [Table("SysUser")]
+    public class SysUser : UserBase<long>, IFullAuditedEntity
     {
-        public User()
+        public SysUser()
         {
             Id = YitIdHelper.NextId();
         }

@@ -9,8 +9,8 @@ namespace Xy.Project.Platform.Model.DataSeeds
         public static async Task SeedDefaultUserAsync(IServiceScope serviceScope)
         {
             string passwordHash = "123456";
-            List<User> users = new List<User>() {
-                new User
+            List<SysUser> users = new List<SysUser>() {
+                new SysUser
                 {
 
                     NickName = "管理员",
@@ -18,7 +18,7 @@ namespace Xy.Project.Platform.Model.DataSeeds
                     CreateTime = DateTime.Now,
                     Sex = Gender.男
                 },
-                 new User
+                 new SysUser
                 {
 
                     NickName = "小云最美",
@@ -26,7 +26,7 @@ namespace Xy.Project.Platform.Model.DataSeeds
                     CreateTime = DateTime.Now,
                     Sex = Gender.女
                 }
-                 ,new User
+                 ,new SysUser
                 {
 
                     NickName = "大黄瓜",
@@ -121,7 +121,7 @@ namespace Xy.Project.Platform.Model.DataSeeds
             //        Sex = Gender.女
             //    });
             //}
-            var userManager = serviceScope.ServiceProvider.GetService<UserManager<User>>();
+            var userManager = serviceScope.ServiceProvider.GetService<UserManager<SysUser>>();
 
             foreach (var user in users)
             {
@@ -138,7 +138,7 @@ namespace Xy.Project.Platform.Model.DataSeeds
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        private static Expression<Func<User, bool>> ExistingExpression(User entity)
+        private static Expression<Func<SysUser, bool>> ExistingExpression(SysUser entity)
         {
             return m => m.UserName == entity.UserName && m.NickName == entity.NickName;
         }

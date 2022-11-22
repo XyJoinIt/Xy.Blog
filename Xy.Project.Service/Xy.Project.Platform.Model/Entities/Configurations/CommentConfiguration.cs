@@ -13,7 +13,7 @@ namespace Xy.Project.Platform.Model.Entities.Configurations
             builder.Property(o => o.UserId);
             builder.Property(o => o.ArticleId);
             builder.Property(o => o.ParentId).IsRequired(false);
-            builder.ToTable("Comment");
+            builder.ToTable("Bl_Comment");
         }
     }
 }

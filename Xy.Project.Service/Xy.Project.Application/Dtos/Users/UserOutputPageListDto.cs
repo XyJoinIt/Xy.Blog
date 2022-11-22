@@ -1,6 +1,6 @@
 ﻿namespace Xy.Project.Application.Dtos.Users
 {
-    [AutoMap(typeof(User), ReverseMap = true)]
+    [AutoMap(typeof(SysUser), ReverseMap = true)]
     public class UserOutputPageListDto : UserBaseDto
     {
         public long Id { get; set; }

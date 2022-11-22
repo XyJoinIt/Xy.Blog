@@ -7,7 +7,10 @@ namespace Xy.Project.Platform.Model;
 /// </summary>
 public class XyPlatformContext : DbContext
 {
-
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="options"></param>
     public XyPlatformContext(DbContextOptions<XyPlatformContext> options) : base(options)
     {
     }

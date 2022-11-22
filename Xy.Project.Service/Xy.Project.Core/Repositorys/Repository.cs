@@ -1,9 +1,7 @@
-﻿using Xy.Project.Core.Extensions;
-
-namespace Xy.Project.DataBase.Db
+﻿namespace Xy.Project.Core
 {
     /// <summary>
-    /// EF的东西不应该放在这里
+    /// 仓储
     /// </summary>
     public class Repository<TEntity, TPrimaryKey> : IRepository<TEntity, TPrimaryKey>
     where TEntity : class, IEntity<TPrimaryKey>, new()

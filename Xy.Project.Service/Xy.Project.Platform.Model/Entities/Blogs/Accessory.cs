@@ -1,11 +1,13 @@
-﻿namespace Xy.Project.Platform.Model.Entities.Blogs
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Xy.Project.Platform.Model.Entities.Blogs
 {
     /// <summary>
     /// 附件
     /// </summary>
+    [Table("Bl_Accessory")]
     public class Accessory : FullEntityBase
     {
-
         /// <summary>
         /// 路径
         /// </summary>

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Xy.Project.Platform.Model.Migrations
 {
-    public partial class _1668949231419 : Migration
+    public partial class v100 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,7 +13,7 @@ namespace Xy.Project.Platform.Model.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Accessory",
+                name: "Bl_Accessory",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false),
@@ -33,12 +33,12 @@ namespace Xy.Project.Platform.Model.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Accessory", x => x.Id);
+                    table.PrimaryKey("PK_Bl_Accessory", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Article",
+                name: "Bl_Article",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false),
@@ -57,12 +57,12 @@ namespace Xy.Project.Platform.Model.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Article", x => x.Id);
+                    table.PrimaryKey("PK_Bl_Article", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Category",
+                name: "Bl_Category",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false),
@@ -78,12 +78,12 @@ namespace Xy.Project.Platform.Model.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Category", x => x.Id);
+                    table.PrimaryKey("PK_Bl_Category", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Comment",
+                name: "Bl_Comment",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false),
@@ -99,12 +99,12 @@ namespace Xy.Project.Platform.Model.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Comment", x => x.Id);
+                    table.PrimaryKey("PK_Bl_Comment", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Role",
+                name: "SysRole",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false),
@@ -123,12 +123,12 @@ namespace Xy.Project.Platform.Model.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Role", x => x.Id);
+                    table.PrimaryKey("PK_SysRole", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "RoleClaim",
+                name: "SysRoleClaim",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false),
@@ -140,12 +140,12 @@ namespace Xy.Project.Platform.Model.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RoleClaim", x => x.Id);
+                    table.PrimaryKey("PK_SysRoleClaim", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "User",
+                name: "SysUser",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false),
@@ -186,12 +186,12 @@ namespace Xy.Project.Platform.Model.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_User", x => x.Id);
+                    table.PrimaryKey("PK_SysUser", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "UserClaim",
+                name: "SysUserClaim",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false),
@@ -203,12 +203,12 @@ namespace Xy.Project.Platform.Model.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserClaim", x => x.Id);
+                    table.PrimaryKey("PK_SysUserClaim", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "UserLogin",
+                name: "SysUserLogin",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false),
@@ -222,12 +222,12 @@ namespace Xy.Project.Platform.Model.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserLogin", x => x.Id);
+                    table.PrimaryKey("PK_SysUserLogin", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "UserRole",
+                name: "SysUserRole",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false),
@@ -236,12 +236,12 @@ namespace Xy.Project.Platform.Model.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserRole", x => x.Id);
+                    table.PrimaryKey("PK_SysUserRole", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "UserToken",
+                name: "SysUserToken",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false),
@@ -255,55 +255,55 @@ namespace Xy.Project.Platform.Model.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserToken", x => x.Id);
+                    table.PrimaryKey("PK_SysUserToken", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Role_Name",
-                table: "Role",
+                name: "IX_SysRole_Name",
+                table: "SysRole",
                 column: "Name");
 
             migrationBuilder.CreateIndex(
-                name: "IX_User_UserName",
-                table: "User",
+                name: "IX_SysUser_UserName",
+                table: "SysUser",
                 column: "UserName");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Accessory");
+                name: "Bl_Accessory");
 
             migrationBuilder.DropTable(
-                name: "Article");
+                name: "Bl_Article");
 
             migrationBuilder.DropTable(
-                name: "Category");
+                name: "Bl_Category");
 
             migrationBuilder.DropTable(
-                name: "Comment");
+                name: "Bl_Comment");
 
             migrationBuilder.DropTable(
-                name: "Role");
+                name: "SysRole");
 
             migrationBuilder.DropTable(
-                name: "RoleClaim");
+                name: "SysRoleClaim");
 
             migrationBuilder.DropTable(
-                name: "User");
+                name: "SysUser");
 
             migrationBuilder.DropTable(
-                name: "UserClaim");
+                name: "SysUserClaim");
 
             migrationBuilder.DropTable(
-                name: "UserLogin");
+                name: "SysUserLogin");
 
             migrationBuilder.DropTable(
-                name: "UserRole");
+                name: "SysUserRole");
 
             migrationBuilder.DropTable(
-                name: "UserToken");
+                name: "SysUserToken");
         }
     }
 }

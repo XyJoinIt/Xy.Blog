@@ -5,9 +5,9 @@
 
 namespace Xy.Project.Platform.Model.Entities.Configurations
 {
-    internal class RoleConfiguration : IEntityTypeConfiguration<Role>
+    internal class RoleConfiguration : IEntityTypeConfiguration<SysRole>
     {
-        public void Configure(EntityTypeBuilder<Role> builder)
+        public void Configure(EntityTypeBuilder<SysRole> builder)
         {
 
             builder.HasKey(x => x.Id);
@@ -18,7 +18,7 @@ namespace Xy.Project.Platform.Model.Entities.Configurations
             builder.Property(o => o.Remarks).HasMaxLength(1000);
 
             builder.HasIndex(m => m.Name);
-            builder.ToTable("Role");
+            builder.ToTable("SysRole");
         }
     }
 }

@@ -249,4 +249,3 @@ public enum FilterConnect
     Or
 }
 
-

@@ -9,9 +9,9 @@
             
             </summary>
         </member>
-        <member name="M:Xy.Project.Platform.Extensions.DbContextServiceCollection.AddUnitOfWork(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+        <member name="M:Xy.Project.Platform.Extensions.DbContextServiceCollection.AddDbWork(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
-            
+            数据库相关注入
             </summary>
             <param name="services"></param>
             <returns></returns>

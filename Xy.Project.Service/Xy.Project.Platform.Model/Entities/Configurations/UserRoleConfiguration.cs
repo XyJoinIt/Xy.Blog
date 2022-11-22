@@ -5,9 +5,9 @@
 
 namespace Xy.Project.Platform.Model.Entities.Configurations
 {
-    internal class UserRoleConfiguration : IEntityTypeConfiguration<UserRole>
+    internal class UserRoleConfiguration : IEntityTypeConfiguration<SysUserRole>
     {
-        public void Configure(EntityTypeBuilder<UserRole> builder)
+        public void Configure(EntityTypeBuilder<SysUserRole> builder)
         {
 
             builder.HasKey(x => x.Id);
@@ -15,7 +15,7 @@ namespace Xy.Project.Platform.Model.Entities.Configurations
             builder.Property(x => x.UserId).IsRequired();
             builder.Property(x => x.RoleId).IsRequired();
 
-            builder.ToTable("UserRole");
+            builder.ToTable("SysUserRole");
         }
     }
 }

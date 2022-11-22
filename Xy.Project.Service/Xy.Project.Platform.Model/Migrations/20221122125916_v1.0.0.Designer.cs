@@ -11,8 +11,8 @@ using Xy.Project.Platform.Model;
 namespace Xy.Project.Platform.Model.Migrations
 {
     [DbContext(typeof(XyPlatformContext))]
-    [Migration("20221120130119_1668949231419")]
-    partial class _1668949231419
+    [Migration("20221122125916_v1.0.0")]
+    partial class v100
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -63,7 +63,7 @@ namespace Xy.Project.Platform.Model.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Accessory", (string)null);
+                    b.ToTable("Bl_Accessory", (string)null);
                 });
 
             modelBuilder.Entity("Xy.Project.Platform.Model.Entities.Blogs.Article", b =>
@@ -105,7 +105,7 @@ namespace Xy.Project.Platform.Model.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Article", (string)null);
+                    b.ToTable("Bl_Article", (string)null);
                 });
 
             modelBuilder.Entity("Xy.Project.Platform.Model.Entities.Blogs.Category", b =>
@@ -138,7 +138,7 @@ namespace Xy.Project.Platform.Model.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Category", (string)null);
+                    b.ToTable("Bl_Category", (string)null);
                 });
 
             modelBuilder.Entity("Xy.Project.Platform.Model.Entities.Blogs.Comment", b =>
@@ -174,10 +174,10 @@ namespace Xy.Project.Platform.Model.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Comment", (string)null);
+                    b.ToTable("Bl_Comment", (string)null);
                 });
 
-            modelBuilder.Entity("Xy.Project.Platform.Model.Entities.Identity.Role", b =>
+            modelBuilder.Entity("Xy.Project.Platform.Model.Entities.Identity.SysRole", b =>
                 {
                     b.Property<long>("Id")
                         .HasColumnType("bigint");
@@ -217,10 +217,10 @@ namespace Xy.Project.Platform.Model.Migrations
 
                     b.HasIndex("Name");
 
-                    b.ToTable("Role", (string)null);
+                    b.ToTable("SysRole", (string)null);
                 });
 
-            modelBuilder.Entity("Xy.Project.Platform.Model.Entities.Identity.RoleClaim", b =>
+            modelBuilder.Entity("Xy.Project.Platform.Model.Entities.Identity.SysRoleClaim", b =>
                 {
                     b.Property<long>("Id")
                         .HasColumnType("bigint");
@@ -236,10 +236,10 @@ namespace Xy.Project.Platform.Model.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("RoleClaim", (string)null);
+                    b.ToTable("SysRoleClaim", (string)null);
                 });
 
-            modelBuilder.Entity("Xy.Project.Platform.Model.Entities.Identity.User", b =>
+            modelBuilder.Entity("Xy.Project.Platform.Model.Entities.Identity.SysUser", b =>
                 {
                     b.Property<long>("Id")
                         .HasColumnType("bigint");
@@ -331,10 +331,10 @@ namespace Xy.Project.Platform.Model.Migrations
 
                     b.HasIndex("UserName");
 
-                    b.ToTable("User", (string)null);
+                    b.ToTable("SysUser", (string)null);
                 });
 
-            modelBuilder.Entity("Xy.Project.Platform.Model.Entities.Identity.UserClaim", b =>
+            modelBuilder.Entity("Xy.Project.Platform.Model.Entities.Identity.SysUserClaim", b =>
                 {
                     b.Property<long>("Id")
                         .HasColumnType("bigint");
@@ -350,10 +350,10 @@ namespace Xy.Project.Platform.Model.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("UserClaim", (string)null);
+                    b.ToTable("SysUserClaim", (string)null);
                 });
 
-            modelBuilder.Entity("Xy.Project.Platform.Model.Entities.Identity.UserLogin", b =>
+            modelBuilder.Entity("Xy.Project.Platform.Model.Entities.Identity.SysUserLogin", b =>
                 {
                     b.Property<long>("Id")
                         .HasColumnType("bigint");
@@ -372,10 +372,10 @@ namespace Xy.Project.Platform.Model.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("UserLogin", (string)null);
+                    b.ToTable("SysUserLogin", (string)null);
                 });
 
-            modelBuilder.Entity("Xy.Project.Platform.Model.Entities.Identity.UserRole", b =>
+            modelBuilder.Entity("Xy.Project.Platform.Model.Entities.Identity.SysUserRole", b =>
                 {
                     b.Property<long>("Id")
                         .HasColumnType("bigint");
@@ -388,10 +388,10 @@ namespace Xy.Project.Platform.Model.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("UserRole", (string)null);
+                    b.ToTable("SysUserRole", (string)null);
                 });
 
-            modelBuilder.Entity("Xy.Project.Platform.Model.Entities.Identity.UserToken", b =>
+            modelBuilder.Entity("Xy.Project.Platform.Model.Entities.Identity.SysUserToken", b =>
                 {
                     b.Property<long>("Id")
                         .HasColumnType("bigint");
@@ -410,7 +410,7 @@ namespace Xy.Project.Platform.Model.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("UserToken", (string)null);
+                    b.ToTable("SysUserToken", (string)null);
                 });
 #pragma warning restore 612, 618
         }

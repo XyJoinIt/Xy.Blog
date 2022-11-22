@@ -41,7 +41,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Xy.Project.Application\Xy.Project.Application.csproj" />
     <ProjectReference Include="..\Xy.Project.Core\Xy.Project.Core.csproj" />
-    <ProjectReference Include="..\Xy.Project.DataBase\Xy.Project.DataBase.csproj" />
   </ItemGroup>
 
 </Project>

@@ -18,7 +18,7 @@ namespace Xy.Project.Platform.Model.Entities.Configurations
             builder.Property(o => o.Code).HasMaxLength(60).IsRequired();
             builder.Property(o => o.Remarks).HasMaxLength(1000);
 
-            builder.ToTable("Category");
+            builder.ToTable("Bl_Category");
         }
     }
 }

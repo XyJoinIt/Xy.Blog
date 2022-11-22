@@ -4,7 +4,7 @@
         <name>Xy.Project.Platform.Model</name>
     </assembly>
     <members>
-        <member name="M:Xy.Project.Platform.Model.DataSeeds.UserDataSeed.ExistingExpression(Xy.Project.Platform.Model.Entities.Identity.User)">
+        <member name="M:Xy.Project.Platform.Model.DataSeeds.UserDataSeed.ExistingExpression(Xy.Project.Platform.Model.Entities.Identity.SysUser)">
             <summary>
             判断是否存在
             </summary>
@@ -91,6 +91,11 @@
             通过
             </summary>
         </member>
+        <member name="T:Xy.Project.Platform.Model.Entities.Blogs.Category">
+            <summary>
+            类别
+            </summary>
+        </member>
         <member name="P:Xy.Project.Platform.Model.Entities.Blogs.Category.Name">
             <summary>
             名字 例如 .NET/JAVA/JS
@@ -131,79 +136,139 @@
             文章Id
             </summary>
         </member>
-        <member name="T:Xy.Project.Platform.Model.Entities.Identity.Role">
+        <member name="T:Xy.Project.Platform.Model.Entities.Identity.SysOrg">
             <summary>
-            角色
+            系统机构表
             </summary>
         </member>
-        <member name="M:Xy.Project.Platform.Model.Entities.Identity.Role.#ctor">
+        <member name="P:Xy.Project.Platform.Model.Entities.Identity.SysOrg.Pid">
             <summary>
-            构造函数
+            父Id
             </summary>
         </member>
-        <member name="P:Xy.Project.Platform.Model.Entities.Identity.Role.Remarks">
+        <member name="P:Xy.Project.Platform.Model.Entities.Identity.SysOrg.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Platform.Model.Entities.Identity.SysOrg.Code">
+            <summary>
+            编码
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Platform.Model.Entities.Identity.SysOrg.Order">
+            <summary>
+            排序
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Platform.Model.Entities.Identity.SysOrg.Remark">
             <summary>
             备注
             </summary>
         </member>
-        <member name="P:Xy.Project.Platform.Model.Entities.Identity.Role.Status">
+        <member name="P:Xy.Project.Platform.Model.Entities.Identity.SysOrg.Status">
             <summary>
             状态
             </summary>
         </member>
-        <member name="P:Xy.Project.Platform.Model.Entities.Identity.Role.CreateTime">
+        <member name="P:Xy.Project.Platform.Model.Entities.Identity.SysOrg.Children">
             <summary>
-            创建时间
+            机构子项
             </summary>
         </member>
-        <member name="P:Xy.Project.Platform.Model.Entities.Identity.Role.LastModified">
+        <member name="T:Xy.Project.Platform.Model.Entities.Identity.SysRole">
             <summary>
-            最后修改时间
+            角色
             </summary>
         </member>
-        <member name="P:Xy.Project.Platform.Model.Entities.Identity.Role.IsDeleted">
+        <member name="M:Xy.Project.Platform.Model.Entities.Identity.SysRole.#ctor">
             <summary>
-            软删除
+            构造函数
             </summary>
         </member>
-        <member name="P:Xy.Project.Platform.Model.Entities.Identity.User.Avatar">
-            <summary>
-            头像
-            </summary>
-        </member>
-        <member name="P:Xy.Project.Platform.Model.Entities.Identity.User.Birthday">
-            <summary>
-            生日
-            </summary>
-        </member>
-        <member name="P:Xy.Project.Platform.Model.Entities.Identity.User.Sex">
-            <summary>
-            性别-男_1、女_2
-            </summary>
-        </member>
-        <member name="P:Xy.Project.Platform.Model.Entities.Identity.User.Status">
-            <summary>
-            账户状态
-            </summary>
-        </member>
-        <member name="P:Xy.Project.Platform.Model.Entities.Identity.User.Remarks">
+        <member name="P:Xy.Project.Platform.Model.Entities.Identity.SysRole.Remarks">
             <summary>
             备注
             </summary>
         </member>
-        <member name="P:Xy.Project.Platform.Model.Entities.Identity.User.CreateTime">
+        <member name="P:Xy.Project.Platform.Model.Entities.Identity.SysRole.Status">
+            <summary>
+            状态
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Platform.Model.Entities.Identity.SysRole.CreateTime">
             <summary>
             创建时间
             </summary>
         </member>
-        <member name="P:Xy.Project.Platform.Model.Entities.Identity.User.LastModified">
+        <member name="P:Xy.Project.Platform.Model.Entities.Identity.SysRole.LastModified">
             <summary>
             最后修改时间
             </summary>
         </member>
-        <member name="P:Xy.Project.Platform.Model.Entities.Identity.User.IsDeleted">
+        <member name="P:Xy.Project.Platform.Model.Entities.Identity.SysRole.IsDeleted">
+            <summary>
+            软删除
+            </summary>
+        </member>
+        <member name="T:Xy.Project.Platform.Model.Entities.Identity.SysRoleClaim">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Xy.Project.Platform.Model.Entities.Identity.SysUser">
+            <summary>
+            用户表
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Platform.Model.Entities.Identity.SysUser.Avatar">
+            <summary>
+            头像
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Platform.Model.Entities.Identity.SysUser.Birthday">
+            <summary>
+            生日
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Platform.Model.Entities.Identity.SysUser.Sex">
+            <summary>
+            性别-男_1、女_2
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Platform.Model.Entities.Identity.SysUser.Status">
+            <summary>
+            账户状态
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Platform.Model.Entities.Identity.SysUser.Remarks">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Platform.Model.Entities.Identity.SysUser.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Platform.Model.Entities.Identity.SysUser.LastModified">
+            <summary>
+            最后修改时间
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Platform.Model.Entities.Identity.SysUser.IsDeleted">
             <summary>
             是否删除
+            </summary>
+        </member>
+        <member name="T:Xy.Project.Platform.Model.Entities.Identity.SysUserClaim">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Xy.Project.Platform.Model.Entities.Identity.SysUserLogin">
+            <summary>
+            
             </summary>
         </member>
         <member name="T:Xy.Project.Platform.Model.MySqlXyPlatformDbContextFactory">
@@ -215,6 +280,12 @@
             <summary>
             平台实体上下文
             </summary>
+        </member>
+        <member name="M:Xy.Project.Platform.Model.XyPlatformContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{Xy.Project.Platform.Model.XyPlatformContext})">
+            <summary>
+            
+            </summary>
+            <param name="options"></param>
         </member>
         <member name="M:Xy.Project.Platform.Model.XyPlatformContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
             <summary>

@@ -1,9 +1,9 @@
 ﻿namespace Xy.Project.Platform.Model.Entities.Configurations
 {
-    internal class UserConfiguration : IEntityTypeConfiguration<User>
+    internal class UserConfiguration : IEntityTypeConfiguration<SysUser>
     {
 
-        public void Configure(EntityTypeBuilder<User> builder)
+        public void Configure(EntityTypeBuilder<SysUser> builder)
         {
 
             builder.HasKey(x => x.Id);
@@ -26,7 +26,7 @@
             builder.Property(o => o.LastModified).IsRequired(false);
 
             builder.HasIndex(m => m.UserName);
-            builder.ToTable("User");
+            builder.ToTable("SysUser");
         }
 
 

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Storage;
 
-namespace Xy.Project.DataBase.Db
+namespace Xy.Project.Core
 {
     /// <summary>
     /// 工作单元

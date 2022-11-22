@@ -1,6 +1,6 @@
 ﻿namespace Xy.Project.Application.Dtos.Roles
 {
-    [AutoMap(typeof(Role), ReverseMap = true)]
+    [AutoMap(typeof(SysRole), ReverseMap = true)]
     public class UpdateRoleInputDto : RoleBaseDto
     {
         /// <summary>

@@ -1,10 +1,14 @@
 ﻿
 using System.ComponentModel;
-
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Xy.Project.Platform.Model.Entities.Blogs
 {
+    /// <summary>
+    /// 类别
+    /// </summary>
     [Description("类别")]
+    [Table("Bl_Category")]
     public class Category : FullEntityBase
     {
         /// <summary>

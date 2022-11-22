@@ -1,4 +1,4 @@
-﻿namespace Xy.Project.DataBase.GlobalConfigEntity;
+﻿namespace Xy.Project.Core.GlobalConfigEntity;
 
 /// <summary>
 /// 配置文件读取
@@ -14,13 +14,10 @@ public static class XyGlobalConfig
     /// Jwt配置
     /// </summary>
     public static JwtOption? JwtOption { get; set; }
-
-
 }
 
 public class JwtOption
 {
-
 
     /// <summary>
     /// //发行人Issuer

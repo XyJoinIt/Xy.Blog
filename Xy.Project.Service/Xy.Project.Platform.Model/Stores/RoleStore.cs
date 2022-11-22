@@ -1,8 +1,8 @@
 ﻿namespace Xy.Project.Platform.Model.Stores
 {
-    public class RoleStore : RoleStoreBase<Role, long, RoleClaim, long>
+    public class RoleStore : RoleStoreBase<SysRole, long, SysRoleClaim, long>
     {
-        public RoleStore(IRepository<Role, long> roleRepository, IRepository<RoleClaim, long> roleClaimRepository) : base(roleRepository, roleClaimRepository)
+        public RoleStore(IRepository<SysRole, long> roleRepository, IRepository<SysRoleClaim, long> roleClaimRepository) : base(roleRepository, roleClaimRepository)
         {
         }
     }

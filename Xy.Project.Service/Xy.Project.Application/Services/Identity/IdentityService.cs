@@ -8,7 +8,7 @@ using System.Text;
 using Xy.Project.Application.Dtos.Identitys;
 using Xy.Project.Application.Services.Contracts.Identity;
 using Xy.Project.Application.Services.Contracts.Sys;
-using Xy.Project.DataBase.GlobalConfigEntity;
+using Xy.Project.Core.GlobalConfigEntity;
 
 namespace Xy.Project.Application.Services.Identity
 {
@@ -17,8 +17,8 @@ namespace Xy.Project.Application.Services.Identity
     /// </summary>
     public class IdentityService : IdentityContaract
     {
-        private readonly UserManager<User> _userManager;
-        private readonly SignInManager<User> _signInManager;
+        private readonly UserManager<SysUser> _userManager;
+        private readonly SignInManager<SysUser> _signInManager;
         private readonly JwtOption _jwtOption;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
@@ -29,7 +29,7 @@ namespace Xy.Project.Application.Services.Identity
         /// <param name="jwtOption"></param>
         /// <param name="signInManager"></param>
         /// <param name="httpContextAccessor"></param>
-        public IdentityService(UserManager<User> userManager, IOptions<JwtOption> jwtOption, SignInManager<User> signInManager, IHttpContextAccessor httpContextAccessor)
+        public IdentityService(UserManager<SysUser> userManager, IOptions<JwtOption> jwtOption, SignInManager<SysUser> signInManager, IHttpContextAccessor httpContextAccessor)
         {
             _userManager = userManager;
             _signInManager = signInManager;

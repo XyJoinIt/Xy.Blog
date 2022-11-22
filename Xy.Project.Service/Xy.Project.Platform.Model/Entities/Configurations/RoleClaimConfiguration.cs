@@ -5,15 +5,15 @@
 
 namespace Xy.Project.Platform.Model.Entities.Configurations
 {
-    internal class RoleClaimConfiguration : IEntityTypeConfiguration<RoleClaim>
+    internal class RoleClaimConfiguration : IEntityTypeConfiguration<SysRoleClaim>
     {
-        public void Configure(EntityTypeBuilder<RoleClaim> builder)
+        public void Configure(EntityTypeBuilder<SysRoleClaim> builder)
         {
 
             builder.HasKey(x => x.Id);
             builder.Property(o => o.Id).ValueGeneratedNever();
 
-            builder.ToTable("RoleClaim");
+            builder.ToTable("SysRoleClaim");
         }
     }
 }

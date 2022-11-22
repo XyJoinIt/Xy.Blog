@@ -1,16 +1,17 @@
-﻿namespace Xy.Project.Platform.Model.Entities.Blogs
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Xy.Project.Platform.Model.Entities.Blogs
 {
     /// <summary>
     /// 文章
     /// </summary>
+    [Table("Bl_Article")]
     public class Article : FullEntityBase
     {
-
         /// <summary>
         /// 标题
         /// </summary>
         public string Title { get; set; } = default!;
-
 
         /// <summary>
         /// 内容

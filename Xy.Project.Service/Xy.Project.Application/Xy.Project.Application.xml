@@ -328,7 +328,7 @@
             
             </summary>
         </member>
-        <member name="M:Xy.Project.Application.Services.Identity.IdentityService.#ctor(Microsoft.AspNetCore.Identity.UserManager{Xy.Project.Platform.Model.Entities.Identity.User},Microsoft.Extensions.Options.IOptions{Xy.Project.DataBase.GlobalConfigEntity.JwtOption},Microsoft.AspNetCore.Identity.SignInManager{Xy.Project.Platform.Model.Entities.Identity.User},Microsoft.AspNetCore.Http.IHttpContextAccessor)">
+        <member name="M:Xy.Project.Application.Services.Identity.IdentityService.#ctor(Microsoft.AspNetCore.Identity.UserManager{Xy.Project.Platform.Model.Entities.Identity.SysUser},Microsoft.Extensions.Options.IOptions{Xy.Project.Core.GlobalConfigEntity.JwtOption},Microsoft.AspNetCore.Identity.SignInManager{Xy.Project.Platform.Model.Entities.Identity.SysUser},Microsoft.AspNetCore.Http.IHttpContextAccessor)">
             <summary>
             构造函数
             </summary>

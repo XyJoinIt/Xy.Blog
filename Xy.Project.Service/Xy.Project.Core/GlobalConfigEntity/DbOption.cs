@@ -1,5 +1,5 @@
 ﻿
-namespace Xy.Project.DataBase.GlobalConfigEntity;
+namespace Xy.Project.Core.GlobalConfigEntity;
 
 /// <summary>
 /// 数据集合

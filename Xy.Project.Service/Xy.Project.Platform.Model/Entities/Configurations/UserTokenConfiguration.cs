@@ -5,9 +5,9 @@
 
 namespace Xy.Project.Platform.Model.Entities.Configurations
 {
-    internal class UserTokenConfiguration : IEntityTypeConfiguration<UserToken>
+    internal class UserTokenConfiguration : IEntityTypeConfiguration<SysUserToken>
     {
-        public void Configure(EntityTypeBuilder<UserToken> builder)
+        public void Configure(EntityTypeBuilder<SysUserToken> builder)
         {
 
             builder.HasKey(x => x.Id);
@@ -15,7 +15,7 @@ namespace Xy.Project.Platform.Model.Entities.Configurations
             builder.Property(x => x.UserId).IsRequired();
 
 
-            builder.ToTable("UserToken");
+            builder.ToTable("SysUserToken");
         }
     }
 }

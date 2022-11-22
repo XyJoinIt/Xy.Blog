@@ -1,14 +1,17 @@
-﻿namespace Xy.Project.Platform.Model.Entities.Identity
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Xy.Project.Platform.Model.Entities.Identity
 {
     /// <summary>
     /// 角色
     /// </summary>
-    public class Role : RoleBase<long>, IFullAuditedEntity
+    [Table("SysRole")]
+    public class SysRole : RoleBase<long>, IFullAuditedEntity
     {
         /// <summary>
         /// 构造函数
         /// </summary>
-        public Role()
+        public SysRole()
         {
             Id = YitIdHelper.NextId();
         }

@@ -1,5 +1,4 @@
-﻿
-namespace Xy.Project.Core
+﻿namespace Xy.Project.Core
 {
     /// <summary>
     /// 工作单元

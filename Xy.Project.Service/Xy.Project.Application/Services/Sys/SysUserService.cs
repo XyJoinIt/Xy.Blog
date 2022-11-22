@@ -8,9 +8,9 @@ namespace Xy.Project.Application.Services.Sys
     /// </summary>
     public class SysUserService : ISysUserContract
     {
-        private readonly UserManager<User> _userManager;
+        private readonly UserManager<SysUser> _userManager;
         private readonly IUserLogin _userLogin;
-        public SysUserService(UserManager<User> userManager, IUserLogin userLogin)
+        public SysUserService(UserManager<SysUser> userManager, IUserLogin userLogin)
         {
             _userManager = userManager;
             _userLogin = userLogin;
@@ -24,7 +24,7 @@ namespace Xy.Project.Application.Services.Sys
         public async Task<AppResult> AddAsync(AddUserInputDto dto)
         {
             dto.NotNull(nameof(dto));
-            var user = ObjectMap.MapTo<User>(dto);
+            var user = ObjectMap.MapTo<SysUser>(dto);
             var result = dto.Password!.IsNullOrWhiteSpace()
                 ? await _userManager.CreateAsync(user) : await _userManager.CreateAsync(user, dto.Password);
             return result.ToResultData("保存成功");
@@ -51,12 +51,12 @@ namespace Xy.Project.Application.Services.Sys
         {
             page.NotNull(nameof(page));
             //排序
-            page.AddOrderCondition(new OrderCondition<User>(o => o.Id, OrderDirection.Ascending));
+            page.AddOrderCondition(new OrderCondition<SysUser>(o => o.Id, OrderDirection.Ascending));
             //条件过滤
-            var exp = FilterBuilder.GetExpression<User>(page.FilterGroup);
+            var exp = FilterBuilder.GetExpression<SysUser>(page.FilterGroup);
             var list = await _userManager.Users.AsNoTracking()
                 .Where(exp)
-                .ToPageAsync<User, UserOutputPageListDto>(page.PageCondition);
+                .ToPageAsync<SysUser, UserOutputPageListDto>(page.PageCondition);
             return AppResult.Problem(HttpCode.成功, "得到分页数据", list);
         }
 

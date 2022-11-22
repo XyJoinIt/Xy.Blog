@@ -2,13 +2,9 @@
 global using Microsoft.AspNetCore.Identity;
 global using Microsoft.EntityFrameworkCore;
 global using Newtonsoft.Json;
-global using System;
-global using System.Collections.Generic;
 global using System.ComponentModel;
 global using System.ComponentModel.DataAnnotations;
-global using System.Linq;
 global using System.Linq.Expressions;
-global using System.Threading.Tasks;
 global using Xy.Project.Core.Base;
 global using Xy.Project.Core.Entity;
 global using Xy.Project.Core.Enums;

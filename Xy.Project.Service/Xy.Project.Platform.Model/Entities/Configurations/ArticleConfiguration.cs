@@ -15,7 +15,7 @@ namespace Xy.Project.Platform.Model.Entities.Configurations
             builder.Property(o => o.Status);
             builder.Property(o => o.CategoryId);
             builder.Property(o => o.IssuerId);
-            builder.ToTable("Article");
+            builder.ToTable("Bl_Article");
         }
     }
 }

@@ -16,7 +16,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Xy.Project.Core\Xy.Project.Core.csproj" />
-    <ProjectReference Include="..\Xy.Project.DataBase\Xy.Project.DataBase.csproj" />
     <ProjectReference Include="..\Xy.Project.Platform.Model\Xy.Project.Platform.Model.csproj" />
   </ItemGroup>
 

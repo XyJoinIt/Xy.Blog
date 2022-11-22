@@ -8,6 +8,7 @@ using Serilog;
 using Serilog.Events;
 using System.Text;
 using Xy.Project.Core.AutoMapper;
+using Xy.Project.Core.GlobalConfigEntity;
 using Xy.Project.Platform.Extensions;
 using Xy.Project.Platform.Model.Entities.Identity;
 using Xy.Project.Platform.Model.Stores;
@@ -62,7 +63,7 @@ Array.ForEach(assemblies, a =>
 //服务注入
 builder.Services.AddPlatformServices();
 builder.Services.Configure<JwtOption>(builder.Configuration.GetSection("Jwt"));
-builder.Services.AddUnitOfWork();
+builder.Services.AddDbWork();
 
 //跨域
 builder.Services.AddCors(options =>
@@ -79,7 +80,7 @@ builder.Services.AddCors(options =>
 //builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 #region Identity 待封装 （活着比什么都重要）
-builder.Services.AddDefaultIdentityServices<UserStore, RoleStore, User, long, UserClaim, long, Role, long>(options =>
+builder.Services.AddDefaultIdentityServices<UserStore, RoleStore, SysUser, long, SysUserClaim, long, SysRole, long>(options =>
 {
     //登录
     options.SignIn.RequireConfirmedEmail = false;

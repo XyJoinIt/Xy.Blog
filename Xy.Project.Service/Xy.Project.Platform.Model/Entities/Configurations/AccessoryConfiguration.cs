@@ -15,7 +15,7 @@ namespace Xy.Project.Platform.Model.Entities.Configurations
             builder.Property(o => o.Path).HasMaxLength(500).IsRequired();
             builder.Property(o => o.HashCode).HasMaxLength(150).IsRequired();
             builder.Property(o => o.ArticleId).IsRequired();
-            builder.ToTable("Accessory");
+            builder.ToTable("Bl_Accessory");
         }
     }
 }

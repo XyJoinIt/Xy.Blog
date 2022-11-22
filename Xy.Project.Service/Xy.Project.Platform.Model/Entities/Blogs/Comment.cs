@@ -1,8 +1,11 @@
-﻿namespace Xy.Project.Platform.Model.Entities.Blogs
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Xy.Project.Platform.Model.Entities.Blogs
 {
     /// <summary>
     /// 文章评论
     /// </summary>
+    [Table("Bl_Comment")]
     public class Comment : FullEntityBase
     {
         /// <summary>
