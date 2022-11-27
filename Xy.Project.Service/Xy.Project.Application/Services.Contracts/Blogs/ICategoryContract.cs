@@ -5,7 +5,7 @@ using Xy.Project.Platform.Model.Entities.Blogs;
 
 namespace Xy.Project.Application.Services.Contracts.Blogs
 {
-    public interface ICategoryContract : ICURDContract<Category, AddCategoryInputDto, UpdateCategoryInputDto, CategoryOutPageList>, IScopedDependency  //自动注入
+    public interface ICategoryContract : ICURDContract<Category, AddInputDto, UpdateInputDto, OutPageList>, IScopedDependency  //自动注入
     {
 
     }

@@ -9,6 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="DataSeeds\**" />
+    <EmbeddedResource Remove="DataSeeds\**" />
+    <None Remove="DataSeeds\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.9">
@@ -23,10 +29,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Xy.Project.Core\Xy.Project.Core.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="DataSeeds\" />
   </ItemGroup>
 
 </Project>
