@@ -7,19 +7,19 @@ using Xy.Project.Platform.Model.Entities.Blogs;
 
 namespace Xy.Project.Application.Services.Bolgs
 {
-    public class CategoryService : CURDService<Category, AddCategoryInputDto, UpdateCategoryInputDto, CategoryOutPageList>, ICategoryContract
+    public class CategoryService : CURDService<Category, AddInputDto, UpdateInputDto, OutPageList>, ICategoryContract
     {
 
-        private IValidator<AddCategoryInputDto> _addValidator;
-        private IValidator<UpdateCategoryInputDto> _updateValidator;
+        private IValidator<AddInputDto> _addValidator;
+        private IValidator<UpdateInputDto> _updateValidator;
 
-        public CategoryService(IRepository<Category, long> repository, IValidator<AddCategoryInputDto> addValidator, IValidator<UpdateCategoryInputDto> updateValidator) : base(repository)
+        public CategoryService(IRepository<Category, long> repository, IValidator<AddInputDto> addValidator, IValidator<UpdateInputDto> updateValidator) : base(repository)
         {
             _addValidator = addValidator;
             _updateValidator = updateValidator;
         }
 
-        public override async Task<AppResult> AddAsync(AddCategoryInputDto dto)
+        public override async Task<AppResult> AddAsync(AddInputDto dto)
         {
             var validator = await _addValidator.ValidateAsync(dto);
             if (!validator.IsValid)
@@ -30,7 +30,7 @@ namespace Xy.Project.Application.Services.Bolgs
             return await base.AddAsync(dto);
         }
 
-        public override async Task<AppResult> UpdateAsync(UpdateCategoryInputDto dto)
+        public override async Task<AppResult> UpdateAsync(UpdateInputDto dto)
         {
 
             var validator = await _updateValidator.ValidateAsync(dto);

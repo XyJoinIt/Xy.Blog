@@ -41,7 +41,7 @@ namespace Xy.Project.Platform.Modular.Bolgs
         /// <returns></returns>
         [HttpPost]
         [Description("新增分类")]
-        public async Task<ActionResult<AppResult>> Add([FromBody] AddCategoryInputDto dto)
+        public async Task<ActionResult<AppResult>> Add([FromBody] AddInputDto dto)
         {
             return await _categoryContract.AddAsync(dto);
         }
@@ -53,7 +53,7 @@ namespace Xy.Project.Platform.Modular.Bolgs
         /// <returns></returns>
         [HttpPut]
         [Description("更新分类")]
-        public async Task<ActionResult<AppResult>> Update([FromBody] UpdateCategoryInputDto dto)
+        public async Task<ActionResult<AppResult>> Update([FromBody] UpdateInputDto dto)
         {
             return await _categoryContract.UpdateAsync(dto);
         }

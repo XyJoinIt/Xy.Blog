@@ -38,10 +38,4 @@ public class SysOrg : FullEntityBase
     /// 状态
     /// </summary>
     public CommonStatus Status { get; set; } = CommonStatus.正常;
-
-    /// <summary>
-    /// 机构子项
-    /// </summary>
-    [NotMapped]
-    public List<SysOrg> Children { get; set; } = new List<SysOrg>();
 }

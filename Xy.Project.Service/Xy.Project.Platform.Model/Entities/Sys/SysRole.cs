@@ -46,15 +46,5 @@ namespace Xy.Project.Platform.Model.Entities.Sys
         /// </summary>
         [Comment("状态")]
         public CommonStatus Status { get; set; } = CommonStatus.正常;
-
-        /// <summary>
-        /// 多对多（用户）
-        /// </summary>
-        public List<SysUser> SysUsers { get; set; }
-
-        /// <summary>
-        /// 多对多中间表（用户角色）
-        /// </summary>
-        public List<SysUserRole> SysUserRoles { get; set; }
     }
 }

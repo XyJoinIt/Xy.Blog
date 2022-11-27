@@ -4,7 +4,7 @@
 /// </summary>
 [Table("SysUser")]
 [Comment("用户表")]
-public class SysUser
+public class SysUser:FullEntityBase
 {
     /// <summary>
     /// 账号

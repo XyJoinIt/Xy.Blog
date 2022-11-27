@@ -3,7 +3,7 @@
 namespace Xy.Project.Application.Dtos.Blogs.Categorys
 {
     [AutoMap(typeof(Category), ReverseMap = true)]
-    public class AddCategoryInputDto : CategoryBaseDto
+    public class AddInputDto : BaseDto
     {
     }
 }

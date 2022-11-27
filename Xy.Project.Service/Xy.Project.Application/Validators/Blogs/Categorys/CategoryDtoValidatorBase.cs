@@ -4,7 +4,7 @@ using Xy.Project.Application.Dtos.Blogs.Categorys;
 namespace Xy.Project.Application.Validators.Blogs.Categorys
 {
     public abstract class CategoryDtoValidatorBase<TDto> : AbstractValidator<TDto>
-          where TDto : CategoryBaseDto
+          where TDto : BaseDto
     {
         private const string _emptyOrNullMesg = "{0}不能为空或Null！！";
 

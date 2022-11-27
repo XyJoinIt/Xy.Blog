@@ -5,7 +5,7 @@ using Xy.Project.Platform.Model.Entities.Blogs;
 
 namespace Xy.Project.Application.Validators.Blogs.Categorys
 {
-    public class UpdateCategoryDtoValidator : CategoryDtoValidatorBase<UpdateCategoryInputDto>
+    public class UpdateCategoryDtoValidator : CategoryDtoValidatorBase<UpdateInputDto>
     {
         private readonly IRepository<Category, long> _repository;
 
@@ -23,7 +23,7 @@ namespace Xy.Project.Application.Validators.Blogs.Categorys
             this.RuleFor(x => x.Code).MustAsync(async (dto, value, token) => !await this.IsCodeExistAsync(dto, value, token)).WithMessage("类别编码已存在");
         }
 
-        private async Task<bool> IsNameExistAsync(UpdateCategoryInputDto dto, string name, CancellationToken token = default)
+        private async Task<bool> IsNameExistAsync(UpdateInputDto dto, string name, CancellationToken token = default)
         {
             var exist = await _repository.QueryAsNoTracking().Where(o => o.Name.Equals(name, StringComparison.OrdinalIgnoreCase)).FirstOrDefaultAsync(token)!;
             if (exist != null && !exist.Equals(exist.Id == dto.Id))
@@ -34,7 +34,7 @@ namespace Xy.Project.Application.Validators.Blogs.Categorys
 
         }
 
-        private async Task<bool> IsCodeExistAsync(UpdateCategoryInputDto dto, string code, CancellationToken token = default)
+        private async Task<bool> IsCodeExistAsync(UpdateInputDto dto, string code, CancellationToken token = default)
         {
             var exist = await _repository.QueryAsNoTracking().Where(o => o.Code.Equals(code, StringComparison.OrdinalIgnoreCase)).FirstOrDefaultAsync(token)!;
             if (exist != null && !exist.Equals(exist.Id == dto.Id))

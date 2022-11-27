@@ -7,7 +7,6 @@ using Xy.Project.Core.Entity;
 namespace Xy.Project.Application.Services.Base
 {
     public class CURDService<TEntity, IAddInputDto, IUpdateInputDto, OutPageListDto> : ICURDContract<TEntity, IAddInputDto, IUpdateInputDto, OutPageListDto>
-
         where TEntity : IEntity<long>
         where IUpdateInputDto : IDtoId
     {
@@ -18,6 +17,11 @@ namespace Xy.Project.Application.Services.Base
             Repository = repository;
         }
 
+        /// <summary>
+        /// 新增
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
         public virtual async Task<AppResult> AddAsync(IAddInputDto dto)
         {
             dto.NotNull(nameof(dto));
@@ -28,15 +32,11 @@ namespace Xy.Project.Application.Services.Base
                  AppResult.Error();
         }
 
-
-        protected virtual TEntity MapTo(IAddInputDto dto)
-        {
-            var entity = ObjectMap.MapTo<TEntity>(dto);
-            return entity;
-
-        }
-
-
+        /// <summary>
+        /// 修改
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
         public virtual async Task<AppResult> UpdateAsync(IUpdateInputDto dto)
         {
             dto.NotNull(nameof(dto));
@@ -46,18 +46,6 @@ namespace Xy.Project.Application.Services.Base
             return result > 0 ?
                  AppResult.Success() :
                  AppResult.Error();
-        }
-
-        protected virtual ValueTask<TEntity> FindByIdAsync(long id)
-        {
-            return Repository.FindAsync(id);
-        }
-
-        protected virtual TEntity MapTo(IUpdateInputDto dto, TEntity entity)
-
-        {
-            return ObjectMap.MapTo(dto, entity);
-
         }
 
         /// <summary>
@@ -96,9 +84,6 @@ namespace Xy.Project.Application.Services.Base
                 .ToPageAsync<TEntity, OutPageListDto>(page.PageCondition);
             return AppResult.Problem(HttpCode.成功, "得到分页数据", list);
         }
-
-
-
         protected virtual Expression<Func<TEntity, bool>> CreateFilteredQuery(FilterGroup filterGroup)
         {
             var exp = FilterBuilder.GetExpression<TEntity>(filterGroup);
@@ -109,6 +94,22 @@ namespace Xy.Project.Application.Services.Base
         {
 
             return Array.Empty<OrderCondition>();
+        }
+        protected virtual TEntity MapTo(IAddInputDto dto)
+        {
+            var entity = ObjectMap.MapTo<TEntity>(dto);
+            return entity;
+
+        }
+        protected virtual ValueTask<TEntity> FindByIdAsync(long id)
+        {
+            return Repository.FindAsync(id);
+        }
+        protected virtual TEntity MapTo(IUpdateInputDto dto, TEntity entity)
+
+        {
+            return ObjectMap.MapTo(dto, entity);
+
         }
 
 

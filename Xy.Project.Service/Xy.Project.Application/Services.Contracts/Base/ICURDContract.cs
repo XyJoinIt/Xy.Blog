@@ -7,8 +7,18 @@ namespace Xy.Project.Application.Services.Contracts.Base
         where TEntity : IEntity<long>
         where IUpdateInputDto : IDtoId
     {
+        /// <summary>
+        /// 新增
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
         Task<AppResult> AddAsync(IAddInputDto dto);
 
+        /// <summary>
+        /// 修改
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
         Task<AppResult> UpdateAsync(IUpdateInputDto dto);
 
         /// <summary>

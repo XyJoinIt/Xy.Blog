@@ -1,6 +1,5 @@
-﻿namespace Xy.Project.Application.Dtos.Blogs.Categorys
+﻿namespace Xy.Project.Application.Dtos.Sys.SysUserManage
 {
-
     public class BaseDto
     {
         /// <summary>
@@ -19,7 +18,6 @@
         /// 备注
         /// </summary>
         public string? Remarks { get; set; }
-
 
     }
 }

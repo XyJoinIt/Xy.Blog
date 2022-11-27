@@ -5,7 +5,7 @@ using Xy.Project.Platform.Model.Entities.Blogs;
 
 namespace Xy.Project.Application.Validators.Blogs.Categorys
 {
-    public class AddCategoryDtoValidator : CategoryDtoValidatorBase<AddCategoryInputDto>
+    public class AddCategoryDtoValidator : CategoryDtoValidatorBase<AddInputDto>
     {
 
         private readonly IRepository<Category, long> _repository;
@@ -24,7 +24,7 @@ namespace Xy.Project.Application.Validators.Blogs.Categorys
             this.RuleFor(x => x.Code).MustAsync(async (model, value, cox, token) => !await this.IsCodeExistAsync(value, cox, token)).WithMessage("类别编码已存在");
         }
 
-        private async Task<bool> IsNameExistAsync(string name, ValidationContext<AddCategoryInputDto> context, CancellationToken token = default)
+        private async Task<bool> IsNameExistAsync(string name, ValidationContext<AddInputDto> context, CancellationToken token = default)
         {
             var exist = await _repository.QueryAsNoTracking().Where(o => o.Name.Equals(name, StringComparison.OrdinalIgnoreCase)).FirstOrDefaultAsync()!;
             if (exist != null)
@@ -36,7 +36,7 @@ namespace Xy.Project.Application.Validators.Blogs.Categorys
 
         }
 
-        private async Task<bool> IsCodeExistAsync(string code, ValidationContext<AddCategoryInputDto> context, CancellationToken token = default)
+        private async Task<bool> IsCodeExistAsync(string code, ValidationContext<AddInputDto> context, CancellationToken token = default)
         {
             var exist = await _repository.QueryAsNoTracking().Where(o => o.Code.Equals(code, StringComparison.OrdinalIgnoreCase)).FirstOrDefaultAsync(token)!;
             if (exist != null)
