@@ -10,6 +10,7 @@ using System.Text;
 using Xy.Project.Application.Services.Base;
 using Xy.Project.Application.Services.Contracts.Base;
 using Xy.Project.Core.AutoMapper;
+using Xy.Project.Core.Dependency;
 using Xy.Project.Core.GlobalConfigEntity;
 using Xy.Project.Platform.Extensions;
 using Yitter.IdGenerator;
@@ -29,7 +30,6 @@ builder.Host.UseSerilog((context, configuration) =>
 
 //注入配置文件
 InitConfiguration(builder.Configuration);
-
 #region Swagger服务
 builder.Services.AddSwagger();
 #endregion
@@ -38,7 +38,6 @@ builder.Services.AddSwagger();
 builder.Services.AddControllers(option =>
 {
     //控制器过滤待扩展...
-
 }).AddNewtonsoftJson(option =>
 {
     //序列化配置
@@ -60,13 +59,10 @@ Array.ForEach(assemblies, a =>
 });
 
 //服务注入
-//builder.Services.AddPlatformServices();
-//services.AddScoped<SysUserService>();
 builder.Services.AddAutoInjection();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddAutoMapper(AssemblyHelper.AllTypes);
 builder.Services.AddScoped(typeof(ICURDContract<,,,>), typeof(CURDService<,,,>));
-
 builder.Services.Configure<JwtOption>(builder.Configuration.GetSection("Jwt"));
 builder.Services.AddDbWork();
 
@@ -82,9 +78,8 @@ builder.Services.AddCors(options =>
             .AllowAnyHeader()
             .AllowCredentials());
 });
-
+//Microsoft.Extensions.Configuration   Microsoft.Extensions.Hosting.Abstractions
 //builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-
 var keyByteArray = Encoding.UTF8.GetBytes(XyGlobalConfig.JwtOption!.SecretKey);
 var signingKey = new SymmetricSecurityKey(keyByteArray);
 //验证待扩展
@@ -117,7 +112,7 @@ YitIdHelper.SetIdGenerator(options);
 
 var app = builder.Build();
 #region 
-//ObjectMap.SetMapper(app.Services.GetService<IMapper>()!);
+ObjectMap.SetMapper(app.Services.GetService<IMapper>()!);
 #endregion
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

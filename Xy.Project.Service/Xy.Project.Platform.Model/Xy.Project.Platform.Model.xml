@@ -169,6 +169,146 @@
             机构子项
             </summary>
         </member>
+        <member name="T:Xy.Project.Platform.Model.Entities.Sys.SysRole">
+            <summary>
+            角色表
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Platform.Model.Entities.Sys.SysRole.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Platform.Model.Entities.Sys.SysRole.Code">
+            <summary>
+            编码
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Platform.Model.Entities.Sys.SysRole.Sort">
+            <summary>
+            排序
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Platform.Model.Entities.Sys.SysRole.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Platform.Model.Entities.Sys.SysRole.Status">
+            <summary>
+            状态（字典 0正常 1停用 2删除）
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Platform.Model.Entities.Sys.SysRole.SysUsers">
+            <summary>
+            多对多（用户）
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Platform.Model.Entities.Sys.SysRole.SysUserRoles">
+            <summary>
+            多对多中间表（用户角色）
+            </summary>
+        </member>
+        <member name="T:Xy.Project.Platform.Model.Entities.Sys.SysUser">
+            <summary>
+            用户表
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Platform.Model.Entities.Sys.SysUser.Account">
+            <summary>
+            账号
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Platform.Model.Entities.Sys.SysUser.Password">
+            <summary>
+            密码（默认MD5加密）
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Platform.Model.Entities.Sys.SysUser.NickName">
+            <summary>
+            昵称
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Platform.Model.Entities.Sys.SysUser.Name">
+            <summary>
+            姓名
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Platform.Model.Entities.Sys.SysUser.Avatar">
+            <summary>
+            头像
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Platform.Model.Entities.Sys.SysUser.Birthday">
+            <summary>
+            生日
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Platform.Model.Entities.Sys.SysUser.Sex">
+            <summary>
+            性别-男_1、女_2
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Platform.Model.Entities.Sys.SysUser.Email">
+            <summary>
+            邮箱
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Platform.Model.Entities.Sys.SysUser.Phone">
+            <summary>
+            手机
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Platform.Model.Entities.Sys.SysUser.Tel">
+            <summary>
+            电话
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Platform.Model.Entities.Sys.SysUser.LastLoginIp">
+            <summary>
+            最后登录IP
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Platform.Model.Entities.Sys.SysUser.LastLoginTime">
+            <summary>
+            最后登录时间
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Platform.Model.Entities.Sys.SysUser.AdminType">
+            <summary>
+            管理员类型-超级管理员_1、管理员_2、普通账号_3
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Platform.Model.Entities.Sys.SysUser.Status">
+            <summary>
+            状态-正常_0、停用_1、删除_2
+            </summary>
+        </member>
+        <member name="T:Xy.Project.Platform.Model.Entities.Sys.SysUserRole">
+            <summary>
+            用户角色表
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Platform.Model.Entities.Sys.SysUserRole.SysUserId">
+            <summary>
+            用户Id
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Platform.Model.Entities.Sys.SysUserRole.SysUser">
+            <summary>
+            一对一引用（系统用户）
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Platform.Model.Entities.Sys.SysUserRole.SysRoleId">
+            <summary>
+            系统角色Id
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Platform.Model.Entities.Sys.SysUserRole.SysRole">
+            <summary>
+            一对一引用（系统角色）
+            </summary>
+        </member>
         <member name="T:Xy.Project.Platform.Model.MySqlXyPlatformDbContextFactory">
             <summary>
             mysql迁移工厂
