@@ -1,11 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-namespace Xy.Project.Platform.Model.Entities.Identity;
+﻿namespace Xy.Project.Platform.Model.Entities.Sys;
 /// <summary>
 /// 系统机构表
 /// </summary>
 [Table("SysOrg")]
-public class SysOrg : FullEntityBase, IEntity
+[Comment("系统机构表")]
+public class SysOrg : FullEntityBase
 {
     /// <summary>
     /// 父Id

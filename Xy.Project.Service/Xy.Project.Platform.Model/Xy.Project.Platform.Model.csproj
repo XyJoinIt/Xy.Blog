@@ -23,11 +23,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Xy.Project.Core\Xy.Project.Core.csproj" />
-    <ProjectReference Include="..\Xy.Project.Identity\Xy.Project.Identity.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Migrations\" />
+    <Folder Include="DataSeeds\" />
   </ItemGroup>
 
 </Project>

@@ -10,9 +10,6 @@ using System.Text;
 using Xy.Project.Core.AutoMapper;
 using Xy.Project.Core.GlobalConfigEntity;
 using Xy.Project.Platform.Extensions;
-using Xy.Project.Platform.Model.Entities.Identity;
-using Xy.Project.Platform.Model.Stores;
-using Xy.Project.Platform.Modular.Sys;
 using Yitter.IdGenerator;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -61,7 +58,7 @@ Array.ForEach(assemblies, a =>
 });
 
 //服务注入
-builder.Services.AddPlatformServices();
+//builder.Services.AddPlatformServices();
 builder.Services.Configure<JwtOption>(builder.Configuration.GetSection("Jwt"));
 builder.Services.AddDbWork();
 
@@ -79,29 +76,10 @@ builder.Services.AddCors(options =>
 });
 //builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-#region Identity 待封装 （活着比什么都重要）
-builder.Services.AddDefaultIdentityServices<UserStore, RoleStore, SysUser, long, SysUserClaim, long, SysRole, long>(options =>
-{
-    //登录
-    options.SignIn.RequireConfirmedEmail = false;
-    //密码 (密码是否必须包含非字母数字字符)
-    options.Password.RequireNonAlphanumeric = false;
-    //是否要求大小写
-    options.Password.RequireUppercase = false;
-    //用户 （邮箱是否必填）
-    options.User.RequireUniqueEmail = false;
-    //锁定
-    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(15);
-    //是否所以需数字
-    options.Password.RequireDigit = false;
-    //小写
-    options.Password.RequireLowercase = false;
-});
 
 var keyByteArray = Encoding.UTF8.GetBytes(XyGlobalConfig.JwtOption!.SecretKey);
 var signingKey = new SymmetricSecurityKey(keyByteArray);
 
-//builder.Services.AddAuthorization();
 //验证待扩展
 builder.Services.AddAuthentication(o =>
 {
@@ -125,7 +103,6 @@ builder.Services.AddAuthentication(o =>
 
     };
 });
-#endregion
 
 builder.Services.AddMediatR(AssemblyHelper.AllAssemblies);
 
@@ -135,7 +112,7 @@ YitIdHelper.SetIdGenerator(options);
 
 var app = builder.Build();
 #region 
-ObjectMap.SetMapper(app.Services.GetService<IMapper>()!);
+//ObjectMap.SetMapper(app.Services.GetService<IMapper>()!);
 #endregion
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
