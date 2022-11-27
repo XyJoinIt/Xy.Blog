@@ -28,13 +28,11 @@ namespace Xy.Project.Application.Validators.Blogs.Categorys
             var exist = await _repository.QueryAsNoTracking().Where(o => o.Name.Equals(name, StringComparison.OrdinalIgnoreCase)).FirstOrDefaultAsync(token)!;
             if (exist != null && !exist.Equals(exist.Id == dto.Id))
             {
-
                 return true;
             }
             return false;
 
         }
-
 
         private async Task<bool> IsCodeExistAsync(UpdateCategoryInputDto dto, string code, CancellationToken token = default)
         {

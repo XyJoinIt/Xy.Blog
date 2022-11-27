@@ -9,10 +9,7 @@ namespace Xy.Project.Application.Services.Contracts.Base
     {
         Task<AppResult> AddAsync(IAddInputDto dto);
 
-
         Task<AppResult> UpdateAsync(IUpdateInputDto dto);
-
-
 
         /// <summary>
         /// 删除

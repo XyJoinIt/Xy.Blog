@@ -8,7 +8,6 @@ namespace Xy.Project.Application.Validators.Blogs.Categorys
     public class AddCategoryDtoValidator : CategoryDtoValidatorBase<AddCategoryInputDto>
     {
 
-
         private readonly IRepository<Category, long> _repository;
 
         public AddCategoryDtoValidator(IRepository<Category, long> repository)
@@ -36,7 +35,6 @@ namespace Xy.Project.Application.Validators.Blogs.Categorys
             return false;
 
         }
-
 
         private async Task<bool> IsCodeExistAsync(string code, ValidationContext<AddCategoryInputDto> context, CancellationToken token = default)
         {

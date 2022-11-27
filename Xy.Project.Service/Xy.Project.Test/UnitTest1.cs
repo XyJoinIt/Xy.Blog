@@ -1,5 +1,3 @@
-using Xy.Project.Core.App;
-
 namespace Xy.Project.Test
 {
     public class Tests
@@ -13,12 +11,6 @@ namespace Xy.Project.Test
         public void Test1()
         {
             Assert.Pass();
-        }
-
-        [Test]
-        public void Test2()
-        {
-            App app = new App();
         }
     }
 }
