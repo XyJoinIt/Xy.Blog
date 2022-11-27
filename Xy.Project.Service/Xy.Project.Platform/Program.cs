@@ -7,6 +7,8 @@ using Newtonsoft.Json.Converters;
 using Serilog;
 using Serilog.Events;
 using System.Text;
+using Xy.Project.Application.Services.Base;
+using Xy.Project.Application.Services.Contracts.Base;
 using Xy.Project.Core.AutoMapper;
 using Xy.Project.Core.GlobalConfigEntity;
 using Xy.Project.Platform.Extensions;
@@ -59,6 +61,12 @@ Array.ForEach(assemblies, a =>
 
 //·þÎñ×¢Èë
 //builder.Services.AddPlatformServices();
+//services.AddScoped<SysUserService>();
+builder.Services.AddAutoInjection();
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddAutoMapper(AssemblyHelper.AllTypes);
+builder.Services.AddScoped(typeof(ICURDContract<,,,>), typeof(CURDService<,,,>));
+
 builder.Services.Configure<JwtOption>(builder.Configuration.GetSection("Jwt"));
 builder.Services.AddDbWork();
 
