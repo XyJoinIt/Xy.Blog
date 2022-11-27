@@ -74,12 +74,11 @@ builder.Services.AddCors(options =>
             .AllowAnyHeader()
             .AllowCredentials());
 });
-//builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
+//builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 var keyByteArray = Encoding.UTF8.GetBytes(XyGlobalConfig.JwtOption!.SecretKey);
 var signingKey = new SymmetricSecurityKey(keyByteArray);
-
 //验证待扩展
 builder.Services.AddAuthentication(o =>
 {
@@ -96,11 +95,9 @@ builder.Services.AddAuthentication(o =>
         ValidateAudience = true, //是否验证Audience
         ValidateIssuerSigningKey = true, //是否验证SecurityKey
         ValidateLifetime = false, //是否验证失效时间
-
         ValidIssuer = XyGlobalConfig.JwtOption!.Issuer, //发行人Issuer
         ValidAudience = XyGlobalConfig.JwtOption!.Audience, //订阅人Audience
         IssuerSigningKey = signingKey, //SecurityKey
-
     };
 });
 
