@@ -20,14 +20,14 @@ namespace Xy.Project.Application.Validators.Sys
         private void Validator()
         {
 
-            this.RuleFor(x => x.Account).NotEmpty().WithMessage(_emptyOrNullMesg.FormatWith("用户名"));
+            RuleFor(x => x.Account).NotEmpty().WithMessage(_emptyOrNullMesg.FormatWith("用户名"));
 
-            this.RuleFor(x => x.Password).NotEmpty().WithMessage(_emptyOrNullMesg.FormatWith("密码"));
+            RuleFor(x => x.Password).NotEmpty().WithMessage(_emptyOrNullMesg.FormatWith("密码"));
 
-            this.RuleFor(x => x.Account).MustAsync(async (model, value, cox, token) => !await this.IsAccountExistAsync(value, cox, token)).WithMessage(x=>$"{x.Account}此用户名已存在！");
+            RuleFor(x => x.Account).MustAsync(async (model, value, cox, token) => !await this.IsAccountExistAsync(value, cox, token)).WithMessage(x => $"{x.Account}此用户名已存在！");
         }
 
-      
+
 
         private async Task<bool> IsAccountExistAsync(string value, ValidationContext<SysUser> context, CancellationToken token = default)
         {

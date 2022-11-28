@@ -1,31 +1,24 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Xy.Project.Platform.Model.Entities.Sys
+namespace Xy.Project.Application.Dtos.Sys.SysRoleManage
 {
-    /// <summary>
-    /// 角色表
-    /// </summary>
-    [Table("SysRole")]
-    [Comment("角色表")]
-    public class SysRole : FullEntityBase
+    public class BaseSysRole
     {
         /// <summary>
         /// 名称
         /// </summary>
         [Comment("名称")]
-        [Required, MaxLength(20)]
         public string Name { get; set; }
 
         /// <summary>
         /// 编码
         /// </summary>
         [Comment("编码")]
-        [Required, MaxLength(50)]
         public string Code { get; set; }
 
         /// <summary>
@@ -38,7 +31,6 @@ namespace Xy.Project.Platform.Model.Entities.Sys
         /// 备注
         /// </summary>
         [Comment("备注")]
-        [MaxLength(100)]
         public string Remark { get; set; }
 
         /// <summary>

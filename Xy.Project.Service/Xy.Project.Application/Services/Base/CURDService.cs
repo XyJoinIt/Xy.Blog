@@ -1,8 +1,10 @@
-﻿using System.Linq.Expressions;
+﻿using FluentValidation;
+using System.Linq.Expressions;
 using Xy.Project.Application.Services.Contracts.Base;
 using Xy.Project.Core;
 using Xy.Project.Core.Base;
 using Xy.Project.Core.Entity;
+using Xy.Project.Platform.Model.Entities.Sys;
 
 namespace Xy.Project.Application.Services.Base
 {
@@ -11,10 +13,25 @@ namespace Xy.Project.Application.Services.Base
         where IUpdateInputDto : IDtoId
     {
         protected IRepository<TEntity, long> Repository { get; set; }
+        private readonly IValidator<IAddInputDto> _addValidator;
+        private readonly IValidator<IUpdateInputDto> _editValidator;
 
         public CURDService(IRepository<TEntity, long> repository)
         {
             Repository = repository;
+        }
+
+        public CURDService(IRepository<TEntity, long> repository, IValidator<IAddInputDto> addValidator)
+        {
+            Repository = repository;
+            _addValidator = addValidator;
+        }
+
+        public CURDService(IRepository<TEntity, long> repository, IValidator<IAddInputDto> addValidator, IValidator<IUpdateInputDto> editValidator)
+        {
+            Repository = repository;
+            _addValidator = addValidator;
+            _editValidator = editValidator;
         }
 
         /// <summary>
@@ -25,6 +42,14 @@ namespace Xy.Project.Application.Services.Base
         public virtual async Task<AppResult> AddAsync(IAddInputDto dto)
         {
             dto.NotNull(nameof(dto));
+
+            if (_addValidator is not null)
+            {
+                var validator = await _addValidator.ValidateAsync(dto);
+                if (!validator.IsValid)
+                    return AppResult.Error(validator);
+            }
+
             var entity = MapTo(dto);
             var result = await Repository.InsertAsync(entity).ConfigureAwait(false);
             return result > 0 ?
@@ -40,6 +65,12 @@ namespace Xy.Project.Application.Services.Base
         public virtual async Task<AppResult> UpdateAsync(IUpdateInputDto dto)
         {
             dto.NotNull(nameof(dto));
+            if (_editValidator is not null)
+            {
+                var validator = await _editValidator.ValidateAsync(dto);
+                if (!validator.IsValid)
+                    return AppResult.Error(validator);
+            }
             var entity = await Repository.FindAsync(dto.Id).ConfigureAwait(false);
             entity = MapTo(dto, entity);
             var result = await Repository.UpdateAsync(entity).ConfigureAwait(false);

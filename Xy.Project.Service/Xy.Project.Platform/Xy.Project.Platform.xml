@@ -117,6 +117,39 @@
             <param name="dto"></param>
             <returns></returns>
         </member>
+        <member name="T:Xy.Project.Platform.Modular.Sys.SysRoleController">
+            <summary>
+            角色控制器
+            </summary>
+        </member>
+        <member name="M:Xy.Project.Platform.Modular.Sys.SysRoleController.PateList(Xy.Project.Core.Filter.PageParam)">
+            <summary>
+            得到分页数据
+            </summary>
+            <param name="page"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Platform.Modular.Sys.SysRoleController.Add(Xy.Project.Application.Dtos.Sys.SysRoleManage.AddSysRoleDto)">
+            <summary>
+            新增
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Platform.Modular.Sys.SysRoleController.Update(Xy.Project.Application.Dtos.Sys.SysRoleManage.EditSysRoleDto)">
+            <summary>
+            更新
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Platform.Modular.Sys.SysRoleController.Delete(System.Int64)">
+            <summary>
+            删除
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="T:Xy.Project.Platform.Modular.Sys.SysUserController">
             <summary>
             用户控制器

@@ -79,6 +79,31 @@
             验证码
             </summary>
         </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysRoleManage.BaseSysRole.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysRoleManage.BaseSysRole.Code">
+            <summary>
+            编码
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysRoleManage.BaseSysRole.Sort">
+            <summary>
+            排序
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysRoleManage.BaseSysRole.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysRoleManage.BaseSysRole.Status">
+            <summary>
+            状态（字典 0正常 1停用 2删除）
+            </summary>
+        </member>
         <member name="P:Xy.Project.Application.Dtos.Sys.SysUserManage.BaseSysUserDto.Account">
             <summary>
             账号
@@ -347,7 +372,7 @@
             <param name="dto"></param>
             <returns></returns>
         </member>
-        <member name="M:Xy.Project.Application.Services.Sys.AuthService.#ctor(Xy.Project.Core.IRepository{Xy.Project.Platform.Model.Entities.Sys.SysUser,System.Int64},Xy.Project.Application.Services.Contracts.Sys.IEncryptionService)">
+        <member name="M:Xy.Project.Application.Services.Sys.AuthService.#ctor(Xy.Project.Core.IRepository{Xy.Project.Platform.Model.Entities.Sys.SysUser,System.Int64},Xy.Project.Application.Services.Contracts.Sys.IEncryptionService,FluentValidation.IValidator{Xy.Project.Application.Dtos.Sys.AuthManage.AddAuthDto})">
             <summary>
             构造函数
             </summary>

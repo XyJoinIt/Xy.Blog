@@ -1,4 +1,5 @@
-﻿using Microsoft.IdentityModel.Logging;
+﻿using FluentValidation;
+using Microsoft.IdentityModel.Logging;
 using Microsoft.IdentityModel.Tokens;
 using NETCore.Encrypt;
 using System;
@@ -23,13 +24,15 @@ namespace Xy.Project.Application.Services.Sys
     {
         private readonly IRepository<SysUser, long> _repSysUser;
         private readonly IEncryptionService _encryption;
+        private readonly IValidator<AddAuthDto> _addValidator;
         /// <summary>
         /// 构造函数
         /// </summary>
-        public AuthService(IRepository<SysUser, long> repSysUser, IEncryptionService encryption)
+        public AuthService(IRepository<SysUser, long> repSysUser, IEncryptionService encryption, IValidator<AddAuthDto> addValidator)
         {
             _repSysUser = repSysUser;
             _encryption = encryption;
+            _addValidator = addValidator;
         }
 
         /// <summary>
@@ -41,8 +44,12 @@ namespace Xy.Project.Application.Services.Sys
         public async Task<AppResult> Login(AddAuthDto dto)
         {
             dto.NotNull(nameof(dto));
-            if (string.IsNullOrEmpty(dto.Account) || string.IsNullOrEmpty(dto.PassWord))
-                return await AppResult.ErrorAsync("用户名密码不能为空！");
+
+            var validationResult = await _addValidator.ValidateAsync(dto);
+            if (!validationResult.IsValid)
+                return AppResult.Error(validationResult);
+
+
             var model = await _repSysUser.QueryAsNoTracking(x => x.Account.Equals(dto.Account)).FirstOrDefaultAsync();
             if (model == null)
                 return await AppResult.ErrorAsync("用户不存在！");
