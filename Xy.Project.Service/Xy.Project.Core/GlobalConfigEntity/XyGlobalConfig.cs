@@ -8,30 +8,21 @@ public static class XyGlobalConfig
     /// <summary>
     /// 数据库配置
     /// </summary>
-    public static DbOption? DbOption { get; set; }
+    public static DbOption DbOption { get; set; }
 
     /// <summary>
     /// Jwt配置
     /// </summary>
-    public static JwtOption? JwtOption { get; set; }
-}
-
-public class JwtOption
-{
+    public static JwtOption JwtOption { get; set; }
 
     /// <summary>
-    /// //发行人Issuer
+    /// 跨越配置
     /// </summary>
-    public string Issuer { get; set; } = default!;
+    public static CorsOption? corsOption { get; set; }
 
     /// <summary>
-    /// 订阅人Audience
+    /// 系统配置
     /// </summary>
-    public string Audience { get; set; } = default!;
-
-    /// <summary>
-    /// 秘密密钥
-    /// </summary>
-    public string SecretKey { get; set; } = default!;
+    public static SystemOption systemOption { get; set; }
 }
 

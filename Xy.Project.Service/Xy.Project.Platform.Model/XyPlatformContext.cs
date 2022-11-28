@@ -10,6 +10,11 @@ public class XyPlatformContext : DbContext
     /// <summary>
     /// 
     /// </summary>
+    public XyPlatformContext() { }
+
+    /// <summary>
+    /// 
+    /// </summary>
     /// <param name="options"></param>
     public XyPlatformContext(DbContextOptions<XyPlatformContext> options) : base(options)
     {
@@ -17,7 +22,10 @@ public class XyPlatformContext : DbContext
 
     #region 实体类
 
-
+    public DbSet<SysUser> sysUsers { get; set; }
+    public DbSet<SysRole> sysRoles { get; set; }
+    public DbSet<SysUserRole> sysUserRoles { get; set; }
+    public DbSet<SysOrg> sysOrgs { get; set; }
 
     #endregion
 
@@ -38,16 +46,16 @@ public class XyPlatformContext : DbContext
     /// <param name="modelBuilder"></param>
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        base.OnModelCreating(modelBuilder);
-        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+        
+        //modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
         //设置软删除
         foreach (var entityType in modelBuilder.Model.GetEntityTypes()
             .Where(o => typeof(ISoftDelete).IsAssignableFrom(o.ClrType)))
         {
-            //if (typeof(ISoftDelete).IsAssignableFrom(entityType.ClrType))
             entityType.DelQueryFileter();
         }
+        base.OnModelCreating(modelBuilder);
     }
     /// <summary>
     /// 重写保存
@@ -55,10 +63,7 @@ public class XyPlatformContext : DbContext
     /// <returns></returns>
     public override int SaveChanges()
     {
-
         throw new NotImplementedException();
-        //ChangeTracker.Entries().LateStage();
-        //return base.SaveChanges();
     }
 
     /// <summary>

@@ -114,11 +114,12 @@ namespace Xy.Project.Core.Helpers
         /// </summary>
         /// <param name="publicKey"></param>
         /// <param name="privateKey"></param>
-        public static void GenerateKeyHex(out string publicKey, out string privateKey)
+        public static (string publicKey,string privateKey) GenerateKeyHex()
         {
             GenerateKey(out byte[] a, out byte[] b);
-            publicKey = Hex.ToHexString(a);
-            privateKey = Hex.ToHexString(b);
+            string publicKey = Hex.ToHexString(a);
+            string privateKey = Hex.ToHexString(b);
+            return (publicKey,privateKey);
         }
 
         /// <summary>

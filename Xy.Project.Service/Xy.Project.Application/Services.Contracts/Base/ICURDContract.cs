@@ -34,7 +34,5 @@ namespace Xy.Project.Application.Services.Contracts.Base
         /// <param name="page"></param>
         /// <returns></returns>
         Task<AppResult> PageAsync(PageParam page);
-
-
     }
 }

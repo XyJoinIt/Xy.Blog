@@ -44,20 +44,114 @@
             主键
             </summary>
         </member>
-        <member name="P:Xy.Project.Application.Dtos.Blogs.Categorys.CategoryBaseDto.Name">
+        <member name="P:Xy.Project.Application.Dtos.Blogs.Categorys.BaseDto.Name">
             <summary>
             名字 例如 .NET/JAVA/JS
             </summary>
         </member>
-        <member name="P:Xy.Project.Application.Dtos.Blogs.Categorys.CategoryBaseDto.Code">
+        <member name="P:Xy.Project.Application.Dtos.Blogs.Categorys.BaseDto.Code">
             <summary>
             编码
             </summary>
         </member>
-        <member name="P:Xy.Project.Application.Dtos.Blogs.Categorys.CategoryBaseDto.Remarks">
+        <member name="P:Xy.Project.Application.Dtos.Blogs.Categorys.BaseDto.Remarks">
             <summary>
             备注
             </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.AuthManage.BaseDto.Account">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.AuthManage.BaseDto.PassWord">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.AuthManage.BaseDto.CodeId">
+            <summary>
+            验证码Id
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.AuthManage.BaseDto.Code">
+            <summary>
+            验证码
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysUserManage.BaseSysUserDto.Account">
+            <summary>
+            账号
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysUserManage.BaseSysUserDto.Password">
+            <summary>
+            密码（默认MD5加密）
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysUserManage.BaseSysUserDto.NickName">
+            <summary>
+            昵称
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysUserManage.BaseSysUserDto.Name">
+            <summary>
+            姓名
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysUserManage.BaseSysUserDto.Avatar">
+            <summary>
+            头像
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysUserManage.BaseSysUserDto.Birthday">
+            <summary>
+            生日
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysUserManage.BaseSysUserDto.Sex">
+            <summary>
+            性别-男_1、女_2
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysUserManage.BaseSysUserDto.Email">
+            <summary>
+            邮箱
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysUserManage.BaseSysUserDto.Phone">
+            <summary>
+            手机
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysUserManage.BaseSysUserDto.Tel">
+            <summary>
+            电话
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysUserManage.BaseSysUserDto.AdminType">
+            <summary>
+            管理员类型-超级管理员_1、管理员_2、普通账号_3
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysUserManage.BaseSysUserDto.Status">
+            <summary>
+            状态-正常_0、停用_1、删除_2
+            </summary>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Contracts.Base.ICURDContract`4.AddAsync(`1)">
+            <summary>
+            新增
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Contracts.Base.ICURDContract`4.UpdateAsync(`2)">
+            <summary>
+            修改
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
         </member>
         <member name="M:Xy.Project.Application.Services.Contracts.Base.ICURDContract`4.DeleteAsync(System.Int64)">
             <summary>
@@ -101,6 +195,92 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="T:Xy.Project.Application.Services.Contracts.Sys.IAuthService">
+            <summary>
+            授权接口
+            </summary>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Contracts.Sys.IAuthService.Login(Xy.Project.Application.Dtos.Sys.AuthManage.AddAuthDto)">
+            <summary>
+            登录
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Contracts.Sys.IAuthService.RefreshToken">
+            <summary>
+            刷新口令
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Xy.Project.Application.Services.Contracts.Sys.IEncryptionService">
+            <summary>
+            加密解密接口
+            </summary>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Contracts.Sys.IEncryptionService.GeneratePassword(System.String,System.String)">
+            <summary>
+            用户密码加密
+            </summary>
+            <param name="password"></param>
+            <param name="securityStamp"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Contracts.Sys.IEncryptionService.CheckPasswordAsync(System.String,System.String,System.String)">
+            <summary>
+            用户密码是否匹配
+            </summary>
+            <param name="passwordHash"></param>
+            <param name="securityStamp"></param>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Xy.Project.Application.Services.Contracts.Sys.ISysUserService">
+            <summary>
+            用户接口
+            </summary>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Contracts.Sys.ISysUserService.AddAsync(Xy.Project.Application.Dtos.Sys.SysUserManage.AddSysUserDto)">
+            <summary>
+            新增
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Contracts.Sys.ISysUserService.UpdateAsync(Xy.Project.Application.Dtos.Sys.SysUserManage.EditSysUserDto)">
+            <summary>
+            修改
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Contracts.Sys.ISysUserService.DeleteAsync(System.Int64)">
+            <summary>
+            删除
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Contracts.Sys.ISysUserService.PageAsync(Xy.Project.Core.Filter.PageParam)">
+            <summary>
+            分页
+            </summary>
+            <param name="page"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Base.CURDService`4.AddAsync(`1)">
+            <summary>
+            新增
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Base.CURDService`4.UpdateAsync(`2)">
+            <summary>
+            修改
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
         <member name="M:Xy.Project.Application.Services.Base.CURDService`4.DeleteAsync(System.Int64)">
             <summary>
             删除
@@ -131,14 +311,14 @@
             <summary>
             删除
             </summary>
-            <param name="dto"></param>
+            <param name="id"></param>
             <returns></returns>
         </member>
         <member name="M:Xy.Project.Application.Services.Bolgs.ArticleService.PageAsync(Xy.Project.Core.Filter.PageParam)">
             <summary>
             分页
             </summary>
-            <param name="dto"></param>
+            <param name="page"></param>
             <returns></returns>
         </member>
         <member name="M:Xy.Project.Application.Services.Bolgs.ArticleService.UpdateAsync(Xy.Project.Application.Dtos.Blogs.Articles.EditArticleDto)">
@@ -147,6 +327,99 @@
             </summary>
             <param name="dto"></param>
             <returns></returns>
+        </member>
+        <member name="T:Xy.Project.Application.Services.Bolgs.CategoryService">
+            <summary>
+            类别
+            </summary>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Bolgs.CategoryService.AddAsync(Xy.Project.Application.Dtos.Blogs.Categorys.AddInputDto)">
+            <summary>
+            新增
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Bolgs.CategoryService.UpdateAsync(Xy.Project.Application.Dtos.Blogs.Categorys.UpdateInputDto)">
+            <summary>
+            修改
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Sys.AuthService.#ctor(Xy.Project.Core.IRepository{Xy.Project.Platform.Model.Entities.Sys.SysUser,System.Int64},Xy.Project.Application.Services.Contracts.Sys.IEncryptionService)">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Sys.AuthService.Login(Xy.Project.Application.Dtos.Sys.AuthManage.AddAuthDto)">
+            <summary>
+            登录
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Sys.AuthService.RefreshToken">
+            <summary>
+            刷新Token
+            </summary>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="T:Xy.Project.Application.Services.Sys.EncryptionService">
+            <summary>
+            加密解密
+            </summary>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Sys.EncryptionService.GeneratePassword(System.String,System.String)">
+            <summary>
+            加密哈希
+            </summary>
+            <param name="password"></param>
+            <param name="securityStamp"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Sys.EncryptionService.CheckPasswordAsync(System.String,System.String,System.String)">
+            <summary>
+            解密是否匹配
+            </summary>
+            <param name="passwordHash"></param>
+            <param name="securityStamp"></param>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Sys.SysUserService.AddAsync(Xy.Project.Application.Dtos.Sys.SysUserManage.AddSysUserDto)">
+            <summary>
+            新增
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Sys.SysUserService.DeleteAsync(System.Int64)">
+            <summary>
+            删除
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Sys.SysUserService.PageAsync(Xy.Project.Core.Filter.PageParam)">
+            <summary>
+            分页
+            </summary>
+            <param name="page"></param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Sys.SysUserService.UpdateAsync(Xy.Project.Application.Dtos.Sys.SysUserManage.EditSysUserDto)">
+            <summary>
+            修改
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
         </member>
     </members>
 </doc>

@@ -23,3 +23,4 @@ namespace Xy.Project.Platform.Model
         }
     }
 }
+//Pomelo.EntityFrameworkCore.MySql

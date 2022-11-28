@@ -32,7 +32,6 @@ namespace Xy.Project.Application.Services.Bolgs
             var validationResult = await _validator.ValidateAsync(entity);
             if (!validationResult.IsValid)
             {
-
                 return AppResult.Error(validationResult);
             }
             var result = await _repository.InsertAsync(entity);
@@ -44,7 +43,7 @@ namespace Xy.Project.Application.Services.Bolgs
         /// <summary>
         /// 删除
         /// </summary>
-        /// <param name="dto"></param>
+        /// <param name="id"></param>
         /// <returns></returns>
         public async Task<AppResult> DeleteAsync(long id)
         {
@@ -56,7 +55,7 @@ namespace Xy.Project.Application.Services.Bolgs
         /// <summary>
         /// 分页
         /// </summary>
-        /// <param name="dto"></param>
+        /// <param name="page"></param>
         /// <returns></returns>
         public async Task<AppResult> PageAsync(PageParam page)
         {

@@ -1,0 +1,84 @@
+﻿using Microsoft.IdentityModel.Logging;
+using Microsoft.IdentityModel.Tokens;
+using NETCore.Encrypt;
+using System;
+using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
+using System.Security;
+using System.Security.Claims;
+using System.Text;
+using System.Threading.Tasks;
+using Xy.Project.Application.Dtos.Sys.AuthManage;
+using Xy.Project.Application.Services.Contracts.Sys;
+using Xy.Project.Core;
+using Xy.Project.Core.GlobalConfigEntity;
+using Xy.Project.Core.Helpers;
+using Xy.Project.Platform.Model.Entities.Blogs;
+using Xy.Project.Platform.Model.Entities.Sys;
+
+namespace Xy.Project.Application.Services.Sys
+{
+    public class AuthService : IAuthService
+    {
+        private readonly IRepository<SysUser, long> _repSysUser;
+        private readonly IEncryptionService _encryption;
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        public AuthService(IRepository<SysUser, long> repSysUser, IEncryptionService encryption)
+        {
+            _repSysUser = repSysUser;
+            _encryption = encryption;
+        }
+
+        /// <summary>
+        /// 登录
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public async Task<AppResult> Login(AddAuthDto dto)
+        {
+            dto.NotNull(nameof(dto));
+            if (string.IsNullOrEmpty(dto.Account) || string.IsNullOrEmpty(dto.PassWord))
+                return await AppResult.ErrorAsync("用户名密码不能为空！");
+            var model = await _repSysUser.QueryAsNoTracking(x => x.Account.Equals(dto.Account)).FirstOrDefaultAsync();
+            if (model == null)
+                return await AppResult.ErrorAsync("用户不存在！");
+            else
+                if (!_encryption.CheckPasswordAsync(passwordHash: model.Password, securityStamp: model.SecurityStamp, password: dto.PassWord))
+                    return await AppResult.ErrorAsync("密码错误！");
+            //创建claim
+            var authClaim = new[]
+            {
+                new Claim(JwtRegisteredClaimNames.Jti,model.Id.ToString()),
+                new Claim(JwtRegisteredClaimNames.Sub,model.Account)
+            };
+            IdentityModelEventSource.ShowPII = true;
+            //签名
+            var ecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(XyGlobalConfig.JwtOption.SecretKey));
+            var token = new JwtSecurityToken(
+                issuer: XyGlobalConfig.JwtOption.Issuer,
+                audience: XyGlobalConfig.JwtOption.Audience,
+                expires: DateTime.Now.AddMinutes(XyGlobalConfig.JwtOption.Exp),
+                claims: authClaim,
+                signingCredentials: new SigningCredentials(ecurityKey, SecurityAlgorithms.HmacSha256)
+                );
+
+            return AppResult.Success(new { token = new JwtSecurityTokenHandler().WriteToken(token) });
+        }
+
+        /// <summary>
+        /// 刷新Token
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+
+        public Task<AppResult> RefreshToken()
+        {
+            throw new NotImplementedException();
+        }
+
+    }
+}

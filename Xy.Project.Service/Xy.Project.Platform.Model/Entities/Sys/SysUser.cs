@@ -14,11 +14,18 @@ public class SysUser:FullEntityBase
     public string Account { get; set; }
 
     /// <summary>
-    /// 密码（默认MD5加密）
+    /// 密码（默认HMACSHA256加密）
     /// </summary>
     [Comment("密码")]
     [Required, MaxLength(100)]
     public string Password { get; set; }
+
+    /// <summary>
+    /// 个人秘钥（默认HMACSHA256加密）
+    /// </summary>
+    [Comment("个人秘钥")]
+    [Required, MaxLength(100)]
+    public string SecurityStamp { get; set; }
 
     /// <summary>
     /// 昵称

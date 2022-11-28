@@ -6,7 +6,7 @@ global using System;
 global using System.ComponentModel;
 global using System.Linq;
 global using System.Threading.Tasks;
-global using Xy.Project.Application.Services.Contracts;
+global using Xy.Project.Core.Dependency;
 global using Xy.Project.Core.AutoMapper;
 global using Xy.Project.Core.Enums;
 global using Xy.Project.Core.Extensions;

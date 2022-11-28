@@ -164,11 +164,6 @@
             状态
             </summary>
         </member>
-        <member name="P:Xy.Project.Platform.Model.Entities.Sys.SysOrg.Children">
-            <summary>
-            机构子项
-            </summary>
-        </member>
         <member name="T:Xy.Project.Platform.Model.Entities.Sys.SysRole">
             <summary>
             角色表
@@ -199,16 +194,6 @@
             状态（字典 0正常 1停用 2删除）
             </summary>
         </member>
-        <member name="P:Xy.Project.Platform.Model.Entities.Sys.SysRole.SysUsers">
-            <summary>
-            多对多（用户）
-            </summary>
-        </member>
-        <member name="P:Xy.Project.Platform.Model.Entities.Sys.SysRole.SysUserRoles">
-            <summary>
-            多对多中间表（用户角色）
-            </summary>
-        </member>
         <member name="T:Xy.Project.Platform.Model.Entities.Sys.SysUser">
             <summary>
             用户表
@@ -221,7 +206,12 @@
         </member>
         <member name="P:Xy.Project.Platform.Model.Entities.Sys.SysUser.Password">
             <summary>
-            密码（默认MD5加密）
+            密码（默认HMACSHA256加密）
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Platform.Model.Entities.Sys.SysUser.SecurityStamp">
+            <summary>
+            个人秘钥（默认HMACSHA256加密）
             </summary>
         </member>
         <member name="P:Xy.Project.Platform.Model.Entities.Sys.SysUser.NickName">
@@ -294,20 +284,34 @@
             用户Id
             </summary>
         </member>
-        <member name="P:Xy.Project.Platform.Model.Entities.Sys.SysUserRole.SysUser">
-            <summary>
-            一对一引用（系统用户）
-            </summary>
-        </member>
         <member name="P:Xy.Project.Platform.Model.Entities.Sys.SysUserRole.SysRoleId">
             <summary>
             系统角色Id
             </summary>
         </member>
-        <member name="P:Xy.Project.Platform.Model.Entities.Sys.SysUserRole.SysRole">
-            <summary>
-            一对一引用（系统角色）
-            </summary>
+        <member name="T:Xy.Project.Platform.Model.Migrations.v100">
+            <inheritdoc />
+        </member>
+        <member name="M:Xy.Project.Platform.Model.Migrations.v100.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Xy.Project.Platform.Model.Migrations.v100.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Xy.Project.Platform.Model.Migrations.v100.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Xy.Project.Platform.Model.Migrations.v101">
+            <inheritdoc />
+        </member>
+        <member name="M:Xy.Project.Platform.Model.Migrations.v101.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Xy.Project.Platform.Model.Migrations.v101.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Xy.Project.Platform.Model.Migrations.v101.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
         </member>
         <member name="T:Xy.Project.Platform.Model.MySqlXyPlatformDbContextFactory">
             <summary>
@@ -317,6 +321,11 @@
         <member name="T:Xy.Project.Platform.Model.XyPlatformContext">
             <summary>
             平台实体上下文
+            </summary>
+        </member>
+        <member name="M:Xy.Project.Platform.Model.XyPlatformContext.#ctor">
+            <summary>
+            
             </summary>
         </member>
         <member name="M:Xy.Project.Platform.Model.XyPlatformContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{Xy.Project.Platform.Model.XyPlatformContext})">

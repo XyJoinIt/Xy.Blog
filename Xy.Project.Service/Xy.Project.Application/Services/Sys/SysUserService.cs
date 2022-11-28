@@ -1,7 +1,6 @@
 ﻿using FluentValidation;
+using Xy.Project.Application.Dtos.Blogs.Articles;
 using Xy.Project.Application.Dtos.Sys.SysUserManage;
-using Xy.Project.Application.Services.Base;
-using Xy.Project.Application.Services.Contracts.Base;
 using Xy.Project.Application.Services.Contracts.Sys;
 using Xy.Project.Core;
 using Xy.Project.Platform.Model.Entities.Blogs;
@@ -9,33 +8,38 @@ using Xy.Project.Platform.Model.Entities.Sys;
 
 namespace Xy.Project.Application.Services.Sys
 {
-    public class SysUserService : CURDService<SysUser, AddInputDto, UpdateInputDto, OutPageList>, ISysUserService
+    public class SysUserService : ISysUserService
     {
+        private readonly IRepository<SysUser,long> _repository;
+        private readonly IEncryptionService _encryption;
+        private readonly IValidator<SysUser> _validator;
 
-        private IValidator<AddInputDto> _addValidator;
-        private IValidator<UpdateInputDto> _updateValidator;
-
-        public SysUserService(IRepository<SysUser, long> repository, IValidator<AddInputDto> addValidator, IValidator<UpdateInputDto> updateValidator) : base(repository)
+        public SysUserService(IRepository<SysUser, long> repository, IEncryptionService encryption, IValidator<SysUser> validator)
         {
-            _addValidator = addValidator;
-            _updateValidator = updateValidator;
+            _repository = repository;
+            _encryption = encryption;
+            _validator = validator;
         }
-
         /// <summary>
         /// 新增
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public async Task<AppResult> AddAsync(AddInputDto dto)
+        public async Task<AppResult> AddAsync(AddSysUserDto dto)
         {
-            var validator = await _addValidator.ValidateAsync(dto);
-            if (!validator.IsValid)
-            {
-                return AppResult.Error(validator);
-            }
+            dto.NotNull(nameof(dto));
+            var user = new SysUser();
+            user = ObjectMap.MapTo(dto, user);
 
-            return await base.AddAsync(dto);
+            var validator = await _validator.ValidateAsync(user);
+            if (!validator.IsValid)
+                return AppResult.Error(validator);
+            var entity = ObjectMap.MapTo<SysUser>(dto);
+            entity.SecurityStamp = Guid.NewGuid().ToString("N").ToUpper();
+            entity.Password = _encryption.GeneratePassword(entity.Password, entity.SecurityStamp);
+            var result = await _repository.InsertAsync(entity);
+            return result > 0 ? AppResult.Success() : AppResult.Error();
         }
 
         /// <summary>
@@ -46,7 +50,7 @@ namespace Xy.Project.Application.Services.Sys
         /// <exception cref="NotImplementedException"></exception>
         public async Task<AppResult> DeleteAsync(long id)
         {
-            throw new NotImplementedException();
+            return await _repository.DeleteAsync(id) > 0 ? AppResult.Success() : AppResult.Error();
         }
 
         /// <summary>
@@ -57,7 +61,14 @@ namespace Xy.Project.Application.Services.Sys
         /// <exception cref="NotImplementedException"></exception>
         public async Task<AppResult> PageAsync(PageParam page)
         {
-            throw new NotImplementedException();
+            page.NotNull(nameof(page));
+            //排序
+            page.AddOrderCondition(new OrderCondition<SysUser>(o => o.Id, OrderDirection.Ascending));
+            //条件过滤
+            var exp = FilterBuilder.GetExpression<SysUser>(page.FilterGroup);
+            var list = await _repository.QueryAsNoTracking(exp)
+                .ToPageAsync<SysUser, OutSysUserPageDto>(page.PageCondition);
+            return AppResult.Success("得到分页数据", list);
         }
 
         /// <summary>
@@ -66,14 +77,18 @@ namespace Xy.Project.Application.Services.Sys
         /// <param name="dto"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public async Task<AppResult> UpdateAsync(UpdateInputDto dto)
+        public async Task<AppResult> UpdateAsync(EditSysUserDto dto)
         {
-            var validator = await _updateValidator.ValidateAsync(dto);
-            if (!validator.IsValid)
-            {
-                return AppResult.Error(validator);
-            }
-            return await base.UpdateAsync(dto);
+            dto.NotNull(nameof(dto));
+            var user = await _repository.FindAsync(dto.Id);
+            user = ObjectMap.MapTo(dto, user);
+            var validationResult = await _validator.ValidateAsync(user);
+            if (!validationResult.IsValid)
+                return AppResult.Error(validationResult);
+            var result = await _repository.UpdateAsync(user);
+            return result > 0 ?
+                 AppResult.Success() :
+                 AppResult.Error();
         }
     }
 }

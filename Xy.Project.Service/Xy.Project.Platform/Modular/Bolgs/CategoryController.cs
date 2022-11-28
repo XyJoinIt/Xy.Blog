@@ -7,17 +7,16 @@ namespace Xy.Project.Platform.Modular.Bolgs
     /// <summary>
     /// 分类管理
     /// </summary>
-
     [Description("分类管理")]
     public class CategoryController : AdminControllerBase
     {
-        private readonly ICategoryContract _categoryContract;
+        private readonly ICategoryService _categoryContract;
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="categoryContract"></param>
-        public CategoryController(ICategoryContract categoryContract)
+        public CategoryController(ICategoryService categoryContract)
         {
             _categoryContract = categoryContract;
         }

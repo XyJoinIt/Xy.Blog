@@ -84,7 +84,7 @@
         /// <param name="Id"></param>
         /// <returns></returns>
         Task<int> DeleteAsync(TPrimaryKey key, CancellationToken cancellationToken = default);
-       
+
         /// <summary>
         /// 异步删除
         /// </summary>
@@ -101,4 +101,6 @@
         /// <returns></returns>
         Task<int> DeleteBatchAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken = default);
     }
+
+    public interface IRepository<TEntity> : IRepository<TEntity, long> where TEntity : IEntity<long> { }
 }

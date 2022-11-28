@@ -32,19 +32,13 @@ namespace Xy.Project.Core.Models
             return Problem(HttpCode.失败, msg);
         }
 
-
         public static AppResult Error(FluentValidation.Results.ValidationResult validationResult)
         {
-
-
             var errorBuilder = new StringBuilder();
             validationResult.Errors.ForEach(o => errorBuilder.AppendLine(o.ErrorMessage));
             return AppResult.Error(errorBuilder.ToString());
 
         }
-
-
-
         public static Task<AppResult> ErrorAsync(string msg = "操作失败")
         {
             return ProblemAsync(HttpCode.失败, msg);

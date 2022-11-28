@@ -7,7 +7,7 @@ namespace Xy.Project.Platform.Extensions
     /// <summary>
     /// 
     /// </summary>
-    public static class DbContextServiceCollection
+    public static class DbContextSetup
     {
 
         /// <summary>
@@ -15,7 +15,7 @@ namespace Xy.Project.Platform.Extensions
         /// </summary>
         /// <param name="services"></param>
         /// <returns></returns>
-        public static IServiceCollection AddDbWork(this IServiceCollection services)
+        public static IServiceCollection AddDbWorkSetup(this IServiceCollection services)
         {
 
 

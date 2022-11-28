@@ -7,7 +7,10 @@ using Xy.Project.Platform.Model.Entities.Blogs;
 
 namespace Xy.Project.Application.Services.Bolgs
 {
-    public class CategoryService : CURDService<Category, AddInputDto, UpdateInputDto, OutPageList>, ICategoryContract
+    /// <summary>
+    /// 类别
+    /// </summary>
+    public class CategoryService : CURDService<Category, AddInputDto, UpdateInputDto, OutPageList>, ICategoryService
     {
 
         private IValidator<AddInputDto> _addValidator;
@@ -19,6 +22,11 @@ namespace Xy.Project.Application.Services.Bolgs
             _updateValidator = updateValidator;
         }
 
+        /// <summary>
+        /// 新增
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
         public override async Task<AppResult> AddAsync(AddInputDto dto)
         {
             var validator = await _addValidator.ValidateAsync(dto);
@@ -30,6 +38,11 @@ namespace Xy.Project.Application.Services.Bolgs
             return await base.AddAsync(dto);
         }
 
+        /// <summary>
+        /// 修改
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
         public override async Task<AppResult> UpdateAsync(UpdateInputDto dto)
         {
 

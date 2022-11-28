@@ -4,24 +4,29 @@
         <name>Xy.Project.Platform</name>
     </assembly>
     <members>
-        <member name="T:Xy.Project.Platform.Extensions.DbContextServiceCollection">
+        <member name="T:Xy.Project.Platform.Extensions.CorsSetup">
+            <summary>
+            跨域配置
+            </summary>
+        </member>
+        <member name="T:Xy.Project.Platform.Extensions.DbContextSetup">
             <summary>
             
             </summary>
         </member>
-        <member name="M:Xy.Project.Platform.Extensions.DbContextServiceCollection.AddDbWork(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+        <member name="M:Xy.Project.Platform.Extensions.DbContextSetup.AddDbWorkSetup(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
             数据库相关注入
             </summary>
             <param name="services"></param>
             <returns></returns>
         </member>
-        <member name="T:Xy.Project.Platform.Extensions.SwaggerExtension">
+        <member name="T:Xy.Project.Platform.Extensions.SwaggerSetup">
             <summary>
             
             </summary>
         </member>
-        <member name="M:Xy.Project.Platform.Extensions.SwaggerExtension.AddSwagger(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+        <member name="M:Xy.Project.Platform.Extensions.SwaggerSetup.AddSwaggerSetup(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
             swagger注入
             </summary>
@@ -66,7 +71,7 @@
             分类管理
             </summary>
         </member>
-        <member name="M:Xy.Project.Platform.Modular.Bolgs.CategoryController.#ctor(Xy.Project.Application.Services.Contracts.Blogs.ICategoryContract)">
+        <member name="M:Xy.Project.Platform.Modular.Bolgs.CategoryController.#ctor(Xy.Project.Application.Services.Contracts.Blogs.ICategoryService)">
             <summary>
             
             </summary>
@@ -79,14 +84,14 @@
             <param name="page"></param>
             <returns></returns>
         </member>
-        <member name="M:Xy.Project.Platform.Modular.Bolgs.CategoryController.Add(Xy.Project.Application.Dtos.Blogs.Categorys.AddCategoryInputDto)">
+        <member name="M:Xy.Project.Platform.Modular.Bolgs.CategoryController.Add(Xy.Project.Application.Dtos.Blogs.Categorys.AddInputDto)">
             <summary>
             新增分类
             </summary>
             <param name="dto"></param>
             <returns></returns>
         </member>
-        <member name="M:Xy.Project.Platform.Modular.Bolgs.CategoryController.Update(Xy.Project.Application.Dtos.Blogs.Categorys.UpdateCategoryInputDto)">
+        <member name="M:Xy.Project.Platform.Modular.Bolgs.CategoryController.Update(Xy.Project.Application.Dtos.Blogs.Categorys.UpdateInputDto)">
             <summary>
             更新分类
             </summary>
@@ -96,6 +101,51 @@
         <member name="M:Xy.Project.Platform.Modular.Bolgs.CategoryController.Delete(System.Int64)">
             <summary>
             删除分类
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Xy.Project.Platform.Modular.Sys.AuthController">
+            <summary>
+            授权控制器
+            </summary>
+        </member>
+        <member name="M:Xy.Project.Platform.Modular.Sys.AuthController.LogIn(Xy.Project.Application.Dtos.Sys.AuthManage.AddAuthDto)">
+            <summary>
+            登录
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Xy.Project.Platform.Modular.Sys.SysUserController">
+            <summary>
+            用户控制器
+            </summary>
+        </member>
+        <member name="M:Xy.Project.Platform.Modular.Sys.SysUserController.PateList(Xy.Project.Core.Filter.PageParam)">
+            <summary>
+            得到分页数据
+            </summary>
+            <param name="page"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Platform.Modular.Sys.SysUserController.Add(Xy.Project.Application.Dtos.Sys.SysUserManage.AddSysUserDto)">
+            <summary>
+            新增
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Platform.Modular.Sys.SysUserController.Update(Xy.Project.Application.Dtos.Sys.SysUserManage.EditSysUserDto)">
+            <summary>
+            更新
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Platform.Modular.Sys.SysUserController.Delete(System.Int64)">
+            <summary>
+            删除
             </summary>
             <param name="id"></param>
             <returns></returns>

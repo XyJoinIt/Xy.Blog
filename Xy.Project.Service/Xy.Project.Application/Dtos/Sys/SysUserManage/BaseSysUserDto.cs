@@ -2,7 +2,7 @@
 
 namespace Xy.Project.Application.Dtos.Sys.SysUserManage
 {
-    public class BaseDto
+    public class BaseSysUserDto
     {
         /// <summary>
         /// 账号
@@ -16,7 +16,7 @@ namespace Xy.Project.Application.Dtos.Sys.SysUserManage
         /// </summary>
         [Comment("密码")]
         [Required, MaxLength(100)]
-        public string Password { get; set; }
+        public virtual string Password { get; set; }
 
         /// <summary>
         /// 昵称

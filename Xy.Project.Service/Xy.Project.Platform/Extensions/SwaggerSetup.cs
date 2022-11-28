@@ -7,14 +7,14 @@ namespace Xy.Project.Platform.Extensions
     /// <summary>
     /// 
     /// </summary>
-    public static class SwaggerExtension
+    public static class SwaggerSetup
     {
         /// <summary>
         /// swagger注入
         /// </summary>
         /// <param name="services"></param>
         /// <returns></returns>
-        public static IServiceCollection AddSwagger(this IServiceCollection services)
+        public static IServiceCollection AddSwaggerSetup(this IServiceCollection services)
         {
             services.AddSwaggerGen(options =>
             {

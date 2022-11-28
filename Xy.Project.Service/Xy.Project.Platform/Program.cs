@@ -30,9 +30,8 @@ builder.Host.UseSerilog((context, configuration) =>
 
 //注入配置文件
 InitConfiguration(builder.Configuration);
-#region Swagger服务
-builder.Services.AddSwagger();
-#endregion
+//Swagger服务
+builder.Services.AddSwaggerSetup();
 
 // Add services to the container.
 builder.Services.AddControllers(option =>
@@ -48,7 +47,6 @@ builder.Services.AddControllers(option =>
 
 //不要asp.net core 自动验证。(因为asp.net 不能异步验证的)
 //builder.Services.AddFluentValidationAutoValidation();
-
 //var assemblies = AssemblyHelper.FindAllItems(o => o.GetType().IsBaseOn(typeof(AbstractValidator<>)) && o.GetType().IsClass == true && !o.GetType().IsAbstract);
 //builder.Services.AddValidatorsFromAssemblies(assemblies);
 builder.Services.AddEndpointsApiExplorer();
@@ -63,26 +61,12 @@ builder.Services.AddAutoInjection();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddAutoMapper(AssemblyHelper.AllTypes);
 builder.Services.AddScoped(typeof(ICURDContract<,,,>), typeof(CURDService<,,,>));
-builder.Services.Configure<JwtOption>(builder.Configuration.GetSection("Jwt"));
-builder.Services.AddDbWork();
+builder.Services.AddDbWorkSetup();
 
 //跨域
-builder.Services.AddCors(options =>
-{
-    var cors = builder.Configuration.GetSection("Cors");
-    var urls = cors.GetSection("Url")?.Value.Split(";");
-    options.AddDefaultPolicy(builder =>
-            builder
-            .WithOrigins(urls)
-            .AllowAnyMethod()
-            .AllowAnyHeader()
-            .AllowCredentials());
-});
-//Microsoft.Extensions.Configuration   Microsoft.Extensions.Hosting.Abstractions
-//builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-var keyByteArray = Encoding.UTF8.GetBytes(XyGlobalConfig.JwtOption!.SecretKey);
-var signingKey = new SymmetricSecurityKey(keyByteArray);
-//验证待扩展
+builder.Services.AddCorsSetup();
+
+//Jwt初始化
 builder.Services.AddAuthentication(o =>
 {
     o.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -97,10 +81,12 @@ builder.Services.AddAuthentication(o =>
         ValidateIssuer = true, //是否验证Issuer
         ValidateAudience = true, //是否验证Audience
         ValidateIssuerSigningKey = true, //是否验证SecurityKey
-        ValidateLifetime = false, //是否验证失效时间
+        ValidateLifetime = true, //是否验证失效时间
         ValidIssuer = XyGlobalConfig.JwtOption!.Issuer, //发行人Issuer
         ValidAudience = XyGlobalConfig.JwtOption!.Audience, //订阅人Audience
-        IssuerSigningKey = signingKey, //SecurityKey
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(XyGlobalConfig.JwtOption!.SecretKey)), //SecurityKey
+        RequireExpirationTime = true,
+        ClockSkew = TimeSpan.Zero
     };
 });
 
@@ -152,6 +138,8 @@ app.Run();
 //配置文件读取
 void InitConfiguration(IConfiguration configuration)
 {
-    XyGlobalConfig.DbOption = configuration.GetSection("ConnectionStrings").Get<DbOption>();
-    XyGlobalConfig.JwtOption = configuration.GetSection("Jwt").Get<JwtOption>();
+    XyGlobalConfig.DbOption = configuration.GetSection("ConnectionStrings").Get<DbOption>()!;
+    XyGlobalConfig.JwtOption = configuration.GetSection("Jwt").Get<JwtOption>()!;
+    XyGlobalConfig.corsOption = configuration.GetSection("Cors").Get<CorsOption>();
+    XyGlobalConfig.systemOption = configuration.GetSection("System").Get<SystemOption>()!;
 }

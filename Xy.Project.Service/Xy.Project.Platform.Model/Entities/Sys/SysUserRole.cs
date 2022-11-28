@@ -11,7 +11,7 @@ namespace Xy.Project.Platform.Model.Entities.Sys
     /// </summary>
     [Table("SysUserRole")]
     [Comment("用户角色表")]
-    public class SysUserRole
+    public class SysUserRole:FullEntityBase
     {
         /// <summary>
         /// 用户Id
