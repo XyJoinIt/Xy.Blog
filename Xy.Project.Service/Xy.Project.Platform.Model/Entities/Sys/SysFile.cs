@@ -75,11 +75,4 @@ namespace Xy.Project.Platform.Model.Entities.Sys
         [MaxLength(5)]
         public FileModularType Modular { get; set; }
     }
-
-    public enum FileModularType
-    {
-        用户,
-        博客,
-        系统
-    }
 }

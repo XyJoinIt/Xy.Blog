@@ -249,10 +249,23 @@ public enum FilterConnect
     Or
 }
 
-
+/// <summary>
+/// 文件储存器
+/// </summary>
+[Description("文件储存器")]
 public enum ProviderType
 {
     本地,
     腾讯,
     阿里
+}
+
+/// <summary>
+/// 文件模块
+/// </summary>
+public enum FileModularType
+{
+    用户,
+    博客,
+    系统
 }
