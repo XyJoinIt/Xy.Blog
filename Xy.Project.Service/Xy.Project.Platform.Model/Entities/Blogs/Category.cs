@@ -8,7 +8,7 @@ namespace Xy.Project.Platform.Model.Entities.Blogs
     /// 类别
     /// </summary>
     [Description("类别")]
-    [Table("Bl_Category")]
+    [Table("bl_category")]
     public class Category : FullEntityBase
     {
         /// <summary>

@@ -5,7 +5,7 @@ namespace Xy.Project.Platform.Model.Entities.Blogs
     /// <summary>
     /// 文章评论
     /// </summary>
-    [Table("Bl_Comment")]
+    [Table("bl_comment")]
     public class Comment : FullEntityBase
     {
         /// <summary>

@@ -249,3 +249,10 @@ public enum FilterConnect
     Or
 }
 
+
+public enum ProviderType
+{
+    本地,
+    腾讯,
+    阿里
+}

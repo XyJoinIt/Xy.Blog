@@ -5,7 +5,7 @@ namespace Xy.Project.Platform.Model.Entities.Blogs
     /// <summary>
     /// 文章
     /// </summary>
-    [Table("Bl_Article")]
+    [Table("bl_article")]
     public class Article : FullEntityBase
     {
         /// <summary>

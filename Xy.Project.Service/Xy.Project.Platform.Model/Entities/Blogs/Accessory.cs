@@ -5,7 +5,8 @@ namespace Xy.Project.Platform.Model.Entities.Blogs
     /// <summary>
     /// 附件
     /// </summary>
-    [Table("Bl_Accessory")]
+    [Table("bl_accessory")]
+    [Obsolete("系统所有文件用sysfile表模块类型为博客")]
     public class Accessory : FullEntityBase
     {
         /// <summary>
