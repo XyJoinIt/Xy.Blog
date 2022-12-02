@@ -4,9 +4,7 @@ namespace Xy.Project.Platform.Modular
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    [Authorize]
-    public abstract class AdminControllerBase : ControllerBase
+    public class NoOpControllerBase:ControllerBase
     {
-
     }
 }

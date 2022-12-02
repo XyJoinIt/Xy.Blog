@@ -8,7 +8,7 @@ namespace Xy.Project.Platform.Modular.Bolgs
     /// <summary>
     /// 文章管理控制器
     /// </summary>
-    public class ArticleController : AdminControllerBase
+    public class ArticleController : NoOpControllerBase
     {
         private readonly IArticleService _articleService;
 

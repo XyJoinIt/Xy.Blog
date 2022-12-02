@@ -21,8 +21,7 @@ namespace Xy.Project.Application.Services.Sys
 
         public SysRoleService(IRepository<SysRole, long> repository, IValidator<AddSysRoleDto> addValidator, IValidator<EditSysRoleDto> editValidator) : base(repository, addValidator, editValidator)
         {
-            _editValidator = editValidator;
-            _addValidator = addValidator;
+          
         }
     }
 }

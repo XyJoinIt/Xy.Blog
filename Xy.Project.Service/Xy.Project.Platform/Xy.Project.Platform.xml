@@ -38,6 +38,34 @@
             <param name="services"></param>
             <returns></returns>
         </member>
+        <member name="M:Xy.Project.Platform.Modular.ApiControllerBase`5.PateList(Xy.Project.Core.Filter.PageParam)">
+            <summary>
+            得到分页数据
+            </summary>
+            <param name="page"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Platform.Modular.ApiControllerBase`5.Add(`2)">
+            <summary>
+            新增
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Platform.Modular.ApiControllerBase`5.Update(`3)">
+            <summary>
+            更新
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Platform.Modular.ApiControllerBase`5.Delete(System.Int64)">
+            <summary>
+            删除
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="T:Xy.Project.Platform.Modular.Bolgs.ArticleController">
             <summary>
             文章管理控制器
@@ -77,38 +105,10 @@
             </summary>
         </member>
         <member name="M:Xy.Project.Platform.Modular.Bolgs.CategoryController.#ctor(Xy.Project.Application.Services.Contracts.Blogs.ICategoryService)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="categoryContract"></param>
-        </member>
-        <member name="M:Xy.Project.Platform.Modular.Bolgs.CategoryController.PateList(Xy.Project.Core.Filter.PageParam)">
-            <summary>
-            得到分页数据
-            </summary>
-            <param name="page"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Xy.Project.Platform.Modular.Bolgs.CategoryController.Add(Xy.Project.Application.Dtos.Blogs.Categorys.AddInputDto)">
-            <summary>
-            新增分类
-            </summary>
-            <param name="dto"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Xy.Project.Platform.Modular.Bolgs.CategoryController.Update(Xy.Project.Application.Dtos.Blogs.Categorys.UpdateInputDto)">
-            <summary>
-            更新分类
-            </summary>
-            <param name="dto"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Xy.Project.Platform.Modular.Bolgs.CategoryController.Delete(System.Int64)">
-            <summary>
-            删除分类
-            </summary>
-            <param name="id"></param>
-            <returns></returns>
+             </summary>
+             <param name="categoryContract"></param>
         </member>
         <member name="T:Xy.Project.Platform.Modular.Sys.AuthController">
             <summary>
@@ -127,99 +127,15 @@
             菜单控制器
             </summary>
         </member>
-        <member name="M:Xy.Project.Platform.Modular.Sys.SysMenuController.PateList(Xy.Project.Core.Filter.PageParam)">
-            <summary>
-            得到分页数据
-            </summary>
-            <param name="page"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Xy.Project.Platform.Modular.Sys.SysMenuController.Add(Xy.Project.Application.Dtos.Sys.SysMenuManage.AddSysMenuDto)">
-            <summary>
-            新增
-            </summary>
-            <param name="dto"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Xy.Project.Platform.Modular.Sys.SysMenuController.Update(Xy.Project.Application.Dtos.Sys.SysMenuManage.EditSysMenuDto)">
-            <summary>
-            更新
-            </summary>
-            <param name="dto"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Xy.Project.Platform.Modular.Sys.SysMenuController.Delete(System.Int64)">
-            <summary>
-            删除
-            </summary>
-            <param name="id"></param>
-            <returns></returns>
-        </member>
         <member name="T:Xy.Project.Platform.Modular.Sys.SysRoleController">
             <summary>
             角色控制器
             </summary>
         </member>
-        <member name="M:Xy.Project.Platform.Modular.Sys.SysRoleController.PateList(Xy.Project.Core.Filter.PageParam)">
-            <summary>
-            得到分页数据
-            </summary>
-            <param name="page"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Xy.Project.Platform.Modular.Sys.SysRoleController.Add(Xy.Project.Application.Dtos.Sys.SysRoleManage.AddSysRoleDto)">
-            <summary>
-            新增
-            </summary>
-            <param name="dto"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Xy.Project.Platform.Modular.Sys.SysRoleController.Update(Xy.Project.Application.Dtos.Sys.SysRoleManage.EditSysRoleDto)">
-            <summary>
-            更新
-            </summary>
-            <param name="dto"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Xy.Project.Platform.Modular.Sys.SysRoleController.Delete(System.Int64)">
-            <summary>
-            删除
-            </summary>
-            <param name="id"></param>
-            <returns></returns>
-        </member>
         <member name="T:Xy.Project.Platform.Modular.Sys.SysUserController">
             <summary>
             用户控制器
             </summary>
-        </member>
-        <member name="M:Xy.Project.Platform.Modular.Sys.SysUserController.PateList(Xy.Project.Core.Filter.PageParam)">
-            <summary>
-            得到分页数据
-            </summary>
-            <param name="page"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Xy.Project.Platform.Modular.Sys.SysUserController.Add(Xy.Project.Application.Dtos.Sys.SysUserManage.AddSysUserDto)">
-            <summary>
-            新增
-            </summary>
-            <param name="dto"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Xy.Project.Platform.Modular.Sys.SysUserController.Update(Xy.Project.Application.Dtos.Sys.SysUserManage.EditSysUserDto)">
-            <summary>
-            更新
-            </summary>
-            <param name="dto"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Xy.Project.Platform.Modular.Sys.SysUserController.Delete(System.Int64)">
-            <summary>
-            删除
-            </summary>
-            <param name="id"></param>
-            <returns></returns>
         </member>
         <member name="M:Xy.Project.Platform.Modular.Sys.SysUserController.GetUserInfo">
             <summary>

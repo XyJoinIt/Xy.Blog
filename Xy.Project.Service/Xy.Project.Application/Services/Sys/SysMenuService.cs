@@ -21,8 +21,7 @@ namespace Xy.Project.Application.Services.Sys
 
         public SysMenuService(IRepository<SysMenu, long> repository, IValidator<AddSysMenuDto> addValidator, IValidator<EditSysMenuDto> editValidator) : base(repository, addValidator, editValidator)
         {
-            _editValidator = editValidator;
-            _addValidator = addValidator;
+            
         }
     }
 }

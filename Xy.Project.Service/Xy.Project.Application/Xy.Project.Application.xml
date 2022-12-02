@@ -365,34 +365,6 @@
             用户接口
             </summary>
         </member>
-        <member name="M:Xy.Project.Application.Services.Contracts.Sys.ISysUserService.AddAsync(Xy.Project.Application.Dtos.Sys.SysUserManage.AddSysUserDto)">
-            <summary>
-            新增
-            </summary>
-            <param name="dto"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Xy.Project.Application.Services.Contracts.Sys.ISysUserService.UpdateAsync(Xy.Project.Application.Dtos.Sys.SysUserManage.EditSysUserDto)">
-            <summary>
-            修改
-            </summary>
-            <param name="dto"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Xy.Project.Application.Services.Contracts.Sys.ISysUserService.DeleteAsync(System.Int64)">
-            <summary>
-            删除
-            </summary>
-            <param name="id"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Xy.Project.Application.Services.Contracts.Sys.ISysUserService.PageAsync(Xy.Project.Core.Filter.PageParam)">
-            <summary>
-            分页
-            </summary>
-            <param name="page"></param>
-            <returns></returns>
-        </member>
         <member name="M:Xy.Project.Application.Services.Contracts.Sys.ISysUserService.GetUserInfo">
             <summary>
             获取用户详情信息
@@ -465,20 +437,6 @@
             类别
             </summary>
         </member>
-        <member name="M:Xy.Project.Application.Services.Bolgs.CategoryService.AddAsync(Xy.Project.Application.Dtos.Blogs.Categorys.AddInputDto)">
-            <summary>
-            新增
-            </summary>
-            <param name="dto"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Xy.Project.Application.Services.Bolgs.CategoryService.UpdateAsync(Xy.Project.Application.Dtos.Blogs.Categorys.UpdateInputDto)">
-            <summary>
-            修改
-            </summary>
-            <param name="dto"></param>
-            <returns></returns>
-        </member>
         <member name="M:Xy.Project.Application.Services.Sys.AuthService.#ctor(Xy.Project.Core.IRepository{Xy.Project.Platform.Model.Entities.Sys.SysUser,System.Int64},Xy.Project.Application.Services.Contracts.Sys.IEncryptionService,FluentValidation.IValidator{Xy.Project.Application.Dtos.Sys.AuthManage.AddAuthDto})">
             <summary>
             构造函数
@@ -538,26 +496,18 @@
             <returns></returns>
             <exception cref="T:System.NotImplementedException"></exception>
         </member>
-        <member name="M:Xy.Project.Application.Services.Sys.SysUserService.AddAsync(Xy.Project.Application.Dtos.Sys.SysUserManage.AddSysUserDto)">
+        <member name="M:Xy.Project.Application.Services.Sys.SysUserService.Xy#Project#Application#Services#Contracts#Base#ICURDContract{Xy#Project#Platform#Model#Entities#Sys#SysUser,Xy#Project#Application#Dtos#Sys#SysUserManage#AddSysUserDto,Xy#Project#Application#Dtos#Sys#SysUserManage#EditSysUserDto,Xy#Project#Application#Dtos#Sys#SysUserManage#OutSysUserPageDto}#AddAsync(Xy.Project.Application.Dtos.Sys.SysUserManage.AddSysUserDto)">
             <summary>
             新增
             </summary>
             <param name="dto"></param>
             <returns></returns>
-            <exception cref="T:System.NotImplementedException"></exception>
         </member>
         <member name="M:Xy.Project.Application.Services.Sys.SysUserService.DeleteAsync(System.Int64)">
             <summary>
             删除
             </summary>
             <param name="id"></param>
-            <returns></returns>
-            <exception cref="T:System.NotImplementedException"></exception>
-        </member>
-        <member name="M:Xy.Project.Application.Services.Sys.SysUserService.GetUserInfo">
-            <summary>
-            获取用户详情信息
-            </summary>
             <returns></returns>
             <exception cref="T:System.NotImplementedException"></exception>
         </member>
@@ -574,6 +524,13 @@
             修改
             </summary>
             <param name="dto"></param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Sys.SysUserService.GetUserInfo">
+            <summary>
+            获取用户详情信息
+            </summary>
             <returns></returns>
             <exception cref="T:System.NotImplementedException"></exception>
         </member>

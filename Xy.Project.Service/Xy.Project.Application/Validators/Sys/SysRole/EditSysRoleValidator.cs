@@ -5,11 +5,11 @@ using Xy.Project.Platform.Model.Entities.Sys;
 
 namespace Xy.Project.Application.Validators.Sys
 {
-    public class EditValidator : AbstractValidator<EditSysRoleDto>
+    public class EditSysRoleValidator : AbstractValidator<EditSysRoleDto>
     {
         private const string _emptyOrNullMesg = "{0}不能为空或Null！！";
         private readonly IRepository<SysRole, long> _repository;
-        public EditValidator(IRepository<SysRole, long> repository)
+        public EditSysRoleValidator(IRepository<SysRole, long> repository)
         {
             Validator();
             _repository = repository;
