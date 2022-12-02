@@ -28,7 +28,7 @@ namespace Xy.Project.Platform.Modular
         /// <returns></returns>
         [HttpPost]
         [Description("得到分页数据")]
-        public async Task<ActionResult<AppResult>> PateList([FromBody] PageParam page) => await _sysService.PageAsync(page);
+        public virtual async Task<ActionResult<AppResult>> PateList([FromBody] PageParam page) => await _sysService.PageAsync(page);
 
         /// <summary>
         /// 新增
@@ -37,7 +37,7 @@ namespace Xy.Project.Platform.Modular
         /// <returns></returns>
         [HttpPost]
         [Description("新增")]
-        public async Task<ActionResult<AppResult>> Add([FromBody] AddDto dto) => await _sysService.AddAsync(dto);
+        public virtual async Task<ActionResult<AppResult>> Add([FromBody] AddDto dto) => await _sysService.AddAsync(dto);
 
         /// <summary>
         /// 更新
@@ -46,7 +46,7 @@ namespace Xy.Project.Platform.Modular
         /// <returns></returns>
         [HttpPut]
         [Description("更新")]
-        public async Task<ActionResult<AppResult>> Update([FromBody] EditDto dto) => await _sysService.UpdateAsync(dto);
+        public virtual async Task<ActionResult<AppResult>> Update([FromBody] EditDto dto) => await _sysService.UpdateAsync(dto);
 
         /// <summary>
         /// 删除
@@ -55,6 +55,6 @@ namespace Xy.Project.Platform.Modular
         /// <returns></returns>
         [HttpDelete]
         [Description("删除")]
-        public async Task<ActionResult<AppResult>> Delete(long id) => await _sysService.DeleteAsync(id);
+        public virtual async Task<ActionResult<AppResult>> Delete(long id) => await _sysService.DeleteAsync(id);
     }
 }
