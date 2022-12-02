@@ -8,7 +8,9 @@ namespace Xy.Project.Platform.Modular.Sys
     /// <summary>
     /// 授权控制器
     /// </summary>
-    public class AuthController : AdminControllerBase
+    [Route("api/[controller]/[action]")]
+    [ApiController]
+    public class AuthController : ControllerBase
     {
         private readonly IAuthService _authService;
         public AuthController(IAuthService authService)

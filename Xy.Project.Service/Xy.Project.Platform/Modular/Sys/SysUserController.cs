@@ -9,7 +9,6 @@ namespace Xy.Project.Platform.Modular.Sys;
 /// <summary>
 /// 用户控制器
 /// </summary>
-[Authorize]
 public class SysUserController : AdminControllerBase
 {
     private readonly ISysUserService _sysUserService;
@@ -53,4 +52,12 @@ public class SysUserController : AdminControllerBase
     [HttpDelete]
     [Description("删除")]
     public async Task<ActionResult<AppResult>> Delete(long id) => await _sysUserService.DeleteAsync(id);
+
+    /// <summary>
+    /// 获取用户信息
+    /// </summary>
+    /// <returns></returns>
+    [HttpGet]
+    [Description("获取用户信息")]
+    public async Task<ActionResult<AppResult>> GetUserInfo() => await _sysUserService.GetUserInfo();
 }

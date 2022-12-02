@@ -79,6 +79,86 @@
             验证码
             </summary>
         </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysMenuManage.BaseSysMenu.Type">
+            <summary>
+            菜单类型（1目录 2菜单 3按钮）
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysMenuManage.BaseSysMenu.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysMenuManage.BaseSysMenu.Path">
+            <summary>
+            路由地址
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysMenuManage.BaseSysMenu.Component">
+            <summary>
+            组件路径
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysMenuManage.BaseSysMenu.Redirect">
+            <summary>
+            重定向
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysMenuManage.BaseSysMenu.Permission">
+            <summary>
+            权限标识
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysMenuManage.BaseSysMenu.Title">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysMenuManage.BaseSysMenu.Icon">
+            <summary>
+            图标
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysMenuManage.BaseSysMenu.IsIframe">
+            <summary>
+            是否内嵌
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysMenuManage.BaseSysMenu.OutLink">
+            <summary>
+            外链链接
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysMenuManage.BaseSysMenu.IsHide">
+            <summary>
+            是否隐藏
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysMenuManage.BaseSysMenu.IsKeepAlive">
+            <summary>
+            是否缓存
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysMenuManage.BaseSysMenu.IsAffix">
+            <summary>
+            是否固定
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysMenuManage.BaseSysMenu.Order">
+            <summary>
+            排序
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysMenuManage.BaseSysMenu.Status">
+            <summary>
+            状态
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysMenuManage.BaseSysMenu.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
         <member name="P:Xy.Project.Application.Dtos.Sys.SysRoleManage.BaseSysRole.Name">
             <summary>
             名称
@@ -259,6 +339,27 @@
             <param name="password"></param>
             <returns></returns>
         </member>
+        <member name="P:Xy.Project.Application.Services.Contracts.Sys.ILoginUserManager.Id">
+            <summary>
+            用户Id
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Services.Contracts.Sys.ILoginUserManager.Account">
+            <summary>
+            账户
+            </summary>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Contracts.Sys.ILoginUserManager.GetUserInfo">
+            <summary>
+            获取用户详细信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Xy.Project.Application.Services.Contracts.Sys.ISysMenuService">
+            <summary>
+            菜单
+            </summary>
+        </member>
         <member name="T:Xy.Project.Application.Services.Contracts.Sys.ISysUserService">
             <summary>
             用户接口
@@ -290,6 +391,12 @@
             分页
             </summary>
             <param name="page"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Contracts.Sys.ISysUserService.GetUserInfo">
+            <summary>
+            获取用户详情信息
+            </summary>
             <returns></returns>
         </member>
         <member name="M:Xy.Project.Application.Services.Base.CURDService`4.AddAsync(`1)">
@@ -414,6 +521,23 @@
             <param name="password"></param>
             <returns></returns>
         </member>
+        <member name="P:Xy.Project.Application.Services.Sys.LoginUserManager.Id">
+            <summary>
+            用户id
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Services.Sys.LoginUserManager.Account">
+            <summary>
+            账户
+            </summary>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Sys.LoginUserManager.GetUserInfo">
+            <summary>
+            用户信息
+            </summary>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
         <member name="M:Xy.Project.Application.Services.Sys.SysUserService.AddAsync(Xy.Project.Application.Dtos.Sys.SysUserManage.AddSysUserDto)">
             <summary>
             新增
@@ -427,6 +551,13 @@
             删除
             </summary>
             <param name="id"></param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Sys.SysUserService.GetUserInfo">
+            <summary>
+            获取用户详情信息
+            </summary>
             <returns></returns>
             <exception cref="T:System.NotImplementedException"></exception>
         </member>

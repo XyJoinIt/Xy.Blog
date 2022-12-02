@@ -37,5 +37,11 @@ namespace Xy.Project.Application.Services.Contracts.Sys
         /// <param name="page"></param>
         /// <returns></returns>
         Task<AppResult> PageAsync(PageParam page);
+
+        /// <summary>
+        /// 获取用户详情信息
+        /// </summary>
+        /// <returns></returns>
+        Task<AppResult> GetUserInfo();
     }
 }

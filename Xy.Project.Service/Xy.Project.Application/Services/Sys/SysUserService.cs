@@ -13,12 +13,14 @@ namespace Xy.Project.Application.Services.Sys
         private readonly IRepository<SysUser,long> _repository;
         private readonly IEncryptionService _encryption;
         private readonly IValidator<SysUser> _validator;
+        private readonly ILoginUserManager _loginUserManager;
 
-        public SysUserService(IRepository<SysUser, long> repository, IEncryptionService encryption, IValidator<SysUser> validator)
+        public SysUserService(IRepository<SysUser, long> repository, IEncryptionService encryption, IValidator<SysUser> validator, ILoginUserManager loginUserManager)
         {
             _repository = repository;
             _encryption = encryption;
             _validator = validator;
+            _loginUserManager = loginUserManager;
         }
         /// <summary>
         /// 新增
@@ -51,6 +53,16 @@ namespace Xy.Project.Application.Services.Sys
         public async Task<AppResult> DeleteAsync(long id)
         {
             return await _repository.DeleteAsync(id) > 0 ? AppResult.Success() : AppResult.Error();
+        }
+
+        /// <summary>
+        /// 获取用户详情信息
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public async Task<AppResult> GetUserInfo()
+        {
+            return await AppResult.SuccessAsync(_loginUserManager.Id);
         }
 
         /// <summary>

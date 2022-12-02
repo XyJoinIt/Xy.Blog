@@ -21,6 +21,11 @@
             <param name="services"></param>
             <returns></returns>
         </member>
+        <member name="T:Xy.Project.Platform.Extensions.JwtSetup">
+            <summary>
+            jwt注入
+            </summary>
+        </member>
         <member name="T:Xy.Project.Platform.Extensions.SwaggerSetup">
             <summary>
             
@@ -117,6 +122,39 @@
             <param name="dto"></param>
             <returns></returns>
         </member>
+        <member name="T:Xy.Project.Platform.Modular.Sys.SysMenuController">
+            <summary>
+            菜单控制器
+            </summary>
+        </member>
+        <member name="M:Xy.Project.Platform.Modular.Sys.SysMenuController.PateList(Xy.Project.Core.Filter.PageParam)">
+            <summary>
+            得到分页数据
+            </summary>
+            <param name="page"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Platform.Modular.Sys.SysMenuController.Add(Xy.Project.Application.Dtos.Sys.SysMenuManage.AddSysMenuDto)">
+            <summary>
+            新增
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Platform.Modular.Sys.SysMenuController.Update(Xy.Project.Application.Dtos.Sys.SysMenuManage.EditSysMenuDto)">
+            <summary>
+            更新
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Platform.Modular.Sys.SysMenuController.Delete(System.Int64)">
+            <summary>
+            删除
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="T:Xy.Project.Platform.Modular.Sys.SysRoleController">
             <summary>
             角色控制器
@@ -181,6 +219,12 @@
             删除
             </summary>
             <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Platform.Modular.Sys.SysUserController.GetUserInfo">
+            <summary>
+            获取用户信息
+            </summary>
             <returns></returns>
         </member>
     </members>
