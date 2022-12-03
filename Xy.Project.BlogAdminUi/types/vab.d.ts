@@ -1,6 +1,0 @@
-declare module 'count-vue3'
-declare module 'magnifier-vue3'
-declare module 'vab-player'
-declare module 'quill-vue3'
-declare module 'cropper-vue3'
-declare module 'mockjs'

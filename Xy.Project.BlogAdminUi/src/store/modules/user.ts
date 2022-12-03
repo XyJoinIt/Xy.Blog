@@ -1,161 +1,177 @@
-/**
- * @description 登录、获取用户信息、退出登录、清除token逻辑，不建议修改
- */
-import { useAclStore } from './acl'
-import { useTabsStore } from './tabs'
-import { useRoutesStore } from './routes'
-import { useSettingsStore } from './settings'
-import { UserModuleType } from '/#/store'
-import { getUserInfo, login, logout } from '@/api/user'
-import { getToken, removeToken, setToken } from '@/utils/token'
-import { resetRouter } from '@/router'
-import { isArray, isString } from '@/utils/validate'
-import { tokenName } from '@/config'
-import { gp } from '@gp'
+import type { UserInfo } from '/#/store'
+import type { ErrorMessageMode } from '/#/axios'
+import { defineStore } from 'pinia'
+import { store } from '/@/store'
+import { RoleEnum } from '/@/enums/roleEnum'
+import { PageEnum } from '/@/enums/pageEnum'
+import { ROLES_KEY, TOKEN_KEY, USER_INFO_KEY } from '/@/enums/cacheEnum'
+import { getAuthCache, setAuthCache } from '/@/utils/auth'
+import { GetUserInfoModel, LoginParams } from '/@/api/sys/model/userModel'
+import { doLogout, getUserInfo, loginApi } from '/@/api/sys/user'
+import { useI18n } from '/@/hooks/web/useI18n'
+import { useMessage } from '/@/hooks/web/useMessage'
+import { router } from '/@/router'
+import { usePermissionStore } from '/@/store/modules/permission'
+import { RouteRecordRaw } from 'vue-router'
+import { PAGE_NOT_FOUND_ROUTE } from '/@/router/routes/basic'
+import { isArray } from '/@/utils/is'
+import { h } from 'vue'
 
-export const useUserStore = defineStore('user', {
-  state: (): UserModuleType => ({
-    token: getToken() as string,
-    username: '游客',
-    avatar: 'https://i.gtimg.cn/club/item/face/img/2/15922_100.gif',
+interface UserState {
+  userInfo: Nullable<UserInfo>
+  token?: string
+  roleList: RoleEnum[]
+  sessionTimeout?: boolean
+  lastUpdateTime: number
+}
+
+export const useUserStore = defineStore({
+  id: 'app-user',
+  state: (): UserState => ({
+    // user info
+    userInfo: null,
+    // token
+    token: undefined,
+    // roleList
+    roleList: [],
+    // Whether the login expired
+    sessionTimeout: false,
+    // Last fetch time
+    lastUpdateTime: 0,
   }),
   getters: {
-    getToken: (state) => state.token,
-    getUsername: (state) => state.username,
-    getAvatar: (state) => state.avatar,
+    getUserInfo(): UserInfo {
+      return this.userInfo || getAuthCache<UserInfo>(USER_INFO_KEY) || {}
+    },
+    getToken(): string {
+      return this.token || getAuthCache<string>(TOKEN_KEY)
+    },
+    getRoleList(): RoleEnum[] {
+      return this.roleList.length > 0 ? this.roleList : getAuthCache<RoleEnum[]>(ROLES_KEY)
+    },
+    getSessionTimeout(): boolean {
+      return !!this.sessionTimeout
+    },
+    getLastUpdateTime(): number {
+      return this.lastUpdateTime
+    },
   },
   actions: {
-    /**
-     * @description 设置token
-     * @param {*} token
-     */
-    setToken(token: string) {
-      this.token = token
-      setToken(token)
+    setToken(info: string | undefined) {
+      this.token = info ? info : '' // for null or undefined value
+      setAuthCache(TOKEN_KEY, info)
+    },
+    setRoleList(roleList: RoleEnum[]) {
+      this.roleList = roleList
+      setAuthCache(ROLES_KEY, roleList)
+    },
+    setUserInfo(info: UserInfo | null) {
+      this.userInfo = info
+      this.lastUpdateTime = new Date().getTime()
+      setAuthCache(USER_INFO_KEY, info)
+    },
+    setSessionTimeout(flag: boolean) {
+      this.sessionTimeout = flag
+    },
+    resetState() {
+      this.userInfo = null
+      this.token = ''
+      this.roleList = []
+      this.sessionTimeout = false
     },
     /**
-     * @description 设置用户名
-     * @param {*} username
+     * @description: login
      */
-    setUsername(username: string) {
-      this.username = username
-    },
-    /**
-     * @description 设置头像
-     * @param {*} avatar
-     */
-    setAvatar(avatar: string) {
-      this.avatar = avatar
-    },
-    /**
-     * @description 登录拦截放行时，设置虚拟角色
-     */
-    setVirtualRoles() {
-      const aclStore = useAclStore()
-      aclStore.setFull(true)
-      this.setUsername('admin(未开启登录拦截)')
-      this.setAvatar('https://i.gtimg.cn/club/item/face/img/2/15922_100.gif')
-    },
-    /**
-     * @description 设置token并发送提醒
-     * @param {string} token 更新令牌
-     * @param {string} tokenName 令牌名称
-     */
-    afterLogin(token: string, tokenName: string) {
-      const settingsStore = useSettingsStore()
-      if (token) {
-        this.setToken(token)
-        const hour = new Date().getHours()
-        const thisTime =
-          hour < 8
-            ? '早上好'
-            : hour <= 11
-            ? '上午好'
-            : hour <= 13
-            ? '中午好'
-            : hour < 18
-            ? '下午好'
-            : '晚上好'
-        gp.$baseNotify(`欢迎登录${settingsStore.title}`, `${thisTime}！`)
-      } else {
-        const err = `登录接口异常，未正确返回${tokenName}...`
-        gp.$baseMessage(err, 'error', 'vab-hey-message-error')
-        throw err
-      }
-    },
-    /**
-     * @description 登录
-     * @param {*} userInfo
-     */
-    async login(userInfo: any) {
-      const {
-        data: { [tokenName]: token },
-      } = await login(userInfo)
-      this.afterLogin(token, tokenName)
-    },
-    /**
-     * @description 获取用户信息接口 这个接口非常非常重要，如果没有明确底层前逻辑禁止修改此方法，错误的修改可能造成整个框架无法正常使用
-     * @returns
-     */
-    async getUserInfo() {
-      const {
-        data: { userName, avatar, roles, permissions },
-      } = await getUserInfo()
-      /**
-       * 检验返回数据是否正常，无对应参数，将使用默认用户名,头像,Roles和Permissions
-       * username {String}
-       * avatar {String}
-       * roles {List}
-       * ability {List}
-       */
-      if (
-        (userName && !isString(userName)) ||
-        (avatar && !isString(avatar)) ||
-        (roles && !isArray(roles)) ||
-        (permissions && !isArray(permissions))
-      ) {
-        const err = 'getUserInfo核心接口异常，请检查返回JSON格式是否正确'
-        gp.$baseMessage(err, 'error', 'vab-hey-message-error')
-        throw err
-      } else {
-        const aclStore = useAclStore()
-        // 如不使用username用户名,可删除以下代码
-        if (userName) this.setUsername(userName)
-        // 如不使用avatar头像,可删除以下代码
-        if (avatar) this.setAvatar(avatar)
-        // 如不使用roles权限控制,可删除以下代码
-        if (roles) aclStore.setRole(roles)
-        // 如不使用permissions权限控制,可删除以下代码
-        if (permissions) aclStore.setPermission(permissions)
-      }
-    },
-    /**
-     * @description 退出登录
-     */
-    async logout() {
-      await logout()
-      await this.resetAll()
-      // 解决横向布局退出登录显示不全的bug
-      location.reload()
-    },
-    /**
-     * @description 重置token、roles、permission、router、tabsBar等
-     */
-    async resetAll() {
-      this.setToken('')
-      this.setUsername('游客')
-      this.setAvatar('https://i.gtimg.cn/club/item/face/img/2/15922_100.gif')
+    async login(
+      params: LoginParams & {
+        goHome?: boolean
+        mode?: ErrorMessageMode
+      },
+    ): Promise<GetUserInfoModel | null> {
+      try {
+        const { goHome = true, mode, ...loginParams } = params
+        const data = await loginApi(loginParams, mode)
+        const { token } = data
 
-      const aclStore = useAclStore()
-      const routesStore = useRoutesStore()
-      const tabsStore = useTabsStore()
-      aclStore.setPermission([])
-      aclStore.setFull(false)
-      aclStore.setRole([])
-      tabsStore.delAllVisitedRoutes()
-      routesStore.clearRoutes()
-      await resetRouter()
-      removeToken()
+        // save token
+        this.setToken(token)
+        return this.afterLoginAction(goHome)
+      } catch (error) {
+        return Promise.reject(error)
+      }
+    },
+    async afterLoginAction(goHome?: boolean): Promise<GetUserInfoModel | null> {
+      if (!this.getToken) return null
+      // get user info
+      const userInfo = await this.getUserInfoAction()
+
+      const sessionTimeout = this.sessionTimeout
+      if (sessionTimeout) {
+        this.setSessionTimeout(false)
+      } else {
+        const permissionStore = usePermissionStore()
+        if (!permissionStore.isDynamicAddedRoute) {
+          const routes = await permissionStore.buildRoutesAction()
+          routes.forEach((route) => {
+            router.addRoute(route as unknown as RouteRecordRaw)
+          })
+          router.addRoute(PAGE_NOT_FOUND_ROUTE as unknown as RouteRecordRaw)
+          permissionStore.setDynamicAddedRoute(true)
+        }
+        goHome && (await router.replace(userInfo?.homePath || PageEnum.BASE_HOME))
+      }
+      return userInfo
+    },
+    async getUserInfoAction(): Promise<UserInfo | null> {
+      if (!this.getToken) return null
+      const userInfo = await getUserInfo()
+      const { roles = [] } = userInfo
+      if (isArray(roles)) {
+        const roleList = roles.map((item) => item.value) as RoleEnum[]
+        this.setRoleList(roleList)
+      } else {
+        userInfo.roles = []
+        this.setRoleList([])
+      }
+      this.setUserInfo(userInfo)
+      return userInfo
+    },
+    /**
+     * @description: logout
+     */
+    async logout(goLogin = false) {
+      if (this.getToken) {
+        try {
+          await doLogout()
+        } catch {
+          console.log('注销Token失败')
+        }
+      }
+      this.setToken(undefined)
+      this.setSessionTimeout(false)
+      this.setUserInfo(null)
+      goLogin && router.push(PageEnum.BASE_LOGIN)
+    },
+
+    /**
+     * @description: Confirm before logging out
+     */
+    confirmLoginOut() {
+      const { createConfirm } = useMessage()
+      const { t } = useI18n()
+      createConfirm({
+        iconType: 'warning',
+        title: () => h('span', t('sys.app.Tip')),
+        content: () => h('span', t('sys.app.logoutMessage')),
+        onOk: async () => {
+          await this.logout(true)
+        },
+      })
     },
   },
 })
+
+// Need to be used outside the setup
+export function useUserStoreWithOut() {
+  return useUserStore(store)
+}

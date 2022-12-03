@@ -1,23 +1,64 @@
-import { createApp } from 'vue'
+import 'virtual:windi-base.css'
+import 'virtual:windi-components.css'
+import '/@/design/index.less'
+import 'virtual:windi-utilities.css'
+// Register icon sprite
+import 'virtual:svg-icons-register'
 import App from './App.vue'
-import { setupVab } from '~/library'
-import { setupStore } from '@/store'
-import { setupRouter } from '@/router'
+import { createApp } from 'vue'
+import { initAppConfigStore } from '/@/logics/initAppConfig'
+import { router, setupRouter } from '/@/router'
+import { setupRouterGuard } from '/@/router/guard'
+import { setupStore } from '/@/store'
+import { setupGlobDirectives } from '/@/directives'
+import { setupI18n } from '/@/locales/setupI18n'
+import { registerGlobComp } from '/@/components/registerGlobComp'
 
-const app = createApp(App)
+import { isDevMode } from './utils/env'
 
-import * as ElementPlusIconsVue from '@element-plus/icons-vue'
-for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
-  app.component(key, component)
+if (isDevMode()) {
+  import('ant-design-vue/es/style')
 }
 
-/**
- * @description 生产环境启用组件初始化，编译，渲染和补丁性能跟踪。仅在开发模式和支持 Performance.mark API的浏览器中工作。
- */
-if (process.env.NODE_ENV === 'development') app.config.performance = true
+async function bootstrap() {
+  const app = createApp(App)
 
-setupVab(app)
-setupStore(app)
-setupRouter(app)
-  .isReady()
-  .then(() => app.mount('#app'))
+  // Configure store
+  // 配置 store
+  setupStore(app)
+
+  // Initialize internal system configuration
+  // 初始化内部系统配置
+  initAppConfigStore()
+
+  // Register global components
+  // 注册全局组件
+  registerGlobComp(app)
+
+  // Multilingual configuration
+  // 多语言配置
+  // Asynchronous case: language files may be obtained from the server side
+  // 异步案例：语言文件可能从服务器端获取
+  await setupI18n(app)
+
+  // Configure routing
+  // 配置路由
+  setupRouter(app)
+
+  // router-guard
+  // 路由守卫
+  setupRouterGuard(router)
+
+  // Register global directive
+  // 注册全局指令
+  setupGlobDirectives(app)
+
+  // Configure global error handling
+
+  // https://next.router.vuejs.org/api/#isready
+  // await router.isReady();
+
+  app.mount('#app')
+}
+
+bootstrap()

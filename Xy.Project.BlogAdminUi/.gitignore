@@ -1,15 +1,19 @@
-.DS_Store
 node_modules
-node_modules.nosync
-/dist
+.DS_Store
+dist
+.npmrc
+.cache
 
+tests/server/static
+tests/server/static/upload
+
+.local
 # local env files
 .env.local
 .env.*.local
+.eslintcache
 
 # Log files
-logs
-*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
@@ -17,31 +21,13 @@ pnpm-debug.log*
 
 # Editor directories and files
 .idea
+# .vscode
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
 
-# Lock files
-yarn.lock
-pnpm-lock.yaml
 package-lock.json
+pnpm-lock.yaml
 
-# Yarn v2 not using using Zero-Installs
-.yarn/*
-#!.yarn/cache
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/sdks
-!.yarn/versions
-.pnp.*
-
-# Vab
-public/video
-*.zip
-*.7z
-*.rar
-/library/styles/variables/vab-red-variables.module.scss
-/.history

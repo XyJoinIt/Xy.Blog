@@ -1,52 +1,40 @@
-import { VabRouteMeta, VabRouteRecord } from '/#/router'
+import { ErrorTypeEnum } from '/@/enums/exceptionEnum'
+import { MenuModeEnum, MenuTypeEnum } from '/@/enums/menuEnum'
+import { RoleInfo } from '/@/api/sys/model/userModel'
 
-declare interface AclModuleType {
-  admin: boolean
-  role: string[]
-  permission: string[]
-}
-
-declare interface ErrorLogModuleType {
-  errorLogs: any[]
-}
-
-declare interface RoutesModuleType {
-  tab: {
-    data: string | undefined
-  }
-  tabMenu: string | undefined
-  activeMenu: {
-    data: string | undefined
-  }
-  routes: VabRouteRecord[]
-}
-
-declare type DeviceType = 'mobile' | 'desktop'
-declare type LanguageType = 'zh' | 'en'
-
-declare interface SettingsModuleType {
-  theme: ThemeType
-  device: DeviceType
-  collapse: boolean
-  lock: boolean
-  logo: string
-  title: string
-  echartsGraphic1: string[]
-  echartsGraphic2: string[]
-}
-
-declare interface TabsModuleType {
-  visitedRoutes: VabRouteRecord[]
-}
-
-declare interface OptionType {
+// Error-log information
+export interface ErrorLogInfo {
+  // Type of error
+  type: ErrorTypeEnum
+  // Error file
+  file: string
+  // Error name
   name?: string
-  title?: string
-  meta: VabRouteMeta
+  // Error message
+  message: string
+  // Error stack
+  stack?: string
+  // Error detail
+  detail: string
+  // Error url
+  url: string
+  // Error time
+  time?: string
 }
 
-declare interface UserModuleType {
-  token: string | boolean
+export interface UserInfo {
+  userId: string | number
   username: string
+  realName: string
   avatar: string
+  desc?: string
+  homePath?: string
+  roles: RoleInfo[]
+}
+
+export interface BeforeMiniState {
+  menuCollapsed?: boolean
+  menuSplit?: boolean
+  menuMode?: MenuModeEnum
+  menuType?: MenuTypeEnum
 }
