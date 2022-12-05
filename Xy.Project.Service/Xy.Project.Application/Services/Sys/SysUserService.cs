@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using System.Data;
 using Xy.Project.Application.Dtos.Blogs.Articles;
 using Xy.Project.Application.Dtos.Sys.SysUserManage;
 using Xy.Project.Application.Services.Base;
@@ -12,7 +13,7 @@ namespace Xy.Project.Application.Services.Sys
 {
     public class SysUserService : ISysUserService
     {
-        private readonly IRepository<SysUser,long> _repository;
+        private readonly IRepository<SysUser, long> _repository;
         private readonly IEncryptionService _encryption;
         private readonly ILoginUserManager _loginUserManager;
         private readonly IValidator<AddSysUserDto> _addValidator;
@@ -38,7 +39,7 @@ namespace Xy.Project.Application.Services.Sys
             var validator = await _addValidator.ValidateAsync(dto);
             if (!validator.IsValid)
                 return AppResult.Error(validator);
-           
+
             var entity = ObjectMap.MapTo<SysUser>(dto);
             entity.SecurityStamp = Guid.NewGuid().ToString("N").ToUpper();
             entity.Password = _encryption.GeneratePassword(entity.Password, entity.SecurityStamp);
@@ -104,7 +105,21 @@ namespace Xy.Project.Application.Services.Sys
         /// <exception cref="NotImplementedException"></exception>
         public async Task<AppResult> GetUserInfo()
         {
-            return await AppResult.SuccessAsync(_loginUserManager.Id);
+            var user = await _loginUserManager.GetUserInfo();
+            return await AppResult.SuccessAsync(new
+            {
+                roles = new[] {
+                    new {
+                        roleName="admin",
+                        value = "admin"
+                    }
+                },
+                userId = _loginUserManager.Id,
+                username = _loginUserManager.Account,
+                realName = user.Name,
+                avatar = user.Avatar,
+                desc = ""
+            });
         }
     }
 }
