@@ -62,7 +62,7 @@ export default {
     forgetFormTitle: '重置密码',
 
     signInTitle: 'XyBlog后台管理系统',
-    signInDesc: '[]~(￣▽￣)~*',
+    signInDesc: '',
     policy: '我同意xxx隐私政策',
     scanSign: `扫码后点击"确认"，即可完成登录`,
 

@@ -64,7 +64,7 @@ export default {
     forgetFormTitle: 'Reset password',
 
     signInTitle: 'XyBlog background management system',
-    signInDesc: '[]~(￣▽￣)~*',
+    signInDesc: '',
     policy: 'I agree to the xxx Privacy Policy',
     scanSign: `scanning the code to complete the login`,
 

@@ -9,13 +9,13 @@ namespace Xy.Project.Core.Models
         {
 
         }
-        public string? Msg { get; set; }
+        public string? Message { get; set; }
         public bool Succeeded => Code == (int)HttpCode.成功;
         public int Code { get; set; }
-        public object? Data { get; set; }
+        public object? Result { get; set; }
         public static AppResult Problem(HttpCode status, string? message = default, object? data = default)
         {
-            return new AppResult() { Code = (int)status, Msg = message, Data = data };
+            return new AppResult() { Code = (int)status, Message = message, Result = data };
         }
 
         public static async Task<AppResult> ProblemAsync(HttpCode status, string? message = default, object? data = default)
@@ -85,13 +85,13 @@ namespace Xy.Project.Core.Models
         public AppResult()
         {
         }
-        public string? Msg { get; set; }
+        public string? Message { get; set; }
         public bool Succeeded => Code == (int)HttpCode.成功;
         public int Code { get; set; }
-        public T? Data { get; set; }
+        public T? Result { get; set; }
         public static AppResult<T> Problem(HttpCode status, string? message = default, T? data = default)
         {
-            return new AppResult<T>() { Code = (int)status, Msg = message, Data = data };
+            return new AppResult<T>() { Code = (int)status, Message = message, Result = data };
         }
     }
 }

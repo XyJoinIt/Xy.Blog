@@ -107,14 +107,17 @@
 
   const getShow = computed(() => unref(getLoginState) === LoginStateEnum.LOGIN)
 
+  //登录
   async function handleLogin() {
     const data = await validForm()
     if (!data) return
     try {
       loading.value = true
       const userInfo = await userStore.login({
-        password: data.password,
-        username: data.account,
+        passWord: data.password,
+        account: data.account,
+        codeId: 0,
+        code: '1234',
         mode: 'none', //不要默认的错误提示
       })
       if (userInfo) {

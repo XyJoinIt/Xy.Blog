@@ -5,13 +5,13 @@
     /// </summary>
     public interface IResult
     {
-        string? Msg { get; set; }
+        string? Message { get; set; }
         bool Succeeded { get; }
         int Code { get; set; }
     }
     public interface IResult<out T> : IResult
     {
 
-        T? Data { get; }
+        T? Result { get; }
     }
 }
