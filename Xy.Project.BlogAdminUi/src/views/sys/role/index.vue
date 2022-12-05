@@ -31,13 +31,9 @@
 </template>
 <script lang="ts">
   import { defineComponent } from 'vue'
-
   import { BasicTable, useTable, TableAction } from '/@/components/Table'
   import { PateList } from '/@/api/sys/role'
-
   import { useDrawer } from '/@/components/Drawer'
-  //import RoleDrawer from './RoleDrawer.vue'
-
   import { columns, searchFormSchema } from './role.data'
 
   export default defineComponent({
@@ -61,7 +57,6 @@
           width: 80,
           title: '操作',
           dataIndex: 'action',
-          // slots: { customRender: 'action' },
           fixed: undefined,
         },
       })

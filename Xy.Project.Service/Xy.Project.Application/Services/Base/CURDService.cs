@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using Org.BouncyCastle.Utilities;
 using System.Linq.Expressions;
 using Xy.Project.Application.Services.Contracts.Base;
 using Xy.Project.Core;
@@ -110,10 +111,10 @@ namespace Xy.Project.Application.Services.Base
                 page.AddOrderCondition(orderConditions);
             }
 
-            var list = await Repository.QueryAsNoTracking()
+            var items = await Repository.QueryAsNoTracking()
                 .Where(exp)
                 .ToPageAsync<TEntity, OutPageListDto>(page.PageCondition);
-            return AppResult.Problem(HttpCode.成功, "得到分页数据", list);
+            return AppResult.Problem(HttpCode.成功, "得到分页数据", items);
         }
         protected virtual Expression<Func<TEntity, bool>> CreateFilteredQuery(FilterGroup filterGroup)
         {

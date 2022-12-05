@@ -1,5 +1,5 @@
 import { defHttp } from '/@/utils/http/axios'
-import { OutSysRolePageDto } from './model/roleModel'
+import { OutSysRolePage } from './model/roleModel'
 
 enum Api {
   GetMenuList = '/SysRole/PateList',
@@ -10,5 +10,8 @@ enum Api {
  */
 
 export const PateList = () => {
-  return defHttp.post<OutSysRolePageDto>({ url: Api.GetMenuList })
+  const a = defHttp.post<OutSysRolePage>({ url: Api.GetMenuList })
+
+  console.log(a)
+  return a
 }

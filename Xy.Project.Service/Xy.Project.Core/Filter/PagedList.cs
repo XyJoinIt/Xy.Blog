@@ -9,14 +9,14 @@
 
         public PagedList(List<T> list, long total)
         {
-            List = list;
+            Items = list;
             Total = total;
         }
 
         /// <summary>
         /// 分页数据
         /// </summary>
-        public IReadOnlyList<T> List { get; set; } = Array.Empty<T>().ToList();
+        public IReadOnlyList<T> Items { get; set; } = Array.Empty<T>().ToList();
 
         /// <summary>
         /// 总数

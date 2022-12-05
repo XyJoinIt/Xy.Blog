@@ -1,3 +1,5 @@
+import { BasicFetchResult } from '/@/api/model/baseModel'
+
 export interface OutSysRolePageDto {
   id: number | string
   name: string
@@ -6,3 +8,5 @@ export interface OutSysRolePageDto {
   remark: string
   status: string
 }
+
+export type OutSysRolePage = BasicFetchResult<OutSysRolePageDto>
