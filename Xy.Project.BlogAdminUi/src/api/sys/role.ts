@@ -10,8 +10,5 @@ enum Api {
  */
 
 export const PateList = () => {
-  const a = defHttp.post<OutSysRolePage>({ url: Api.GetMenuList })
-
-  console.log(a)
-  return a
+  return defHttp.post<OutSysRolePage>({ url: Api.GetMenuList })
 }

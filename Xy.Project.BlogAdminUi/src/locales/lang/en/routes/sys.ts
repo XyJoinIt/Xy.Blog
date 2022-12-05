@@ -1,3 +1,4 @@
 export default {
-  role: 'role',
+  system: 'systemSettings',
+  role: 'RoleManagement',
 }

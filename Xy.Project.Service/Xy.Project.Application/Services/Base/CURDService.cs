@@ -124,26 +124,23 @@ namespace Xy.Project.Application.Services.Base
 
         protected virtual OrderCondition[] ApplySorting()
         {
-
             return Array.Empty<OrderCondition>();
         }
+
         protected virtual TEntity MapTo(IAddInputDto dto)
         {
             var entity = ObjectMap.MapTo<TEntity>(dto);
             return entity;
-
         }
+
         protected virtual ValueTask<TEntity> FindByIdAsync(long id)
         {
             return Repository.FindAsync(id);
         }
-        protected virtual TEntity MapTo(IUpdateInputDto dto, TEntity entity)
 
+        protected virtual TEntity MapTo(IUpdateInputDto dto, TEntity entity)
         {
             return ObjectMap.MapTo(dto, entity);
-
         }
-
-
     }
 }

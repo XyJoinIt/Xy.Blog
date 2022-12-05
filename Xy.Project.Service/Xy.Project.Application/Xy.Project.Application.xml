@@ -184,6 +184,11 @@
             状态（字典 0正常 1停用 2删除）
             </summary>
         </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysRoleManage.BaseSysRole.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
         <member name="P:Xy.Project.Application.Dtos.Sys.SysUserManage.BaseSysUserDto.Account">
             <summary>
             账号
@@ -495,6 +500,13 @@
             </summary>
             <returns></returns>
             <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Sys.SysRoleService.PageAsync(Xy.Project.Core.Filter.PageParam)">
+            <summary>
+            分页
+            </summary>
+            <param name="page"></param>
+            <returns></returns>
         </member>
         <member name="M:Xy.Project.Application.Services.Sys.SysUserService.Xy#Project#Application#Services#Contracts#Base#ICURDContract{Xy#Project#Platform#Model#Entities#Sys#SysUser,Xy#Project#Application#Dtos#Sys#SysUserManage#AddSysUserDto,Xy#Project#Application#Dtos#Sys#SysUserManage#EditSysUserDto,Xy#Project#Application#Dtos#Sys#SysUserManage#OutSysUserPageDto}#AddAsync(Xy.Project.Application.Dtos.Sys.SysUserManage.AddSysUserDto)">
             <summary>

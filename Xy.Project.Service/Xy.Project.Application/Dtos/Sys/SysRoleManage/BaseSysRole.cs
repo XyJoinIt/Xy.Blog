@@ -4,10 +4,11 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xy.Project.Core.Base;
 
 namespace Xy.Project.Application.Dtos.Sys.SysRoleManage
 {
-    public class BaseSysRole
+    public class BaseSysRole: ICreatedTime
     {
         /// <summary>
         /// 名称
@@ -38,5 +39,10 @@ namespace Xy.Project.Application.Dtos.Sys.SysRoleManage
         /// </summary>
         [Comment("状态")]
         public CommonStatus Status { get; set; } = CommonStatus.正常;
+
+        /// <summary>
+        /// 创建时间
+        /// </summary>
+        public DateTime? CreateTime { get ; set ; }
     }
 }
