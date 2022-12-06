@@ -35,12 +35,14 @@
   import { PateList } from '/@/api/sys/role'
   import { useDrawer } from '/@/components/Drawer'
   import { columns, searchFormSchema } from './role.data'
+  //import { PageParam } from '/@/api/model/baseModel'
 
   export default defineComponent({
     name: 'RoleManagement',
     components: { BasicTable, TableAction },
     setup() {
       const [registerDrawer, { openDrawer }] = useDrawer()
+
       const [registerTable, { reload }] = useTable({
         title: '角色列表',
         api: PateList,
@@ -50,6 +52,7 @@
           schemas: searchFormSchema,
         },
         useSearchForm: true,
+        rowKey: 'Id',
         showTableSetting: true,
         bordered: true,
         showIndexColumn: false,
@@ -61,12 +64,14 @@
         },
       })
 
+      //新增
       function handleCreate() {
         openDrawer(true, {
           isUpdate: false,
         })
       }
 
+      //编辑
       function handleEdit(record: Recordable) {
         openDrawer(true, {
           record,
@@ -74,6 +79,7 @@
         })
       }
 
+      //删除
       function handleDelete(record: Recordable) {
         console.log(record)
       }

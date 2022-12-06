@@ -17,6 +17,11 @@ import { useI18n } from '/@/hooks/web/useI18n'
 import { joinTimestamp, formatRequestDate } from './helper'
 import { useUserStoreWithOut } from '/@/store/modules/user'
 import { AxiosRetry } from '/@/utils/http/axios/axiosRetry'
+import { BasicPageParams, PageParam } from '/@/api/model/baseModel'
+
+import componentSetting from '/@/settings/componentSetting'
+
+const { table } = componentSetting
 
 const globSetting = useGlobSetting()
 const urlPrefix = globSetting.urlPrefix
@@ -134,7 +139,25 @@ const transform: AxiosTransform = {
         config.url = config.url + params
         config.params = undefined
       }
+      //排组pageList Param
+      if (config.method?.toUpperCase() == RequestEnum.POST) {
+        const dataParam = config.data as BasicPageParams
+        if (dataParam.pageIndex != null && dataParam.pageSize != null) {
+          console.log(dataParam)
+          const mapData = new PageParam(dataParam.pageIndex, dataParam.pageSize)
+          for (const key in dataParam) {
+            if (key === table.fetchSetting.pageField || key === table.fetchSetting.sizeField)
+              continue
+            else {
+              mapData.FilterGroup?.add(key, dataParam[key])
+            }
+          }
+
+          config.data = mapData
+        }
+      }
     }
+    //console.log(config)
     return config
   },
 
@@ -150,6 +173,8 @@ const transform: AxiosTransform = {
         ? `Bearer ${options.authenticationScheme} ${token}`
         : `Bearer ${token}`
     }
+    //console.log(config)
+    //config.data = new PageParam()
     return config
   },
 

@@ -1,5 +1,6 @@
 import { defHttp } from '/@/utils/http/axios'
 import { OutSysRolePage } from './model/roleModel'
+import { PageParam } from '../model/baseModel'
 
 enum Api {
   GetMenuList = '/SysRole/PateList',
@@ -9,6 +10,6 @@ enum Api {
  * @description: Get List Role
  */
 
-export const PateList = () => {
-  return defHttp.post<OutSysRolePage>({ url: Api.GetMenuList })
+export const PateList = (data: PageParam) => {
+  return defHttp.post<OutSysRolePage>({ url: Api.GetMenuList, data })
 }

@@ -4,6 +4,7 @@ import { h } from 'vue'
 import { Switch } from 'ant-design-vue'
 import { setRoleStatus } from '/@/api/demo/system'
 import { useMessage } from '/@/hooks/web/useMessage'
+import { CommonStatus } from '/@/enums/GlobaEnum'
 
 export const columns: BasicColumn[] = [
   {
@@ -91,22 +92,24 @@ export const formSchema: FormSchema[] = [
     label: '角色名称',
     required: true,
     component: 'Input',
+    colProps: { span: 24 },
   },
   {
     field: 'code',
     label: '角色值',
     required: true,
     component: 'Input',
+    colProps: { span: 24 },
   },
   {
     field: 'status',
     label: '状态',
     component: 'RadioButtonGroup',
-    defaultValue: '0',
+    defaultValue: CommonStatus.正常,
     componentProps: {
       options: [
-        { label: '启用', value: '0' },
-        { label: '停用', value: '1' },
+        { label: '启用', value: CommonStatus.正常 },
+        { label: '停用', value: CommonStatus.停用 },
       ],
     },
   },
@@ -114,11 +117,6 @@ export const formSchema: FormSchema[] = [
     label: '备注',
     field: 'remark',
     component: 'InputTextArea',
-  },
-  {
-    label: ' ',
-    field: 'menu',
-    slot: 'menu',
-    component: 'Input',
+    colProps: { span: 24 },
   },
 ]
