@@ -35,12 +35,12 @@ export enum CommonStatus {
   /// <summary>
   /// 正常
   /// </summary>
-  正常 = 0,
+  正常 = '正常',
 
   /// <summary>
   /// 停用
   /// </summary>
-  停用 = 1,
+  停用 = '停用',
 }
 
 /// <summary>

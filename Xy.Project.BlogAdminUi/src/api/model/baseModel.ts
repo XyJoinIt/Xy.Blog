@@ -4,7 +4,12 @@ export interface BasicPageParams {
   pageIndex?: number
   pageSize?: number
 }
-
+export class BaseId {
+  constructor(id: number) {
+    this.Id = id
+  }
+  Id = 0
+}
 export interface BasicFetchResult<T> {
   items: T[]
   total: number

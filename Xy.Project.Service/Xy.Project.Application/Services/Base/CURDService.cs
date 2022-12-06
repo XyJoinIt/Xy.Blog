@@ -87,6 +87,8 @@ namespace Xy.Project.Application.Services.Base
         /// <returns></returns>
         public virtual async Task<AppResult> DeleteAsync(long id)
         {
+            if(id==default(long))
+                return AppResult.Error("参数错误：参数【Id】值为默认值");
             var entity = await FindByIdAsync(id).ConfigureAwait(false);
             var result = await Repository.DeleteAsync(entity).ConfigureAwait(false);
             return result > 0 ?

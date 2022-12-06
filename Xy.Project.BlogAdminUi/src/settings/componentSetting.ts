@@ -1,6 +1,7 @@
 // Used to configure the general configuration of some components without modifying the components
 
-import type { SorterResult } from '../components/Table'
+//import type { SorterResult } from '../components/Table'
+import type { SorterResult } from '/@/components/Table'
 
 export default {
   // basic-table setting

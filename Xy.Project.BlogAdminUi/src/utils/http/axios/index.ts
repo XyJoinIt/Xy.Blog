@@ -60,7 +60,11 @@ const transform: AxiosTransform = {
     const hasSuccess = data && Reflect.has(data, 'code') && code === ResultEnum.SUCCESS
     //console.log(hasSuccess)
     if (hasSuccess) {
-      return result
+      if (Reflect.has(data, 'result')) {
+        return result
+      } else {
+        return true
+      }
     }
 
     // 在此处根据自己项目的实际情况对不同的code执行不同的操作
@@ -141,9 +145,8 @@ const transform: AxiosTransform = {
       }
       if (config.method?.toUpperCase() == RequestEnum.POST) {
         const dataParam = config.data as BasicPageParams
-        if (dataParam?.pageIndex != null && dataParam?.pageSize != null) {
-          //console.log(dataParam)
-          const mapData = new PageParam(dataParam.pageIndex, dataParam.pageSize)
+        if (Reflect.has(dataParam, 'pageIndex') && Reflect.has(dataParam, 'pageSize')) {
+          const mapData = new PageParam(dataParam.pageIndex!, dataParam.pageSize!)
           for (const key in dataParam) {
             if (key === table.fetchSetting.pageField || key === table.fetchSetting.sizeField)
               continue
@@ -155,7 +158,6 @@ const transform: AxiosTransform = {
         }
       }
     }
-    //console.log(config)
     return config
   },
 
@@ -168,8 +170,8 @@ const transform: AxiosTransform = {
     if (token && (config as Recordable)?.requestOptions?.withToken !== false) {
       // jwt token
       ;(config as Recordable).headers.Authorization = options.authenticationScheme
-        ? `Bearer ${options.authenticationScheme} ${token}`
-        : `Bearer ${token}`
+        ? `${options.authenticationScheme} ${token}`
+        : `${token}`
     }
     //console.log(config)
     //config.data = new PageParam()
@@ -213,7 +215,7 @@ const transform: AxiosTransform = {
     } catch (error) {
       throw new Error(error as unknown as string)
     }
-
+    console.log(error?.response)
     checkStatus(error?.response?.status, msg, errorMessageMode)
 
     // 添加自动重试机制 保险起见 只针对GET请求
@@ -235,7 +237,7 @@ function createAxios(opt?: Partial<CreateAxiosOptions>) {
         // See https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication#authentication_schemes
         // authentication schemes，e.g: Bearer
         // authenticationScheme: 'Bearer',
-        authenticationScheme: '',
+        authenticationScheme: 'Bearer',
         timeout: 10 * 1000,
         // 基础接口地址
         // baseURL: globSetting.apiUrl,

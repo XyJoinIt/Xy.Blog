@@ -3,7 +3,7 @@ import { FormSchema } from '/@/components/Table'
 import { h } from 'vue'
 import { Switch } from 'ant-design-vue'
 //import { setRoleStatus } from '/@/api/demo/system'
-//import { useMessage } from '/@/hooks/web/useMessage'
+import { useMessage } from '/@/hooks/web/useMessage'
 import { CommonStatus } from '/@/enums/GlobaEnum'
 
 export const columns: BasicColumn[] = [
@@ -26,20 +26,24 @@ export const columns: BasicColumn[] = [
     title: '状态',
     dataIndex: 'status',
     width: 120,
+
     customRender: ({ record }) => {
       if (!Reflect.has(record, 'pendingStatus')) {
         record.pendingStatus = false
       }
       return h(Switch, {
-        checked: record.status === CommonStatus.正常,
-        checkedChildren: CommonStatus.正常,
-        unCheckedChildren: CommonStatus.停用,
+        checked: record.status === '正常',
+        checkedChildren: '正常',
+        unCheckedChildren: '停用',
         loading: record.pendingStatus,
         onChange(checked: boolean) {
           // record.pendingStatus = true
-          const newStatus = checked ? CommonStatus.正常 : CommonStatus.停用
+          const newStatus = checked ? '正常' : '停用'
           console.log(newStatus)
-          // const { createMessage } = useMessage()
+          const { createMessage } = useMessage()
+
+          record.status = newStatus
+          createMessage.success(`已成功修改角色状态`)
           // setRoleStatus(record.id, newStatus)
           //   .then(() => {
           //     record.status = newStatus

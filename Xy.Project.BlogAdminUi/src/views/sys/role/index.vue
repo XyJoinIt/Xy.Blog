@@ -32,16 +32,17 @@
 <script lang="ts">
   import { defineComponent } from 'vue'
   import { BasicTable, useTable, TableAction } from '/@/components/Table'
-  import { PateList } from '/@/api/sys/role'
+  import { PateList, DeleteRole } from '/@/api/sys/role'
   import { useDrawer } from '/@/components/Drawer'
   import { columns, searchFormSchema } from './role.data'
   import RoleDrawer from './RoleDrawer.vue'
+  import { useMessage } from '/@/hooks/web/useMessage'
   export default defineComponent({
     name: 'RoleManagement',
     components: { BasicTable, TableAction, RoleDrawer },
     setup() {
       const [registerDrawer, { openDrawer }] = useDrawer()
-
+      const { createMessage } = useMessage()
       const [registerTable, { reload }] = useTable({
         title: '角色列表',
         api: PateList,
@@ -79,8 +80,11 @@
       }
 
       //删除
-      function handleDelete(record: Recordable) {
-        console.log(record)
+      async function handleDelete(record: Recordable) {
+        if (await DeleteRole(record.id)) {
+          handleSuccess()
+          createMessage.success('删除成功')
+        }
       }
 
       function handleSuccess() {
