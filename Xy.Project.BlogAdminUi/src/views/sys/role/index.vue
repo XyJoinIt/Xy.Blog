@@ -26,7 +26,7 @@
         </template>
       </template>
     </BasicTable>
-    <!-- <RoleDrawer @register="registerDrawer" @success="handleSuccess" /> -->
+    <RoleDrawer @register="registerDrawer" @success="handleSuccess" />
   </div>
 </template>
 <script lang="ts">
@@ -35,11 +35,10 @@
   import { PateList } from '/@/api/sys/role'
   import { useDrawer } from '/@/components/Drawer'
   import { columns, searchFormSchema } from './role.data'
-  //import { PageParam } from '/@/api/model/baseModel'
-
+  import RoleDrawer from './RoleDrawer.vue'
   export default defineComponent({
     name: 'RoleManagement',
-    components: { BasicTable, TableAction },
+    components: { BasicTable, TableAction, RoleDrawer },
     setup() {
       const [registerDrawer, { openDrawer }] = useDrawer()
 

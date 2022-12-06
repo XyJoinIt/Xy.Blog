@@ -1,4 +1,5 @@
 import { BasicFetchResult } from '/@/api/model/baseModel'
+import { CommonStatus } from '/@/enums/GlobaEnum'
 
 export interface OutSysRolePageDto {
   id: number | string
@@ -6,7 +7,7 @@ export interface OutSysRolePageDto {
   code: string
   sort: number
   remark: string
-  status: string
+  status: CommonStatus
 }
 
 export type OutSysRolePage = BasicFetchResult<OutSysRolePageDto>

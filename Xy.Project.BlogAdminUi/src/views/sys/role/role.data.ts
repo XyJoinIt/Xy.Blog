@@ -2,8 +2,8 @@ import { BasicColumn } from '/@/components/Table'
 import { FormSchema } from '/@/components/Table'
 import { h } from 'vue'
 import { Switch } from 'ant-design-vue'
-import { setRoleStatus } from '/@/api/demo/system'
-import { useMessage } from '/@/hooks/web/useMessage'
+//import { setRoleStatus } from '/@/api/demo/system'
+//import { useMessage } from '/@/hooks/web/useMessage'
 import { CommonStatus } from '/@/enums/GlobaEnum'
 
 export const columns: BasicColumn[] = [
@@ -31,25 +31,26 @@ export const columns: BasicColumn[] = [
         record.pendingStatus = false
       }
       return h(Switch, {
-        checked: record.status === '正常',
-        checkedChildren: '启用',
-        unCheckedChildren: '停用',
+        checked: record.status === CommonStatus.正常,
+        checkedChildren: CommonStatus.正常,
+        unCheckedChildren: CommonStatus.停用,
         loading: record.pendingStatus,
         onChange(checked: boolean) {
-          record.pendingStatus = true
-          const newStatus = checked ? '正常' : '停用'
-          const { createMessage } = useMessage()
-          setRoleStatus(record.id, newStatus)
-            .then(() => {
-              record.status = newStatus
-              createMessage.success(`已成功修改角色状态`)
-            })
-            .catch(() => {
-              createMessage.error('修改角色状态失败')
-            })
-            .finally(() => {
-              record.pendingStatus = false
-            })
+          // record.pendingStatus = true
+          const newStatus = checked ? CommonStatus.正常 : CommonStatus.停用
+          console.log(newStatus)
+          // const { createMessage } = useMessage()
+          // setRoleStatus(record.id, newStatus)
+          //   .then(() => {
+          //     record.status = newStatus
+          //     createMessage.success(`已成功修改角色状态`)
+          //   })
+          //   .catch(() => {
+          //     createMessage.error('修改角色状态失败')
+          //   })
+          //   .finally(() => {
+          //     record.pendingStatus = false
+          //   })
         },
       })
     },
@@ -78,8 +79,8 @@ export const searchFormSchema: FormSchema[] = [
     component: 'Select',
     componentProps: {
       options: [
-        { label: '启用', value: '0' },
-        { label: '停用', value: '1' },
+        { label: '启用', value: CommonStatus.正常 },
+        { label: '停用', value: CommonStatus.停用 },
       ],
     },
     colProps: { span: 8 },
