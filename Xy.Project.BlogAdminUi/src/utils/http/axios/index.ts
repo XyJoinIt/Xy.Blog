@@ -139,11 +139,10 @@ const transform: AxiosTransform = {
         config.url = config.url + params
         config.params = undefined
       }
-      //排组pageList Param
       if (config.method?.toUpperCase() == RequestEnum.POST) {
         const dataParam = config.data as BasicPageParams
-        if (dataParam.pageIndex != null && dataParam.pageSize != null) {
-          console.log(dataParam)
+        if (dataParam?.pageIndex != null && dataParam?.pageSize != null) {
+          //console.log(dataParam)
           const mapData = new PageParam(dataParam.pageIndex, dataParam.pageSize)
           for (const key in dataParam) {
             if (key === table.fetchSetting.pageField || key === table.fetchSetting.sizeField)
@@ -152,7 +151,6 @@ const transform: AxiosTransform = {
               mapData.FilterGroup?.add(key, dataParam[key])
             }
           }
-
           config.data = mapData
         }
       }
