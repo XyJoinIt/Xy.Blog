@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Xy.Project.Platform.Model;
 
@@ -10,9 +11,11 @@ using Xy.Project.Platform.Model;
 namespace Xy.Project.Platform.Model.Migrations
 {
     [DbContext(typeof(XyPlatformContext))]
-    partial class XyPlatformContextModelSnapshot : ModelSnapshot
+    [Migration("20221208082811_v1.0.5")]
+    partial class v105
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -28,14 +31,8 @@ namespace Xy.Project.Platform.Model.Migrations
                     b.Property<long>("ArticleId")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("CreateId")
-                        .HasColumnType("bigint");
-
                     b.Property<DateTime?>("CreateTime")
                         .HasColumnType("datetime");
-
-                    b.Property<long?>("DeleteId")
-                        .HasColumnType("bigint");
 
                     b.Property<string>("HashCode")
                         .IsRequired()
@@ -46,9 +43,6 @@ namespace Xy.Project.Platform.Model.Migrations
 
                     b.Property<DateTime?>("LastModified")
                         .HasColumnType("datetime");
-
-                    b.Property<long?>("LastModifiedId")
-                        .HasColumnType("bigint");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -83,14 +77,8 @@ namespace Xy.Project.Platform.Model.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<long?>("CreateId")
-                        .HasColumnType("bigint");
-
                     b.Property<DateTime?>("CreateTime")
                         .HasColumnType("datetime");
-
-                    b.Property<long?>("DeleteId")
-                        .HasColumnType("bigint");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("tinyint(1)");
@@ -104,9 +92,6 @@ namespace Xy.Project.Platform.Model.Migrations
 
                     b.Property<DateTime?>("LastModified")
                         .HasColumnType("datetime");
-
-                    b.Property<long?>("LastModifiedId")
-                        .HasColumnType("bigint");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
@@ -130,23 +115,14 @@ namespace Xy.Project.Platform.Model.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<long?>("CreateId")
-                        .HasColumnType("bigint");
-
                     b.Property<DateTime?>("CreateTime")
                         .HasColumnType("datetime");
-
-                    b.Property<long?>("DeleteId")
-                        .HasColumnType("bigint");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<DateTime?>("LastModified")
                         .HasColumnType("datetime");
-
-                    b.Property<long?>("LastModifiedId")
-                        .HasColumnType("bigint");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -173,23 +149,14 @@ namespace Xy.Project.Platform.Model.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<long?>("CreateId")
-                        .HasColumnType("bigint");
-
                     b.Property<DateTime?>("CreateTime")
                         .HasColumnType("datetime");
-
-                    b.Property<long?>("DeleteId")
-                        .HasColumnType("bigint");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<DateTime?>("LastModified")
                         .HasColumnType("datetime");
-
-                    b.Property<long?>("LastModifiedId")
-                        .HasColumnType("bigint");
 
                     b.Property<long?>("ParentId")
                         .HasColumnType("bigint");
@@ -217,14 +184,8 @@ namespace Xy.Project.Platform.Model.Migrations
                         .HasColumnType("varchar(128)")
                         .HasComment("仓储名称");
 
-                    b.Property<long?>("CreateId")
-                        .HasColumnType("bigint");
-
                     b.Property<DateTime?>("CreateTime")
                         .HasColumnType("datetime");
-
-                    b.Property<long?>("DeleteId")
-                        .HasColumnType("bigint");
 
                     b.Property<string>("FileNewName")
                         .IsRequired()
@@ -249,9 +210,6 @@ namespace Xy.Project.Platform.Model.Migrations
 
                     b.Property<DateTime?>("LastModified")
                         .HasColumnType("datetime");
-
-                    b.Property<long?>("LastModifiedId")
-                        .HasColumnType("bigint");
 
                     b.Property<int>("Modular")
                         .HasMaxLength(5)
@@ -297,14 +255,8 @@ namespace Xy.Project.Platform.Model.Migrations
                         .HasColumnType("varchar(128)")
                         .HasComment("组件路径");
 
-                    b.Property<long?>("CreateId")
-                        .HasColumnType("bigint");
-
                     b.Property<DateTime?>("CreateTime")
                         .HasColumnType("datetime");
-
-                    b.Property<long?>("DeleteId")
-                        .HasColumnType("bigint");
 
                     b.Property<string>("Icon")
                         .HasMaxLength(128)
@@ -332,9 +284,6 @@ namespace Xy.Project.Platform.Model.Migrations
 
                     b.Property<DateTime?>("LastModified")
                         .HasColumnType("datetime");
-
-                    b.Property<long?>("LastModifiedId")
-                        .HasColumnType("bigint");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -408,23 +357,14 @@ namespace Xy.Project.Platform.Model.Migrations
                         .HasMaxLength(64)
                         .HasColumnType("varchar(64)");
 
-                    b.Property<long?>("CreateId")
-                        .HasColumnType("bigint");
-
                     b.Property<DateTime?>("CreateTime")
                         .HasColumnType("datetime");
-
-                    b.Property<long?>("DeleteId")
-                        .HasColumnType("bigint");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<DateTime?>("LastModified")
                         .HasColumnType("datetime");
-
-                    b.Property<long?>("LastModifiedId")
-                        .HasColumnType("bigint");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -464,23 +404,14 @@ namespace Xy.Project.Platform.Model.Migrations
                         .HasColumnType("varchar(50)")
                         .HasComment("编码");
 
-                    b.Property<long?>("CreateId")
-                        .HasColumnType("bigint");
-
                     b.Property<DateTime?>("CreateTime")
                         .HasColumnType("datetime");
-
-                    b.Property<long?>("DeleteId")
-                        .HasColumnType("bigint");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<DateTime?>("LastModified")
                         .HasColumnType("datetime");
-
-                    b.Property<long?>("LastModifiedId")
-                        .HasColumnType("bigint");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -533,14 +464,8 @@ namespace Xy.Project.Platform.Model.Migrations
                         .HasColumnType("datetime")
                         .HasComment("生日");
 
-                    b.Property<long?>("CreateId")
-                        .HasColumnType("bigint");
-
                     b.Property<DateTime?>("CreateTime")
                         .HasColumnType("datetime");
-
-                    b.Property<long?>("DeleteId")
-                        .HasColumnType("bigint");
 
                     b.Property<string>("Email")
                         .HasMaxLength(50)
@@ -562,11 +487,7 @@ namespace Xy.Project.Platform.Model.Migrations
                     b.Property<DateTime?>("LastModified")
                         .HasColumnType("datetime");
 
-                    b.Property<long?>("LastModifiedId")
-                        .HasColumnType("bigint");
-
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("varchar(20)")
                         .HasComment("姓名");
@@ -620,23 +541,14 @@ namespace Xy.Project.Platform.Model.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("CreateId")
-                        .HasColumnType("bigint");
-
                     b.Property<DateTime?>("CreateTime")
                         .HasColumnType("datetime");
-
-                    b.Property<long?>("DeleteId")
-                        .HasColumnType("bigint");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<DateTime?>("LastModified")
                         .HasColumnType("datetime");
-
-                    b.Property<long?>("LastModifiedId")
-                        .HasColumnType("bigint");
 
                     b.Property<long>("SysRoleId")
                         .HasColumnType("bigint")

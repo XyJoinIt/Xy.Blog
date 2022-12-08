@@ -494,6 +494,30 @@
         <member name="M:Xy.Project.Platform.Model.Migrations.v104.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
+        <member name="T:Xy.Project.Platform.Model.Migrations.v105">
+            <inheritdoc />
+        </member>
+        <member name="M:Xy.Project.Platform.Model.Migrations.v105.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Xy.Project.Platform.Model.Migrations.v105.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Xy.Project.Platform.Model.Migrations.v105.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Xy.Project.Platform.Model.Migrations.v106">
+            <inheritdoc />
+        </member>
+        <member name="M:Xy.Project.Platform.Model.Migrations.v106.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Xy.Project.Platform.Model.Migrations.v106.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Xy.Project.Platform.Model.Migrations.v106.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
         <member name="T:Xy.Project.Platform.Model.MySqlXyPlatformDbContextFactory">
             <summary>
             mysql迁移工厂
@@ -504,16 +528,12 @@
             平台实体上下文
             </summary>
         </member>
-        <member name="M:Xy.Project.Platform.Model.XyPlatformContext.#ctor">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Xy.Project.Platform.Model.XyPlatformContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{Xy.Project.Platform.Model.XyPlatformContext})">
+        <member name="M:Xy.Project.Platform.Model.XyPlatformContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{Xy.Project.Platform.Model.XyPlatformContext},Xy.Project.Application.Services.Contracts.Sys.ILoginUserManager)">
             <summary>
             
             </summary>
             <param name="options"></param>
+            <param name="loginUser"></param>
         </member>
         <member name="M:Xy.Project.Platform.Model.XyPlatformContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
             <summary>
@@ -533,10 +553,11 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Xy.Project.Platform.Model.XyPlatformContext.SaveChangesAsync(System.Threading.CancellationToken)">
+        <member name="M:Xy.Project.Platform.Model.XyPlatformContext.SaveChangesAsync(System.Boolean,System.Threading.CancellationToken)">
             <summary>
             重写保存Sync
             </summary>
+            <param name="acceptAllChangesOnSuccess"></param>
             <param name="cancellationToken"></param>
             <returns></returns>
         </member>

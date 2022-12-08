@@ -189,6 +189,11 @@
             创建时间
             </summary>
         </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysRoleManage.BaseSysRole.CreateId">
+            <summary>
+            创建人
+            </summary>
+        </member>
         <member name="P:Xy.Project.Application.Dtos.Sys.SysUserManage.BaseSysUserDto.Account">
             <summary>
             账号
@@ -344,26 +349,16 @@
             <param name="password"></param>
             <returns></returns>
         </member>
-        <member name="P:Xy.Project.Application.Services.Contracts.Sys.ILoginUserManager.Id">
-            <summary>
-            用户Id
-            </summary>
-        </member>
-        <member name="P:Xy.Project.Application.Services.Contracts.Sys.ILoginUserManager.Account">
-            <summary>
-            账户
-            </summary>
-        </member>
-        <member name="M:Xy.Project.Application.Services.Contracts.Sys.ILoginUserManager.GetUserInfo">
-            <summary>
-            获取用户详细信息
-            </summary>
-            <returns></returns>
-        </member>
         <member name="T:Xy.Project.Application.Services.Contracts.Sys.ISysMenuService">
             <summary>
             菜单
             </summary>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Contracts.Sys.ISysRoleService.SetRoleStart(Xy.Project.Core.Base.BaseInputId)">
+            <summary>
+            修改角色状态
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:Xy.Project.Application.Services.Contracts.Sys.ISysUserService">
             <summary>
@@ -494,18 +489,22 @@
             账户
             </summary>
         </member>
-        <member name="M:Xy.Project.Application.Services.Sys.LoginUserManager.GetUserInfo">
+        <member name="P:Xy.Project.Application.Services.Sys.LoginUserManager.Name">
             <summary>
-            用户信息
+            昵称
             </summary>
-            <returns></returns>
-            <exception cref="T:System.NotImplementedException"></exception>
         </member>
         <member name="M:Xy.Project.Application.Services.Sys.SysRoleService.PageAsync(Xy.Project.Core.Filter.PageParam)">
             <summary>
             分页
             </summary>
             <param name="page"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Sys.SysRoleService.SetRoleStart(Xy.Project.Core.Base.BaseInputId)">
+            <summary>
+            将角色状态改为相反
+            </summary>
             <returns></returns>
         </member>
         <member name="M:Xy.Project.Application.Services.Sys.SysUserService.Xy#Project#Application#Services#Contracts#Base#ICURDContract{Xy#Project#Platform#Model#Entities#Sys#SysUser,Xy#Project#Application#Dtos#Sys#SysUserManage#AddSysUserDto,Xy#Project#Application#Dtos#Sys#SysUserManage#EditSysUserDto,Xy#Project#Application#Dtos#Sys#SysUserManage#OutSysUserPageDto}#AddAsync(Xy.Project.Application.Dtos.Sys.SysUserManage.AddSysUserDto)">

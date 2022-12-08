@@ -60,6 +60,7 @@ namespace Xy.Project.Application.Services.Sys
             var authClaim = new[]
             {
                 new Claim(JwtRegisteredClaimNames.Jti,model.Id.ToString()),
+                new Claim(JwtRegisteredClaimNames.Name,model.Name),
                 new Claim(JwtRegisteredClaimNames.Sub,model.Account)
             };
             IdentityModelEventSource.ShowPII = true;

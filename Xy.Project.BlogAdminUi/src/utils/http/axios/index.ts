@@ -128,9 +128,11 @@ const transform: AxiosTransform = {
           config.data = data
           config.params = params
         } else {
-          // 非GET请求如果没有提供data，则将params视为data
-          config.data = params
-          config.params = undefined
+          // 非GET DELETE请求如果没有提供data，则将params视为data
+          if (config.method?.toUpperCase() != RequestEnum.DELETE) {
+            config.data = params
+            config.params = undefined
+          }
         }
         if (joinParamsToUrl) {
           config.url = setObjToUrlParams(

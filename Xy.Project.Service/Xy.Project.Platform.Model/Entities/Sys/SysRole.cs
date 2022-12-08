@@ -39,7 +39,7 @@ namespace Xy.Project.Platform.Model.Entities.Sys
         /// </summary>
         [Comment("备注")]
         [MaxLength(100)]
-        public string Remark { get; set; }
+        public string? Remark { get; set; }
 
         /// <summary>
         /// 状态（字典 0正常 1停用 2删除）

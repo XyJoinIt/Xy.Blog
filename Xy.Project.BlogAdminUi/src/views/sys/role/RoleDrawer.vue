@@ -16,7 +16,7 @@
   import { BasicDrawer, useDrawerInner } from '/@/components/Drawer'
 
   import { formSchema } from './role.data'
-  //import { addRole, updateRole } from '/@/api/sys/admin'
+  import { AddRole, UpdateRole } from '/@/api/sys/role'
 
   export default defineComponent({
     name: 'RoleDrawer',
@@ -54,11 +54,9 @@
 
           if (unref(isUpdate)) {
             values.id = rowId
-            //await updateRole(values)
-            console.log('修改')
+            await UpdateRole(values)
           } else {
-            console.log('新增')
-            //await addRole(values)
+            await AddRole(values)
           }
 
           closeDrawer()

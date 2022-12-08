@@ -1,4 +1,7 @@
-﻿namespace Xy.Project.Core
+﻿using System.Linq.Expressions;
+using Xy.Project.Core.Extensions;
+
+namespace Xy.Project.Core
 {
     /// <summary>
     /// 仓储
@@ -108,6 +111,19 @@
         }
 
         /// <summary>
+        /// FirstOrDefaultAsync
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public virtual Task<TEntity?> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default)
+        {
+            if (predicate == null)
+                throw new Exception("表达式错误");
+            return DbSet.FirstOrDefaultAsync(predicate, cancellationToken);
+        }
+
+        /// <summary>
         /// 异步加载实体
         /// </summary>
         /// <param name="entity"></param>
@@ -124,7 +140,7 @@
         /// <summary>
         /// 异步新增
         /// </summary>
-        /// <param name="item"></param>
+        /// <param name="entity"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         public async Task<int> InsertAsync(TEntity entity, CancellationToken cancellationToken = default)
@@ -178,7 +194,8 @@
         /// <summary>
         /// 异步软删除 (更新与删除可以做到不用查询，后面扩展。)
         /// </summary>
-        /// <param name="Id"></param>
+        /// <param name="key"></param>
+        /// <param name="cancellationToken"></param>
         /// <returns></returns>
         public async Task<int> DeleteAsync(TPrimaryKey key, CancellationToken cancellationToken = default)
         {

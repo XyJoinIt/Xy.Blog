@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using Xy.Project.Application.Services.Contracts.Sys;
 using Xy.Project.Core.Extensions;
 
 namespace Xy.Project.Platform.Model;
@@ -7,29 +8,18 @@ namespace Xy.Project.Platform.Model;
 /// </summary>
 public class XyPlatformContext : DbContext
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    public XyPlatformContext() { }
+    private readonly ILoginUserManager loginUser;
 
     /// <summary>
     /// 
     /// </summary>
     /// <param name="options"></param>
-    public XyPlatformContext(DbContextOptions<XyPlatformContext> options) : base(options)
+    /// <param name="loginUser"></param>
+    public XyPlatformContext(DbContextOptions<XyPlatformContext> options, ILoginUserManager loginUser) : base(options)
     {
+        this.loginUser = loginUser;
     }
 
-    #region 实体类
-
-    //public DbSet<SysUser> sysUsers { get; set; }
-    //public DbSet<SysRole> sysRoles { get; set; }
-    //public DbSet<SysUserRole> sysUserRoles { get; set; }
-    //public DbSet<SysOrg> sysOrgs { get; set; }
-
-    #endregion
-
-    #region 私有
 
     /// <summary>
     /// 
@@ -51,7 +41,7 @@ public class XyPlatformContext : DbContext
 
         //设置软删除
         foreach (var entityType in modelBuilder.Model.GetEntityTypes()
-            .Where(o => typeof(ISoftDelete).IsAssignableFrom(o.ClrType)))
+            .Where(predicate: o => typeof(ISoftDelete).IsAssignableFrom(o.ClrType)))
         {
             entityType.DelQueryFileter();
         }
@@ -69,23 +59,24 @@ public class XyPlatformContext : DbContext
     /// <summary>
     /// 重写保存Sync
     /// </summary>
+    /// <param name="acceptAllChangesOnSuccess"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+    public override async Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
     {
-        ChangeTracker.Entries().LateStage();
+        this.ChangeTracker.Entries().LateStage(loginUser);
         try
         {
-            int count = await base.SaveChangesAsync(cancellationToken);
+            int count = await base.SaveChangesAsync(acceptAllChangesOnSuccess,cancellationToken);
             return count;
         }
-        catch (Exception ex)
+        catch (Exception)
         {
-            throw ex;
+            throw;
         }
 
     }
-    #endregion
+
     /// <summary>
     /// 动态获取实体表
     /// </summary>

@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Metadata;
 using System.Reflection;
+using Xy.Project.Application.Services.Contracts.Sys;
 
 namespace Xy.Project.Core.Extensions;
 
@@ -14,7 +15,7 @@ public static class EntityExtensions
     /// </summary>
     /// <param name="entityEntries"></param>
     /// <param name="loginUser">待扩展用户上下文更新实体用户操作信息</param>
-    public static void LateStage(this IEnumerable<EntityEntry> entityEntries)
+    public static void LateStage(this IEnumerable<EntityEntry> entityEntries, ILoginUserManager loginUser)
     {
         foreach (var entity in entityEntries.Where
             (o =>
@@ -29,13 +30,16 @@ public static class EntityExtensions
             {
                 case EntityState.Added when entity1 is ICreatedTime:
                     (entity1 as ICreatedTime)!.CreateTime = DateTime.Now;
+                    (entity1 as ICreatedTime)!.CreateId = loginUser.Id;
                     break;
                 case EntityState.Modified when entity1 is ILastModified:
                     (entity1 as ILastModified)!.LastModified = DateTime.Now;
+                    (entity1 as ILastModified)!.LastModifiedId = loginUser.Id;
                     break;
                 case EntityState.Deleted when entity1 is ISoftDelete:
                     (entity1 as ISoftDelete)!.IsDeleted = true;
-                    state = EntityState.Modified;
+                    (entity1 as ISoftDelete)!.DeleteId = loginUser.Id;
+                    entity.State = EntityState.Modified;
                     break;
             }
         }

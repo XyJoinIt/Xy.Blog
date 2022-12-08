@@ -118,6 +118,7 @@ namespace Xy.Project.Application.Services.Base
                 .ToPageAsync<TEntity, OutPageListDto>(page.PageCondition);
             return AppResult.Problem(HttpCode.成功, "得到分页数据", items);
         }
+
         protected virtual Expression<Func<TEntity, bool>> CreateFilteredQuery(FilterGroup filterGroup)
         {
             var exp = FilterBuilder.GetExpression<TEntity>(filterGroup);

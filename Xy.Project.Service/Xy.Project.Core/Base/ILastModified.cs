@@ -9,5 +9,10 @@
         /// 最后修改
         /// </summary>
         DateTime? LastModified { get; set; }
+
+        /// <summary>
+        /// 最后修改
+        /// </summary>
+        long? LastModifiedId { get; set; }
     }
 }

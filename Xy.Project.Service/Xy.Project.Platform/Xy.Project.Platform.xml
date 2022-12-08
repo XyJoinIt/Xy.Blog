@@ -132,6 +132,12 @@
             角色控制器
             </summary>
         </member>
+        <member name="M:Xy.Project.Platform.Modular.Sys.SysRoleController.SetRoleStart(Xy.Project.Core.Base.BaseInputId)">
+            <summary>
+            修改状态
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Xy.Project.Platform.Modular.Sys.SysUserController">
             <summary>
             用户控制器

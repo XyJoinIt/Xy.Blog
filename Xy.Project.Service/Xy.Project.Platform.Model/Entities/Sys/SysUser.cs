@@ -39,7 +39,7 @@ public class SysUser:FullEntityBase
     /// </summary>
     [Comment("姓名")]
     [MaxLength(20)]
-    public string? Name { get; set; }
+    public string Name { get; set; }
 
     /// <summary>
     /// 头像

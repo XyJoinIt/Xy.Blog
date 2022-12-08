@@ -13,11 +13,9 @@ namespace Xy.Project.Application.Services.Sys
 {
     public class LoginUserManager : ILoginUserManager
     {
-        private readonly IRepository<SysUser, long> _repository;
         private readonly IHttpContextAccessor _httpContextAccessor;
-        public LoginUserManager(IRepository<SysUser, long> repository, IHttpContextAccessor httpContextAccessor)
+        public LoginUserManager(IHttpContextAccessor httpContextAccessor)
         {
-            _repository = repository;
             _httpContextAccessor = httpContextAccessor;
         }
 
@@ -32,13 +30,9 @@ namespace Xy.Project.Application.Services.Sys
         public string Account => _httpContextAccessor.HttpContext.User.FindFirst(JwtRegisteredClaimNames.Sub)?.Value!;
 
         /// <summary>
-        /// 用户信息
+        /// 昵称
         /// </summary>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
-        public async Task<SysUser> GetUserInfo()
-        {
-            return await _repository.FindAsync(this.Id);
-        }
+        public string Name => _httpContextAccessor.HttpContext.User.FindFirst(JwtRegisteredClaimNames.Name)?.Value!;
+      
     }
 }

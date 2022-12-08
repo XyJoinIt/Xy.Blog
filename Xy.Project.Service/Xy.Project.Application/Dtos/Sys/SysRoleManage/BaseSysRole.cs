@@ -32,7 +32,7 @@ namespace Xy.Project.Application.Dtos.Sys.SysRoleManage
         /// 备注
         /// </summary>
         [Comment("备注")]
-        public string Remark { get; set; }
+        public string? Remark { get; set; }
 
         /// <summary>
         /// 状态（字典 0正常 1停用 2删除）
@@ -44,5 +44,10 @@ namespace Xy.Project.Application.Dtos.Sys.SysRoleManage
         /// 创建时间
         /// </summary>
         public DateTime? CreateTime { get ; set ; }
+
+        /// <summary>
+        /// 创建人
+        /// </summary>
+        public long? CreateId { get; set; }
     }
 }

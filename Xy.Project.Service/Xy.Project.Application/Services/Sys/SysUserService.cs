@@ -105,7 +105,7 @@ namespace Xy.Project.Application.Services.Sys
         /// <exception cref="NotImplementedException"></exception>
         public async Task<AppResult> GetUserInfo()
         {
-            var user = await _loginUserManager.GetUserInfo();
+            var user =await _repository.FindAsync(_loginUserManager.Id);
             return await AppResult.SuccessAsync(new
             {
                 roles = new[] {

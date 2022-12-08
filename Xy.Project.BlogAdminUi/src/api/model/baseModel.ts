@@ -4,7 +4,7 @@ export interface BasicPageParams {
   pageIndex?: number
   pageSize?: number
 }
-export class BaseId {
+export class BaseInputId {
   constructor(id: number) {
     this.Id = id
   }

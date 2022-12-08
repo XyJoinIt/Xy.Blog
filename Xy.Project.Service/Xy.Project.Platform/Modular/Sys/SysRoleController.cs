@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Xy.Project.Application.Dtos.Sys.SysRoleManage;
 using Xy.Project.Application.Services.Contracts.Sys;
+using Xy.Project.Core.Base;
 using Xy.Project.Core.Filter;
 using Xy.Project.Platform.Model.Entities.Sys;
 
@@ -17,4 +18,10 @@ public class SysRoleController :  ApiControllerBase<ISysRoleService, SysRole, Ad
         _sysRoleService = sysRoleService;
     }
 
+    /// <summary>
+    /// 修改状态
+    /// </summary>
+    /// <returns></returns>
+    [HttpPut]
+    public async Task<AppResult> SetRoleStart(BaseInputId input) => await _sysRoleService.SetRoleStart(input);
 }

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Xy.Project.Platform.Model.Entities.Sys;
 
 namespace Xy.Project.Application.Services.Contracts.Sys
 {
@@ -20,9 +19,9 @@ namespace Xy.Project.Application.Services.Contracts.Sys
         public string Account { get; }
 
         /// <summary>
-        /// 获取用户详细信息
+        /// 姓名
         /// </summary>
-        /// <returns></returns>
-        public Task<SysUser> GetUserInfo();
+        public string Name { get; }
+
     }
 }

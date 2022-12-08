@@ -23,6 +23,15 @@ const sysrole: AppRouteModule = {
         ignoreKeepAlive: true,
       },
     },
+    {
+      path: 'org',
+      name: 'OrgManagement',
+      component: () => import('/@/views/sys/org/index.vue'),
+      meta: {
+        title: t('routes.sys.org'),
+        ignoreKeepAlive: true,
+      },
+    },
   ],
 }
 

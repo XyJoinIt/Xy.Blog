@@ -2,7 +2,7 @@ import { BasicColumn } from '/@/components/Table'
 import { FormSchema } from '/@/components/Table'
 import { h } from 'vue'
 import { Switch } from 'ant-design-vue'
-//import { setRoleStatus } from '/@/api/demo/system'
+import { SetRoleStart } from '/@/api/sys/role'
 import { useMessage } from '/@/hooks/web/useMessage'
 import { CommonStatus } from '/@/enums/GlobaEnum'
 
@@ -37,24 +37,20 @@ export const columns: BasicColumn[] = [
         unCheckedChildren: '停用',
         loading: record.pendingStatus,
         onChange(checked: boolean) {
-          // record.pendingStatus = true
           const newStatus = checked ? '正常' : '停用'
           console.log(newStatus)
           const { createMessage } = useMessage()
-
-          record.status = newStatus
-          createMessage.success(`已成功修改角色状态`)
-          // setRoleStatus(record.id, newStatus)
-          //   .then(() => {
-          //     record.status = newStatus
-          //     createMessage.success(`已成功修改角色状态`)
-          //   })
-          //   .catch(() => {
-          //     createMessage.error('修改角色状态失败')
-          //   })
-          //   .finally(() => {
-          //     record.pendingStatus = false
-          //   })
+          SetRoleStart(record.id)
+            .then(() => {
+              record.status = newStatus
+              createMessage.success(`已成功修改角色状态`)
+            })
+            .catch(() => {
+              createMessage.error('修改角色状态失败')
+            })
+            .finally(() => {
+              record.pendingStatus = false
+            })
         },
       })
     },

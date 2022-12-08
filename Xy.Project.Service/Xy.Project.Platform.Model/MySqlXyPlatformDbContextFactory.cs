@@ -6,7 +6,7 @@ namespace Xy.Project.Platform.Model
     /// <summary>
     /// mysql迁移工厂
     /// </summary>
-    internal class MySqlXyPlatformDbContextFactory : IDesignTimeDbContextFactory<XyPlatformContext>
+    public class MySqlXyPlatformDbContextFactory : IDesignTimeDbContextFactory<XyPlatformContext>
     {
         public XyPlatformContext CreateDbContext(string[] args)
         {
@@ -18,7 +18,7 @@ namespace Xy.Project.Platform.Model
             var optionsBuilder = new DbContextOptionsBuilder<XyPlatformContext>();
             optionsBuilder.UseMySql(db, new MySqlServerVersion(new Version()));
 
-            return new XyPlatformContext(optionsBuilder.Options);
+            return new XyPlatformContext(optionsBuilder.Options,null);
 
         }
     }

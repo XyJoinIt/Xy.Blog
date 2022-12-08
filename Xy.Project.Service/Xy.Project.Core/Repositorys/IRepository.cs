@@ -1,4 +1,6 @@
-﻿namespace Xy.Project.Core
+﻿using System.Linq.Expressions;
+
+namespace Xy.Project.Core
 {
     public interface IRepository<TEntity, TPrimaryKey>
         where TEntity : IEntity<TPrimaryKey>
@@ -100,6 +102,15 @@
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         Task<int> DeleteBatchAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken = default);
+
+
+        /// <summary>
+        /// FirstOrDefaultAsync
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        Task<TEntity?> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default);
     }
 
     public interface IRepository<TEntity> : IRepository<TEntity, long> where TEntity : IEntity<long> { }

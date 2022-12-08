@@ -10,8 +10,11 @@
 
   <ItemGroup>
     <Compile Remove="DataSeeds\**" />
+    <Compile Remove="Repositorys\**" />
     <EmbeddedResource Remove="DataSeeds\**" />
+    <EmbeddedResource Remove="Repositorys\**" />
     <None Remove="DataSeeds\**" />
+    <None Remove="Repositorys\**" />
   </ItemGroup>
 
   <ItemGroup>

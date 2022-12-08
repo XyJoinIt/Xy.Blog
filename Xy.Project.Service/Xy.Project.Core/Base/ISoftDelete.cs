@@ -6,5 +6,7 @@
     public interface ISoftDelete
     {
         bool IsDeleted { get; set; }
+
+        long? DeleteId { get; set; }
     }
 }

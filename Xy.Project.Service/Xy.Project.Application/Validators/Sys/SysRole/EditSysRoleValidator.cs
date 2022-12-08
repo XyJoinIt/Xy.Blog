@@ -25,12 +25,11 @@ namespace Xy.Project.Application.Validators.Sys
         //判断角色是否存在
         private async Task<bool> IsNameExistAsync(string value, ValidationContext<EditSysRoleDto> context, CancellationToken token = default)
         {
-            var exist = await _repository.QueryAsNoTracking().Where(o => o.Name.Equals(value, StringComparison.OrdinalIgnoreCase)).FirstOrDefaultAsync()!;
-            if (exist != null)
-            {
-                return true;
-            }
-            return false;
+            var exist = await _repository.QueryAsNoTracking()
+                .Where(o => o.Name == value)
+                .CountAsync();
+
+            return exist > 1 ? true : false;
 
         }
     }

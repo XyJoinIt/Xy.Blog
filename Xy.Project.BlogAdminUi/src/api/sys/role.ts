@@ -1,3 +1,4 @@
+import { BaseInputId } from './../model/baseModel'
 import { defHttp } from '/@/utils/http/axios'
 import { OutSysRolePage, SysRole } from './model/roleModel'
 import { PageParam } from '../model/baseModel'
@@ -7,6 +8,7 @@ enum Api {
   AddRole = '/SysRole/Add',
   UpdateRole = '/SysRole/Update',
   DeleteRole = '/SysRole/Delete',
+  SetRoleStart = '/SysRole/SetRoleStart',
 }
 
 //获取列表
@@ -21,4 +23,8 @@ export const UpdateRole = (data: SysRole) => defHttp.put({ url: Api.UpdateRole, 
 
 //删除
 export const DeleteRole = (Id: number) =>
-  defHttp.delete<boolean>({ url: Api.DeleteRole, params: { id: Id } }, { joinParamsToUrl: true })
+  defHttp.delete<boolean>({ url: Api.DeleteRole, params: { id: Id } })
+
+//更换状态
+export const SetRoleStart = (id: number) =>
+  defHttp.put({ url: Api.SetRoleStart, data: new BaseInputId(id) })

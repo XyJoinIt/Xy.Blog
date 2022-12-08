@@ -24,7 +24,7 @@ public class SysMenu : FullEntityBase
     /// 菜单类型（1目录 2菜单 3按钮）
     /// </summary>
     [Comment("菜单类型")]
-    public MenuType Type { get; set; }
+    public MenuType Type { get; set; } = MenuType.目录;
 
     /// <summary>
     /// 名称
@@ -38,61 +38,61 @@ public class SysMenu : FullEntityBase
     /// </summary>
     [Comment("路由地址")]
     [MaxLength(128)]
-    public string Path { get; set; }
+    public string? Path { get; set; }
 
     /// <summary>
     /// 组件路径
     /// </summary>
     [Comment("组件路径")]
     [MaxLength(128)]
-    public string Component { get; set; }
+    public string? Component { get; set; }
 
     /// <summary>
     /// 重定向
     /// </summary>
     [Comment("重定向")]
     [MaxLength(128)]
-    public string Redirect { get; set; }
+    public string? Redirect { get; set; }
 
     /// <summary>
     /// 权限标识
     /// </summary>
     [Comment("权限标识")]
     [MaxLength(128)]
-    public string Permission { get; set; }
+    public string? Permission { get; set; }
 
     /// <summary>
     /// 标题
     /// </summary>
     [Comment("标题")]
     [Required, MaxLength(64)]
-    public virtual string Title { get; set; }
+    public string? Title { get; set; }
 
     /// <summary>
     /// 图标
     /// </summary>
     [Comment("图标")]
     [MaxLength(128)]
-    public string Icon { get; set; }
+    public string? Icon { get; set; }
 
     /// <summary>
     /// 是否内嵌
     /// </summary>
     [Comment("是否内嵌")]
-    public bool IsIframe { get; set; }
+    public bool IsIframe { get; set; } = false;
 
     /// <summary>
     /// 外链链接
     /// </summary>
     [Comment("外链链接")]
     [MaxLength(256)]
-    public string OutLink { get; set; }
+    public string? OutLink { get; set; }
 
     /// <summary>
     /// 是否隐藏
     /// </summary>
     [Comment("是否隐藏")]
-    public bool IsHide { get; set; }
+    public bool IsHide { get; set; } = false;
 
     /// <summary>
     /// 是否缓存
@@ -104,7 +104,7 @@ public class SysMenu : FullEntityBase
     /// 是否固定
     /// </summary>
     [Comment("是否固定")]
-    public bool IsAffix { get; set; }
+    public bool IsAffix { get; set; } = true;
 
     /// <summary>
     /// 排序
@@ -123,7 +123,7 @@ public class SysMenu : FullEntityBase
     /// </summary>
     [Comment("备注")]
     [MaxLength(256)]
-    public string Remark { get; set; }
+    public string? Remark { get; set; }
 
     /// <summary>
     /// 菜单子项
