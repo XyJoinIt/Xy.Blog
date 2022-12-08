@@ -127,6 +127,11 @@
             菜单控制器
             </summary>
         </member>
+        <member name="T:Xy.Project.Platform.Modular.Sys.SysOrgController">
+            <summary>
+            部门机构控制器
+            </summary>
+        </member>
         <member name="T:Xy.Project.Platform.Modular.Sys.SysRoleController">
             <summary>
             角色控制器

@@ -159,6 +159,31 @@
             备注
             </summary>
         </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysOrgManage.BaseSysOrg.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysOrgManage.BaseSysOrg.Code">
+            <summary>
+            编码
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysOrgManage.BaseSysOrg.Sort">
+            <summary>
+            排序
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysOrgManage.BaseSysOrg.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysOrgManage.BaseSysOrg.Status">
+            <summary>
+            状态（字典 0正常 1停用 2删除）
+            </summary>
+        </member>
         <member name="P:Xy.Project.Application.Dtos.Sys.SysRoleManage.BaseSysRole.Name">
             <summary>
             名称
@@ -492,6 +517,11 @@
         <member name="P:Xy.Project.Application.Services.Sys.LoginUserManager.Name">
             <summary>
             昵称
+            </summary>
+        </member>
+        <member name="T:Xy.Project.Application.Services.Sys.SysOrgService">
+            <summary>
+            部门机构
             </summary>
         </member>
         <member name="M:Xy.Project.Application.Services.Sys.SysRoleService.PageAsync(Xy.Project.Core.Filter.PageParam)">
