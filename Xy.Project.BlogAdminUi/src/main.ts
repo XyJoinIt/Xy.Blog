@@ -14,6 +14,9 @@ import { setupGlobDirectives } from '/@/directives'
 import { setupI18n } from '/@/locales/setupI18n'
 import { registerGlobComp } from '/@/components/registerGlobComp'
 
+// import Antd from 'ant-design-vue'
+// import 'ant-design-vue/dist/antd.css'
+
 import { isDevMode } from './utils/env'
 if (isDevMode()) {
   import('ant-design-vue/es/style')
@@ -21,7 +24,7 @@ if (isDevMode()) {
 
 async function bootstrap() {
   const app = createApp(App)
-
+  //app.use(Antd)
   // Configure store
   // 配置 store
   setupStore(app)

@@ -289,11 +289,6 @@
             名称
             </summary>
         </member>
-        <member name="P:Xy.Project.Platform.Model.Entities.Sys.SysOrg.Code">
-            <summary>
-            编码
-            </summary>
-        </member>
         <member name="P:Xy.Project.Platform.Model.Entities.Sys.SysOrg.Order">
             <summary>
             排序
@@ -516,6 +511,18 @@
             <inheritdoc />
         </member>
         <member name="M:Xy.Project.Platform.Model.Migrations.v106.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Xy.Project.Platform.Model.Migrations.v107">
+            <inheritdoc />
+        </member>
+        <member name="M:Xy.Project.Platform.Model.Migrations.v107.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Xy.Project.Platform.Model.Migrations.v107.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Xy.Project.Platform.Model.Migrations.v107.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
         <member name="T:Xy.Project.Platform.Model.MySqlXyPlatformDbContextFactory">

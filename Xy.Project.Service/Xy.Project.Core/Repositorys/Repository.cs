@@ -38,6 +38,14 @@ namespace Xy.Project.Core
         }
 
         #region 查询
+        /// <summary>
+        /// 查询列表 慎用
+        /// </summary>
+        /// <returns></returns>
+        public virtual IQueryable<TEntity> QueryList()
+        {
+            return DbSet.AsNoTracking();
+        }
 
         /// <summary>
         /// 获取不跟踪数据更改（NoTracking）的查询数据源
@@ -137,6 +145,7 @@ namespace Xy.Project.Core
         }
         #endregion
 
+        #region 操作
         /// <summary>
         /// 异步新增
         /// </summary>
@@ -232,5 +241,6 @@ namespace Xy.Project.Core
             Context.RemoveRange(entities);
             return Context.SaveChangesAsync(cancellationToken);
         }
+        #endregion
     }
 }

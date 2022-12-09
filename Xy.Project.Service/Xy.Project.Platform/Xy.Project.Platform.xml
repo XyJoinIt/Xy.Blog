@@ -132,6 +132,12 @@
             部门机构控制器
             </summary>
         </member>
+        <member name="M:Xy.Project.Platform.Modular.Sys.SysOrgController.ListTree">
+            <summary>
+            得到树形数据
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Xy.Project.Platform.Modular.Sys.SysRoleController">
             <summary>
             角色控制器

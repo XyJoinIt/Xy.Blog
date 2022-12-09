@@ -17,7 +17,6 @@ namespace Xy.Project.Application.Validators.Sys
         private void Validator()
         {
             RuleFor(x => x.Name).NotEmpty().WithMessage(_emptyOrNullMesg.FormatWith("名称"));
-            RuleFor(x => x.Code).NotEmpty().WithMessage(_emptyOrNullMesg.FormatWith("编码"));
             RuleFor(x => x.Name).MustAsync(async (model, value, cox, token) 
                 => !await this.IsNameExistAsync(value, cox, token)).WithMessage(x => $"【{x.Name}】已存在！");
         }

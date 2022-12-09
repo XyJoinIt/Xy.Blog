@@ -42,6 +42,12 @@ namespace Xy.Project.Core
         IQueryable<TEntity> Include(params Expression<Func<TEntity, object>>[] includePropertySelectors);
 
         /// <summary>
+        /// 查询列表
+        /// </summary>
+        /// <returns></returns>
+        IQueryable<TEntity> QueryList();
+
+        /// <summary>
         /// 异步加载实体
         /// </summary>
         /// <param name="item"></param>

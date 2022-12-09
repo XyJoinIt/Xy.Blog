@@ -18,12 +18,6 @@ public class SysOrg : FullEntityBase
     public string Name { get; set; } = default!;
 
     /// <summary>
-    /// 编码
-    /// </summary>
-    [Required, MaxLength(64)]
-    public string Code { get; set; } = default!;
-
-    /// <summary>
     /// 排序
     /// </summary>
     public int Order { get; set; } = 100;

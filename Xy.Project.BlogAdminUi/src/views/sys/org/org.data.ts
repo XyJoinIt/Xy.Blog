@@ -2,17 +2,16 @@ import { BasicColumn } from '/@/components/Table'
 import { FormSchema } from '/@/components/Table'
 import { h } from 'vue'
 import { Tag } from 'ant-design-vue'
-
+import { CommonStatus } from '/@/enums/GlobaEnum'
 export const columns: BasicColumn[] = [
   {
     title: '部门名称',
-    dataIndex: 'deptName',
-    width: 160,
+    dataIndex: 'name',
     align: 'left',
   },
   {
     title: '排序',
-    dataIndex: 'orderNo',
+    dataIndex: 'order',
     width: 50,
   },
   {
@@ -35,12 +34,13 @@ export const columns: BasicColumn[] = [
   {
     title: '备注',
     dataIndex: 'remark',
+    width: 280,
   },
 ]
 
 export const searchFormSchema: FormSchema[] = [
   {
-    field: 'deptName',
+    field: 'name',
     label: '部门名称',
     component: 'Input',
     colProps: { span: 8 },
@@ -61,28 +61,30 @@ export const searchFormSchema: FormSchema[] = [
 
 export const formSchema: FormSchema[] = [
   {
-    field: 'deptName',
+    field: 'name',
     label: '部门名称',
     component: 'Input',
     required: true,
   },
   {
-    field: 'parentDept',
+    field: 'pid',
     label: '上级部门',
     component: 'TreeSelect',
-
+    defaultValue: 0,
     componentProps: {
+      treeDefaultExpandAll: true,
+      allowClear: true,
       fieldNames: {
-        label: 'deptName',
-        key: 'id',
-        value: 'id',
+        label: 'title',
+        key: 'key',
+        value: 'key',
       },
       getPopupContainer: () => document.body,
     },
     required: true,
   },
   {
-    field: 'orderNo',
+    field: 'order',
     label: '排序',
     component: 'InputNumber',
     required: true,
@@ -91,11 +93,11 @@ export const formSchema: FormSchema[] = [
     field: 'status',
     label: '状态',
     component: 'RadioButtonGroup',
-    defaultValue: '0',
+    defaultValue: CommonStatus.正常,
     componentProps: {
       options: [
-        { label: '启用', value: '0' },
-        { label: '停用', value: '1' },
+        { label: '启用', value: CommonStatus.正常 },
+        { label: '停用', value: CommonStatus.停用 },
       ],
     },
     required: true,
