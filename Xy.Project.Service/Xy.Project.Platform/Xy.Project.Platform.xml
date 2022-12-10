@@ -71,34 +71,6 @@
             文章管理控制器
             </summary>
         </member>
-        <member name="M:Xy.Project.Platform.Modular.Bolgs.ArticleController.PateList(Xy.Project.Core.Filter.PageParam)">
-            <summary>
-            得到分页数据
-            </summary>
-            <param name="page"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Xy.Project.Platform.Modular.Bolgs.ArticleController.Add(Xy.Project.Application.Dtos.Blogs.Articles.AddArticleDto)">
-            <summary>
-            新增文章
-            </summary>
-            <param name="dto"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Xy.Project.Platform.Modular.Bolgs.ArticleController.Update(Xy.Project.Application.Dtos.Blogs.Articles.EditArticleDto)">
-            <summary>
-            更新文章
-            </summary>
-            <param name="dto"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Xy.Project.Platform.Modular.Bolgs.ArticleController.Delete(System.Int64)">
-            <summary>
-            删除角色
-            </summary>
-            <param name="id"></param>
-            <returns></returns>
-        </member>
         <member name="T:Xy.Project.Platform.Modular.Bolgs.CategoryController">
             <summary>
             分类管理

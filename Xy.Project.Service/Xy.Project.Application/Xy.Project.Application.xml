@@ -169,7 +169,7 @@
             名称
             </summary>
         </member>
-        <member name="P:Xy.Project.Application.Dtos.Sys.SysOrgManage.BaseSysOrg.Sort">
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysOrgManage.BaseSysOrg.Order">
             <summary>
             排序
             </summary>
@@ -189,7 +189,7 @@
             父Id 0 -顶级
             </summary>
         </member>
-        <member name="P:Xy.Project.Application.Dtos.Sys.SysOrgManage.OutSysOrgTreeDto.Sort">
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysOrgManage.OutSysOrgTreeDto.Order">
             <summary>
             排序
             </summary>
@@ -232,16 +232,6 @@
         <member name="P:Xy.Project.Application.Dtos.Sys.SysRoleManage.BaseSysRole.Status">
             <summary>
             状态（字典 0正常 1停用 2删除）
-            </summary>
-        </member>
-        <member name="P:Xy.Project.Application.Dtos.Sys.SysRoleManage.BaseSysRole.CreateTime">
-            <summary>
-            创建时间
-            </summary>
-        </member>
-        <member name="P:Xy.Project.Application.Dtos.Sys.SysRoleManage.BaseSysRole.CreateId">
-            <summary>
-            创建人
             </summary>
         </member>
         <member name="P:Xy.Project.Application.Dtos.Sys.SysUserManage.BaseSysUserDto.Account">
@@ -330,34 +320,6 @@
             分页
             </summary>
             <param name="page"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Xy.Project.Application.Services.Contracts.Blogs.IArticleService.PageAsync(Xy.Project.Core.Filter.PageParam)">
-             <summary>
-            分页
-             </summary>
-             <param name="page"></param>
-             <returns></returns>
-        </member>
-        <member name="M:Xy.Project.Application.Services.Contracts.Blogs.IArticleService.AddAsync(Xy.Project.Application.Dtos.Blogs.Articles.AddArticleDto)">
-            <summary>
-            新增
-            </summary>
-            <param name="dto"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Xy.Project.Application.Services.Contracts.Blogs.IArticleService.UpdateAsync(Xy.Project.Application.Dtos.Blogs.Articles.EditArticleDto)">
-            <summary>
-            修改
-            </summary>
-            <param name="dto"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Xy.Project.Application.Services.Contracts.Blogs.IArticleService.DeleteAsync(System.Int64)">
-            <summary>
-            删除
-            </summary>
-            <param name="id"></param>
             <returns></returns>
         </member>
         <member name="T:Xy.Project.Application.Services.Contracts.Sys.IAuthService">
@@ -454,34 +416,6 @@
             文章
             </summary>
         </member>
-        <member name="M:Xy.Project.Application.Services.Bolgs.ArticleService.AddAsync(Xy.Project.Application.Dtos.Blogs.Articles.AddArticleDto)">
-            <summary>
-            新增
-            </summary>
-            <param name="dto"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Xy.Project.Application.Services.Bolgs.ArticleService.DeleteAsync(System.Int64)">
-            <summary>
-            删除
-            </summary>
-            <param name="id"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Xy.Project.Application.Services.Bolgs.ArticleService.PageAsync(Xy.Project.Core.Filter.PageParam)">
-            <summary>
-            分页
-            </summary>
-            <param name="page"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Xy.Project.Application.Services.Bolgs.ArticleService.UpdateAsync(Xy.Project.Application.Dtos.Blogs.Articles.EditArticleDto)">
-            <summary>
-            修改
-            </summary>
-            <param name="dto"></param>
-            <returns></returns>
-        </member>
         <member name="T:Xy.Project.Application.Services.Bolgs.CategoryService">
             <summary>
             类别
@@ -548,6 +482,13 @@
             <summary>
             部门机构
             </summary>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Sys.SysOrgService.PageAsync(Xy.Project.Core.Filter.PageParam)">
+            <summary>
+            得到分页数据
+            </summary>
+            <param name="page"></param>
+            <returns></returns>
         </member>
         <member name="M:Xy.Project.Application.Services.Sys.SysOrgService.ListTree">
             <summary>

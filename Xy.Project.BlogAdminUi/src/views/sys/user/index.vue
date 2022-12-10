@@ -42,22 +42,21 @@
   import { BasicTable, useTable, TableAction } from '/@/components/Table'
   import { TreeItem, TreeActionType } from '/@/components/Tree/index'
   import { useModal } from '/@/components/Modal'
-  import DeptModal from './OrgModal.vue'
+  import DeptModal from './UserModal.vue'
   import { TreeList, PateList } from '/@/api/sys/org'
-  import { columns, searchFormSchema } from './org.data'
+  import { columns, searchFormSchema } from './user.data'
   import { FetchParams } from '/@/components/Table'
-
-  import OrgTree from './OrgTree.vue'
+  import OrgTree from '../org/OrgTree.vue'
 
   export default defineComponent({
-    name: 'OrgManagement',
+    name: 'UserManagement',
     components: { BasicTable, DeptModal, TableAction, Row, Col, OrgTree },
     setup() {
       const treeRef = ref<Nullable<TreeActionType>>(null)
       const treeData = ref<TreeItem[]>([])
       const [registerModal, { openModal }] = useModal()
       const [registerTable, { reload }] = useTable({
-        title: '部门列表',
+        title: '用户列表',
         api: PateList,
         columns,
         formConfig: {

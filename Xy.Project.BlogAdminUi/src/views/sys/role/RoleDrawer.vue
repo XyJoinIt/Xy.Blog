@@ -39,6 +39,7 @@
         console.log(data)
         if (unref(isUpdate)) {
           rowId = data.record.id
+          console.log(data.record)
           setFieldsValue({
             ...data.record,
           })

@@ -52,7 +52,7 @@
           schemas: searchFormSchema,
         },
         useSearchForm: true,
-        rowKey: 'Id',
+        rowKey: 'id',
         showTableSetting: true,
         bordered: true,
         showIndexColumn: false,

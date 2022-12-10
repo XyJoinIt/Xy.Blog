@@ -28,7 +28,7 @@ namespace Xy.Project.Application.Dtos.Sys.SysOrgManage
         /// 排序
         /// </summary>
         [JsonIgnore]
-        public int Sort { get; set; } = 100;
+        public int Order { get; set; } = 100;
 
         /// <summary>
         /// 名称

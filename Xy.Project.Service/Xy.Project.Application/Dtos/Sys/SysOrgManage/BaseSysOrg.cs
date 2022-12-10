@@ -24,7 +24,7 @@ namespace Xy.Project.Application.Dtos.Sys.SysOrgManage
         /// <summary>
         /// 排序
         /// </summary>
-        public int Sort { get; set; } = 100;
+        public int Order { get; set; } = 100;
 
         /// <summary>
         /// 备注

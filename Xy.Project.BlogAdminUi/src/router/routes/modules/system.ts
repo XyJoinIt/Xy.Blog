@@ -32,6 +32,15 @@ const sysrole: AppRouteModule = {
         ignoreKeepAlive: true,
       },
     },
+    {
+      path: 'user',
+      name: 'UserManagement',
+      component: () => import('/@/views/sys/user/index.vue'),
+      meta: {
+        title: t('routes.sys.user'),
+        ignoreKeepAlive: true,
+      },
+    },
   ],
 }
 

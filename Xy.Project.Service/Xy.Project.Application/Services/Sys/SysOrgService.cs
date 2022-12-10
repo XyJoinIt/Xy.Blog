@@ -23,12 +23,23 @@ public class SysOrgService : CURDService<SysOrg, AddSysOrgDto, EditSysOrgDto, Ou
     }
 
     /// <summary>
+    /// 得到分页数据
+    /// </summary>
+    /// <param name="page"></param>
+    /// <returns></returns>
+    public override Task<AppResult> PageAsync(PageParam page)
+    {
+        page.AddOrderCondition(new OrderCondition(nameof(SysOrg.Order), OrderDirection.Ascending));
+        return base.PageAsync(page);
+    }
+
+    /// <summary>
     /// 得到数据
     /// </summary>
     /// <returns></returns>
     public async Task<AppResult> ListTree()
     {
-        var list = await ObjectMap.ToOutput<OutSysOrgTreeDto>(_repository.QueryList()).ToListAsync();
+        var list = await ObjectMap.ToOutput<OutSysOrgTreeDto>(_repository.QueryList().OrderBy(x=>x.Order)).ToListAsync();
         var root = list.Where(x=>x.Id== 0).FirstOrDefault();
         if (root == null)
             throw new Exception("顶级菜单栏丢失，请联系管理员");
@@ -48,7 +59,7 @@ public class SysOrgService : CURDService<SysOrg, AddSysOrgDto, EditSysOrgDto, Ou
         if (list.Count > 0)
         {
             dto.Children = new List<OutSysOrgTreeDto>();
-            dto.Children.AddRange(list.OrderBy(z=>z.Sort).ToList());
+            dto.Children.AddRange(list.OrderBy(z=>z.Order).ToList());
 
             foreach (var item in list)
             {

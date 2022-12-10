@@ -37,25 +37,9 @@ namespace Xy.Project.Application.Services.Sys
         /// <returns></returns>
         public override async Task<AppResult> PageAsync(PageParam page)
         {
-            page.NotNull(nameof(page));
-            //条件过滤
-            var exp = CreateFilteredQuery(page.FilterGroup);
             //排序
-            page.AddOrderCondition(new OrderCondition()
-            {
-                SortDirection = OrderDirection.Ascending,
-                SortField = "sort",
-            });
-            var orderConditions = ApplySorting();
-
-            if (orderConditions?.Length > 0)
-            {
-                page.AddOrderCondition(orderConditions);
-            }
-            var items = await _repository.QueryAsNoTracking()
-            .Where(exp)
-            .ToPageAsync<SysRole, OutSysRolePageDto>(page.PageCondition);
-            return AppResult.Problem(HttpCode.成功, "得到分页数据", items);
+            page.AddOrderCondition(new OrderCondition(nameof(SysRole.Sort)));
+            return await base.PageAsync(page);
         }
 
         /// <summary>
