@@ -33,7 +33,6 @@ namespace Xy.Project.Application.Validators.Sys
                 return true;
             }
             return false;
-
         }
     }
 }
