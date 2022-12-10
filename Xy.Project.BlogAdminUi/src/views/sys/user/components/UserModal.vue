@@ -7,7 +7,7 @@
   import { defineComponent, ref, computed, unref } from 'vue'
   import { BasicModal, useModalInner } from '/@/components/Modal'
   import { BasicForm, useForm } from '/@/components/Form/index'
-  import { formSchema } from './user.data'
+  import { formSchema } from '../user.data'
 
   import { TreeList, AddRole, UpdateRole } from '/@/api/sys/org'
   export default defineComponent({

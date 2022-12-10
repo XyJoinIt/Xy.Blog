@@ -28,7 +28,7 @@
                   {
                     icon: 'ant-design:menu-outlined',
                     label: '授权角色',
-                    onClick: handleEdit.bind(null, record),
+                    onClick: handleGrantRole.bind(null, record),
                   },
                   {
                     icon: 'ant-design:redo-outlined',
@@ -54,6 +54,7 @@
           </template>
         </BasicTable>
         <DeptModal @register="registerModal" @success="handleSuccess" />
+        <GrantRoleDrawer @register="openUserRoleModal" @success="handleSuccess" />
       </Col>
     </Row>
   </div>
@@ -64,7 +65,8 @@
   import { BasicTable, useTable, TableAction } from '/@/components/Table'
   import { TreeItem, TreeActionType } from '/@/components/Tree/index'
   import { useModal } from '/@/components/Modal'
-  import DeptModal from './UserModal.vue'
+  import DeptModal from './components/UserModal.vue'
+  import GrantRoleDrawer from './components/GrantRoleDrawer.vue'
   import { PageList } from '/@/api/sys/user'
   import { columns, searchFormSchema } from './user.data'
   import { FetchParams } from '/@/components/Table'
@@ -72,11 +74,12 @@
 
   export default defineComponent({
     name: 'UserManagement',
-    components: { BasicTable, DeptModal, TableAction, Row, Col, OrgTree, Avatar },
+    components: { BasicTable, DeptModal, TableAction, Row, Col, OrgTree, Avatar, GrantRoleDrawer },
     setup() {
       const treeRef = ref<Nullable<TreeActionType>>(null)
       const treeData = ref<TreeItem[]>([])
       const [registerModal, { openModal }] = useModal()
+      const [openUserRoleModal, { openModal: openGrantRoleDrawer }] = useModal()
       const [registerTable, { reload }] = useTable({
         title: '用户列表',
         api: PageList,
@@ -131,6 +134,10 @@
         reload({ searchInfo: { pid: keys } } as FetchParams)
       }
 
+      function handleGrantRole(record: Recordable) {
+        openGrantRoleDrawer(true, { record })
+      }
+
       return {
         treeRef,
         treeData,
@@ -141,6 +148,8 @@
         handleEdit,
         handleDelete,
         handleSuccess,
+        openUserRoleModal,
+        handleGrantRole,
       }
     },
   })
