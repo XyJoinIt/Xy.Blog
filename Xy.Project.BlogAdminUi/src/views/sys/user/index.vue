@@ -7,27 +7,49 @@
       <Col :span="19">
         <BasicTable @register="registerTable">
           <template #toolbar>
-            <a-button type="primary" @click="handleCreate"> 新增部门 </a-button>
+            <a-button type="primary" @click="handleCreate"> 新增用户</a-button>
           </template>
           <template #bodyCell="{ column, record }">
             <template v-if="column.key === 'action'">
               <TableAction
                 :actions="[
                   {
+                    icon: 'ant-design:info-circle-outlined',
+                    tooltip: '查看详情',
+                    onClick: handleEdit.bind(null, record),
+                  },
+                  {
                     icon: 'clarity:note-edit-line',
+                    tooltip: '编辑用户',
+                    onClick: handleEdit.bind(null, record),
+                  },
+                ]"
+                :dropDownActions="[
+                  {
+                    icon: 'ant-design:menu-outlined',
+                    label: '授权角色',
+                    onClick: handleEdit.bind(null, record),
+                  },
+                  {
+                    icon: 'ant-design:redo-outlined',
+                    label: '所属部门',
                     onClick: handleEdit.bind(null, record),
                   },
                   {
                     icon: 'ant-design:delete-outlined',
                     color: 'error',
+                    label: '删除账号',
+                    //ifShow: hasPermission('sysUser:delete'),
                     popConfirm: {
                       title: '是否确认删除',
-                      placement: 'left',
                       confirm: handleDelete.bind(null, record),
                     },
                   },
                 ]"
               />
+            </template>
+            <template v-else-if="column.key === 'avatar'">
+              <Avatar :size="30" :src="record.avatar" :alt="record.account" />
             </template>
           </template>
         </BasicTable>
@@ -37,27 +59,27 @@
   </div>
 </template>
 <script lang="ts">
-  import { defineComponent, ref, unref, onMounted, nextTick } from 'vue'
-  import { Row, Col } from 'ant-design-vue'
+  import { defineComponent, ref, onMounted } from 'vue'
+  import { Row, Col, Avatar } from 'ant-design-vue'
   import { BasicTable, useTable, TableAction } from '/@/components/Table'
   import { TreeItem, TreeActionType } from '/@/components/Tree/index'
   import { useModal } from '/@/components/Modal'
   import DeptModal from './UserModal.vue'
-  import { TreeList, PateList } from '/@/api/sys/org'
+  import { PageList } from '/@/api/sys/user'
   import { columns, searchFormSchema } from './user.data'
   import { FetchParams } from '/@/components/Table'
   import OrgTree from '../org/OrgTree.vue'
 
   export default defineComponent({
     name: 'UserManagement',
-    components: { BasicTable, DeptModal, TableAction, Row, Col, OrgTree },
+    components: { BasicTable, DeptModal, TableAction, Row, Col, OrgTree, Avatar },
     setup() {
       const treeRef = ref<Nullable<TreeActionType>>(null)
       const treeData = ref<TreeItem[]>([])
       const [registerModal, { openModal }] = useModal()
       const [registerTable, { reload }] = useTable({
         title: '用户列表',
-        api: PateList,
+        api: PageList,
         columns,
         formConfig: {
           labelWidth: 120,
@@ -72,16 +94,14 @@
         showIndexColumn: false,
         resizeHeightOffset: 40,
         actionColumn: {
-          width: 80,
+          width: 120,
           title: '操作',
           dataIndex: 'action',
           fixed: undefined,
         },
       })
 
-      onMounted(() => {
-        fetch()
-      })
+      onMounted(() => {})
 
       function handleCreate() {
         openModal(true, {
@@ -102,14 +122,6 @@
 
       function handleSuccess() {
         reload()
-        fetch()
-      }
-
-      async function fetch() {
-        treeData.value = (await TreeList()) as unknown as TreeItem[]
-        nextTick(() => {
-          unref(treeRef)?.filterByLevel(2)
-        })
       }
 
       function handleSelect(keys, obj) {

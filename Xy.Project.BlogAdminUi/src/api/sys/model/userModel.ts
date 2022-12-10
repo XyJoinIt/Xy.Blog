@@ -1,3 +1,16 @@
+import { BasicFetchResult } from '/@/api/model/baseModel'
+import { CommonStatus } from '/@/enums/GlobaEnum'
+export interface SysUser {
+  id: number | string
+  name: string
+  code: string
+  sort: number
+  remark: string
+  status: CommonStatus
+}
+
+export type OutSysUserPage = BasicFetchResult<SysUser>
+
 /**
  * @description: Login interface parameters
  */

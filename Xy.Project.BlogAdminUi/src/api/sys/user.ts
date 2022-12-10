@@ -1,6 +1,6 @@
 import { defHttp } from '/@/utils/http/axios'
-import { LoginParams, LoginResultModel, GetUserInfoModel } from './model/userModel'
-
+import { LoginParams, LoginResultModel, GetUserInfoModel, OutSysUserPage } from './model/userModel'
+import { PageParam } from '../model/baseModel'
 import { ErrorMessageMode } from '/#/axios'
 
 enum Api {
@@ -8,12 +8,17 @@ enum Api {
   Logout = '/Auth/Logout',
   GetUserInfo = '/SysUser/GetUserInfo',
   GetPermCode = '/getPermCode',
-  TestRetry = '/testRetry',
+  Add = '/SysUser/Add',
+  Update = '/SysUser/Update',
+  PageList = '/SysUser/PageList',
+  Delete = '/SysUser/Delete',
 }
 
-/**
- * @description: user login api
- */
+//获取列表
+export const PageList = (data: PageParam) =>
+  defHttp.post<OutSysUserPage>({ url: Api.PageList, data })
+
+//login
 export function loginApi(params: LoginParams, mode: ErrorMessageMode = 'modal') {
   return defHttp.post<LoginResultModel>(
     {
@@ -26,30 +31,17 @@ export function loginApi(params: LoginParams, mode: ErrorMessageMode = 'modal') 
   )
 }
 
-/**
- * @description: getUserInfo
- */
+//getUserInfo
 export function getUserInfo() {
   return defHttp.get<GetUserInfoModel>({ url: Api.GetUserInfo }, { errorMessageMode: 'none' })
 }
 
+//获取验证码
 export function getPermCode() {
   return defHttp.get<string[]>({ url: Api.GetPermCode })
 }
 
+//退出登录
 export function doLogout() {
   return defHttp.get({ url: Api.Logout })
-}
-
-export function testRetry() {
-  return defHttp.get(
-    { url: Api.TestRetry },
-    {
-      retryRequest: {
-        isOpenRetry: true,
-        count: 5,
-        waitTime: 1000,
-      },
-    },
-  )
 }

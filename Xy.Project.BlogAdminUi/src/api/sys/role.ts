@@ -4,7 +4,7 @@ import { OutSysRolePage, SysRole } from './model/roleModel'
 import { PageParam } from '../model/baseModel'
 
 enum Api {
-  GetRoleList = '/SysRole/PateList',
+  GetRoleList = '/SysRole/PageList',
   AddRole = '/SysRole/Add',
   UpdateRole = '/SysRole/Update',
   DeleteRole = '/SysRole/Delete',

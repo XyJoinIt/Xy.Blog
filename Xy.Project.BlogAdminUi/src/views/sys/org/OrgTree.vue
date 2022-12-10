@@ -56,3 +56,8 @@
     },
   })
 </script>
+<style>
+  .ant-card-body {
+    padding: 0px;
+  }
+</style>

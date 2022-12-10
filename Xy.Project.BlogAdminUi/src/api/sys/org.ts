@@ -5,7 +5,7 @@ import { OutSysOrgPage, SysOrg } from './model/orgModel'
 
 enum Api {
   GetOrgTreeList = '/SysOrg/ListTree',
-  GetPageList = '/SysOrg/PateList',
+  GetPageList = '/SysOrg/PageList',
   AddRole = '/SysOrg/Add',
   UpdateRole = '/SysOrg/Update',
   DeleteRole = '/SysOrg/Delete',

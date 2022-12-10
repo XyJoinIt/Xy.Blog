@@ -38,7 +38,7 @@
             <param name="services"></param>
             <returns></returns>
         </member>
-        <member name="M:Xy.Project.Platform.Modular.ApiControllerBase`5.PateList(Xy.Project.Core.Filter.PageParam)">
+        <member name="M:Xy.Project.Platform.Modular.ApiControllerBase`5.PageList(Xy.Project.Core.Filter.PageParam)">
             <summary>
             得到分页数据
             </summary>

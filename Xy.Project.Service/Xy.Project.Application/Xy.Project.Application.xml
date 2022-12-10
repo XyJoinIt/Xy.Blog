@@ -241,7 +241,7 @@
         </member>
         <member name="P:Xy.Project.Application.Dtos.Sys.SysUserManage.BaseSysUserDto.Password">
             <summary>
-            密码（默认MD5加密）
+            密码（默认Has加密）
             </summary>
         </member>
         <member name="P:Xy.Project.Application.Dtos.Sys.SysUserManage.BaseSysUserDto.NickName">

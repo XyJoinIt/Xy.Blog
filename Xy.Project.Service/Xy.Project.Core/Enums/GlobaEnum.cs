@@ -88,8 +88,8 @@ public enum Gender
     /// <summary>
     /// 未知
     /// </summary>
-    [Description("未知")]
-    未知 = 3
+    [Description("保密")]
+    保密 = 3
 }
 #endregion
 

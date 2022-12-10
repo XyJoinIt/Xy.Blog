@@ -50,17 +50,17 @@ export enum Gender {
   /// <summary>
   /// 男
   /// </summary>
-  男 = 1,
+  男 = '男',
 
   /// <summary>
   /// 女
   /// </summary>
-  女 = 2,
+  女 = '女',
 
   /// <summary>
-  /// 未知
+  /// 保密
   /// </summary>
-  未知 = 3,
+  保密 = '保密',
 }
 
 /// <summary>

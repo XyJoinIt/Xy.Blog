@@ -57,7 +57,7 @@ public class SysUser:FullEntityBase
     /// 性别-男_1、女_2
     /// </summary>
     [Comment("性别-男_1、女_2")]
-    public Gender Sex { get; set; } = Gender.未知;
+    public Gender Sex { get; set; } = Gender.保密;
 
     /// <summary>
     /// 邮箱

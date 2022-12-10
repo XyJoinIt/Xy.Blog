@@ -28,7 +28,7 @@ namespace Xy.Project.Platform.Modular
         /// <returns></returns>
         [HttpPost]
         [Description("得到分页数据")]
-        public virtual async Task<ActionResult<AppResult>> PateList([FromBody] PageParam page) => await _sysService.PageAsync(page);
+        public virtual async Task<ActionResult<AppResult>> PageList([FromBody] PageParam page) => await _sysService.PageAsync(page);
 
         /// <summary>
         /// 新增

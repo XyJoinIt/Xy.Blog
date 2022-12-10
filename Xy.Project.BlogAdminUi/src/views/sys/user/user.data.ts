@@ -2,17 +2,42 @@ import { BasicColumn } from '/@/components/Table'
 import { FormSchema } from '/@/components/Table'
 import { h } from 'vue'
 import { Tag } from 'ant-design-vue'
-import { CommonStatus } from '/@/enums/GlobaEnum'
+import { CommonStatus, Gender } from '/@/enums/GlobaEnum'
 export const columns: BasicColumn[] = [
   {
-    title: '部门名称',
-    dataIndex: 'name',
-    align: 'left',
+    title: '头像',
+    dataIndex: 'avatar',
+    width: 90,
   },
   {
-    title: '排序',
-    dataIndex: 'order',
-    width: 50,
+    title: '账户',
+    dataIndex: 'account',
+  },
+  {
+    title: '姓名',
+    dataIndex: 'name',
+  },
+  {
+    title: '性别',
+    dataIndex: 'sex',
+    width: 80,
+    customRender: ({ record }) => {
+      const status = record.sex
+      let color = ''
+      switch (status as Gender) {
+        case Gender.男:
+          color = 'blue'
+          break
+        case Gender.女:
+          color = 'pink'
+          break
+        default:
+          color = 'green'
+          break
+      }
+      const text = status
+      return h(Tag, { color: color }, () => text)
+    },
   },
   {
     title: '状态',
@@ -27,21 +52,23 @@ export const columns: BasicColumn[] = [
     },
   },
   {
-    title: '创建时间',
-    dataIndex: 'createTime',
-    width: 180,
+    title: '手机',
+    dataIndex: 'phone',
   },
   {
-    title: '备注',
-    dataIndex: 'remark',
-    width: 280,
+    title: '邮箱',
+    dataIndex: 'email',
+  },
+  {
+    title: '角色',
+    dataIndex: 'order',
   },
 ]
 
 export const searchFormSchema: FormSchema[] = [
   {
     field: 'name',
-    label: '部门名称',
+    label: '姓名',
     component: 'Input',
     colProps: { span: 8 },
   },
