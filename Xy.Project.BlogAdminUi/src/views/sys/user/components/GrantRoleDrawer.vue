@@ -52,7 +52,22 @@
                 },
               })
             "
-          />
+          >
+            <template #bodyCell="{ column }">
+              <template v-if="column.key === 'action'">
+                <TableAction
+                  :actions="[
+                    {
+                      icon: 'ant-design:info-circle-outlined',
+                      tooltip: '查看详情',
+                    },
+                  ]"
+                />
+
+                <!-- <delete-outlined /> -->
+              </template>
+            </template>
+          </Table>
         </template>
       </Transfer>
     </div>
@@ -62,7 +77,8 @@
   import { defineComponent, ref, unref } from 'vue'
   import { BasicModal, useModalInner } from '/@/components/Modal'
   import { Transfer, Table } from 'ant-design-vue'
-
+  //import { delete-outlined } from 'ant-design-icons'
+  import { TableAction } from '/@/components/Table'
   interface MockData {
     key: string
     title: string
@@ -71,7 +87,7 @@
   }
   type tableColumn = Record<string, string>
   const mockData: MockData[] = []
-  for (let i = 0; i < 206; i++) {
+  for (let i = 0; i < 26; i++) {
     mockData.push({
       key: i.toString(),
       title: `content${i + 1}`,
@@ -101,11 +117,15 @@
       dataIndex: 'description',
       title: 'Description',
     },
+    {
+      title: 'action',
+      dataIndex: 'action',
+    },
   ]
 
   export default defineComponent({
     name: 'DeptModal',
-    components: { BasicModal, Transfer, Table },
+    components: { BasicModal, Transfer, Table, TableAction },
     emits: ['success', 'register'],
     setup(_, { emit }) {
       const isUpdate = ref(true)
