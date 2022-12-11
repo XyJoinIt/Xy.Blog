@@ -121,6 +121,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Xy.Project.Platform.Modular.Sys.SysRoleController.list">
+            <summary>
+            角色集合
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Xy.Project.Platform.Modular.Sys.SysUserController">
             <summary>
             用户控制器

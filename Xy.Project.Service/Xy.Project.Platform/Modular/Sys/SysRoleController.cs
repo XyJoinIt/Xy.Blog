@@ -10,10 +10,10 @@ namespace Xy.Project.Platform.Modular.Sys;
 /// <summary>
 /// 角色控制器
 /// </summary>
-public class SysRoleController :  ApiControllerBase<ISysRoleService, SysRole, AddSysRoleDto, EditSysRoleDto, OutSysRolePageDto>
+public class SysRoleController : ApiControllerBase<ISysRoleService, SysRole, AddSysRoleDto, EditSysRoleDto, OutSysRolePageDto>
 {
     private readonly ISysRoleService _sysRoleService;
-    public SysRoleController(ISysRoleService sysRoleService):base(sysRoleService)
+    public SysRoleController(ISysRoleService sysRoleService) : base(sysRoleService)
     {
         _sysRoleService = sysRoleService;
     }
@@ -24,4 +24,11 @@ public class SysRoleController :  ApiControllerBase<ISysRoleService, SysRole, Ad
     /// <returns></returns>
     [HttpPut]
     public async Task<AppResult> SetRoleStart(BaseInputId input) => await _sysRoleService.SetRoleStart(input);
+
+    /// <summary>
+    /// 角色集合
+    /// </summary>
+    /// <returns></returns>
+    [HttpGet]
+    public async Task<AppResult> list() => await _sysRoleService.list();
 }

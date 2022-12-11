@@ -19,8 +19,6 @@ namespace Xy.Project.Application.Services.Sys
 {
     public class SysRoleService : CURDService<SysRole, AddSysRoleDto, EditSysRoleDto, OutSysRolePageDto>, ISysRoleService
     {
-        private readonly IValidator<AddSysRoleDto> _addValidator;
-        private readonly IValidator<EditSysRoleDto> _editValidator;
         protected readonly IRepository<SysRole, long> _repository;
         private readonly ILoginUserManager _loginUserManager;
 
@@ -41,6 +39,17 @@ namespace Xy.Project.Application.Services.Sys
             page.AddOrderCondition(new OrderCondition(nameof(SysRole.Sort)));
             return await base.PageAsync(page);
         }
+
+        /// <summary>
+        /// 角色集合
+        /// </summary>
+        /// <returns></returns>
+        public async Task<AppResult> list()
+        {
+            var items = await ObjectMap.ToOutput<OutSysRolePageDto>(_repository.QueryAsNoTracking()).ToArrayAsync();
+            return AppResult.Success(items);
+        }
+
 
         /// <summary>
         /// 将角色状态改为相反

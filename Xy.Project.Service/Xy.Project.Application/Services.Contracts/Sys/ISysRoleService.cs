@@ -7,6 +7,8 @@ namespace Xy.Project.Application.Services.Contracts.Sys
 {
     public interface ISysRoleService : ICURDContract<SysRole, AddSysRoleDto, EditSysRoleDto, OutSysRolePageDto>, IScopedDependency
     {
+        Task<AppResult> list();
+
         /// <summary>
         /// 修改角色状态
         /// </summary>

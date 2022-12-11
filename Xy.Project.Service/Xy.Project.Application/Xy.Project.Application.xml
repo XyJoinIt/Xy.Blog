@@ -539,6 +539,12 @@
             <param name="page"></param>
             <returns></returns>
         </member>
+        <member name="M:Xy.Project.Application.Services.Sys.SysRoleService.list">
+            <summary>
+            角色集合
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Xy.Project.Application.Services.Sys.SysRoleService.SetRoleStart(Xy.Project.Core.Base.BaseInputId)">
             <summary>
             将角色状态改为相反
