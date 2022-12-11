@@ -8,3 +8,4 @@ global using Xy.Project.Core.Extensions;
 global using Xy.Project.Core.Filter;
 global using Xy.Project.Core.Models;
 global using Xy.Project.Platform.Model;
+global using Xy.Project.Core;

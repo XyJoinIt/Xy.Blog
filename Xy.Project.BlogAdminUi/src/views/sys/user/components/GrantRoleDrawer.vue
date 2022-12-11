@@ -2,7 +2,7 @@
   <BasicModal
     v-bind="$attrs"
     @register="registerModal"
-    :title="getTitle"
+    :title="'授权角色'"
     @ok="handleSubmit"
     :draggable="true"
     :height="600"
@@ -11,14 +11,14 @@
     <div style="width: 100%">
       <Transfer
         v-model:target-keys="targetKeys"
-        :data-source="mockData"
+        :data-source="RoleData"
         :disabled="disabled"
         :show-search="true"
+        :titles="['全部角色', '当前角色']"
         :filter-option="(inputValue, item) => item.title!.indexOf(inputValue) !== -1"
         :show-select-all="false"
+        :operations="['新增', '移除']"
         @change="onChange"
-        ,
-        :one-way="true"
       >
         <template
           #children="{
@@ -52,85 +52,56 @@
                 },
               })
             "
-          >
-            <template #bodyCell="{ column }">
-              <template v-if="column.key === 'action'">
-                <TableAction
-                  :actions="[
-                    {
-                      icon: 'ant-design:info-circle-outlined',
-                      tooltip: '查看详情',
-                    },
-                  ]"
-                />
-
-                <!-- <delete-outlined /> -->
-              </template>
-            </template>
-          </Table>
+          />
         </template>
       </Transfer>
     </div>
   </BasicModal>
 </template>
 <script lang="ts">
-  import { defineComponent, ref, unref } from 'vue'
+  import { defineComponent, ref, unref, onMounted } from 'vue'
   import { BasicModal, useModalInner } from '/@/components/Modal'
   import { Transfer, Table } from 'ant-design-vue'
-  //import { delete-outlined } from 'ant-design-icons'
-  import { TableAction } from '/@/components/Table'
-  interface MockData {
+  //格式需要
+  interface RoleData {
     key: string
     title: string
     description: string
     disabled: boolean
   }
   type tableColumn = Record<string, string>
-  const mockData: MockData[] = []
-  for (let i = 0; i < 26; i++) {
-    mockData.push({
-      key: i.toString(),
-      title: `content${i + 1}`,
-      description: `description of content${i + 1}`,
-      disabled: false,
-    })
-  }
-
-  const originTargetKeys = mockData.filter((item) => +item.key % 3 > 1).map((item) => item.key)
 
   const leftTableColumns = [
     {
       dataIndex: 'title',
-      title: 'Name',
+      title: '角色名',
     },
     {
       dataIndex: 'description',
-      title: 'Description',
+      title: '备注',
     },
   ]
   const rightTableColumns = [
     {
       dataIndex: 'title',
-      title: 'Name',
+      title: '角色名',
     },
     {
       dataIndex: 'description',
-      title: 'Description',
-    },
-    {
-      title: 'action',
-      dataIndex: 'action',
+      title: '备注',
     },
   ]
 
   export default defineComponent({
     name: 'DeptModal',
-    components: { BasicModal, Transfer, Table, TableAction },
+    components: { BasicModal, Transfer, Table },
     emits: ['success', 'register'],
     setup(_, { emit }) {
       const isUpdate = ref(true)
       let rowId: number
-
+      onMounted(() => {
+        loadRoleData()
+      })
       const [registerModal, { setModalProps, closeModal }] = useModalInner(async (data) => {
         setModalProps({ confirmLoading: false })
         isUpdate.value = !!data?.isUpdate
@@ -140,8 +111,6 @@
           console.log(rowId)
         }
       })
-
-      const getTitle = '授权角色'
 
       async function handleSubmit() {
         try {
@@ -160,6 +129,19 @@
         }
       }
 
+      // for (let i = 0; i < 26; i++) {
+      //   mockData.push({
+      //     key: i.toString(),
+      //     title: `content${i + 1}`,
+      //     description: `description of content${i + 1}`,
+      //     disabled: false,
+      //   })
+      // }
+
+      //选中的数据
+      const originTargetKeys = []
+      //角色集合
+      const RoleData: RoleData[] = []
       const targetKeys = ref<string[]>(originTargetKeys)
       const disabled = ref<boolean>(false)
       const showSearch = ref<boolean>(false)
@@ -193,11 +175,12 @@
         }
       }
 
+      //加载数据
+      const loadRoleData = () => {}
       return {
         registerModal,
-        getTitle,
         handleSubmit,
-        mockData,
+        RoleData,
         targetKeys,
         disabled,
         showSearch,

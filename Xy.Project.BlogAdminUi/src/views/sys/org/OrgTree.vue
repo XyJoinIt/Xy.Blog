@@ -1,5 +1,5 @@
 <template>
-  <div class="m-4 mt-5 mr-1 overflow-hidden bg-white">
+  <div class="m-4 mt-4 mr-1 overflow-hidden bg-white">
     <Card style="padding: 0">
       <BasicTree
         title="机构列表"

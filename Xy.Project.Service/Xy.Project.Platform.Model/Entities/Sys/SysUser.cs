@@ -104,4 +104,10 @@ public class SysUser:FullEntityBase
     /// </summary>
     [Comment("状态-正常_0、停用_1、删除_2")]
     public CommonStatus Status { get; set; } = CommonStatus.正常;
+
+    /// <summary>
+    /// 角色集合
+    /// </summary>
+    [Comment("角色集合")]
+    public List<SysRole> Roles { get; set; } = new List<SysRole>();
 }

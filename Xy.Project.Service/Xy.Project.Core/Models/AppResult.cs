@@ -77,6 +77,13 @@ namespace Xy.Project.Core.Models
         {
             return Problem(HttpCode.成功, msg, data);
         }
+
+
+        public static AppResult RetAppResult(bool isBool = true, object? data = default)
+        {
+            return isBool ? Success(data) : Error(data!.ToString());
+        }
+
     }
 
     [Serializable]

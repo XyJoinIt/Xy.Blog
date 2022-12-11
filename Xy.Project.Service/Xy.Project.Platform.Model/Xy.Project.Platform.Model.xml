@@ -334,6 +334,11 @@
             状态（字典 0正常 1停用 2删除）
             </summary>
         </member>
+        <member name="P:Xy.Project.Platform.Model.Entities.Sys.SysRole.Users">
+            <summary>
+            用户集合
+            </summary>
+        </member>
         <member name="T:Xy.Project.Platform.Model.Entities.Sys.SysUser">
             <summary>
             用户表
@@ -414,19 +419,9 @@
             状态-正常_0、停用_1、删除_2
             </summary>
         </member>
-        <member name="T:Xy.Project.Platform.Model.Entities.Sys.SysUserRole">
+        <member name="P:Xy.Project.Platform.Model.Entities.Sys.SysUser.Roles">
             <summary>
-            用户角色表
-            </summary>
-        </member>
-        <member name="P:Xy.Project.Platform.Model.Entities.Sys.SysUserRole.SysUserId">
-            <summary>
-            用户Id
-            </summary>
-        </member>
-        <member name="P:Xy.Project.Platform.Model.Entities.Sys.SysUserRole.SysRoleId">
-            <summary>
-            系统角色Id
+            角色集合
             </summary>
         </member>
         <member name="T:Xy.Project.Platform.Model.Migrations.v100">
@@ -523,6 +518,18 @@
             <inheritdoc />
         </member>
         <member name="M:Xy.Project.Platform.Model.Migrations.v107.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Xy.Project.Platform.Model.Migrations.v108">
+            <inheritdoc />
+        </member>
+        <member name="M:Xy.Project.Platform.Model.Migrations.v108.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Xy.Project.Platform.Model.Migrations.v108.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Xy.Project.Platform.Model.Migrations.v108.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
         <member name="T:Xy.Project.Platform.Model.MySqlXyPlatformDbContextFactory">

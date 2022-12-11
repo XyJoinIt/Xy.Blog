@@ -46,5 +46,11 @@ namespace Xy.Project.Platform.Model.Entities.Sys
         /// </summary>
         [Comment("状态")]
         public CommonStatus Status { get; set; } = CommonStatus.正常;
+
+        /// <summary>
+        /// 用户集合
+        /// </summary>
+        [Comment("用户集合")]
+        public List<SysUser> Users { get; set; } = new List<SysUser>();
     }
 }

@@ -4,25 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Xy.Project.Platform.Model.Entities.Sys
+namespace Xy.Project.Application.Dtos.Sys.SysUserRoleManage
 {
-    /// <summary>
-    /// 用户角色表
-    /// </summary>
-    [Table("SysUserRole")]
-    [Comment("用户角色表")]
-    public class SysUserRole:FullEntityBase
+    public class BaseSysUserRoleDto
     {
         /// <summary>
         /// 用户Id
         /// </summary>
-        [Comment("用户Id")]
         public long SysUserId { get; set; }
 
         /// <summary>
         /// 系统角色Id
         /// </summary>
-        [Comment("角色Id")]
-        public long SysRoleId { get; set; }
+        public List<long> SysRoleIds { get; set; }
     }
 }

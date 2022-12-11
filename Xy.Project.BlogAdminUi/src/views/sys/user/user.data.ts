@@ -5,17 +5,23 @@ import { Tag } from 'ant-design-vue'
 import { CommonStatus, Gender } from '/@/enums/GlobaEnum'
 export const columns: BasicColumn[] = [
   {
+    title: '账户',
+    dataIndex: 'account',
+    fixed: 'left',
+  },
+  {
     title: '头像',
     dataIndex: 'avatar',
     width: 90,
   },
-  {
-    title: '账户',
-    dataIndex: 'account',
-  },
+
   {
     title: '姓名',
     dataIndex: 'name',
+  },
+  {
+    title: '昵称',
+    dataIndex: 'nickName',
   },
   {
     title: '性别',
@@ -54,6 +60,14 @@ export const columns: BasicColumn[] = [
   {
     title: '手机',
     dataIndex: 'phone',
+  },
+  {
+    title: '邮箱',
+    dataIndex: 'email',
+  },
+  {
+    title: '生日',
+    dataIndex: 'birthday',
   },
   {
     title: '邮箱',

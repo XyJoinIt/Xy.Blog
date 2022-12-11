@@ -100,7 +100,7 @@
           width: 120,
           title: '操作',
           dataIndex: 'action',
-          fixed: undefined,
+          fixed: 'right',
         },
       })
 

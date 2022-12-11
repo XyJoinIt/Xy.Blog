@@ -102,13 +102,19 @@ namespace Xy.Project.Core
         Task<int> DeleteAsync(TEntity entity, CancellationToken cancellationToken = default);
 
         /// <summary>
+        /// 异步条件删除
+        /// </summary>
+        /// <param name="whereExpression"></param>
+        /// <returns></returns>
+        Task<bool> DeleteAsync(Expression<Func<TEntity, bool>> whereExpression, CancellationToken cancellationToken = default);
+
+        /// <summary>
         /// 批量删除
         /// </summary>
         /// <param name="entities"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         Task<int> DeleteBatchAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken = default);
-
 
         /// <summary>
         /// FirstOrDefaultAsync
@@ -119,5 +125,4 @@ namespace Xy.Project.Core
         Task<TEntity?> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default);
     }
 
-    public interface IRepository<TEntity> : IRepository<TEntity, long> where TEntity : IEntity<long> { }
 }

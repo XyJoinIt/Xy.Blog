@@ -1,4 +1,5 @@
 ﻿using System.Linq.Expressions;
+using Xy.Project.Core.Entity;
 using Xy.Project.Core.Extensions;
 
 namespace Xy.Project.Core
@@ -209,9 +210,6 @@ namespace Xy.Project.Core
         public async Task<int> DeleteAsync(TPrimaryKey key, CancellationToken cancellationToken = default)
         {
             var entity = await FindAsync(key, cancellationToken);
-            //要约束ISoftDelete 这个接口
-            //entity.IsDeleted = true;  //SaveChangesAsync做了 
-            //Context.Entry(entity).State = EntityState.Modified;
             Context.Remove(entity);
             return await Context.SaveChangesAsync(cancellationToken);
         }
@@ -227,6 +225,20 @@ namespace Xy.Project.Core
             entity.NotNull(nameof(entity));
             Context.Remove(entity);
             return (await Context.SaveChangesAsync(cancellationToken));
+        }
+
+        /// <summary>
+        /// 异步条件删除
+        /// </summary>
+        /// <param name="whereExpression"></param>
+        /// <returns></returns>
+        public async Task<bool> DeleteAsync(Expression<Func<TEntity, bool>> whereExpression, CancellationToken cancellationToken = default)
+        {
+            whereExpression.NotNull(nameof(whereExpression));
+            var list = await DbSet.Where(whereExpression).ToArrayAsync();
+            Context.RemoveRange(list);
+            return (await Context.SaveChangesAsync(cancellationToken) > 0);
+
         }
 
         /// <summary>

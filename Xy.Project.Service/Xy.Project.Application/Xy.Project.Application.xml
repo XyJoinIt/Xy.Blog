@@ -294,6 +294,16 @@
             状态-正常_0、停用_1、删除_2
             </summary>
         </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysUserRoleManage.BaseSysUserRoleDto.SysUserId">
+            <summary>
+            用户Id
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysUserRoleManage.BaseSysUserRoleDto.SysRoleIds">
+            <summary>
+            系统角色Id
+            </summary>
+        </member>
         <member name="M:Xy.Project.Application.Services.Contracts.Base.ICURDContract`4.AddAsync(`1)">
             <summary>
             新增
@@ -370,6 +380,25 @@
             <summary>
             修改角色状态
             </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Xy.Project.Application.Services.Contracts.Sys.ISysUserRoleService">
+            <summary>
+            用户角色服务接口
+            </summary>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Contracts.Sys.ISysUserRoleService.GetUserRoleList(System.Int64)">
+            <summary>
+            根据用户Id获取所有角色
+            </summary>
+            <param name="UserId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Contracts.Sys.ISysUserRoleService.GrantUserRole(Xy.Project.Application.Dtos.Sys.SysUserRoleManage.AddSysUserRoleDto)">
+            <summary>
+            授权用户角色
+            </summary>
+            <param name="input"></param>
             <returns></returns>
         </member>
         <member name="T:Xy.Project.Application.Services.Contracts.Sys.ISysUserService">
@@ -514,6 +543,25 @@
             <summary>
             将角色状态改为相反
             </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Xy.Project.Application.Services.Sys.SysUserRoleService">
+            <summary>
+            用户角色服务
+            </summary>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Sys.SysUserRoleService.GrantUserRole(Xy.Project.Application.Dtos.Sys.SysUserRoleManage.AddSysUserRoleDto)">
+            <summary>
+            授权用户角色
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Sys.SysUserRoleService.GetUserRoleList(System.Int64)">
+            <summary>
+            根据用户Id获取所有角色
+            </summary>
+            <param name="UserId"></param>
             <returns></returns>
         </member>
         <member name="M:Xy.Project.Application.Services.Sys.SysUserService.Xy#Project#Application#Services#Contracts#Base#ICURDContract{Xy#Project#Platform#Model#Entities#Sys#SysUser,Xy#Project#Application#Dtos#Sys#SysUserManage#AddSysUserDto,Xy#Project#Application#Dtos#Sys#SysUserManage#EditSysUserDto,Xy#Project#Application#Dtos#Sys#SysUserManage#OutSysUserPageDto}#AddAsync(Xy.Project.Application.Dtos.Sys.SysUserManage.AddSysUserDto)">
