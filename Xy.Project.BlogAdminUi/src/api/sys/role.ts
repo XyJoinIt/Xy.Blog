@@ -9,11 +9,15 @@ enum Api {
   UpdateRole = '/SysRole/Update',
   DeleteRole = '/SysRole/Delete',
   SetRoleStart = '/SysRole/SetRoleStart',
+  List = '/SysRole/list',
 }
 
-//获取列表
+//获取分页列表
 export const PateList = (data: PageParam) =>
   defHttp.post<OutSysRolePage>({ url: Api.GetRoleList, data })
+
+//获取列表
+export const RoleList = () => defHttp.get({ url: Api.List })
 
 //新增
 export const AddRole = (data: SysRole) => defHttp.post({ url: Api.AddRole, data })

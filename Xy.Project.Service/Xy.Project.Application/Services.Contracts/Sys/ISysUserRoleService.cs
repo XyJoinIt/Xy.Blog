@@ -1,4 +1,5 @@
 ﻿using Xy.Project.Application.Dtos.Sys.SysUserRoleManage;
+using Xy.Project.Platform.Model.Entities.Sys;
 
 namespace Xy.Project.Application.Services.Contracts.Sys
 {
@@ -7,6 +8,13 @@ namespace Xy.Project.Application.Services.Contracts.Sys
     /// </summary>
     public interface ISysUserRoleService:IScopedDependency
     {
+        /// <summary>
+        /// 删除
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        Task<SysUser> DeleteUserRole(long userId);
+
         /// <summary>
         /// 根据用户Id获取所有角色
         /// </summary>

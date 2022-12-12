@@ -10,7 +10,7 @@ namespace Xy.Project.Platform.Modular.Sys;
 /// <summary>
 /// 角色控制器
 /// </summary>
-public class SysRoleController : ApiControllerBase<ISysRoleService, SysRole, AddSysRoleDto, EditSysRoleDto, OutSysRolePageDto>
+public class SysRoleController : OpControllerBase<ISysRoleService, SysRole, AddSysRoleDto, EditSysRoleDto, OutSysRolePageDto>
 {
     private readonly ISysRoleService _sysRoleService;
     public SysRoleController(ISysRoleService sysRoleService) : base(sysRoleService)

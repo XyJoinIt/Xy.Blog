@@ -18,9 +18,8 @@ public class XyException : Exception
     /// <param name="code"></param>
     public XyException(string msg, HttpCode code = HttpCode.失败) : base(msg)
     {
-        //Error = new ErrorDto(msg, code);
-        base.Data.Add("code", code);
-        base.Data.Add("msg", msg);
+        Error = new ErrorDto(msg, code);
+        base.Data.Add("error", Error);
     }
 }
 

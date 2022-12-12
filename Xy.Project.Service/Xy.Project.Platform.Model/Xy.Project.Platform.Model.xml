@@ -424,6 +424,31 @@
             角色集合
             </summary>
         </member>
+        <member name="T:Xy.Project.Platform.Model.Entities.Sys.SysUserRole">
+            <summary>
+            用户角色表
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Platform.Model.Entities.Sys.SysUserRole.SysUserId">
+            <summary>
+            用户Id
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Platform.Model.Entities.Sys.SysUserRole.SysUser">
+            <summary>
+            一对一引用（系统用户）
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Platform.Model.Entities.Sys.SysUserRole.SysRoleId">
+            <summary>
+            系统角色Id
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Platform.Model.Entities.Sys.SysUserRole.SysRole">
+            <summary>
+            一对一引用（系统角色）
+            </summary>
+        </member>
         <member name="T:Xy.Project.Platform.Model.Migrations.v100">
             <inheritdoc />
         </member>
@@ -530,6 +555,18 @@
             <inheritdoc />
         </member>
         <member name="M:Xy.Project.Platform.Model.Migrations.v108.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Xy.Project.Platform.Model.Migrations.v109">
+            <inheritdoc />
+        </member>
+        <member name="M:Xy.Project.Platform.Model.Migrations.v109.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Xy.Project.Platform.Model.Migrations.v109.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Xy.Project.Platform.Model.Migrations.v109.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
         <member name="T:Xy.Project.Platform.Model.MySqlXyPlatformDbContextFactory">

@@ -10,6 +10,8 @@ namespace Xy.Project.Application.Services.Contracts.Sys
     /// </summary>
     public interface ISysUserService : ICURDContract<SysUser, AddSysUserDto, EditSysUserDto, OutSysUserPageDto>, IScopedDependency 
     {
+        Task<AppResult> EditUserStart();
+
         /// <summary>
         /// 获取用户详情信息
         /// </summary>

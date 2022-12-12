@@ -10,7 +10,7 @@ namespace Xy.Project.Platform.Modular.Sys;
 /// <summary>
 /// 用户控制器
 /// </summary>
-public class SysUserController : ApiControllerBase<ISysUserService, SysUser,AddSysUserDto,EditSysUserDto,OutSysUserPageDto>
+public class SysUserController : OpControllerBase<ISysUserService, SysUser,AddSysUserDto,EditSysUserDto,OutSysUserPageDto>
 {
     private readonly ISysUserService _sysUserService;
     public SysUserController(ISysUserService sysUserService):base(sysUserService)

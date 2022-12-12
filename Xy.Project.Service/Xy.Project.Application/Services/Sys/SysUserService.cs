@@ -18,14 +18,15 @@ namespace Xy.Project.Application.Services.Sys
         private readonly ILoginUserManager _loginUserManager;
         private readonly IValidator<AddSysUserDto> _addValidator;
         private readonly IValidator<EditSysUserDto> _editValidator;
-
-        public SysUserService(IRepository<SysUser, long> repository, IValidator<AddSysUserDto> addValidator, IValidator<EditSysUserDto> editValidator, IEncryptionService encryption = null, ILoginUserManager loginUserManager = null)
+        private readonly ISysUserRoleService _sysUserRoleService;
+        public SysUserService(IRepository<SysUser, long> repository, IValidator<AddSysUserDto> addValidator, IValidator<EditSysUserDto> editValidator, IEncryptionService encryption = null, ILoginUserManager loginUserManager = null, ISysUserRoleService sysUserRoleService = null)
         {
             _repository = repository;
             _encryption = encryption;
             _loginUserManager = loginUserManager;
             _addValidator = addValidator;
             _editValidator = editValidator;
+            _sysUserRoleService = sysUserRoleService;
         }
 
         /// <summary>
@@ -47,7 +48,6 @@ namespace Xy.Project.Application.Services.Sys
             return result > 0 ? AppResult.Success() : AppResult.Error();
         }
 
-
         /// <summary>
         /// 删除
         /// </summary>
@@ -56,6 +56,12 @@ namespace Xy.Project.Application.Services.Sys
         /// <exception cref="NotImplementedException"></exception>
         public async Task<AppResult> DeleteAsync(long id)
         {
+
+            //删除用户角色
+            await _sysUserRoleService.DeleteUserRole(id);
+            //删除用户机构
+
+            //删除用户
             return await _repository.DeleteAsync(id) > 0 ? AppResult.Success() : AppResult.Error();
         }
 
@@ -105,7 +111,7 @@ namespace Xy.Project.Application.Services.Sys
         /// <exception cref="NotImplementedException"></exception>
         public async Task<AppResult> GetUserInfo()
         {
-            var user =await _repository.FindAsync(_loginUserManager.Id);
+            var user = await _repository.FindAsync(_loginUserManager.Id);
             return await AppResult.SuccessAsync(new
             {
                 roles = new[] {
@@ -120,6 +126,18 @@ namespace Xy.Project.Application.Services.Sys
                 avatar = user.Avatar,
                 desc = ""
             });
+        }
+
+        /// <summary>
+        /// 修改用户状态 (开关)
+        /// </summary>
+        /// <returns></returns>
+        public async Task<AppResult> EditUserStart()
+        {
+            var user = await _repository.FindAsync(_loginUserManager.Id);
+            user.Status = user.Status == CommonStatus.正常 ? CommonStatus.停用 : CommonStatus.正常;
+            await _repository.UpdateAsync(user);
+            return AppResult.Success();
         }
     }
 }

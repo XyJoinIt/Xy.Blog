@@ -9,7 +9,7 @@ namespace Xy.Project.Platform.Modular.Bolgs
     /// 分类管理
     /// </summary>
     [Description("分类管理")]
-    public class CategoryController : ApiControllerBase<ICategoryService,Category, AddInputDto, UpdateInputDto, OutPageList>
+    public class CategoryController : OpControllerBase<ICategoryService,Category, AddInputDto, UpdateInputDto, OutPageList>
     {
         private readonly ICategoryService _categoryContract;
 

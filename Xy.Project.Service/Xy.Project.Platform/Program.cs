@@ -11,6 +11,7 @@ using Xy.Project.Application.Services.Base;
 using Xy.Project.Application.Services.Contracts.Base;
 using Xy.Project.Core.AutoMapper;
 using Xy.Project.Core.Dependency;
+using Xy.Project.Core.Filter;
 using Xy.Project.Core.GlobalConfigEntity;
 using Xy.Project.Platform.Extensions;
 using Yitter.IdGenerator;
@@ -36,7 +37,7 @@ builder.Services.AddSwaggerSetup();
 // Add services to the container.
 builder.Services.AddControllers(option =>
 {
-    //控制器过滤待扩展...
+    option.Filters.Add<XyExceptionFilter>();
 }).AddNewtonsoftJson(option =>
 {
     //序列化配置

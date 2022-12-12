@@ -135,7 +135,7 @@
       }
 
       function handleGrantRole(record: Recordable) {
-        openGrantRoleDrawer(true, { record })
+        openGrantRoleDrawer(true, { record, isUpdate: true })
       }
 
       return {

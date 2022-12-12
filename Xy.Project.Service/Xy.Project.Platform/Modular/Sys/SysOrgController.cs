@@ -8,7 +8,7 @@ namespace Xy.Project.Platform.Modular.Sys
     /// <summary>
     /// 部门机构控制器
     /// </summary>
-    public class SysOrgController : ApiControllerBase<ISysOrgService, SysOrg, AddSysOrgDto, EditSysOrgDto, OutSysOrgPageDto>
+    public class SysOrgController : OpControllerBase<ISysOrgService, SysOrg, AddSysOrgDto, EditSysOrgDto, OutSysOrgPageDto>
     {
         private readonly ISysOrgService _sysService;
 

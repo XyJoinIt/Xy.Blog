@@ -9,7 +9,7 @@ namespace Xy.Project.Platform.Modular.Bolgs
     /// <summary>
     /// 文章管理控制器
     /// </summary>
-    public class ArticleController :  ApiControllerBase<IArticleService, Article,AddArticleDto,EditArticleDto, ArticleOutPutPageListDto>
+    public class ArticleController :  OpControllerBase<IArticleService, Article,AddArticleDto,EditArticleDto, ArticleOutPutPageListDto>
     {
         private readonly IArticleService _articleService;
 

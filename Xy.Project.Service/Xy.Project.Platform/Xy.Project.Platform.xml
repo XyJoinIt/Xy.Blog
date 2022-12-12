@@ -38,34 +38,6 @@
             <param name="services"></param>
             <returns></returns>
         </member>
-        <member name="M:Xy.Project.Platform.Modular.ApiControllerBase`5.PageList(Xy.Project.Core.Filter.PageParam)">
-            <summary>
-            得到分页数据
-            </summary>
-            <param name="page"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Xy.Project.Platform.Modular.ApiControllerBase`5.Add(`2)">
-            <summary>
-            新增
-            </summary>
-            <param name="dto"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Xy.Project.Platform.Modular.ApiControllerBase`5.Update(`3)">
-            <summary>
-            更新
-            </summary>
-            <param name="dto"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Xy.Project.Platform.Modular.ApiControllerBase`5.Delete(System.Int64)">
-            <summary>
-            删除
-            </summary>
-            <param name="id"></param>
-            <returns></returns>
-        </member>
         <member name="T:Xy.Project.Platform.Modular.Bolgs.ArticleController">
             <summary>
             文章管理控制器
@@ -81,6 +53,34 @@
             
              </summary>
              <param name="categoryContract"></param>
+        </member>
+        <member name="M:Xy.Project.Platform.Modular.OpControllerBase`5.PageList(Xy.Project.Core.Filter.PageParam)">
+            <summary>
+            得到分页数据
+            </summary>
+            <param name="page"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Platform.Modular.OpControllerBase`5.Add(`2)">
+            <summary>
+            新增
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Platform.Modular.OpControllerBase`5.Update(`3)">
+            <summary>
+            更新
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Platform.Modular.OpControllerBase`5.Delete(System.Int64)">
+            <summary>
+            删除
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
         </member>
         <member name="T:Xy.Project.Platform.Modular.Sys.AuthController">
             <summary>
@@ -137,6 +137,21 @@
             获取用户信息
             </summary>
             <returns></returns>
+        </member>
+        <member name="T:Xy.Project.Platform.Modular.Sys.SysUserRoleController">
+            <summary>
+            用户角色控制器
+            </summary>
+        </member>
+        <member name="M:Xy.Project.Platform.Modular.Sys.SysUserRoleController.GrantUserRole(Xy.Project.Application.Dtos.Sys.SysUserRoleManage.AddSysUserRoleDto)">
+            <summary>
+            用户角色授权
+            </summary>
+        </member>
+        <member name="M:Xy.Project.Platform.Modular.Sys.SysUserRoleController.GetUserRoleList(System.Int64)">
+            <summary>
+            用户角色集合
+            </summary>
         </member>
     </members>
 </doc>

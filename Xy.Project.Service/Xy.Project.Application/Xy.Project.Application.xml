@@ -376,6 +376,12 @@
             菜单
             </summary>
         </member>
+        <member name="M:Xy.Project.Application.Services.Contracts.Sys.ISysRoleService.list">
+            <summary>
+            角色集合
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Xy.Project.Application.Services.Contracts.Sys.ISysRoleService.SetRoleStart(Xy.Project.Core.Base.BaseInputId)">
             <summary>
             修改角色状态
@@ -386,6 +392,13 @@
             <summary>
             用户角色服务接口
             </summary>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Contracts.Sys.ISysUserRoleService.DeleteUserRole(System.Int64)">
+            <summary>
+            删除
+            </summary>
+            <param name="userId"></param>
+            <returns></returns>
         </member>
         <member name="M:Xy.Project.Application.Services.Contracts.Sys.ISysUserRoleService.GetUserRoleList(System.Int64)">
             <summary>
@@ -570,6 +583,12 @@
             <param name="UserId"></param>
             <returns></returns>
         </member>
+        <member name="M:Xy.Project.Application.Services.Sys.SysUserRoleService.DeleteUserRole(System.Int64)">
+            <summary>
+            清空用户角色
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Xy.Project.Application.Services.Sys.SysUserService.Xy#Project#Application#Services#Contracts#Base#ICURDContract{Xy#Project#Platform#Model#Entities#Sys#SysUser,Xy#Project#Application#Dtos#Sys#SysUserManage#AddSysUserDto,Xy#Project#Application#Dtos#Sys#SysUserManage#EditSysUserDto,Xy#Project#Application#Dtos#Sys#SysUserManage#OutSysUserPageDto}#AddAsync(Xy.Project.Application.Dtos.Sys.SysUserManage.AddSysUserDto)">
             <summary>
             新增
@@ -607,6 +626,12 @@
             </summary>
             <returns></returns>
             <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Sys.SysUserService.EditUserStart">
+            <summary>
+            修改用户状态 (开关)
+            </summary>
+            <returns></returns>
         </member>
     </members>
 </doc>

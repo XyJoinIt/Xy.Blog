@@ -8,7 +8,7 @@ namespace Xy.Project.Platform.Modular.Sys;
 /// <summary>
 /// 菜单控制器
 /// </summary>
-public class SysMenuController : ApiControllerBase<ISysMenuService,SysMenu,AddSysMenuDto,EditSysMenuDto,OutSysMenuPageDto>
+public class SysMenuController : OpControllerBase<ISysMenuService,SysMenu,AddSysMenuDto,EditSysMenuDto,OutSysMenuPageDto>
 {
     private readonly ISysMenuService _sysMenuService;
     public SysMenuController(ISysMenuService sysMenuService):base(sysMenuService)

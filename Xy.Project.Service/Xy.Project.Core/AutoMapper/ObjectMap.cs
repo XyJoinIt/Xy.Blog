@@ -61,7 +61,6 @@ namespace Xy.Project.Core.AutoMapper
         /// <typeparam name="TTarget">动态实体</typeparam>
         /// <param name="sources">数据源</param>
         /// <returns></returns>
-
         public static IEnumerable<TTarget> MapToList<TTarget>(IEnumerable<object> sources)
         {
             CheckMapper();

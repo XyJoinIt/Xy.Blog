@@ -20,13 +20,14 @@ namespace Xy.Project.Application.Validators.Sys
         {
             RuleFor(x => x.Name).NotEmpty().WithMessage(_emptyOrNullMesg.FormatWith("用户名"));
             RuleFor(x => x.Account).NotEmpty().WithMessage(_emptyOrNullMesg.FormatWith("账户名"));
-            //RuleFor(x => x.Name).MustAsync(async (model, value, cox, token) => !await this.IsNameExistAsync(value, cox, token)).WithMessage(x => $"【{x.Name}】已存在！");
+            RuleFor(x => x.Password).NotEmpty().WithMessage(_emptyOrNullMesg.FormatWith("密码"));
+            RuleFor(x => x.Account).MustAsync(async (model, value, cox, token) => !await this.IsNameExistAsync(value, cox, token)).WithMessage(x => $"【{x.Account}】已存在！");
         }
 
-        //判断角色是否存在
+        //判断Account是否存在
         private async Task<bool> IsNameExistAsync(string value, ValidationContext<AddSysUserDto> context, CancellationToken token = default)
         {
-            var exist = await _repository.QueryAsNoTracking().Where(o => o.Name.Equals(value, StringComparison.OrdinalIgnoreCase)).FirstOrDefaultAsync()!;
+            var exist = await _repository.QueryAsNoTracking().Where(o => o.Account.Equals(value, StringComparison.OrdinalIgnoreCase)).FirstOrDefaultAsync()!;
             if (exist != null)
             {
                 return true;

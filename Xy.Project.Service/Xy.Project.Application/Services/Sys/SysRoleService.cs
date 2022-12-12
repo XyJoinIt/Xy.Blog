@@ -46,7 +46,8 @@ namespace Xy.Project.Application.Services.Sys
         /// <returns></returns>
         public async Task<AppResult> list()
         {
-            var items = await ObjectMap.ToOutput<OutSysRolePageDto>(_repository.QueryAsNoTracking()).ToArrayAsync();
+            var list = _repository.QueryAsNoTracking().Where(x=>x.Status == CommonStatus.正常);
+            var items = await ObjectMap.ToOutput<OutSysRolePageDto>(list).ToArrayAsync();
             return AppResult.Success(items);
         }
 

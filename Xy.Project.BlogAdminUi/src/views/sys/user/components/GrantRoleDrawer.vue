@@ -11,7 +11,7 @@
     <div style="width: 100%">
       <Transfer
         v-model:target-keys="targetKeys"
-        :data-source="RoleData"
+        v-model:data-source="RoleData"
         :disabled="disabled"
         :show-search="true"
         :titles="['全部角色', '当前角色']"
@@ -59,9 +59,11 @@
   </BasicModal>
 </template>
 <script lang="ts">
-  import { defineComponent, ref, unref, onMounted } from 'vue'
+  import { defineComponent, reactive, ref, toRefs, unref } from 'vue'
   import { BasicModal, useModalInner } from '/@/components/Modal'
   import { Transfer, Table } from 'ant-design-vue'
+  import { RoleList } from '/@/api/sys/role'
+  import { GetUserRoleList, GrantUserRole } from '/@/api/sys/userRole'
   //格式需要
   interface RoleData {
     key: string
@@ -70,28 +72,6 @@
     disabled: boolean
   }
   type tableColumn = Record<string, string>
-
-  const leftTableColumns = [
-    {
-      dataIndex: 'title',
-      title: '角色名',
-    },
-    {
-      dataIndex: 'description',
-      title: '备注',
-    },
-  ]
-  const rightTableColumns = [
-    {
-      dataIndex: 'title',
-      title: '角色名',
-    },
-    {
-      dataIndex: 'description',
-      title: '备注',
-    },
-  ]
-
   export default defineComponent({
     name: 'DeptModal',
     components: { BasicModal, Transfer, Table },
@@ -99,16 +79,43 @@
     setup(_, { emit }) {
       const isUpdate = ref(true)
       let rowId: number
-      onMounted(() => {
-        loadRoleData()
+      const state = reactive({
+        //系统选中的数据
+        originTargetKeys: [] as string[],
+        //更改的数据
+        nextTargetKeys: [] as string[],
+        //角色集合
+        RoleData: [] as RoleData[],
       })
       const [registerModal, { setModalProps, closeModal }] = useModalInner(async (data) => {
         setModalProps({ confirmLoading: false })
         isUpdate.value = !!data?.isUpdate
-
         if (unref(isUpdate)) {
           rowId = data.record.id
-          console.log(rowId)
+          //state.originTargetKeys = []
+          state.RoleData = [] as RoleData[]
+          //角色集合
+          RoleList().then((res) => {
+            res.forEach((element) => {
+              state.RoleData.push({
+                key: String(element.id),
+                title: element.name,
+                description: element.remark,
+                disabled: false,
+              })
+            })
+          })
+
+          GetUserRoleList(rowId)
+            .then((res) => {
+              console.log(res)
+              state.originTargetKeys.splice(0)
+              res.forEach((element) => {
+                console.log(String(element.id))
+                state.originTargetKeys.push(String(element.id))
+              })
+            })
+            .catch(() => {})
         }
       })
 
@@ -117,7 +124,8 @@
           setModalProps({ confirmLoading: true })
 
           if (unref(isUpdate)) {
-            console.log(rowId)
+            //授权角色
+            GrantUserRole(rowId, state.nextTargetKeys.map(Number))
           } else {
             console.log(rowId)
           }
@@ -129,27 +137,35 @@
         }
       }
 
-      // for (let i = 0; i < 26; i++) {
-      //   mockData.push({
-      //     key: i.toString(),
-      //     title: `content${i + 1}`,
-      //     description: `description of content${i + 1}`,
-      //     disabled: false,
-      //   })
-      // }
+      const leftTableColumns = [
+        {
+          dataIndex: 'title',
+          title: '角色名',
+        },
+        {
+          dataIndex: 'description',
+          title: '备注',
+        },
+      ]
+      const rightTableColumns = [
+        {
+          dataIndex: 'title',
+          title: '角色名',
+        },
+        {
+          dataIndex: 'description',
+          title: '备注',
+        },
+      ]
 
-      //选中的数据
-      const originTargetKeys = []
-      //角色集合
-      const RoleData: RoleData[] = []
-      const targetKeys = ref<string[]>(originTargetKeys)
+      const targetKeys = ref<string[]>(state.originTargetKeys)
       const disabled = ref<boolean>(false)
       const showSearch = ref<boolean>(false)
       const leftColumns = ref<tableColumn[]>(leftTableColumns)
       const rightColumns = ref<tableColumn[]>(rightTableColumns)
 
       const onChange = (nextTargetKeys: string[]) => {
-        console.log('nextTargetKeys', nextTargetKeys)
+        state.nextTargetKeys = nextTargetKeys
       }
 
       const getRowSelection = ({
@@ -175,12 +191,10 @@
         }
       }
 
-      //加载数据
-      const loadRoleData = () => {}
       return {
+        ...toRefs(state),
         registerModal,
         handleSubmit,
-        RoleData,
         targetKeys,
         disabled,
         showSearch,
