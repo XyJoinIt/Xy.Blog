@@ -178,7 +178,8 @@ export interface BasicTableProps<T = any> {
   // 额外的请求参数
   searchInfo?: Recordable
   // 默认的排序参数
-  defSort?: Recordable
+  defSort?: Recordable,
+
   // 使用搜索表单
   useSearchForm?: boolean
   // 表单配置
@@ -247,6 +248,9 @@ export interface BasicTableProps<T = any> {
    * @type string[]
    */
   expandedRowKeys?: string[]
+
+  //自定义排序
+  orders?:OrderProps[]
 
   /**
    * Expanded container render for each row
@@ -476,4 +480,21 @@ export type ColumnChangeParam = {
 
 export interface InnerHandlers {
   onColumnsChange: (data: ColumnChangeParam[]) => void
+}
+
+//自定义排序
+export interface  OrderProps
+{
+
+  //排序字段
+  sortField:string
+  sortDirection:OrderDirection
+}
+
+//排序方向
+export enum OrderDirection
+{
+
+  Ascending=0,
+  Descending=1
 }
