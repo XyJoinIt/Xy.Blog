@@ -37,7 +37,7 @@ namespace Xy.Project.Application.Services.Sys
         public async Task<AppResult> GrantUserRole(AddSysUserRoleDto input)
         {
 
-            await DeleteUserRole(input.SysUserId,false);
+            await DeleteUserRole(input.SysUserId, false);
             var list = input.SysRoleIds.Select(x => new SysUserRole() { SysUserId = input.SysUserId, SysRoleId = x });
             var count = await _repository.InsertBatchAsync(list);
             return AppResult.RetAppResult();
@@ -48,13 +48,13 @@ namespace Xy.Project.Application.Services.Sys
         /// </summary>
         /// <param name="UserId"></param>
         /// <returns></returns>
-        public async Task<AppResult> GetUserRoleList(long UserId)
+        public async Task<SysRole[]?> GetUserRoleList(long UserId)
         {
             var _roles = await (from a in _repository.QueryAsNoTracking(x => x.SysUserId == UserId)
                                 join b in _RoleRepository.QueryAsNoTracking()
                                 on a.SysRoleId equals b.Id
                                 select b).OrderBy(x => x.Sort).ToArrayAsync();
-            return AppResult.Success(_roles);
+            return _roles;
         }
 
         /// <summary>

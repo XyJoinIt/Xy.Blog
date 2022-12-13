@@ -21,7 +21,7 @@ namespace Xy.Project.Application.Services.Contracts.Sys
         /// </summary>
         /// <param name="UserId"></param>
         /// <returns></returns>
-        Task<AppResult> GetUserRoleList(long UserId);
+        Task<SysRole[]?> GetUserRoleList(long UserId);
 
         /// <summary>
         /// 授权用户角色

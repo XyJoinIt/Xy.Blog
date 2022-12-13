@@ -94,6 +94,28 @@
             <param name="dto"></param>
             <returns></returns>
         </member>
+        <member name="T:Xy.Project.Platform.Modular.Sys.SysCacheController">
+            <summary>
+            缓存控制器
+            </summary>
+        </member>
+        <member name="M:Xy.Project.Platform.Modular.Sys.SysCacheController.#ctor(Xy.Project.Application.Services.Contracts.Sys.ISysCacheService)">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:Xy.Project.Platform.Modular.Sys.SysCacheController.GetAllKeys">
+            <summary>
+            获取所有缓存键
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Platform.Modular.Sys.SysCacheController.test">
+            <summary>
+            获取所有缓存键
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Xy.Project.Platform.Modular.Sys.SysMenuController">
             <summary>
             菜单控制器

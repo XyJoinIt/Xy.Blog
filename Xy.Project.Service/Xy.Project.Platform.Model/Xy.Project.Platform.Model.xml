@@ -334,6 +334,21 @@
             状态（字典 0正常 1停用 2删除）
             </summary>
         </member>
+        <member name="T:Xy.Project.Platform.Model.Entities.Sys.SysRoleMenu">
+            <summary>
+            菜单角色表
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Platform.Model.Entities.Sys.SysRoleMenu.SysMenuId">
+            <summary>
+            角色Id
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Platform.Model.Entities.Sys.SysRoleMenu.SysRoleId">
+            <summary>
+            系统角色Id
+            </summary>
+        </member>
         <member name="T:Xy.Project.Platform.Model.Entities.Sys.SysUser">
             <summary>
             用户表

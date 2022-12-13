@@ -24,6 +24,10 @@ namespace Xy.Project.Platform.Modular.Sys
         /// 用户角色集合
         /// </summary>
         [HttpGet]
-        public async Task<AppResult> GetUserRoleList(long id) => await _sysUserRoleService.GetUserRoleList(id);
+        public async Task<AppResult> GetUserRoleList(long id)
+        {
+            var list = await _sysUserRoleService.GetUserRoleList(id);
+            return await AppResult.SuccessAsync(list);
+        }
     }
 }

@@ -169,7 +169,7 @@ namespace Xy.Project.Core
         public async Task<int> InsertBatchAsync(IEnumerable<TEntity> entities, bool IsSava = true, CancellationToken cancellationToken = default)
         {
             entities.NotNull(nameof(entities));
-            await Context.AddRangeAsync(entities); //微软写代码的，解析一下为什么只有Add有异步方法？吊毛，哈哈
+            await Context.AddRangeAsync(entities);
             return IsSava ? (await Context.SaveChangesAsync(cancellationToken)) : 0;
         }
 

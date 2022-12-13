@@ -70,6 +70,9 @@ builder.Services.AddCorsSetup();
 //Jwt初始化
 builder.Services.AddJwtSetup();
 
+//redis初始化
+builder.Services.AddRedisSetUp();
+
 builder.Services.AddMediatR(AssemblyHelper.AllAssemblies);
 
 //雪花ID

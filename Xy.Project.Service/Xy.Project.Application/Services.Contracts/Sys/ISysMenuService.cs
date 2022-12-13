@@ -9,6 +9,6 @@ namespace Xy.Project.Application.Services.Contracts.Sys
     /// </summary>
     public interface ISysMenuService : ICURDContract<SysMenu, AddSysMenuDto, EditSysMenuDto, OutSysMenuPageDto>, IScopedDependency
     {
-
+        Task<List<AntDesignTreeNode>> GetLoginMenusAntDesign();
     }
 }

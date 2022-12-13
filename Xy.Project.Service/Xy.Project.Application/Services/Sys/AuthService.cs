@@ -10,6 +10,7 @@ using System.Security;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using Xy.Project.Application.Dtos.Sys.AuthManage;
 using Xy.Project.Application.Services.Contracts.Sys;
 using Xy.Project.Core;
@@ -59,9 +60,10 @@ namespace Xy.Project.Application.Services.Sys
             //创建claim
             var authClaim = new[]
             {
-                new Claim(JwtRegisteredClaimNames.Jti,model.Id.ToString()),
-                new Claim(JwtRegisteredClaimNames.Name,model.Name),
-                new Claim(JwtRegisteredClaimNames.Sub,model.Account)
+                new Claim(nameof(model.Id),model.Id.ToString()),
+                new Claim(nameof(model.AdminType),model.AdminType.ToString()),
+                new Claim(nameof(model.Name),model.Name),
+                new Claim(nameof(model.Account),model.Account)
             };
             IdentityModelEventSource.ShowPII = true;
             //签名

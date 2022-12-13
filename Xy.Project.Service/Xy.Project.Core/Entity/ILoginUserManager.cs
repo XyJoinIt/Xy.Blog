@@ -23,5 +23,9 @@ namespace Xy.Project.Application.Services.Contracts.Sys
         /// </summary>
         public string Name { get; }
 
+        /// <summary>
+        /// 账户类型
+        /// </summary>
+        AccessType AdminType { get; }
     }
 }

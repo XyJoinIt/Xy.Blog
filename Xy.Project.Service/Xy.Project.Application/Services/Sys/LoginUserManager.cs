@@ -18,21 +18,32 @@ namespace Xy.Project.Application.Services.Sys
         {
             _httpContextAccessor = httpContextAccessor;
         }
-
+        SysUser model = new SysUser();
         /// <summary>
         /// 用户id
         /// </summary>
-        public long Id => long.Parse(_httpContextAccessor.HttpContext.User.FindFirst(JwtRegisteredClaimNames.Jti)?.Value);
+        public long Id => long.Parse(_httpContextAccessor.HttpContext.User.FindFirst(nameof(model.Id))?.Value);
 
         /// <summary>
         /// 账户
         /// </summary>
-        public string Account => _httpContextAccessor.HttpContext.User.FindFirst(JwtRegisteredClaimNames.Sub)?.Value!;
+        public string Account => _httpContextAccessor.HttpContext.User.FindFirst(nameof(model.Account))?.Value!;
 
         /// <summary>
         /// 昵称
         /// </summary>
-        public string Name => _httpContextAccessor.HttpContext.User.FindFirst(JwtRegisteredClaimNames.Name)?.Value!;
-      
+        public string Name => _httpContextAccessor.HttpContext.User.FindFirst(nameof(model.Name))?.Value!;
+
+        /// <summary>
+        /// 账户类型
+        /// </summary>
+        public AccessType AdminType
+        {
+            get
+            {
+                var type = _httpContextAccessor.HttpContext.User.FindFirst(nameof(model.AdminType))?.Value!;
+                return (AccessType)Enum.Parse(typeof(AccessType), type);
+            }
+        }
     }
 }
