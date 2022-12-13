@@ -18,11 +18,13 @@ namespace Xy.Project.Application.Services.Sys
     {
 
         private readonly IRepository<SysUserRole, long> _repository;
+        private readonly IRepository<SysRole, long> _RoleRepository;
         private readonly ILoginUserManager _loginUserManager;
-        public SysUserRoleService(IRepository<SysUserRole, long> repository, ILoginUserManager loginUserManager)
+        public SysUserRoleService(IRepository<SysUserRole, long> repository, ILoginUserManager loginUserManager, IRepository<SysRole, long> roleRepository)
         {
             _repository = repository;
             _loginUserManager = loginUserManager;
+            _RoleRepository = roleRepository;
         }
 
         /// <summary>
@@ -32,12 +34,8 @@ namespace Xy.Project.Application.Services.Sys
         /// <returns></returns>
         public async Task<AppResult> GrantUserRole(AddSysUserRoleDto input)
         {
-            var userRoles = await _repository.QueryAsNoTracking(x=>x.SysUserId==input.SysUserId).ToArrayAsync();
-
-            await _repository.DeleteBatchAsync(userRoles);
-
-            var list = input.SysRoleIds.Select(x => new SysUserRole() { SysUserId = input.SysUserId,SysRoleId = x });
-           
+            var userRoles =await DeleteUserRole(input.SysUserId);
+            var list = input.SysRoleIds.Select(x => new SysUserRole() { SysUserId = input.SysUserId, SysRoleId = x });
             var count = await _repository.InsertBatchAsync(list);
             return AppResult.RetAppResult();
         }
@@ -49,27 +47,25 @@ namespace Xy.Project.Application.Services.Sys
         /// <returns></returns>
         public async Task<AppResult> GetUserRoleList(long UserId)
         {
-            //var list = _userRepository.QueryAsNoTracking(x => x.Id == UserId).Select(x => x.Roles);
-            //var userRoles = ObjectMap.MapToList<List<OutSysRolePageDto>>(list).ToArray();
-            //if (userRoles == null) throw new XyException("获取角色错误");
-            //return await Task.FromResult(AppResult.RetAppResult(true, userRoles[0]));
-
-            return  await AppResult.SuccessAsync();
+            var _roles = await (from a in _repository.QueryAsNoTracking(x => x.SysUserId == UserId)
+                           join b in _RoleRepository.QueryAsNoTracking()
+                           on a.SysRoleId equals b.Id
+                           select b).OrderBy(x=>x.Sort).ToArrayAsync();
+            return  AppResult.Success(_roles);
         }
 
         /// <summary>
         /// 清空用户角色
         /// </summary>
         /// <returns></returns>
-        public async Task<SysUser> DeleteUserRole(long userId)
+        public async Task<SysUserRole[]> DeleteUserRole(long userId)
         {
-            //var user = await _userRepository.FindAsync(userId);
-            //user.Roles.Clear();
-            //await _userRepository.UpdateAsync(user);
-            //return user;
-            //return await AppResult.SuccessAsync();
-
-            return null;
+            var userRoles = await _repository.QueryAsNoTracking(x => x.SysUserId == userId).ToArrayAsync();
+            if (userRoles.Any())
+            {
+                await _repository.DeleteBatchAsync(userRoles);
+            }
+            return userRoles;
         }
     }
 }

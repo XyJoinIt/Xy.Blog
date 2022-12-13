@@ -13,7 +13,7 @@ namespace Xy.Project.Application.Services.Contracts.Sys
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        Task<SysUser> DeleteUserRole(long userId);
+        Task<SysUserRole[]> DeleteUserRole(long userId);
 
         /// <summary>
         /// 根据用户Id获取所有角色
