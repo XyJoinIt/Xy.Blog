@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Xy.Project.Platform.Model;
 
@@ -10,9 +11,11 @@ using Xy.Project.Platform.Model;
 namespace Xy.Project.Platform.Model.Migrations
 {
     [DbContext(typeof(XyPlatformContext))]
-    partial class XyPlatformContextModelSnapshot : ModelSnapshot
+    [Migration("20221213023314_v1.0.11")]
+    partial class v1011
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -625,10 +628,33 @@ namespace Xy.Project.Platform.Model.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("SysRoleId");
+
+                    b.HasIndex("SysUserId");
+
                     b.ToTable("SysUserRole", t =>
                         {
                             t.HasComment("用户角色表");
                         });
+                });
+
+            modelBuilder.Entity("Xy.Project.Platform.Model.Entities.Sys.SysUserRole", b =>
+                {
+                    b.HasOne("Xy.Project.Platform.Model.Entities.Sys.SysRole", "SysRole")
+                        .WithMany()
+                        .HasForeignKey("SysRoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Xy.Project.Platform.Model.Entities.Sys.SysUser", "SysUser")
+                        .WithMany()
+                        .HasForeignKey("SysUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("SysRole");
+
+                    b.Navigation("SysUser");
                 });
 #pragma warning restore 612, 618
         }

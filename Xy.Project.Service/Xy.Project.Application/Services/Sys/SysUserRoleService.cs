@@ -20,11 +20,13 @@ namespace Xy.Project.Application.Services.Sys
         private readonly IRepository<SysUserRole, long> _repository;
         private readonly IRepository<SysRole, long> _RoleRepository;
         private readonly ILoginUserManager _loginUserManager;
-        public SysUserRoleService(IRepository<SysUserRole, long> repository, ILoginUserManager loginUserManager, IRepository<SysRole, long> roleRepository)
+        private readonly IUnitOfWork _unitOfWork;
+        public SysUserRoleService(IRepository<SysUserRole, long> repository, ILoginUserManager loginUserManager, IRepository<SysRole, long> roleRepository, IUnitOfWork unitOfWork)
         {
             _repository = repository;
             _loginUserManager = loginUserManager;
             _RoleRepository = roleRepository;
+            _unitOfWork = unitOfWork;
         }
 
         /// <summary>
@@ -34,7 +36,8 @@ namespace Xy.Project.Application.Services.Sys
         /// <returns></returns>
         public async Task<AppResult> GrantUserRole(AddSysUserRoleDto input)
         {
-            var userRoles =await DeleteUserRole(input.SysUserId);
+
+            await DeleteUserRole(input.SysUserId,false);
             var list = input.SysRoleIds.Select(x => new SysUserRole() { SysUserId = input.SysUserId, SysRoleId = x });
             var count = await _repository.InsertBatchAsync(list);
             return AppResult.RetAppResult();
@@ -48,22 +51,22 @@ namespace Xy.Project.Application.Services.Sys
         public async Task<AppResult> GetUserRoleList(long UserId)
         {
             var _roles = await (from a in _repository.QueryAsNoTracking(x => x.SysUserId == UserId)
-                           join b in _RoleRepository.QueryAsNoTracking()
-                           on a.SysRoleId equals b.Id
-                           select b).OrderBy(x=>x.Sort).ToArrayAsync();
-            return  AppResult.Success(_roles);
+                                join b in _RoleRepository.QueryAsNoTracking()
+                                on a.SysRoleId equals b.Id
+                                select b).OrderBy(x => x.Sort).ToArrayAsync();
+            return AppResult.Success(_roles);
         }
 
         /// <summary>
         /// 清空用户角色
         /// </summary>
         /// <returns></returns>
-        public async Task<SysUserRole[]> DeleteUserRole(long userId)
+        public async Task<SysUserRole[]> DeleteUserRole(long userId, bool IsSava = true)
         {
             var userRoles = await _repository.QueryAsNoTracking(x => x.SysUserId == userId).ToArrayAsync();
             if (userRoles.Any())
             {
-                await _repository.DeleteBatchAsync(userRoles);
+                await _repository.DeleteBatchAsync(userRoles, IsSava);
             }
             return userRoles;
         }

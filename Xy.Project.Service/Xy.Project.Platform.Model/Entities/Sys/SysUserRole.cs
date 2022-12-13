@@ -11,7 +11,7 @@ namespace Xy.Project.Platform.Model.Entities.Sys
     /// </summary>
     [Table("SysUserRole")]
     [Comment("用户角色表")]
-    public class SysUserRole: FullEntityBase
+    public class SysUserRole: EntityBase<long>
     {
         /// <summary>
         /// 用户Id
@@ -20,19 +20,9 @@ namespace Xy.Project.Platform.Model.Entities.Sys
         public long SysUserId { get; set; }
 
         /// <summary>
-        /// 一对一引用（系统用户）
-        /// </summary>
-        public SysUser SysUser { get; set; }
-
-        /// <summary>
         /// 系统角色Id
         /// </summary>
         [Comment("角色Id")]
         public long SysRoleId { get; set; }
-
-        /// <summary>
-        /// 一对一引用（系统角色）
-        /// </summary>
-        public SysRole SysRole { get; set; }
     }
 }

@@ -153,11 +153,11 @@ namespace Xy.Project.Core
         /// <param name="entity"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public async Task<int> InsertAsync(TEntity entity, CancellationToken cancellationToken = default)
+        public async Task<int> InsertAsync(TEntity entity, bool IsSava = true, CancellationToken cancellationToken = default)
         {
             entity.NotNull(nameof(entity));
             await DbSet.AddAsync(entity, cancellationToken); //微软写代码的，解析一下为什么只有Add有异步方法？吊毛，哈哈
-            return (await Context.SaveChangesAsync(cancellationToken));
+            return IsSava ? (await Context.SaveChangesAsync(cancellationToken)) : 0;
         }
 
         /// <summary>
@@ -166,12 +166,11 @@ namespace Xy.Project.Core
         /// <param name="entities"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public async Task<int> InsertBatchAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken = default)
+        public async Task<int> InsertBatchAsync(IEnumerable<TEntity> entities, bool IsSava = true, CancellationToken cancellationToken = default)
         {
             entities.NotNull(nameof(entities));
             await Context.AddRangeAsync(entities); //微软写代码的，解析一下为什么只有Add有异步方法？吊毛，哈哈
-            return await Context.SaveChangesAsync(cancellationToken);
-
+            return IsSava ? (await Context.SaveChangesAsync(cancellationToken)) : 0;
         }
 
         /// <summary>
@@ -181,11 +180,11 @@ namespace Xy.Project.Core
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public virtual Task<int> UpdateAsync(TEntity entity, CancellationToken cancellationToken = default)
+        public virtual async Task<int> UpdateAsync(TEntity entity, bool IsSava = true, CancellationToken cancellationToken = default)
         {
             entity.NotNull(nameof(entity));
             Context.Update(entity);
-            return Context.SaveChangesAsync(cancellationToken);
+            return IsSava ? (await Context.SaveChangesAsync(cancellationToken)) : 0;
         }
 
         /// <summary>
@@ -194,11 +193,11 @@ namespace Xy.Project.Core
         /// <param name="entities"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public Task<int> UpdateBatchAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken = default)
+        public async Task<int> UpdateBatchAsync(IEnumerable<TEntity> entities, bool IsSava = true, CancellationToken cancellationToken = default)
         {
             entities.NotNull(nameof(entities));
             Context.UpdateRange(entities);
-            return Context.SaveChangesAsync(cancellationToken);
+            return IsSava ? (await Context.SaveChangesAsync(cancellationToken)) : 0;
         }
 
         /// <summary>
@@ -207,11 +206,11 @@ namespace Xy.Project.Core
         /// <param name="key"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public async Task<int> DeleteAsync(TPrimaryKey key, CancellationToken cancellationToken = default)
+        public async Task<int> DeleteAsync(TPrimaryKey key, bool IsSava = true, CancellationToken cancellationToken = default)
         {
             var entity = await FindAsync(key, cancellationToken);
             Context.Remove(entity);
-            return await Context.SaveChangesAsync(cancellationToken);
+            return IsSava ? (await Context.SaveChangesAsync(cancellationToken)) : 0;
         }
 
         /// <summary>
@@ -220,11 +219,11 @@ namespace Xy.Project.Core
         /// <param name="entity"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public async Task<int> DeleteAsync(TEntity entity, CancellationToken cancellationToken = default)
+        public async Task<int> DeleteAsync(TEntity entity, bool IsSava = true, CancellationToken cancellationToken = default)
         {
             entity.NotNull(nameof(entity));
             Context.Remove(entity);
-            return (await Context.SaveChangesAsync(cancellationToken));
+            return IsSava ? (await Context.SaveChangesAsync(cancellationToken)) : 0;
         }
 
         /// <summary>
@@ -232,13 +231,12 @@ namespace Xy.Project.Core
         /// </summary>
         /// <param name="whereExpression"></param>
         /// <returns></returns>
-        public async Task<bool> DeleteAsync(Expression<Func<TEntity, bool>> whereExpression, CancellationToken cancellationToken = default)
+        public async Task<bool> DeleteAsync(Expression<Func<TEntity, bool>> whereExpression, bool IsSava = true, CancellationToken cancellationToken = default)
         {
             whereExpression.NotNull(nameof(whereExpression));
             var list = await DbSet.Where(whereExpression).ToArrayAsync();
             Context.RemoveRange(list);
-            return (await Context.SaveChangesAsync(cancellationToken) > 0);
-
+            return IsSava ? (await Context.SaveChangesAsync(cancellationToken) > 0) :true;
         }
 
         /// <summary>
@@ -247,11 +245,11 @@ namespace Xy.Project.Core
         /// <param name="entities"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public Task<int> DeleteBatchAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken = default)
+        public async Task<int> DeleteBatchAsync(IEnumerable<TEntity> entities, bool IsSava = true, CancellationToken cancellationToken = default)
         {
             entities.NotNull(nameof(entities));
             Context.RemoveRange(entities);
-            return Context.SaveChangesAsync(cancellationToken);
+            return IsSava ? (await Context.SaveChangesAsync(cancellationToken)) : 0;
         }
         #endregion
     }

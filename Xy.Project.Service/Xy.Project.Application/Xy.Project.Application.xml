@@ -393,11 +393,12 @@
             用户角色服务接口
             </summary>
         </member>
-        <member name="M:Xy.Project.Application.Services.Contracts.Sys.ISysUserRoleService.DeleteUserRole(System.Int64)">
+        <member name="M:Xy.Project.Application.Services.Contracts.Sys.ISysUserRoleService.DeleteUserRole(System.Int64,System.Boolean)">
             <summary>
             删除
             </summary>
             <param name="userId"></param>
+            <param name="IsSava"></param>
             <returns></returns>
         </member>
         <member name="M:Xy.Project.Application.Services.Contracts.Sys.ISysUserRoleService.GetUserRoleList(System.Int64)">
@@ -583,7 +584,7 @@
             <param name="UserId"></param>
             <returns></returns>
         </member>
-        <member name="M:Xy.Project.Application.Services.Sys.SysUserRoleService.DeleteUserRole(System.Int64)">
+        <member name="M:Xy.Project.Application.Services.Sys.SysUserRoleService.DeleteUserRole(System.Int64,System.Boolean)">
             <summary>
             清空用户角色
             </summary>

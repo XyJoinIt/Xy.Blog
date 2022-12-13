@@ -424,19 +424,9 @@
             用户Id
             </summary>
         </member>
-        <member name="P:Xy.Project.Platform.Model.Entities.Sys.SysUserRole.SysUser">
-            <summary>
-            一对一引用（系统用户）
-            </summary>
-        </member>
         <member name="P:Xy.Project.Platform.Model.Entities.Sys.SysUserRole.SysRoleId">
             <summary>
             系统角色Id
-            </summary>
-        </member>
-        <member name="P:Xy.Project.Platform.Model.Entities.Sys.SysUserRole.SysRole">
-            <summary>
-            一对一引用（系统角色）
             </summary>
         </member>
         <member name="T:Xy.Project.Platform.Model.Migrations.v100">
@@ -569,6 +559,30 @@
             <inheritdoc />
         </member>
         <member name="M:Xy.Project.Platform.Model.Migrations.v1010.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Xy.Project.Platform.Model.Migrations.v1011">
+            <inheritdoc />
+        </member>
+        <member name="M:Xy.Project.Platform.Model.Migrations.v1011.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Xy.Project.Platform.Model.Migrations.v1011.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Xy.Project.Platform.Model.Migrations.v1011.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Xy.Project.Platform.Model.Migrations.v1012">
+            <inheritdoc />
+        </member>
+        <member name="M:Xy.Project.Platform.Model.Migrations.v1012.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Xy.Project.Platform.Model.Migrations.v1012.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Xy.Project.Platform.Model.Migrations.v1012.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
         <member name="T:Xy.Project.Platform.Model.MySqlXyPlatformDbContextFactory">

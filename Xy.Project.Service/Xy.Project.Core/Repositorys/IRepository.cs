@@ -61,7 +61,7 @@ namespace Xy.Project.Core
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
-        Task<int> InsertAsync(TEntity item, CancellationToken cancellationToken = default);
+        Task<int> InsertAsync(TEntity item, bool IsSava = true, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 批量插入
@@ -69,14 +69,14 @@ namespace Xy.Project.Core
         /// <param name="entities"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        Task<int> InsertBatchAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken = default);
+        Task<int> InsertBatchAsync(IEnumerable<TEntity> entities, bool IsSava = true, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 异步更新
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
-        Task<int> UpdateAsync(TEntity item, CancellationToken cancellationToken = default);
+        Task<int> UpdateAsync(TEntity item, bool IsSava = true, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 批量更新
@@ -84,14 +84,14 @@ namespace Xy.Project.Core
         /// <param name="entities"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        Task<int> UpdateBatchAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken = default);
+        Task<int> UpdateBatchAsync(IEnumerable<TEntity> entities, bool IsSava = true, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 异步软删除
         /// </summary>
         /// <param name="Id"></param>
         /// <returns></returns>
-        Task<int> DeleteAsync(TPrimaryKey key, CancellationToken cancellationToken = default);
+        Task<int> DeleteAsync(TPrimaryKey key, bool IsSava = true, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 异步删除
@@ -99,14 +99,14 @@ namespace Xy.Project.Core
         /// <param name="entity"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        Task<int> DeleteAsync(TEntity entity, CancellationToken cancellationToken = default);
+        Task<int> DeleteAsync(TEntity entity, bool IsSava = true, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 异步条件删除
         /// </summary>
         /// <param name="whereExpression"></param>
         /// <returns></returns>
-        Task<bool> DeleteAsync(Expression<Func<TEntity, bool>> whereExpression, CancellationToken cancellationToken = default);
+        Task<bool> DeleteAsync(Expression<Func<TEntity, bool>> whereExpression, bool IsSava = true, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 批量删除
@@ -114,7 +114,7 @@ namespace Xy.Project.Core
         /// <param name="entities"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        Task<int> DeleteBatchAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken = default);
+        Task<int> DeleteBatchAsync(IEnumerable<TEntity> entities, bool IsSava = true, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// FirstOrDefaultAsync

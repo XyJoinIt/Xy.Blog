@@ -6,14 +6,15 @@ namespace Xy.Project.Application.Services.Contracts.Sys
     /// <summary>
     /// 用户角色服务接口
     /// </summary>
-    public interface ISysUserRoleService:IScopedDependency
+    public interface ISysUserRoleService : IScopedDependency
     {
         /// <summary>
         /// 删除
         /// </summary>
         /// <param name="userId"></param>
+        /// <param name="IsSava"></param>
         /// <returns></returns>
-        Task<SysUserRole[]> DeleteUserRole(long userId);
+        Task<SysUserRole[]> DeleteUserRole(long userId, bool IsSava = true);
 
         /// <summary>
         /// 根据用户Id获取所有角色

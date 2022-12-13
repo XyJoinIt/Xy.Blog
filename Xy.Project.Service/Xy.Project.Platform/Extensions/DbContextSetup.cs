@@ -17,8 +17,6 @@ namespace Xy.Project.Platform.Extensions
         /// <returns></returns>
         public static IServiceCollection AddDbWorkSetup(this IServiceCollection services)
         {
-
-
             //注入数据库
             services.AddDbContext<XyPlatformContext>(x =>
             {
