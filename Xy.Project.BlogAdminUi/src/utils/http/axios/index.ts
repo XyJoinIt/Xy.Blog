@@ -17,11 +17,11 @@ import { useI18n } from '/@/hooks/web/useI18n'
 import { joinTimestamp, formatRequestDate } from './helper'
 import { useUserStoreWithOut } from '/@/store/modules/user'
 import { AxiosRetry } from '/@/utils/http/axios/axiosRetry'
-import { BasicPageParams, PageParam } from '/@/api/model/baseModel'
+//import { BasicPageParams, PageParam } from '/@/api/model/baseModel'
 
-import componentSetting from '/@/settings/componentSetting'
+//import componentSetting from '/@/settings/componentSetting'
 
-const { table } = componentSetting
+//const { table } = componentSetting
 
 const globSetting = useGlobSetting()
 const urlPrefix = globSetting.urlPrefix
@@ -145,20 +145,20 @@ const transform: AxiosTransform = {
         config.url = config.url + params
         config.params = undefined
       }
-      if (config.method?.toUpperCase() == RequestEnum.POST) {
-        const dataParam = config.data as BasicPageParams
-        if (Reflect.has(dataParam, 'pageIndex') && Reflect.has(dataParam, 'pageSize')) {
-          const mapData = new PageParam(dataParam.pageIndex!, dataParam.pageSize!)
-          for (const key in dataParam) {
-            if (key === table.fetchSetting.pageField || key === table.fetchSetting.sizeField)
-              continue
-            else {
-              mapData.FilterGroup?.add(key, dataParam[key])
-            }
-          }
-          config.data = mapData
-        }
-      }
+      // if (config.method?.toUpperCase() == RequestEnum.POST) {
+      //   const dataParam = config.data as BasicPageParams
+      //   if (Reflect.has(dataParam, 'pageIndex') && Reflect.has(dataParam, 'pageSize')) {
+      //     const mapData = new PageParam(dataParam.pageIndex!, dataParam.pageSize!)
+      //     for (const key in dataParam) {
+      //       if (key === table.fetchSetting.pageField || key === table.fetchSetting.sizeField)
+      //         continue
+      //       else {
+      //         mapData.FilterGroup?.add(key, dataParam[key])
+      //       }
+      //     }
+      //     config.data = mapData
+      //   }
+      // }
     }
     return config
   },

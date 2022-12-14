@@ -178,8 +178,7 @@ export interface BasicTableProps<T = any> {
   // 额外的请求参数
   searchInfo?: Recordable
   // 默认的排序参数
-  defSort?: Recordable,
-
+  defSort?: Recordable
   // 使用搜索表单
   useSearchForm?: boolean
   // 表单配置
@@ -199,7 +198,6 @@ export interface BasicTableProps<T = any> {
   canResize?: boolean
   // 自适应高度偏移， 计算结果-偏移量
   resizeHeightOffset?: number
-
   // 在分页改变的时候清空选项
   clearSelectOnPageChange?: boolean
   //
@@ -250,7 +248,7 @@ export interface BasicTableProps<T = any> {
   expandedRowKeys?: string[]
 
   //自定义排序
-  orders?:OrderProps[]
+  orders?: OrderProps[]
 
   /**
    * Expanded container render for each row
@@ -483,18 +481,14 @@ export interface InnerHandlers {
 }
 
 //自定义排序
-export interface  OrderProps
-{
-
+export interface OrderProps {
   //排序字段
-  sortField:string
-  sortDirection:OrderDirection
+  sortField: string
+  sortDirection: OrderDirection
 }
 
 //排序方向
-export enum OrderDirection
-{
-
-  Ascending=0,
-  Descending=1
+export enum OrderDirection {
+  Ascending = 0,
+  Descending = 1,
 }

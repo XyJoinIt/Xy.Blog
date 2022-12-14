@@ -22,7 +22,6 @@ export class PageParam {
     this.FilterGroup = new FilterGroup()
   }
 
-
   //分页条件
   PageCondition: PageCondition
   //查询条件组
@@ -49,12 +48,11 @@ export class PageCondition {
     this.PageSize = pageSize
   }
 
-  setOrderCondition(param:OrderCondition) {
-    if(this.OrderConditions == null || this.OrderConditions?.length <= 0)
-    {
-       this.OrderConditions=[];
+  setOrderCondition(param: OrderCondition) {
+    if (this.OrderConditions == null || this.OrderConditions?.length <= 0) {
+      this.OrderConditions = []
     }
-    this.OrderConditions.push(param);
+    this.OrderConditions.push(param)
   }
   PageIndex: number
   PageSize: number
