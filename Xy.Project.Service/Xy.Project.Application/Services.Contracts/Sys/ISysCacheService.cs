@@ -13,11 +13,11 @@ namespace Xy.Project.Application.Services.Contracts.Sys
         bool Exists(string cacheKey);
         Task<List<string>?> GetAllCacheKeys();
         Task<T?> GetAsync<T>(string cacheKey);
-        Task<List<AntDesignTreeNode>?> GetCacheMenu(long userId);
+        Task<List<MenusTreeNode>?> GetCacheMenu(long userId);
         Task<List<string>?> GetPermission(long userId);
-        Task SetAsync(string cacheKey, object value);
+        Task SetAsync(string cacheKey, object value, int? timeoutSeconds);
         Task SetCacheKey(string CacheKey);
-        Task SetCacheMenu(long userId, List<AntDesignTreeNode> menus);
+        Task SetCacheMenu(long userId, List<MenusTreeNode> menus);
         Task SetPermission(long userId, List<string> permissions);
     }
 }

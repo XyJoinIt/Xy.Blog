@@ -7,18 +7,19 @@ using Xy.Project.Core.Const;
 using System.Text;
 using Xy.Project.Application.Services.Contracts.Sys;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using FreeRedis;
 
 namespace Xy.Project.Application.Services.Sys
 {
     /// <summary>
     /// 系统缓存服务
     /// </summary>
-    public class SysCacheService: ISysCacheService
+    public class SysCacheService : ISysCacheService
     {
-        private readonly IDistributedCache _cache;
-        public SysCacheService(IDistributedCache cache)
+        private readonly RedisClient _redisClient;
+        public SysCacheService(RedisClient redisClient)
         {
-            _cache = cache;
+            _redisClient = redisClient;
         }
 
         /// <summary>
@@ -28,12 +29,12 @@ namespace Xy.Project.Application.Services.Sys
         /// <returns></returns>
         public async Task SetCacheKey(string CacheKey)
         {
-            var res = await _cache.GetStringAsync(CommonConst.Cache_Key_AllKey);
+            var res = await _redisClient.GetAsync(CommonConst.Cache_Key_AllKey);
             var allkeys = string.IsNullOrWhiteSpace(res) ? new HashSet<string>() : JsonConvert.DeserializeObject<HashSet<string>>(res);
             if (!allkeys.Any(m => m == CacheKey))
             {
                 allkeys.Add(CacheKey);
-                await _cache.SetStringAsync(CommonConst.Cache_Key_AllKey, JsonConvert.SerializeObject(allkeys));
+                await _redisClient.SetAsync(CommonConst.Cache_Key_AllKey, JsonConvert.SerializeObject(allkeys));
             }
         }
 
@@ -43,7 +44,7 @@ namespace Xy.Project.Application.Services.Sys
         /// <returns></returns>
         public async Task<List<string>?> GetAllCacheKeys()
         {
-            var res = await _cache.GetStringAsync(CommonConst.Cache_Key_AllKey);
+            var res = await _redisClient.GetAsync(CommonConst.Cache_Key_AllKey);
             return string.IsNullOrWhiteSpace(res) ? null : JsonConvert.DeserializeObject<List<string>>(res);
         }
 
@@ -54,7 +55,7 @@ namespace Xy.Project.Application.Services.Sys
         /// <returns></returns>
         public bool Exists(string cacheKey)
         {
-            var res = _cache.GetStringAsync(CommonConst.Cache_Key_AllKey).GetAwaiter().GetResult();
+            var res = _redisClient.GetAsync(CommonConst.Cache_Key_AllKey).GetAwaiter().GetResult();
             var allkeys = string.IsNullOrWhiteSpace(res) ? new HashSet<string>() : JsonConvert.DeserializeObject<HashSet<string>>(res);
             return allkeys.Any(_ => _ == cacheKey);
         }
@@ -67,19 +68,22 @@ namespace Xy.Project.Application.Services.Sys
         /// <returns></returns>
         public async Task<T?> GetAsync<T>(string cacheKey)
         {
-            var res = await _cache.GetAsync(cacheKey);
-            return res == null ? default : JsonConvert.DeserializeObject<T>(Encoding.UTF8.GetString(res));
+            var res = await _redisClient.GetAsync(cacheKey);
+            return res == null ? default : JsonConvert.DeserializeObject<T>(res);
         }
 
         /// <summary>
-        /// 设置缓存
+        /// 设置缓存 String
         /// </summary>
         /// <param name="cacheKey"></param>
         /// <param name="value"></param>
+        /// <param name="timeoutSeconds"></param>
         /// <returns></returns>
-        public async Task SetAsync(string cacheKey, object value)
+        public async Task SetAsync(string cacheKey, object value, int? timeoutSeconds)
         {
-            await _cache.SetAsync(cacheKey, Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(value)));
+            if (timeoutSeconds == default(int) || timeoutSeconds == null)
+                timeoutSeconds = (60 * 60 * 24 * 7);
+            await _redisClient.SetAsync(cacheKey, Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(value)), timeoutSeconds: timeoutSeconds!.Value);
             await SetCacheKey(cacheKey);
         }
 
@@ -96,12 +100,12 @@ namespace Xy.Project.Application.Services.Sys
             // 删除相应的缓存
             delAllkeys.ForEach(u =>
             {
-                _cache.Remove(u);
+                _redisClient.DelAsync(u);
             });
 
             // 更新所有缓存键
             allkeys = allkeys.Where(u => !u.Contains(cacheKey)).ToList();
-            await _cache.SetStringAsync(CommonConst.Cache_Key_AllKey, JsonConvert.SerializeObject(allkeys));
+            await _redisClient.SetAsync(CommonConst.Cache_Key_AllKey, JsonConvert.SerializeObject(allkeys));
         }
 
 
@@ -110,11 +114,11 @@ namespace Xy.Project.Application.Services.Sys
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        public async Task<List<AntDesignTreeNode>?> GetCacheMenu(long userId)
+        public async Task<List<MenusTreeNode>?> GetCacheMenu(long userId)
         {
             var cacheKey = CommonConst.Cache_Key_Menu + userId;
-            var res = await _cache.GetStringAsync(cacheKey);
-            return string.IsNullOrWhiteSpace(res) ? null : JsonConvert.DeserializeObject<List<AntDesignTreeNode>>(res);
+            var res = await _redisClient.GetAsync(cacheKey);
+            return string.IsNullOrWhiteSpace(res) ? null : JsonConvert.DeserializeObject<List<MenusTreeNode>>(res);
         }
 
         /// <summary>
@@ -123,10 +127,10 @@ namespace Xy.Project.Application.Services.Sys
         /// <param name="userId"></param>
         /// <param name="menus"></param>
         /// <returns></returns>
-        public async Task SetCacheMenu(long userId, List<AntDesignTreeNode> menus)
+        public async Task SetCacheMenu(long userId, List<MenusTreeNode> menus)
         {
             var cacheKey = CommonConst.Cache_Key_Menu + userId;
-            await _cache.SetStringAsync(cacheKey, JsonConvert.SerializeObject(menus));
+            await _redisClient.SetAsync(cacheKey, JsonConvert.SerializeObject(menus), 60 * 60 * 24 * 7);
             await SetCacheKey(cacheKey);
         }
 
@@ -136,10 +140,10 @@ namespace Xy.Project.Application.Services.Sys
         /// <param name="userId"></param>
         /// <param name="permissions"></param>
         /// <returns></returns>
-        public async Task SetPermission(long userId,List<string> permissions)
+        public async Task SetPermission(long userId, List<string> permissions)
         {
             var cacheKey = CommonConst.Cache_Key_Permission + userId;
-            await _cache.SetStringAsync(cacheKey, JsonConvert.SerializeObject(permissions));
+            await _redisClient.SetAsync(cacheKey, JsonConvert.SerializeObject(permissions), 60 * 60 * 24 * 7);
             await SetCacheKey(cacheKey);
         }
 
@@ -151,7 +155,7 @@ namespace Xy.Project.Application.Services.Sys
         public async Task<List<string>?> GetPermission(long userId)
         {
             var cacheKey = CommonConst.Cache_Key_Permission + userId;
-            var res = await _cache.GetStringAsync(cacheKey);
+            var res = await _redisClient.GetAsync(cacheKey);
             return string.IsNullOrWhiteSpace(res) ? null : JsonConvert.DeserializeObject<List<string>>(res);
         }
 

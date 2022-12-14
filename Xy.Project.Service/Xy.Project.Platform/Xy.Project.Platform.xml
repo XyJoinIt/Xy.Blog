@@ -94,12 +94,18 @@
             <param name="dto"></param>
             <returns></returns>
         </member>
+        <member name="M:Xy.Project.Platform.Modular.Sys.AuthController.Logout">
+            <summary>
+            退出登录
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Xy.Project.Platform.Modular.Sys.SysCacheController">
             <summary>
             缓存控制器
             </summary>
         </member>
-        <member name="M:Xy.Project.Platform.Modular.Sys.SysCacheController.#ctor(Xy.Project.Application.Services.Contracts.Sys.ISysCacheService)">
+        <member name="M:Xy.Project.Platform.Modular.Sys.SysCacheController.#ctor(Xy.Project.Application.Services.Contracts.Sys.ISysCacheService,FreeRedis.RedisClient)">
             <summary>
             构造函数
             </summary>
@@ -120,6 +126,18 @@
             <summary>
             菜单控制器
             </summary>
+        </member>
+        <member name="M:Xy.Project.Platform.Modular.Sys.SysMenuController.GetList">
+            <summary>
+             获取用户菜单集合
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Platform.Modular.Sys.SysMenuController.GetPermissionList">
+            <summary>
+            获取用户权限按钮集合
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:Xy.Project.Platform.Modular.Sys.SysOrgController">
             <summary>

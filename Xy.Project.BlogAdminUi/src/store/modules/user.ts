@@ -101,6 +101,7 @@ export const useUserStore = defineStore({
         return Promise.reject(error)
       }
     },
+
     async afterLoginAction(goHome?: boolean): Promise<GetUserInfoModel | null> {
       if (!this.getToken) return null
       // get user info
@@ -123,6 +124,7 @@ export const useUserStore = defineStore({
       }
       return userInfo
     },
+
     async getUserInfoAction(): Promise<UserInfo | null> {
       if (!this.getToken) return null
       const userInfo = await getUserInfo()

@@ -7,7 +7,7 @@ enum Api {
   Login = '/Auth/LogIn',
   Logout = '/Auth/Logout',
   GetUserInfo = '/SysUser/GetUserInfo',
-  GetPermCode = '/getPermCode',
+  GetPermCode = '/SysMenu/GetPermissionList',
   Add = '/SysUser/Add',
   Update = '/SysUser/Update',
   PageList = '/SysUser/PageList',

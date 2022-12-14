@@ -26,5 +26,13 @@ namespace Xy.Project.Platform.Modular.Sys
         [HttpPost]
         [Description("登录")]
         public async Task<ActionResult<AppResult>> LogIn([FromBody] AddAuthDto dto) => await _authService.Login(dto);
+
+
+        /// <summary>
+        /// 退出登录
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<AppResult> Logout() =>await _authService.Logout();
     }
 }

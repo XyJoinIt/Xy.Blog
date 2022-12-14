@@ -6,12 +6,14 @@ using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using Xy.Project.Application.Dtos.Sys.SysMenuManage;
+using Xy.Project.Application.Dtos.Sys.SysOrgManage;
 using Xy.Project.Application.Dtos.Sys.SysRoleManage;
 using Xy.Project.Application.Services.Base;
 using Xy.Project.Application.Services.Contracts.Base;
 using Xy.Project.Application.Services.Contracts.Sys;
 using Xy.Project.Core;
 using Xy.Project.Core.Enums;
+using Xy.Project.Core.Helpers;
 using Xy.Project.Platform.Model.Entities.Sys;
 
 namespace Xy.Project.Application.Services.Sys
@@ -28,19 +30,21 @@ namespace Xy.Project.Application.Services.Sys
                               IValidator<EditSysMenuDto> editValidator,
                               ISysCacheService sysCacheService,
                               ISysRoleMenuService sysRoleMenuService,
-                              ISysUserRoleService sysUserRoleService) : base(repository, addValidator, editValidator)
+                              ISysUserRoleService sysUserRoleService,
+                              ILoginUserManager loginUserManager) : base(repository, addValidator, editValidator)
         {
             _sysCacheService = sysCacheService;
             _repository = repository;
             _sysRoleMenuService = sysRoleMenuService;
             _sysUserRoleService = sysUserRoleService;
+            _loginUserManager = loginUserManager;
         }
 
         /// <summary>
         ///  获取用户菜单集合
         /// </summary>
         /// <returns></returns>
-        public async Task<List<AntDesignTreeNode>> GetLoginMenusAntDesign()
+        public async Task<List<MenusTreeNode>> List()
         {
             var Menus = await _sysCacheService.GetCacheMenu(_loginUserManager.Id);
             if (Menus == null || Menus.Count < 1)
@@ -72,7 +76,7 @@ namespace Xy.Project.Application.Services.Sys
 
                 }
                 // 转换成登录菜单
-                Menus = sysMenuList.Select(u => new AntDesignTreeNode
+                Menus = sysMenuList.Select(u => new MenusTreeNode
                 {
                     Id = u.Id,
                     Pid = u.Pid,
@@ -89,9 +93,11 @@ namespace Xy.Project.Application.Services.Sys
                         Target = u.OutLink != null ? "_blank" : ""
                     }
                 }).ToList();
+
                 await _sysCacheService.SetCacheMenu(_loginUserManager.Id, Menus); // 缓存结果
             }
-            return Menus!;
+
+            return new TreeBuildHelper<MenusTreeNode>().Build(Menus);
         }
 
         /// <summary>

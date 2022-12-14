@@ -18,6 +18,7 @@ namespace Xy.Project.Application.Services.Contracts.Sys
         /// </summary>
         /// <returns></returns>
         Task<AppResult> Login(AddAuthDto dto);
+        Task<AppResult> Logout();
 
         /// <summary>
         /// 刷新口令

@@ -39,7 +39,7 @@ namespace Xy.Project.Application.Services.Sys
         /// <summary>
         /// 获取角色的菜单Id集合
         /// </summary>
-        /// <param name="roleId"></param>
+        /// <param name="roleIds"></param>
         /// <returns></returns>
         public async Task<List<long>> GetRoleMenuIdList(List<long> roleIds)
         {

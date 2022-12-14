@@ -68,6 +68,7 @@ export const getMenus = async (): Promise<Menu[]> => {
     const routes = router.getRoutes()
     return filter(menus, basicFilter(routes))
   }
+  //console.log(menus)
   return menus
 }
 

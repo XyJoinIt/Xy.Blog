@@ -1,15 +1,17 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xy.Project.Core.Helpers;
 
 namespace Xy.Project.Application.Dtos.Sys.SysMenuManage
 {
     /// <summary>
     /// 登录菜单-AntDesign菜单类型
     /// </summary>
-    public class AntDesignTreeNode
+    public class MenusTreeNode : ITreeNode
     {
         /// <summary>
         /// id
@@ -50,6 +52,26 @@ namespace Xy.Project.Application.Dtos.Sys.SysMenuManage
         /// 控制路由和子路由是否显示在 sidebar
         /// </summary>
         public bool Hidden { get; set; }
+
+        /// <summary>
+        /// 子集
+        /// </summary>
+        public List<MenusTreeNode> children { get; set; } = new List<MenusTreeNode>();
+
+        public long GetId()
+        {
+            return Id!.Value;
+        }
+
+        public long GetPid()
+        {
+            return Pid!.Value;
+        }
+
+        public void SetChildren(IList _children)
+        {
+            children = (List<MenusTreeNode>)_children;
+        }
     }
 
     /// <summary>

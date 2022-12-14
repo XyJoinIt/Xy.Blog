@@ -56,7 +56,7 @@ namespace Xy.Project.Application.Services.Sys
                 return await AppResult.ErrorAsync("用户不存在！");
             else
                 if (!_encryption.CheckPasswordAsync(passwordHash: model.Password, securityStamp: model.SecurityStamp, password: dto.PassWord))
-                    return await AppResult.ErrorAsync("密码错误！");
+                return await AppResult.ErrorAsync("密码错误！");
             //创建claim
             var authClaim = new[]
             {
@@ -90,5 +90,13 @@ namespace Xy.Project.Application.Services.Sys
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// 退出登录
+        /// </summary>
+        /// <returns></returns>
+        public async Task<AppResult> Logout()
+        {
+            return await AppResult.SuccessAsync();
+        }
     }
 }

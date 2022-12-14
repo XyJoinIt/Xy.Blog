@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using FreeRedis;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Xy.Project.Application.Services.Contracts.Sys;
 
@@ -11,12 +12,14 @@ namespace Xy.Project.Platform.Modular.Sys
     {
 
         private readonly ISysCacheService _sysCacheService;
+        private readonly RedisClient redisClient;
         /// <summary>
         /// 构造函数
         /// </summary>
-        public SysCacheController(ISysCacheService sysCacheService)
+        public SysCacheController(ISysCacheService sysCacheService, RedisClient redisClient)
         {
             _sysCacheService = sysCacheService;
+            this.redisClient = redisClient;
         }
 
         /// <summary>
@@ -37,34 +40,18 @@ namespace Xy.Project.Platform.Modular.Sys
         [HttpPost]
         public async Task<AppResult> test()
         {
-            await _sysCacheService.SetAsync("SetAsync", 7927359493);
-            await _sysCacheService.SetAsync("SetAsyncObject", new { a = 1, b = 3 });
-            await _sysCacheService.SetAsync("sdfadfa", "2132412");
+            //await _sysCacheService.SetAsync("SetAsync", 7927359493);
+            //await _sysCacheService.SetAsync("SetAsyncObject", new { a = 1, b = 3 });
+            //await _sysCacheService.SetAsync("sdfadfa", "2132412");
 
-            RedisHelper.Set("test1", "123123", 60);
-
-
-            RedisHelper.Publish("chan1", "123123123");
-
-
-
+            await redisClient.SetAsync("test1", "test1", 30);
+            Dictionary<string, string> map = new Dictionary<string, string>() { };
+            map.Add("name", "张三");
+            map.Add("Id", "1");
+            map.Add("idcard", "5432597429357934579");
+            await redisClient.HMSetAsync("test2", map);
             return AppResult.Success();
         }
 
-        [HttpPost]
-        public void tst2()
-        {
-
-
-            RedisHelper.Subscribe(
-         ("chan1", msg => Console.WriteLine(msg.Body)),
-                ("chan2", msg => Console.WriteLine(msg.Body)));
-
-
-            RedisHelper.PSubscribe(new[] { "test*", "*test001", "test*002" }, msg =>
-            {
-                Console.WriteLine($"PSUB   {msg.MessageId}:{msg.Body}    {msg.Pattern}: chan:{msg.Channel}");
-            });
-        }
     }
 }

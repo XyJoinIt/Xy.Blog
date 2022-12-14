@@ -1,6 +1,6 @@
-﻿using CSRedis;
+﻿using FreeRedis;
 using Microsoft.Extensions.Caching.Distributed;
-using Microsoft.Extensions.Caching.Redis;
+using Newtonsoft.Json;
 using System.ComponentModel.Design;
 using Xy.Project.Core.GlobalConfigEntity;
 
@@ -10,14 +10,12 @@ namespace Xy.Project.Platform.Extensions
     {
         public static void AddRedisSetUp(this IServiceCollection service)
         {
-            var rediStr = XyGlobalConfig.DbOption.RedisConnection + ",prefix=Xy_";
-            //csredis的两种使用方式
-            var csredis = new CSRedisClient(rediStr);
-            service.AddSingleton(csredis);
-            RedisHelper.Initialization(csredis);
-
-            //基于redis初始化IDistributedCache
-            service.AddSingleton<IDistributedCache>(new CSRedisCache(csredis));
+            RedisClient implementationInstance = new RedisClient(XyGlobalConfig.DbOption.RedisConnection)
+            {
+                Serialize = (object obj) => JsonConvert.SerializeObject(obj),
+                Deserialize = (string json, Type type) => JsonConvert.DeserializeObject(json, type)
+            };
+            service.AddSingleton(implementationInstance);
         }
     }
 }

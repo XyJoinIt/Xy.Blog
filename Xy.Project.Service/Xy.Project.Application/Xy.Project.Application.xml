@@ -79,81 +79,6 @@
             验证码
             </summary>
         </member>
-        <member name="T:Xy.Project.Application.Dtos.Sys.SysMenuManage.AntDesignTreeNode">
-            <summary>
-            登录菜单-AntDesign菜单类型
-            </summary>
-        </member>
-        <member name="P:Xy.Project.Application.Dtos.Sys.SysMenuManage.AntDesignTreeNode.Id">
-            <summary>
-            id
-            </summary>
-        </member>
-        <member name="P:Xy.Project.Application.Dtos.Sys.SysMenuManage.AntDesignTreeNode.Pid">
-            <summary>
-            父id
-            </summary>
-        </member>
-        <member name="P:Xy.Project.Application.Dtos.Sys.SysMenuManage.AntDesignTreeNode.Name">
-            <summary>
-            路由名称, 必须设置,且不能重名
-            </summary>
-        </member>
-        <member name="P:Xy.Project.Application.Dtos.Sys.SysMenuManage.AntDesignTreeNode.Component">
-            <summary>
-            组件
-            </summary>
-        </member>
-        <member name="P:Xy.Project.Application.Dtos.Sys.SysMenuManage.AntDesignTreeNode.Redirect">
-            <summary>
-            重定向地址, 访问这个路由时, 自定进行重定向
-            </summary>
-        </member>
-        <member name="P:Xy.Project.Application.Dtos.Sys.SysMenuManage.AntDesignTreeNode.Meta">
-            <summary>
-            路由元信息（路由附带扩展信息）
-            </summary>
-        </member>
-        <member name="P:Xy.Project.Application.Dtos.Sys.SysMenuManage.AntDesignTreeNode.Path">
-            <summary>
-            路径
-            </summary>
-        </member>
-        <member name="P:Xy.Project.Application.Dtos.Sys.SysMenuManage.AntDesignTreeNode.Hidden">
-            <summary>
-            控制路由和子路由是否显示在 sidebar
-            </summary>
-        </member>
-        <member name="T:Xy.Project.Application.Dtos.Sys.SysMenuManage.Meta">
-            <summary>
-            路由元信息内部类
-            </summary>
-        </member>
-        <member name="P:Xy.Project.Application.Dtos.Sys.SysMenuManage.Meta.Title">
-            <summary>
-            路由标题, 用于显示面包屑, 页面标题 *推荐设置
-            </summary>
-        </member>
-        <member name="P:Xy.Project.Application.Dtos.Sys.SysMenuManage.Meta.Icon">
-            <summary>
-            图标
-            </summary>
-        </member>
-        <member name="P:Xy.Project.Application.Dtos.Sys.SysMenuManage.Meta.Show">
-            <summary>
-            是否可见
-            </summary>
-        </member>
-        <member name="P:Xy.Project.Application.Dtos.Sys.SysMenuManage.Meta.Target">
-            <summary>
-            如需外部打开，增加：_blank
-            </summary>
-        </member>
-        <member name="P:Xy.Project.Application.Dtos.Sys.SysMenuManage.Meta.Link">
-            <summary>
-            内链打开http链接
-            </summary>
-        </member>
         <member name="P:Xy.Project.Application.Dtos.Sys.SysMenuManage.BaseSysMenu.Type">
             <summary>
             菜单类型（1目录 2菜单 3按钮）
@@ -232,6 +157,86 @@
         <member name="P:Xy.Project.Application.Dtos.Sys.SysMenuManage.BaseSysMenu.Remark">
             <summary>
             备注
+            </summary>
+        </member>
+        <member name="T:Xy.Project.Application.Dtos.Sys.SysMenuManage.MenusTreeNode">
+            <summary>
+            登录菜单-AntDesign菜单类型
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysMenuManage.MenusTreeNode.Id">
+            <summary>
+            id
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysMenuManage.MenusTreeNode.Pid">
+            <summary>
+            父id
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysMenuManage.MenusTreeNode.Name">
+            <summary>
+            路由名称, 必须设置,且不能重名
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysMenuManage.MenusTreeNode.Component">
+            <summary>
+            组件
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysMenuManage.MenusTreeNode.Redirect">
+            <summary>
+            重定向地址, 访问这个路由时, 自定进行重定向
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysMenuManage.MenusTreeNode.Meta">
+            <summary>
+            路由元信息（路由附带扩展信息）
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysMenuManage.MenusTreeNode.Path">
+            <summary>
+            路径
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysMenuManage.MenusTreeNode.Hidden">
+            <summary>
+            控制路由和子路由是否显示在 sidebar
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysMenuManage.MenusTreeNode.children">
+            <summary>
+            子集
+            </summary>
+        </member>
+        <member name="T:Xy.Project.Application.Dtos.Sys.SysMenuManage.Meta">
+            <summary>
+            路由元信息内部类
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysMenuManage.Meta.Title">
+            <summary>
+            路由标题, 用于显示面包屑, 页面标题 *推荐设置
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysMenuManage.Meta.Icon">
+            <summary>
+            图标
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysMenuManage.Meta.Show">
+            <summary>
+            是否可见
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysMenuManage.Meta.Target">
+            <summary>
+            如需外部打开，增加：_blank
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysMenuManage.Meta.Link">
+            <summary>
+            内链打开http链接
             </summary>
         </member>
         <member name="P:Xy.Project.Application.Dtos.Sys.SysOrgManage.BaseSysOrg.Pid">
@@ -569,6 +574,12 @@
             <returns></returns>
             <exception cref="T:System.NotImplementedException"></exception>
         </member>
+        <member name="M:Xy.Project.Application.Services.Sys.AuthService.Logout">
+            <summary>
+            退出登录
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Xy.Project.Application.Services.Sys.EncryptionService">
             <summary>
             加密解密
@@ -644,12 +655,13 @@
             <param name="cacheKey"></param>
             <returns></returns>
         </member>
-        <member name="M:Xy.Project.Application.Services.Sys.SysCacheService.SetAsync(System.String,System.Object)">
+        <member name="M:Xy.Project.Application.Services.Sys.SysCacheService.SetAsync(System.String,System.Object,System.Nullable{System.Int32})">
             <summary>
-            设置缓存
+            设置缓存 String
             </summary>
             <param name="cacheKey"></param>
             <param name="value"></param>
+            <param name="timeoutSeconds"></param>
             <returns></returns>
         </member>
         <member name="M:Xy.Project.Application.Services.Sys.SysCacheService.DelAsync(System.String)">
@@ -666,7 +678,7 @@
             <param name="userId"></param>
             <returns></returns>
         </member>
-        <member name="M:Xy.Project.Application.Services.Sys.SysCacheService.SetCacheMenu(System.Int64,System.Collections.Generic.List{Xy.Project.Application.Dtos.Sys.SysMenuManage.AntDesignTreeNode})">
+        <member name="M:Xy.Project.Application.Services.Sys.SysCacheService.SetCacheMenu(System.Int64,System.Collections.Generic.List{Xy.Project.Application.Dtos.Sys.SysMenuManage.MenusTreeNode})">
             <summary>
             缓存用户菜单
             </summary>
@@ -689,7 +701,7 @@
             <param name="userId"></param>
             <returns></returns>
         </member>
-        <member name="M:Xy.Project.Application.Services.Sys.SysMenuService.GetLoginMenusAntDesign">
+        <member name="M:Xy.Project.Application.Services.Sys.SysMenuService.List">
             <summary>
              获取用户菜单集合
             </summary>
@@ -737,7 +749,7 @@
             <summary>
             获取角色的菜单Id集合
             </summary>
-            <param name="roleId"></param>
+            <param name="roleIds"></param>
             <returns></returns>
         </member>
         <member name="M:Xy.Project.Application.Services.Sys.SysRoleService.PageAsync(Xy.Project.Core.Filter.PageParam)">

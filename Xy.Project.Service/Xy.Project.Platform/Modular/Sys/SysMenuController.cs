@@ -16,4 +16,17 @@ public class SysMenuController : OpControllerBase<ISysMenuService,SysMenu,AddSys
         this._sysMenuService = sysMenuService;
     }
 
+    /// <summary>
+    ///  获取用户菜单集合
+    /// </summary>
+    /// <returns></returns>
+    [HttpGet]
+    public async Task<AppResult> GetList() => AppResult.Success(await _sysMenuService.List());
+
+    /// <summary>
+    /// 获取用户权限按钮集合
+    /// </summary>
+    /// <returns></returns>
+    [HttpGet]
+    public async Task<AppResult> GetPermissionList() => AppResult.Success(await _sysMenuService.GetPermissionList());
 }
