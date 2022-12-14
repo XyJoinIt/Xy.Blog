@@ -36,10 +36,12 @@ namespace Xy.Project.Application.Services.Sys
         /// <returns></returns>
         public async Task<AppResult> GrantUserRole(AddSysUserRoleDto input)
         {
-
-            await DeleteUserRole(input.SysUserId, false);
-            var list = input.SysRoleIds.Select(x => new SysUserRole() { SysUserId = input.SysUserId, SysRoleId = x });
-            var count = await _repository.InsertBatchAsync(list);
+            await _unitOfWork.ExecuteWithTransactionAsync(async () =>
+             {
+                 await DeleteUserRole(input.SysUserId, false);
+                 var list = input.SysRoleIds.Select(x => new SysUserRole() { SysUserId = input.SysUserId, SysRoleId = x });
+                 var count = await _repository.InsertBatchAsync(list);
+             });
             return AppResult.RetAppResult();
         }
 

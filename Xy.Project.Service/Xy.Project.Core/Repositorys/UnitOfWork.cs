@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Storage;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Xy.Project.Core
 {
@@ -8,20 +9,46 @@ namespace Xy.Project.Core
     public class UnitOfWork<TDbContext> : IUnitOfWork, IDisposable
         where TDbContext : DbContext
     {
-        private readonly DbContext _dbContext;
+        private readonly TDbContext _dbContext;
         private bool _hasCommit;  //是否已提交
         private volatile bool disposedValue;
 
-
         public UnitOfWork(TDbContext dbContext)
         {
-            _dbContext = dbContext as DbContext;
+            _dbContext = dbContext;
             _hasCommit = false;
         }
 
-
-
         private IDbContextTransaction _dbContextTransaction = default!;
+
+
+        /// <summary>
+        ///  EF默认情况下，每调用一次SaveChanges()都会执行一个单独的事务
+        ///  本接口实现在一个事务中可以多次执行SaveChanges()方法
+        /// </summary>
+        /// <param name="action"></param>
+        /// <exception cref="XyException"></exception>
+        public async Task ExecuteWithTransactionAsync(Func<Task> action)
+        {
+            //https://learn.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/implement-resilient-entity-framework-core-sql-connections
+            var strategy = _dbContext.Database.CreateExecutionStrategy();
+            await strategy.ExecuteAsync(async () =>
+            {
+                using (_dbContextTransaction = _dbContext.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        await action();
+                        await _dbContextTransaction.CommitAsync();
+                    }
+                    catch (Exception ex)
+                    {
+                        await _dbContextTransaction.RollbackAsync();
+                        throw new XyException(ex.Message);
+                    }
+                }
+            });
+        }
 
         /// <summary>
         /// 异步开启事务
@@ -37,7 +64,6 @@ namespace Xy.Project.Core
             _dbContextTransaction = await _dbContext.Database.BeginTransactionAsync(cancellationToken);
             _hasCommit = false;
         }
-
 
         /// <summary>
         /// 异步提交事务
@@ -56,7 +82,6 @@ namespace Xy.Project.Core
 
         }
 
-
         /// <summary>
         ///异步提交
         /// </summary>
@@ -74,7 +99,6 @@ namespace Xy.Project.Core
 
             _hasCommit = true;
         }
-
 
         /// <summary>
         /// 得到上下文

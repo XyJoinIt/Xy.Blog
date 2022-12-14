@@ -10,6 +10,7 @@ namespace Xy.Project.Application.Services.Sys
     {
         private readonly IRepository<SysRoleMenu, long> _repository;
         private readonly ISysCacheService _sysCacheService;
+        private readonly IUnitOfWork _unitOfWork;
         public SysRoleMenuService(ISysCacheService sysCacheService, IRepository<SysRoleMenu, long> repository)
         {
             _sysCacheService = sysCacheService;
@@ -23,17 +24,19 @@ namespace Xy.Project.Application.Services.Sys
         /// <returns></returns>
         public async Task GrantRoleMenu(AddSysRoleMenuDto input)
         {
-            var roleMenus = await _repository.QueryAsNoTracking(x => x.SysRoleId == input.SysRoleId).ToArrayAsync();
-            await _repository.DeleteBatchAsync(roleMenus,false);
-            var menus = input.SysMenuIds.Select(x => new SysRoleMenu()
-            {
-                SysRoleId = input.SysRoleId,
-                SysMenuId = x
-            });
-            await _repository.InsertBatchAsync(menus);
-
-            // 清除缓存
-            await _sysCacheService.DelAsync(CommonConst.Cache_Key_Menu);
+            await _unitOfWork.ExecuteWithTransactionAsync(async () =>
+               {
+                   var roleMenus = await _repository.QueryAsNoTracking(x => x.SysRoleId == input.SysRoleId).ToArrayAsync();
+                   await _repository.DeleteBatchAsync(roleMenus);
+                   var menus = input.SysMenuIds.Select(x => new SysRoleMenu()
+                   {
+                       SysRoleId = input.SysRoleId,
+                       SysMenuId = x
+                   });
+                   await _repository.InsertBatchAsync(menus);
+                   // 清除缓存
+                   await _sysCacheService.DelAsync(CommonConst.Cache_Key_Menu);
+               });
         }
 
         /// <summary>
@@ -43,7 +46,7 @@ namespace Xy.Project.Application.Services.Sys
         /// <returns></returns>
         public async Task<List<long>> GetRoleMenuIdList(List<long> roleIds)
         {
-            return await _repository.QueryAsNoTracking(x =>roleIds.Contains(x.SysRoleId))
+            return await _repository.QueryAsNoTracking(x => roleIds.Contains(x.SysRoleId))
                 .Select(x => x.SysMenuId).ToListAsync();
         }
     }

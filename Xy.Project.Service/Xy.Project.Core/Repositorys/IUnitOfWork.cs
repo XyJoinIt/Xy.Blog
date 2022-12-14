@@ -38,5 +38,11 @@
         /// </summary>
         /// <returns></returns>
         DbContext GetContext();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="action"></param>
+        Task ExecuteWithTransactionAsync(Func<Task> action);
     }
 }
