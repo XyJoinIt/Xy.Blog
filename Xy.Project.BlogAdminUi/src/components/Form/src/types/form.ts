@@ -6,6 +6,7 @@ import type { ColEx, ComponentType } from './index'
 import type { TableActionType } from '/@/components/Table/src/types/table'
 import type { CSSProperties } from 'vue'
 import type { RowProps } from 'ant-design-vue/lib/grid/Row'
+import { FilterOperator } from '/@/enums/GlobaEnum'
 
 export type FieldMapToTime = [string, [string, string], (string | [string, string])?][]
 
@@ -209,6 +210,10 @@ export interface FormSchema {
   dynamicDisabled?: boolean | ((renderCallbackParams: RenderCallbackParams) => boolean)
 
   dynamicRules?: (renderCallbackParams: RenderCallbackParams) => Rule[]
+
+  filterOperator?:FilterOperator
+
+
 }
 export interface HelpComponentProps {
   maxWidth: string

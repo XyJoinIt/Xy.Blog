@@ -34,7 +34,7 @@
   import { BasicTable, useTable, TableAction } from '/@/components/Table'
   import { PateList, DeleteRole } from '/@/api/sys/role'
   import { useDrawer } from '/@/components/Drawer'
-  import { columns, searchFormSchema } from './role.data'
+  import { columns, searchFormSchema,orders } from './role.data'
   import RoleDrawer from './RoleDrawer.vue'
   import { useMessage } from '/@/hooks/web/useMessage'
   export default defineComponent({
@@ -51,6 +51,7 @@
           labelWidth: 120,
           schemas: searchFormSchema,
         },
+        orders:orders,
         useSearchForm: true,
         rowKey: 'id',
         showTableSetting: true,

@@ -1,10 +1,11 @@
-import { BasicColumn } from '/@/components/Table'
+import { BasicColumn, OrderProps } from '/@/components/Table'
 import { FormSchema } from '/@/components/Table'
 import { h } from 'vue'
 import { Switch } from 'ant-design-vue'
 import { SetRoleStart } from '/@/api/sys/role'
 import { useMessage } from '/@/hooks/web/useMessage'
-import { CommonStatus } from '/@/enums/GlobaEnum'
+import { CommonStatus, FilterOperator, OrderDirection } from '/@/enums/GlobaEnum'
+import { OrderCondition } from '/@/api/model/baseModel'
 
 export const columns: BasicColumn[] = [
   {
@@ -72,6 +73,7 @@ export const searchFormSchema: FormSchema[] = [
     label: '角色名称',
     component: 'Input',
     colProps: { span: 8 },
+    filterOperator: FilterOperator.Contains
   },
   {
     field: 'status',
@@ -84,6 +86,7 @@ export const searchFormSchema: FormSchema[] = [
       ],
     },
     colProps: { span: 8 },
+    filterOperator: FilterOperator.Equal
   },
 ]
 
@@ -120,4 +123,12 @@ export const formSchema: FormSchema[] = [
     component: 'InputTextArea',
     colProps: { span: 24 },
   },
+]
+
+export const orders: OrderProps[] = [
+  {
+    sortField: "Id",
+    sortDirection: OrderDirection.Ascending
+  }
+
 ]

@@ -16,6 +16,10 @@ import { buildUUID } from '/@/utils/uuid';
 import { isFunction, isBoolean } from '/@/utils/is';
 import { get, cloneDeep, merge } from 'lodash-es';
 import { FETCH_SETTING, ROW_KEY, PAGE_SIZE } from '../const';
+import { p } from '@antfu/utils';
+import { any } from 'vue-types';
+import { FilterOperator } from '/@/enums/GlobaEnum';
+import { OrderCondition, PageParam } from '/@/api/model/baseModel';
 
 interface ActionType {
   getPaginationInfo: ComputedRef<boolean | PaginationProps>;
@@ -249,6 +253,7 @@ export function useDataSource(
       afterFetch,
       useSearchForm,
       pagination,
+      orders
     } = unref(propsRef);
     if (!api || !isFunction(api)) return;
     try {
@@ -259,6 +264,7 @@ export function useDataSource(
         fetchSetting,
       );
       let pageParams: Recordable = {};
+
 
       const { current = 1, pageSize = PAGE_SIZE } = unref(getPaginationInfo) as PaginationProps;
 
@@ -271,21 +277,70 @@ export function useDataSource(
 
       const { sortInfo = {}, filterInfo } = searchState;
 
-      let params: Recordable = merge(
-        pageParams,
-        useSearchForm ? getFieldsValue() : {},
-        searchInfo,
-        opt?.searchInfo ?? {},
-        defSort,
-        sortInfo,
-        filterInfo,
-        opt?.sortInfo ?? {},
-        opt?.filterInfo ?? {},
-      );
+      let params: Recordable = {
+
+      };
+
+
+      //待优化代码
+      //一个不懂前端的后端程序员想说的话
+      //不是专业前端写得代码，以后还会问大黄瓜会不会前端吗？你说我会不会前端？
+      //要我到达会到什么程度？看VUE源码吗？还是VUE执行原理 ？
+      //不好意思，我只懂.NET,假如要我懂前端的话，我为什么不去做前端？而做.NET呢？
+      //大黄瓜是一个垃圾的程序员。
+
+      if (useSearchForm && pageParams?.pageIndex && pageParams?.pageSize) {
+
+        debugger;
+        const pageParam = new PageParam(pageParams.pageIndex!, pageParams.pageSize!)
+        orders?.forEach(o => {
+          debugger;
+          pageParam.PageCondition.setOrderCondition(new OrderCondition(o.sortField, o.sortDirection));
+        });
+
+
+        let values = getFieldsValue();
+        let schemas = unref(propsRef).formConfig?.schemas;
+        for (const key in values) {
+          let value = values[key];
+          let filterOperator = schemas?.find(o => o.field == key)?.filterOperator ?? FilterOperator.Equal;
+          pageParam.FilterGroup?.add(key, value, filterOperator);
+        }
+        console.info(pageParam);
+
+        params = merge(
+          useSearchForm ? pageParam : {},
+          searchInfo,
+          opt?.searchInfo?.page ?? {},
+          defSort,
+          sortInfo,
+          filterInfo,
+          opt?.sortInfo ?? {},
+          opt?.filterInfo?.page ?? {},
+
+
+        );
+      }
+      else {
+
+        params = merge(
+          pageParams,
+          useSearchForm ? getFieldsValue() : {},
+          searchInfo,
+          opt?.searchInfo ?? {},
+          defSort,
+          sortInfo,
+          filterInfo,
+          opt?.sortInfo ?? {},
+          opt?.filterInfo ?? {},
+
+
+        );
+      }
+
       if (beforeFetch && isFunction(beforeFetch)) {
         params = (await beforeFetch(params)) || params;
       }
-
       const res = await api(params);
       rawDataSourceRef.value = res;
 
@@ -293,6 +348,7 @@ export function useDataSource(
 
       let resultItems: Recordable[] = isArrayResult ? res : get(res, listField);
       const resultTotal: number = isArrayResult ? res.length : get(res, totalField);
+
 
       // 假如数据变少，导致总页数变少并小于当前选中页码，通过getPaginationRef获取到的页码是不正确的，需获取正确的页码再次执行
       if (resultTotal) {
