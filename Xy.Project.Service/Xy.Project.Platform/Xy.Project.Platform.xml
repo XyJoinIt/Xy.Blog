@@ -139,6 +139,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Xy.Project.Platform.Modular.Sys.SysMenuController.GetTableList(Xy.Project.Core.Filter.PageParam)">
+            <summary>
+            菜单表格显示 
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Xy.Project.Platform.Modular.Sys.SysOrgController">
             <summary>
             部门机构控制器

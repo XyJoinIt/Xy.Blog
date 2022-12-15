@@ -12,9 +12,12 @@ using Xy.Project.Application.Services.Base;
 using Xy.Project.Application.Services.Contracts.Base;
 using Xy.Project.Application.Services.Contracts.Sys;
 using Xy.Project.Core;
+using Xy.Project.Core.Entity;
 using Xy.Project.Core.Enums;
+using Xy.Project.Core.Extensions;
 using Xy.Project.Core.Helpers;
 using Xy.Project.Platform.Model.Entities.Sys;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Xy.Project.Application.Services.Sys
 {
@@ -41,7 +44,7 @@ namespace Xy.Project.Application.Services.Sys
         }
 
         /// <summary>
-        ///  获取用户菜单集合
+        ///  获取用户菜单集合（适用于用户登录菜单显示）
         /// </summary>
         /// <returns></returns>
         public async Task<List<MenusTreeNode>> List()
@@ -93,9 +96,66 @@ namespace Xy.Project.Application.Services.Sys
                         Target = u.OutLink != null ? "_blank" : ""
                     }
                 }).ToList();
-
                 await _sysCacheService.SetCacheMenu(_loginUserManager.Id, Menus); // 缓存结果
             }
+            return new TreeBuildHelper<MenusTreeNode>().Build(Menus);
+        }
+
+        /// <summary>
+        /// 菜单表格
+        /// </summary>
+        /// <param name="page"></param>
+        /// <returns></returns>
+        public async Task<PagedList<OutSysMenuPageDto>> TableList(PageParam page)
+        {
+            page.NotNull(nameof(page));
+            //条件过滤
+            var exp = CreateFilteredQuery(page.FilterGroup);
+            //排序
+            var orderConditions = ApplySorting();
+            if (orderConditions?.Length > 0)
+            {
+                page.AddOrderCondition(orderConditions);
+            }
+            var total = await Repository.QueryAsNoTracking().CountAsync();
+            var items = await Repository.QueryAsNoTracking()
+                .Where(exp)
+                .OrderBy(page.PageCondition.OrderConditions)
+                .ToListAsync();
+            var list = ObjectMap.MapToList<OutSysMenuPageDto>(items).ToList();
+            var Tree = new TreeBuildHelper<OutSysMenuPageDto>().Build(list);
+            return new PagedList<OutSysMenuPageDto>(Tree, total);
+        }
+
+        /// <summary>
+        /// 获取菜单树（适用于菜单目录按钮的表格树形展示）
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<MenusTreeNode>> GetMenuListPage()
+        {
+            var sysMenuList = new List<SysMenu>();
+            sysMenuList = await _repository.QueryAsNoTracking()
+                       .Where(x => x.Status == CommonStatus.正常)
+                       .OrderBy(x => x.Order)
+                       .ThenBy(x => x.Id).ToListAsync();
+
+            var Menus = sysMenuList.Select(u => new MenusTreeNode
+            {
+                Id = u.Id,
+                Pid = u.Pid,
+                Path = u.Path,
+                Name = u.Name,
+                Component = u.Component,
+                Redirect = u.Redirect,
+                Meta = new Meta
+                {
+                    Title = u.Name,
+                    Icon = u.Icon,
+                    Show = u.IsHide,
+                    Link = u.OutLink,
+                    Target = u.OutLink != null ? "_blank" : ""
+                }
+            }).ToList();
 
             return new TreeBuildHelper<MenusTreeNode>().Build(Menus);
         }

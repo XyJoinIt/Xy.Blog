@@ -19,7 +19,7 @@ import { FETCH_SETTING, ROW_KEY, PAGE_SIZE } from '../const'
 //import { p } from '@antfu/utils'
 //import { any } from 'vue-types'
 import { FilterOperator } from '/@/enums/GlobaEnum'
-import { OrderCondition, PageParam } from '/@/api/model/baseModel'
+import { OrderCondition, PageCondition, PageParam } from '/@/api/model/baseModel'
 
 interface ActionType {
   getPaginationInfo: ComputedRef<boolean | PaginationProps>
@@ -248,6 +248,7 @@ export function useDataSource(
       searchInfo,
       defSort,
       fetchSetting,
+      isSimSearch,
       beforeFetch,
       afterFetch,
       useSearchForm,
@@ -283,15 +284,27 @@ export function useDataSource(
       //要我到达会到什么程度？看VUE源码吗？还是VUE执行原理 ？
       //不好意思，我只懂.NET,假如要我懂前端的话，我为什么不去做前端？而做.NET呢？
       //大黄瓜是一个垃圾的程序员。
-      if (useSearchForm && pageParams?.pageIndex && pageParams?.pageSize) {
+      if (useSearchForm && isSimSearch) {
         //debugger
-        const pageParam = new PageParam(pageParams.pageIndex!, pageParams.pageSize!)
-        orders?.forEach((o) => {
-          //debugger
-          pageParam.PageCondition.setOrderCondition(
-            new OrderCondition(o.sortField, o.sortDirection),
-          )
-        })
+        const pageParam = new PageParam()
+
+        if (pageParams?.pageIndex && pageParams?.pageSize) {
+          pageParam.PageCondition = new PageCondition(pageParams.pageIndex!, pageParams.pageSize!)
+          orders?.forEach((o) => {
+            //debugger
+            pageParam.PageCondition!.setOrderCondition(
+              new OrderCondition(o.sortField, o.sortDirection),
+            )
+          })
+        } else {
+          pageParam.PageCondition = new PageCondition(1, 9999999)
+          orders?.forEach((o) => {
+            //debugger
+            pageParam.PageCondition!.setOrderCondition(
+              new OrderCondition(o.sortField, o.sortDirection),
+            )
+          })
+        }
 
         const values = getFieldsValue()
         const schemas = unref(propsRef).formConfig?.schemas
@@ -302,7 +315,7 @@ export function useDataSource(
           pageParam.FilterGroup?.add(key, value, filterOperator)
         }
 
-        const searchInfoValues = opt?.searchInfo
+        const searchInfoValues = opt?.searchInfo //用于reload方法传参
         for (const serchKey in searchInfoValues) {
           const searchInfoValue = searchInfoValues[serchKey]
           const filterOperator =

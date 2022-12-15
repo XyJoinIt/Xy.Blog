@@ -1,8 +1,8 @@
 <template>
   <div>
-    <BasicTable @register="registerTable">
+    <BasicTable @register="registerTable" @fetch-success="onFetchSuccess">
       <template #toolbar>
-        <a-button type="primary" @click="handleCreate"> 新增角色 </a-button>
+        <a-button type="primary" @click="handleCreate"> 新增菜单 </a-button>
       </template>
       <template #bodyCell="{ column, record }">
         <template v-if="column.key === 'action'">
@@ -26,38 +26,41 @@
         </template>
       </template>
     </BasicTable>
-    <RoleDrawer @register="registerDrawer" @success="handleSuccess" />
+    <MenuDrawer @register="registerDrawer" @success="handleSuccess" />
   </div>
 </template>
 <script lang="ts">
-  import { defineComponent } from 'vue'
+  import { defineComponent, nextTick } from 'vue'
+
   import { BasicTable, useTable, TableAction } from '/@/components/Table'
-  import { PateList, DeleteRole } from '/@/api/sys/role'
+  import { GetTableList } from '/@/api/sys/menu'
   import { useDrawer } from '/@/components/Drawer'
-  import { columns, searchFormSchema, orders } from './role.data'
-  import RoleDrawer from './RoleDrawer.vue'
-  import { useMessage } from '/@/hooks/web/useMessage'
+  import MenuDrawer from './MenuDrawer.vue'
+
+  import { columns, searchFormSchema } from './menu.data'
+
   export default defineComponent({
-    name: 'RoleManagement',
-    components: { BasicTable, TableAction, RoleDrawer },
+    name: 'MenuManagement',
+    components: { BasicTable, MenuDrawer, TableAction },
     setup() {
       const [registerDrawer, { openDrawer }] = useDrawer()
-      const { createMessage } = useMessage()
-      const [registerTable, { reload }] = useTable({
-        title: '角色列表',
-        api: PateList,
+      const [registerTable, { reload, expandAll }] = useTable({
+        title: '菜单列表',
+        api: GetTableList,
         columns,
         formConfig: {
           labelWidth: 120,
           schemas: searchFormSchema,
         },
-        orders: orders,
-        useSearchForm: true,
+        isTreeTable: true,
         isSimSearch: true, //加上这个参数那么查询的时候就会组装参数
-        rowKey: 'id',
+        pagination: false,
+        striped: false,
+        useSearchForm: true,
         showTableSetting: true,
         bordered: true,
         showIndexColumn: false,
+        canResize: false,
         actionColumn: {
           width: 80,
           title: '操作',
@@ -66,14 +69,12 @@
         },
       })
 
-      //新增
       function handleCreate() {
         openDrawer(true, {
           isUpdate: false,
         })
       }
 
-      //编辑
       function handleEdit(record: Recordable) {
         openDrawer(true, {
           record,
@@ -81,16 +82,17 @@
         })
       }
 
-      //删除
-      async function handleDelete(record: Recordable) {
-        if (await DeleteRole(record.id)) {
-          handleSuccess()
-          createMessage.success('删除成功')
-        }
+      function handleDelete(record: Recordable) {
+        console.log(record)
       }
 
       function handleSuccess() {
         reload()
+      }
+
+      function onFetchSuccess() {
+        // 演示默认展开所有表项
+        nextTick(expandAll)
       }
 
       return {
@@ -100,6 +102,7 @@
         handleEdit,
         handleDelete,
         handleSuccess,
+        onFetchSuccess,
       }
     },
   })

@@ -16,7 +16,6 @@ namespace Xy.Project.Core.Extensions
         /// <returns></returns>
         public static async Task<PagedList<Dto>> ToPageAsync<T, Dto>(this IQueryable<T> query, PageCondition page)
         {
-
             //总数据
             var total = await query.CountAsync();
             //ToOutpust分离出去？方法命名区分开？

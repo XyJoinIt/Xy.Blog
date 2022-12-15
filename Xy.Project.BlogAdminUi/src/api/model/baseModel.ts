@@ -17,13 +17,13 @@ export interface BasicFetchResult<T> {
 
 //分页总参数
 export class PageParam {
-  constructor(pageIndex: number, pageSize: number) {
+  constructor(pageIndex?: number, pageSize?: number) {
     this.PageCondition = new PageCondition(pageIndex, pageSize)
     this.FilterGroup = new FilterGroup()
   }
 
   //分页条件
-  PageCondition: PageCondition
+  PageCondition?: PageCondition
   //查询条件组
   FilterGroup: FilterGroup
 }

@@ -703,7 +703,20 @@
         </member>
         <member name="M:Xy.Project.Application.Services.Sys.SysMenuService.List">
             <summary>
-             获取用户菜单集合
+             获取用户菜单集合（适用于用户登录菜单显示）
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Sys.SysMenuService.TableList(Xy.Project.Core.Filter.PageParam)">
+            <summary>
+            菜单表格
+            </summary>
+            <param name="page"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Sys.SysMenuService.GetMenuListPage">
+            <summary>
+            获取菜单树（适用于菜单目录按钮的表格树形展示）
             </summary>
             <returns></returns>
         </member>

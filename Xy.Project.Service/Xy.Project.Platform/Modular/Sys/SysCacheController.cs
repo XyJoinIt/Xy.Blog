@@ -27,10 +27,7 @@ namespace Xy.Project.Platform.Modular.Sys
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public async Task<AppResult> GetAllKeys()
-        {
-            return AppResult.Success(await _sysCacheService.GetAllCacheKeys());
-        }
+        public async Task<AppResult> GetAllKeys() => AppResult.Success(await _sysCacheService.GetAllCacheKeys());
 
 
         /// <summary>
@@ -40,10 +37,6 @@ namespace Xy.Project.Platform.Modular.Sys
         [HttpPost]
         public async Task<AppResult> test()
         {
-            //await _sysCacheService.SetAsync("SetAsync", 7927359493);
-            //await _sysCacheService.SetAsync("SetAsyncObject", new { a = 1, b = 3 });
-            //await _sysCacheService.SetAsync("sdfadfa", "2132412");
-
             await redisClient.SetAsync("test1", "test1", 30);
             Dictionary<string, string> map = new Dictionary<string, string>() { };
             map.Add("name", "张三");

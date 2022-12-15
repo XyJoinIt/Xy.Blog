@@ -137,6 +137,8 @@ export interface TableSetting {
 }
 
 export interface BasicTableProps<T = any> {
+  //是否采用简单搜索
+  isSimSearch?: boolean
   // 点击行选中
   clickToRowSelect?: boolean
   isTreeTable?: boolean

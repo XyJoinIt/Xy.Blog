@@ -70,3 +70,23 @@ export enum OrderDirection {
   Ascending = 0,
   Descending = 1,
 }
+
+/// <summary>
+/// 彩带类型
+/// </summary>
+export enum MenuType {
+  /// <summary>
+  /// 目录
+  /// </summary>
+  目录 = '目录',
+
+  /// <summary>
+  /// 菜单
+  /// </summary>
+  菜单 = '菜单',
+
+  /// <summary>
+  /// 按钮
+  /// </summary>
+  按钮 = '按钮',
+}

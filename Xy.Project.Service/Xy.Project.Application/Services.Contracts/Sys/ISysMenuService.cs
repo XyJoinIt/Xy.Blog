@@ -11,5 +11,6 @@ namespace Xy.Project.Application.Services.Contracts.Sys
     {
         Task<List<MenusTreeNode>> List();
         Task<List<string>?> GetPermissionList();
+        Task<PagedList<OutSysMenuPageDto>> TableList(PageParam page);
     }
 }

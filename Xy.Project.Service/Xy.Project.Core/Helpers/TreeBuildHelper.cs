@@ -46,7 +46,8 @@ namespace Xy.Project.Core.Helpers
         {
             var nodeSubList = totalNodes.Where(i => i.GetPid() == node.GetId()).ToList();
             nodeSubList.ForEach(u => BuildChildNodes(totalNodes, u));
-            node.SetChildren(nodeSubList);
+            if (nodeSubList.Count > 0)
+                node.SetChildren(nodeSubList);
         }
     }
 

@@ -90,6 +90,7 @@
         },
         striped: false,
         useSearchForm: true,
+        isSimSearch: true, //加上这个参数那么查询的时候就会组装参数
         pagination: true,
         rowKey: 'Id',
         showTableSetting: true,

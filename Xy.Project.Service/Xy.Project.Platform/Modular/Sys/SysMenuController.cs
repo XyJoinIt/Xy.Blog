@@ -29,4 +29,11 @@ public class SysMenuController : OpControllerBase<ISysMenuService,SysMenu,AddSys
     /// <returns></returns>
     [HttpGet]
     public async Task<AppResult> GetPermissionList() => AppResult.Success(await _sysMenuService.GetPermissionList());
+
+    /// <summary>
+    /// 菜单表格显示 
+    /// </summary>
+    /// <returns></returns>
+    [HttpPost]
+    public async Task<AppResult> GetTableList(PageParam page) => AppResult.Success(await _sysMenuService.TableList(page));
 }
