@@ -288,18 +288,18 @@ export function useDataSource(
         //debugger
         const pageParam = new PageParam()
 
+        //如果是分页表格
         if (pageParams?.pageIndex && pageParams?.pageSize) {
           pageParam.PageCondition = new PageCondition(pageParams.pageIndex!, pageParams.pageSize!)
           orders?.forEach((o) => {
-            //debugger
             pageParam.PageCondition!.setOrderCondition(
               new OrderCondition(o.sortField, o.sortDirection),
             )
           })
         } else {
+          //如果不是分页那么查询全部
           pageParam.PageCondition = new PageCondition(1, 9999999)
           orders?.forEach((o) => {
-            //debugger
             pageParam.PageCondition!.setOrderCondition(
               new OrderCondition(o.sortField, o.sortDirection),
             )
@@ -315,7 +315,8 @@ export function useDataSource(
           pageParam.FilterGroup?.add(key, value, filterOperator)
         }
 
-        const searchInfoValues = opt?.searchInfo //用于reload方法传参
+        //reload方法是否传参
+        const searchInfoValues = opt?.searchInfo
         for (const serchKey in searchInfoValues) {
           const searchInfoValue = searchInfoValues[serchKey]
           const filterOperator =

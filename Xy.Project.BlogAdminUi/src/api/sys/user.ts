@@ -45,3 +45,9 @@ export function getPermCode() {
 export function doLogout() {
   return defHttp.get({ url: Api.Logout })
 }
+
+//新增
+export const Add = (params: any) => defHttp.post({ url: Api.Add, params })
+
+//编辑
+export const Update = (params: any) => defHttp.post({ url: Api.Update, params })

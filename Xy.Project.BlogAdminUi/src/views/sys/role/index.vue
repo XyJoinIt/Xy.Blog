@@ -2,7 +2,9 @@
   <div>
     <BasicTable @register="registerTable">
       <template #toolbar>
-        <a-button type="primary" @click="handleCreate"> 新增角色 </a-button>
+        <a-button type="primary" v-if="hasPermission(['sysrole:add'])" @click="handleCreate">
+          新增角色
+        </a-button>
       </template>
       <template #bodyCell="{ column, record }">
         <template v-if="column.key === 'action'">
@@ -11,10 +13,20 @@
               {
                 icon: 'clarity:note-edit-line',
                 onClick: handleEdit.bind(null, record),
+                auth: 'sysrole:edit',
+              },
+            ]"
+            :dropDownActions="[
+              {
+                icon: 'ant-design:menu-outlined',
+                label: '授权菜单',
+                onClick: handleGrantMenu.bind(null, record),
               },
               {
                 icon: 'ant-design:delete-outlined',
                 color: 'error',
+                auth: 'sysrole:delete',
+                label: '删除',
                 popConfirm: {
                   title: '是否确认删除',
                   placement: 'left',
@@ -26,6 +38,7 @@
         </template>
       </template>
     </BasicTable>
+    <GrantMenuDrawer @register="registerGrantMenuDrawer" />
     <RoleDrawer @register="registerDrawer" @success="handleSuccess" />
   </div>
 </template>
@@ -34,15 +47,19 @@
   import { BasicTable, useTable, TableAction } from '/@/components/Table'
   import { PateList, DeleteRole } from '/@/api/sys/role'
   import { useDrawer } from '/@/components/Drawer'
+  import { usePermission } from '/@/hooks/web/usePermission'
   import { columns, searchFormSchema, orders } from './role.data'
   import RoleDrawer from './RoleDrawer.vue'
   import { useMessage } from '/@/hooks/web/useMessage'
+  import GrantMenuDrawer from './GrantMenuDrawer.vue'
   export default defineComponent({
     name: 'RoleManagement',
-    components: { BasicTable, TableAction, RoleDrawer },
+    components: { BasicTable, TableAction, RoleDrawer, GrantMenuDrawer },
     setup() {
       const [registerDrawer, { openDrawer }] = useDrawer()
       const { createMessage } = useMessage()
+      const { hasPermission } = usePermission()
+      const [registerGrantMenuDrawer, { openDrawer: openGrantMenuDrawer }] = useDrawer()
       const [registerTable, { reload }] = useTable({
         title: '角色列表',
         api: PateList,
@@ -89,17 +106,24 @@
         }
       }
 
+      function handleGrantMenu(record: Recordable) {
+        openGrantMenuDrawer(true, { record })
+      }
+
       function handleSuccess() {
         reload()
       }
 
       return {
+        handleGrantMenu,
+        registerGrantMenuDrawer,
         registerTable,
         registerDrawer,
         handleCreate,
         handleEdit,
         handleDelete,
         handleSuccess,
+        hasPermission,
       }
     },
   })

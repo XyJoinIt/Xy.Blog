@@ -9,6 +9,7 @@ namespace Xy.Project.Application.Services.Contracts.Sys
 {
     public interface ISysRoleMenuService : IScopedDependency
     {
+        Task<List<MenusTreeNode>> GetRoleMenuByRoleId(long RoleId);
         Task<List<long>> GetRoleMenuIdList(List<long> roleIds);
         Task GrantRoleMenu(AddSysRoleMenuDto input);
     }

@@ -9,7 +9,8 @@
   import { BasicForm, useForm } from '/@/components/Form/index'
   import { formSchema } from '../user.data'
 
-  import { TreeList, AddRole, UpdateRole } from '/@/api/sys/org'
+  import { Add, Update } from '/@/api/sys/user'
+  import { TreeList } from '/@/api/sys/org'
   export default defineComponent({
     name: 'DeptModal',
     components: { BasicModal, BasicForm },
@@ -52,9 +53,9 @@
 
           if (unref(isUpdate)) {
             values.id = rowId
-            await UpdateRole(values)
+            await Update(values)
           } else {
-            await AddRole(values)
+            await Add(values)
           }
 
           closeModal()

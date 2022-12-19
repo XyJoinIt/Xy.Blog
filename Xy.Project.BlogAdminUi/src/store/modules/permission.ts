@@ -18,7 +18,7 @@ import { PAGE_NOT_FOUND_ROUTE } from '/@/router/routes/basic'
 
 import { filter } from '/@/utils/helper/treeHelper'
 
-import { getMenuList } from '/@/api/sys/menu'
+import { getList } from '/@/api/sys/menu'
 import { getPermCode } from '/@/api/sys/user'
 
 import { useMessage } from '/@/hooks/web/useMessage'
@@ -225,7 +225,7 @@ export const usePermissionStore = defineStore({
             //获取权限
             await this.changePermissionCode()
             //获取菜单
-            routeList = (await getMenuList()) as AppRouteRecordRaw[]
+            routeList = (await getList()) as AppRouteRecordRaw[]
           } catch (error) {
             console.error(error)
           }

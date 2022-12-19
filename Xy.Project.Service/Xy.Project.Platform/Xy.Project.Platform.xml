@@ -139,6 +139,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Xy.Project.Platform.Modular.Sys.SysMenuController.GetMenuList">
+            <summary>
+            获取菜单树（适用于菜单目录按钮的表格树形展示）
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Xy.Project.Platform.Modular.Sys.SysMenuController.GetTableList(Xy.Project.Core.Filter.PageParam)">
             <summary>
             菜单表格显示 
@@ -170,6 +176,28 @@
         <member name="M:Xy.Project.Platform.Modular.Sys.SysRoleController.list">
             <summary>
             角色集合
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Xy.Project.Platform.Modular.Sys.SysRoleMenuController">
+            <summary>
+            角色菜单控制器
+            </summary>
+        </member>
+        <member name="M:Xy.Project.Platform.Modular.Sys.SysRoleMenuController.GetRoleOwnMenuList(System.Int64)">
+            <summary>
+             根据角色Id获取菜单集合
+            </summary>
+        </member>
+        <member name="M:Xy.Project.Platform.Modular.Sys.SysRoleMenuController.GetRoleMenuByRoleId(System.Int64)">
+            <summary>
+            获取角色菜单树
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Platform.Modular.Sys.SysRoleMenuController.GrantRoleMenu(Xy.Project.Application.Dtos.Sys.SysRoleMenuManage.AddSysRoleMenuDto)">
+            <summary>
+            授权角色菜单
             </summary>
             <returns></returns>
         </member>

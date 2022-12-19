@@ -24,5 +24,14 @@ public static class XyGlobalConfig
     /// 系统配置
     /// </summary>
     public static SystemOption systemOption { get; set; }
-}
 
+    /// <summary>
+    /// 文件上传配置
+    /// </summary>
+    public static UploadOptions uploadOptions { get; set; }
+
+    /// <summary>
+    /// 存储对象配置
+    /// </summary>
+    public static OSSProviderOptions oSSProviderOptions  { get; set; }
+}

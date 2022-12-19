@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System;
 using Xy.Project.Application.Dtos.Sys.SysRoleMenuManage;
 using Xy.Project.Application.Services.Contracts.Sys;
 using Xy.Project.Core.Const;
+using Xy.Project.Core.Helpers;
 using Xy.Project.Platform.Model.Entities.Sys;
 
 namespace Xy.Project.Application.Services.Sys
@@ -9,12 +11,17 @@ namespace Xy.Project.Application.Services.Sys
     public class SysRoleMenuService : ISysRoleMenuService
     {
         private readonly IRepository<SysRoleMenu, long> _repository;
+        private readonly IRepository<SysRole, long> _sysRoleRepository;
+        private readonly IRepository<SysMenu, long> _sysMenuRepository;
         private readonly ISysCacheService _sysCacheService;
         private readonly IUnitOfWork _unitOfWork;
-        public SysRoleMenuService(ISysCacheService sysCacheService, IRepository<SysRoleMenu, long> repository)
+        public SysRoleMenuService(ISysCacheService sysCacheService, IRepository<SysRoleMenu, long> repository, IRepository<SysRole, long> sysRoleRepository, IUnitOfWork unitOfWork, IRepository<SysMenu, long> sysMenuRepository)
         {
             _sysCacheService = sysCacheService;
             _repository = repository;
+            _sysRoleRepository = sysRoleRepository;
+            _unitOfWork = unitOfWork;
+            _sysMenuRepository = sysMenuRepository;
         }
 
         /// <summary>
@@ -24,6 +31,7 @@ namespace Xy.Project.Application.Services.Sys
         /// <returns></returns>
         public async Task GrantRoleMenu(AddSysRoleMenuDto input)
         {
+            //var role = await _sysRoleRepository.FindAsync(input.SysRoleId);
             await _unitOfWork.ExecuteWithTransactionAsync(async () =>
                {
                    var roleMenus = await _repository.QueryAsNoTracking(x => x.SysRoleId == input.SysRoleId).ToArrayAsync();
@@ -48,6 +56,18 @@ namespace Xy.Project.Application.Services.Sys
         {
             return await _repository.QueryAsNoTracking(x => roleIds.Contains(x.SysRoleId))
                 .Select(x => x.SysMenuId).ToListAsync();
+        }
+
+        /// <summary>
+        /// 获取角色菜单树
+        /// </summary>
+        /// <param name="RoleId"></param>
+        /// <returns></returns>
+        public async Task<List<MenusTreeNode>> GetRoleMenuByRoleId(long RoleId)
+        {
+            var menuIdList = await GetRoleMenuIdList(new List<long>() { RoleId });
+            var Menus =await ObjectMap.ToOutput<MenusTreeNode>( _sysMenuRepository.QueryAsNoTracking(x => menuIdList.Contains(x.Id))).ToListAsync();
+            return new TreeBuildHelper<MenusTreeNode>().Build(Menus);
         }
     }
 }

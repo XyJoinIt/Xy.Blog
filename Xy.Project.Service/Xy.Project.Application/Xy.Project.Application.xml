@@ -324,6 +324,11 @@
             菜单Id
             </summary>
         </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysRoleMenuManage.MenusTreeNode.Children">
+            <summary>
+            菜单子项
+            </summary>
+        </member>
         <member name="P:Xy.Project.Application.Dtos.Sys.SysUserManage.BaseSysUserDto.Account">
             <summary>
             账号
@@ -701,6 +706,18 @@
             <param name="userId"></param>
             <returns></returns>
         </member>
+        <member name="T:Xy.Project.Application.Services.Sys.SysFileService">
+            <summary>
+            文件服务
+            </summary>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Sys.SysFileService.HandleUploadFile(Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            上传文件
+            </summary>
+            <param name="file"></param>
+            <returns></returns>
+        </member>
         <member name="M:Xy.Project.Application.Services.Sys.SysMenuService.List">
             <summary>
              获取用户菜单集合（适用于用户登录菜单显示）
@@ -714,7 +731,7 @@
             <param name="page"></param>
             <returns></returns>
         </member>
-        <member name="M:Xy.Project.Application.Services.Sys.SysMenuService.GetMenuListPage">
+        <member name="M:Xy.Project.Application.Services.Sys.SysMenuService.GetMenuList">
             <summary>
             获取菜单树（适用于菜单目录按钮的表格树形展示）
             </summary>
@@ -763,6 +780,13 @@
             获取角色的菜单Id集合
             </summary>
             <param name="roleIds"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Sys.SysRoleMenuService.GetRoleMenuByRoleId(System.Int64)">
+            <summary>
+            获取角色菜单树
+            </summary>
+            <param name="RoleId"></param>
             <returns></returns>
         </member>
         <member name="M:Xy.Project.Application.Services.Sys.SysRoleService.PageAsync(Xy.Project.Core.Filter.PageParam)">

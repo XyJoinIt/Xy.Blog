@@ -125,10 +125,4 @@ public class SysMenu : FullEntityBase
     [MaxLength(256)]
     public string? Remark { get; set; }
 
-    /// <summary>
-    /// 菜单子项
-    /// </summary>
-    [Comment("菜单子项")]
-    [NotMapped]
-    public List<SysMenu> Children { get; set; } = new List<SysMenu>();
 }

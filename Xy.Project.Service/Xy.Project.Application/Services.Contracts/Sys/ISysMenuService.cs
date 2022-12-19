@@ -9,6 +9,7 @@ namespace Xy.Project.Application.Services.Contracts.Sys
     /// </summary>
     public interface ISysMenuService : ICURDContract<SysMenu, AddSysMenuDto, EditSysMenuDto, OutSysMenuPageDto>, IScopedDependency
     {
+        Task<List<MenusTreeNode>> GetMenuList();
         Task<List<MenusTreeNode>> List();
         Task<List<string>?> GetPermissionList();
         Task<PagedList<OutSysMenuPageDto>> TableList(PageParam page);

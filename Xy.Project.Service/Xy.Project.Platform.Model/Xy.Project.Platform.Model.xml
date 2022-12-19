@@ -144,14 +144,9 @@
             仓储名称
             </summary>
         </member>
-        <member name="P:Xy.Project.Platform.Model.Entities.Sys.SysFile.FileOldName">
+        <member name="P:Xy.Project.Platform.Model.Entities.Sys.SysFile.FileName">
             <summary>
-            文件名称（上传前名称）
-            </summary>文件名称
-        </member>
-        <member name="P:Xy.Project.Platform.Model.Entities.Sys.SysFile.FileNewName">
-            <summary>
-            文件名称（上传后名称） Oss如果重名会覆盖防止覆盖上传后更改名称
+            文件名称（上传时名称）
             </summary>文件名称
         </member>
         <member name="P:Xy.Project.Platform.Model.Entities.Sys.SysFile.Suffix">
@@ -167,6 +162,11 @@
         <member name="P:Xy.Project.Platform.Model.Entities.Sys.SysFile.SizeKb">
             <summary>
             文件大小KB
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Platform.Model.Entities.Sys.SysFile.SizeInfo">
+            <summary>
+            文件大小信息-计算后的
             </summary>
         </member>
         <member name="P:Xy.Project.Platform.Model.Entities.Sys.SysFile.Url">
@@ -267,11 +267,6 @@
         <member name="P:Xy.Project.Platform.Model.Entities.Sys.SysMenu.Remark">
             <summary>
             备注
-            </summary>
-        </member>
-        <member name="P:Xy.Project.Platform.Model.Entities.Sys.SysMenu.Children">
-            <summary>
-            菜单子项
             </summary>
         </member>
         <member name="T:Xy.Project.Platform.Model.Entities.Sys.SysOrg">
@@ -598,6 +593,18 @@
             <inheritdoc />
         </member>
         <member name="M:Xy.Project.Platform.Model.Migrations.v1012.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Xy.Project.Platform.Model.Migrations.v1013">
+            <inheritdoc />
+        </member>
+        <member name="M:Xy.Project.Platform.Model.Migrations.v1013.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Xy.Project.Platform.Model.Migrations.v1013.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Xy.Project.Platform.Model.Migrations.v1013.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
         <member name="T:Xy.Project.Platform.Model.MySqlXyPlatformDbContextFactory">

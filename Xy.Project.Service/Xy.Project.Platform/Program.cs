@@ -4,6 +4,7 @@ using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Converters;
+using OnceMi.AspNetCore.OSS;
 using Serilog;
 using Serilog.Events;
 using System.Text;
@@ -73,6 +74,19 @@ builder.Services.AddJwtSetup();
 //redis³õÊ¼»¯
 builder.Services.AddRedisSetUp();
 
+//Oss
+builder.Services.AddOSSService(Enum.GetName(XyGlobalConfig.oSSProviderOptions.Provider), options =>
+{
+    options.Provider = XyGlobalConfig.oSSProviderOptions.Provider;
+    options.Endpoint = XyGlobalConfig.oSSProviderOptions.Endpoint;
+    options.AccessKey = XyGlobalConfig.oSSProviderOptions.AccessKey;
+    options.SecretKey = XyGlobalConfig.oSSProviderOptions.SecretKey;
+    options.Region = XyGlobalConfig.oSSProviderOptions.Region;
+    options.IsEnableCache = XyGlobalConfig.oSSProviderOptions.IsEnableCache;
+    options.IsEnableHttps = XyGlobalConfig.oSSProviderOptions.IsEnableHttps;
+});
+
+
 builder.Services.AddMediatR(AssemblyHelper.AllAssemblies);
 
 //Ñ©»¨ID
@@ -125,4 +139,6 @@ void InitConfiguration(IConfiguration configuration)
     XyGlobalConfig.JwtOption = configuration.GetSection("Jwt").Get<JwtOption>()!;
     XyGlobalConfig.corsOption = configuration.GetSection("Cors").Get<CorsOption>();
     XyGlobalConfig.systemOption = configuration.GetSection("System").Get<SystemOption>()!;
+    XyGlobalConfig.uploadOptions = configuration.GetSection("Upload").Get<UploadOptions>()!;
+    XyGlobalConfig.oSSProviderOptions = configuration.GetSection("OSSProvider").Get<OSSProviderOptions>()!;
 }

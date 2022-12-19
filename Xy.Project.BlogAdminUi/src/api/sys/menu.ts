@@ -3,17 +3,22 @@ import { getMenuListResultModel, OutSysMenuPage } from './model/menuModel'
 import { PageParam } from '../model/baseModel'
 
 enum Api {
-  GetMenuList = '/SysMenu/GetList',
+  GetList = '/SysMenu/GetList',
   PageList = '/SysMenu/PageList',
   GetTableList = '/SysMenu/GetTableList',
+  GetMenuList = '/SysMenu/GetMenuList',
 }
 
 /**
  * @description: Get user menu based on id
  */
 
-export const getMenuList = () => {
-  return defHttp.get<getMenuListResultModel>({ url: Api.GetMenuList })
+export const getList = () => {
+  return defHttp.get<getMenuListResultModel>({ url: Api.GetList })
+}
+
+export const GetMenuList = () => {
+  return defHttp.get<any>({ url: Api.GetMenuList })
 }
 
 export const PageList = (data: PageParam) => {

@@ -16,8 +16,8 @@ namespace Xy.Project.Platform.Model.Entities.Sys
         /// 提供者
         /// </summary>
         [Comment("提供者")]
-        [MaxLength(5)]
-        public ProviderType Provider { get; set; }
+        [MaxLength(128)]
+        public string Provider { get; set; }
 
         /// <summary>
         /// 仓储名称
@@ -27,18 +27,11 @@ namespace Xy.Project.Platform.Model.Entities.Sys
         public string BucketName { get; set; }
 
         /// <summary>
-        /// 文件名称（上传前名称）
+        /// 文件名称（上传时名称）
         /// </summary>文件名称
-        [Comment("上传前名称")]
+        [Comment("文件名称")]
         [MaxLength(128)]
-        public string FileOldName { get; set; }
-
-        /// <summary>
-        /// 文件名称（上传后名称） Oss如果重名会覆盖防止覆盖上传后更改名称
-        /// </summary>文件名称
-        [Comment("上传后名称")]
-        [MaxLength(128)]
-        public string FileNewName { get; set; }
+        public string FileName { get; set; }
 
         /// <summary>
         /// 文件后缀
@@ -60,6 +53,13 @@ namespace Xy.Project.Platform.Model.Entities.Sys
         [Comment("文件大小KB")]
         [MaxLength(16)]
         public string SizeKb { get; set; }
+
+        /// <summary>
+        /// 文件大小信息-计算后的
+        /// </summary>
+        [Comment("文件大小信息")]
+        [MaxLength(64)]
+        public string SizeInfo { get; set; }
 
         /// <summary>
         /// 外链地址-OSS上传后生成外链地址方便前端预览

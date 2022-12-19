@@ -76,7 +76,6 @@ namespace Xy.Project.Application.Services.Sys
                         .OrderBy(x => x.Order)
                         .ThenBy(x => x.Id)
                         .ToListAsync();
-
                 }
                 // 转换成登录菜单
                 Menus = sysMenuList.Select(u => new MenusTreeNode
@@ -131,7 +130,7 @@ namespace Xy.Project.Application.Services.Sys
         /// 获取菜单树（适用于菜单目录按钮的表格树形展示）
         /// </summary>
         /// <returns></returns>
-        public async Task<List<MenusTreeNode>> GetMenuListPage()
+        public async Task<List<MenusTreeNode>> GetMenuList()
         {
             var sysMenuList = new List<SysMenu>();
             sysMenuList = await _repository.QueryAsNoTracking()

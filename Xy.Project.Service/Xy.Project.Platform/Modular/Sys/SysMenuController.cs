@@ -31,6 +31,13 @@ public class SysMenuController : OpControllerBase<ISysMenuService,SysMenu,AddSys
     public async Task<AppResult> GetPermissionList() => AppResult.Success(await _sysMenuService.GetPermissionList());
 
     /// <summary>
+    /// 获取菜单树（适用于菜单目录按钮的表格树形展示）
+    /// </summary>
+    /// <returns></returns>
+    [HttpGet]
+    public async Task<AppResult> GetMenuList() => AppResult.Success(await _sysMenuService.GetMenuList());
+
+    /// <summary>
     /// 菜单表格显示 
     /// </summary>
     /// <returns></returns>
