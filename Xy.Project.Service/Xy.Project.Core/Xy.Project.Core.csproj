@@ -8,18 +8,20 @@
 
 	<ItemGroup>
 		<PackageReference Include="AutoMapper" Version="12.0.0" />
-		<PackageReference Include="FluentValidation" Version="11.3.0" />
+		<PackageReference Include="FluentValidation" Version="11.4.0" />
 		<PackageReference Include="FreeRedis" Version="1.0.3" />
+		<PackageReference Include="Masuit.Tools.Core" Version="2.5.9" />
 		<PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
 		<PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Server.Kestrel.Core" Version="2.2.0" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.0" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="7.0.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.1" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="7.0.1" />
 		<PackageReference Include="Microsoft.Extensions.DependencyModel" Version="7.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="7.0.0" />
-		<PackageReference Include="NETCore.Encrypt" Version="2.1.0" />
-		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+		<PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="7.0.1" />
+		<PackageReference Include="MiniProfiler.AspNetCore.Mvc" Version="4.2.22" />
+		<PackageReference Include="NETCore.Encrypt" Version="2.1.1" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
 		<PackageReference Include="OnceMi.AspNetCore.OSS" Version="1.1.9" />
 		<PackageReference Include="Portable.BouncyCastle" Version="1.9.0" />
 		<PackageReference Include="Yitter.IdGenerator" Version="1.0.14" />

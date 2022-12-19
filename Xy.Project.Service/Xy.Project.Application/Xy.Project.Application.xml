@@ -79,6 +79,41 @@
             验证码
             </summary>
         </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysFileManage.OutSysFileDto.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysFileManage.OutSysFileDto.Provider">
+            <summary>
+            提供者
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysFileManage.OutSysFileDto.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysFileManage.OutSysFileDto.Url">
+            <summary>
+            URL
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysFileManage.OutSysFileDto.SizeKb">
+            <summary>
+            大小
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysFileManage.OutSysFileDto.Suffix">
+            <summary>
+            后缀
+            </summary>
+        </member>
+        <member name="P:Xy.Project.Application.Dtos.Sys.SysFileManage.OutSysFileDto.FilePath">
+            <summary>
+            路径
+            </summary>
+        </member>
         <member name="P:Xy.Project.Application.Dtos.Sys.SysMenuManage.BaseSysMenu.Type">
             <summary>
             菜单类型（1目录 2菜单 3按钮）
@@ -466,6 +501,13 @@
             <param name="password"></param>
             <returns></returns>
         </member>
+        <member name="M:Xy.Project.Application.Services.Contracts.Sys.ISysFileService.UploadFile(Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            上传文件
+            </summary>
+            <param name="file"></param>
+            <returns></returns>
+        </member>
         <member name="T:Xy.Project.Application.Services.Contracts.Sys.ISysMenuService">
             <summary>
             菜单
@@ -711,11 +753,39 @@
             文件服务
             </summary>
         </member>
+        <member name="M:Xy.Project.Application.Services.Sys.SysFileService.UploadFile(Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            上传文件
+            </summary>
+            <param name="file"></param>
+            <returns></returns>
+        </member>
         <member name="M:Xy.Project.Application.Services.Sys.SysFileService.HandleUploadFile(Microsoft.AspNetCore.Http.IFormFile)">
             <summary>
             上传文件
             </summary>
             <param name="file"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Sys.SysFileService.GetMinioPreviewFileUrl(System.String,System.String)">
+            <summary>
+            获取Minio文件的下载或者预览地址
+            </summary>
+            <param name="bucketName">桶名</param>
+            <param name="fileName">文件名</param>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Sys.SysFileService.GetHost">
+            <summary>
+            获取Host
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Xy.Project.Application.Services.Sys.SysFileService.GetFileUrl(Xy.Project.Platform.Model.Entities.Sys.SysFile)">
+            <summary>
+            获取文件URL
+            </summary>
+            <param name="sysFile"></param>
             <returns></returns>
         </member>
         <member name="M:Xy.Project.Application.Services.Sys.SysMenuService.List">

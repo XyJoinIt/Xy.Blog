@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Xy.Project.Platform.Model;
 
@@ -10,9 +11,11 @@ using Xy.Project.Platform.Model;
 namespace Xy.Project.Platform.Model.Migrations
 {
     [DbContext(typeof(XyPlatformContext))]
-    partial class XyPlatformContextModelSnapshot : ModelSnapshot
+    [Migration("20221219140241_V1.0.14")]
+    partial class V1014
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -212,6 +215,7 @@ namespace Xy.Project.Platform.Model.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<string>("BucketName")
+                        .IsRequired()
                         .HasMaxLength(128)
                         .HasColumnType("varchar(128)")
                         .HasComment("仓储名称");
@@ -226,11 +230,13 @@ namespace Xy.Project.Platform.Model.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<string>("FileName")
+                        .IsRequired()
                         .HasMaxLength(128)
                         .HasColumnType("varchar(128)")
                         .HasComment("文件名称");
 
                     b.Property<string>("FilePath")
+                        .IsRequired()
                         .HasMaxLength(128)
                         .HasColumnType("varchar(128)")
                         .HasComment("存储路径");
@@ -250,26 +256,31 @@ namespace Xy.Project.Platform.Model.Migrations
                         .HasComment("所在系统模块");
 
                     b.Property<string>("Provider")
+                        .IsRequired()
                         .HasMaxLength(128)
                         .HasColumnType("varchar(128)")
                         .HasComment("提供者");
 
                     b.Property<string>("SizeInfo")
+                        .IsRequired()
                         .HasMaxLength(64)
                         .HasColumnType("varchar(64)")
                         .HasComment("文件大小信息");
 
                     b.Property<string>("SizeKb")
+                        .IsRequired()
                         .HasMaxLength(16)
                         .HasColumnType("varchar(16)")
                         .HasComment("文件大小KB");
 
                     b.Property<string>("Suffix")
+                        .IsRequired()
                         .HasMaxLength(16)
                         .HasColumnType("varchar(16)")
                         .HasComment("文件后缀");
 
                     b.Property<string>("Url")
+                        .IsRequired()
                         .HasMaxLength(128)
                         .HasColumnType("varchar(128)")
                         .HasComment("外链地址");

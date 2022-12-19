@@ -10,5 +10,6 @@ namespace Xy.Project.Platform.Modular
     [ApiController]
     public abstract class ApiControllerBase : ControllerBase
     {
+
     }
 }

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Xy.Project.Platform.Model;
 
@@ -10,9 +11,11 @@ using Xy.Project.Platform.Model;
 namespace Xy.Project.Platform.Model.Migrations
 {
     [DbContext(typeof(XyPlatformContext))]
-    partial class XyPlatformContextModelSnapshot : ModelSnapshot
+    [Migration("20221219140459_V1.0.15")]
+    partial class V1015
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

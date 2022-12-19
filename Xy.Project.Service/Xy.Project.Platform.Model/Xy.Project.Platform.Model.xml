@@ -607,6 +607,30 @@
         <member name="M:Xy.Project.Platform.Model.Migrations.v1013.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
+        <member name="T:Xy.Project.Platform.Model.Migrations.V1014">
+            <inheritdoc />
+        </member>
+        <member name="M:Xy.Project.Platform.Model.Migrations.V1014.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Xy.Project.Platform.Model.Migrations.V1014.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Xy.Project.Platform.Model.Migrations.V1014.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Xy.Project.Platform.Model.Migrations.V1015">
+            <inheritdoc />
+        </member>
+        <member name="M:Xy.Project.Platform.Model.Migrations.V1015.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Xy.Project.Platform.Model.Migrations.V1015.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Xy.Project.Platform.Model.Migrations.V1015.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
         <member name="T:Xy.Project.Platform.Model.MySqlXyPlatformDbContextFactory">
             <summary>
             mysql迁移工厂

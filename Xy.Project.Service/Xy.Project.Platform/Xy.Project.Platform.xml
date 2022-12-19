@@ -122,6 +122,18 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:Xy.Project.Platform.Modular.Sys.SysFileController">
+            <summary>
+            文件控制器
+            </summary>
+        </member>
+        <member name="M:Xy.Project.Platform.Modular.Sys.SysFileController.Up(Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            文件上传
+            </summary>
+            <param name="formFile"></param>
+            <returns></returns>
+        </member>
         <member name="T:Xy.Project.Platform.Modular.Sys.SysMenuController">
             <summary>
             菜单控制器
